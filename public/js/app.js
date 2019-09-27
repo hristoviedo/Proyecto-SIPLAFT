@@ -49489,6 +49489,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/js.js":
+/*!****************************!*\
+  !*** ./resources/js/js.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -49501,13 +49512,14 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!**********************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/js.js ./resources/sass/app.scss ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\Practicante\Documents\GitHub\WebSite\SIPLAFT\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Practicante\Documents\GitHub\WebSite\SIPLAFT\resources\js\js.js */"./resources/js/js.js");
 module.exports = __webpack_require__(/*! C:\Users\Practicante\Documents\GitHub\WebSite\SIPLAFT\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
