@@ -7,6 +7,10 @@
     margin: 0;
 }
 
+.navbar-laravel {
+    background-color: darkcyan;
+}
+
 .full-height {
     height: 96vh;
 }
