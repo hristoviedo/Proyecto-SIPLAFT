@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'SIPLAFT') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -17,15 +17,15 @@
     {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 <body class="">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container =">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-color">
+            <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'SIPLAFT') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,11 +41,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link text-primary" href="{{ route('login') }}">{{ __('INICIAR SESIÓN') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('INICIAR SESIÓN') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-primary" href="{{ route('register') }}">{{ __('REGISTRARSE') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('REGISTRARSE') }}</a>
                                 </li>
                             @endif
                         @else
@@ -75,6 +75,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="mt-auto py-2 page-footer" id="copyright">
+            <small class="">Copyright &copy; 2019 - SIPLAFT - Todos los derechos reservados</small>
+        </footer>
     </div>
 </body>
 </html>

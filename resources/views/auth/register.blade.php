@@ -43,13 +43,11 @@
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de usuario') }}</label>
                             <div class="col-md-6">
                                 {{-- <input  --}}
-                                <div class="form-group">
                                   <select id="type" type="text" class="form-control" name="type">
-                                    <option>Supervisor</option>
                                     <option>Colaborador</option>
+                                    <option>Supervisor</option>
                                     <option>Administrador</option>
                                   </select>
-                                </div>
                             </div>
                         </div>
 
@@ -77,7 +75,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-color">
                                     {{ __('Register') }}
                                 </button>
                             </div>

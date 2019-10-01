@@ -11,7 +11,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}" class="border border-primary">INICIO</a>
+                        <a href="{{ url('/home') }}" class="">{{ Auth::user()->name }}</a>
                     @else
                         <a href="{{ route('login') }}">INICIAR SESIÓN</a>
 
@@ -40,8 +40,8 @@
             </div>
         </div>
         <div>
-            <footer class="footer mt-auto py-3">
-                <div id="copyright"><small class="">Copyright&copy; 2019 - SIPLAFT - Todos los derechos reservados</small></div>
+            <footer class="mt-auto py-2 page-footer" >
+                <div id="copyright"><small class="">Copyright &copy; 2019 - SIPLAFT - Todos los derechos reservados</small></div>
             </footer>
         </div>
     </body>
