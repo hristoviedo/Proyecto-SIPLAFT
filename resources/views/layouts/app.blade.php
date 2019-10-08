@@ -9,6 +9,9 @@
 
     <title>{{ config('app.name', 'SIPLAFT') }}</title>
 
+    <!-- Icono de la web -->
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -25,6 +28,7 @@
         <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-color">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{ asset('img/logo.png') }}" class="img-fluid img-small" alt="Responsive image">
                     {{ config('app.name', 'SIPLAFT') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

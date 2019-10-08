@@ -1,7 +1,7 @@
 /*********************************************/
 .body {
     background-color:#ffffff;
-    color: #666666  ;
+    color: rgb(102, 102, 102)  ;
     font-family:sans-serif;
     font-weight: 200;
     height: 100vh;
@@ -24,6 +24,42 @@
 
 .btn-color:hover{
   background-color: rgba(255, 127, 16, 1);
+}
+
+.btn-alto{
+  background-color: rgba(255, 127, 16, 0.7);
+}
+
+.btn-bajo{
+  background-color: rgba(0, 128, 0, 0.7);
+}
+
+.btn-critico{
+  background-color: rgba(255, 0, 0, 0.7);
+}
+.btn-significativo{
+  background-color: rgba(255, 255, 0, 0.7);
+}
+.btn-moderado{
+  background-color: rgba(102, 102, 102, 0.7);
+}
+
+.btn-alto:hover{
+  background-color: rgba(255, 127, 16, 1);
+}
+
+.btn-bajo:hover{
+  background-color: rgba(0, 128, 0, 1);
+}
+
+.btn-critico:hover{
+  background-color: rgba(255, 0, 0, 1);
+}
+.btn-significativo:hover{
+  background-color: rgba(255, 255, 0, 1);
+}
+.btn-moderado:hover{
+  background-color: rgba(102, 102, 102, 1);
 }
 
 .navbar-color {
@@ -76,6 +112,9 @@
     width:20%;
 }
 
+.img-small {
+  width:8%;
+}
 
 /*******************************************************************************************/
 /*!
@@ -370,7 +409,13 @@
   input[type="radio"],
   input[type="checkbox"] {
     box-sizing: border-box;
-    padding: 0;
+    /* padding: 0; */
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(1.5); /* FF */
+    -webkit-transform: scale(1.5); /* Safari and Chrome */
+    -o-transform: scale(1.5); /* Opera */
+    transform: scale(1.5);
+    padding: 0px;
   }
   
   input[type="date"],
@@ -2112,7 +2157,7 @@
   .form-check-input {
     position: absolute;
     margin-top: 0.3rem;
-    margin-left: -1.25rem;
+    /* margin-left: -1.25rem; */
   }
   
   .form-check-input:disabled ~ .form-check-label {
@@ -3065,6 +3110,7 @@
     font-size: 0.875rem;
     line-height: 1.5;
     border-radius: 0.2rem;
+    width: 6rem;
   }
   
   .btn-block {
@@ -4259,7 +4305,7 @@
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
     margin-right: 1rem;
-    font-size: 2rem;
+    font-size: 1rem;
     line-height: inherit;
     white-space: nowrap;
   }

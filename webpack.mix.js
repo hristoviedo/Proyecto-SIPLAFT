@@ -8,3 +8,5 @@ mix.js(['resources/js/app.js',
     //     'public/css/app.css')
     .styles('resources/css/style.css',
         'public/css/styles.css');
+
+mix.disableNotifications();

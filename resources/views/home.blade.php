@@ -34,31 +34,43 @@
           </ul>
 
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Reportes Guardados</span>
+            <span>Reportes Recientes</span>
           </h6>
           <ul class="nav flex-column mb-2">
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                Current month
+                Último Guardado
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                Last quarter
+                Críticos
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                Social engagement
+                Alto
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                Year-end sale
+                Significativo
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                Moderado
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                Bajo
               </a>
             </li>
           </ul>
@@ -69,8 +81,16 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
           <h1 class="h2">Tablero</h1>
           <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="col-lg-6">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar cliente">
+                <span class="input-group-btn">
+                  <button class="btn btn-color" type="button">Buscar</button>
+                </span>
+              </div>
+            </div>
             <div class="btn-group mr-2">
-              <button type="button" class="btn btn-sm btn-color">Exportar</button>
+              <button type="button" class="btn btn-sm btn-primary">Exportar</button>
             </div>
           </div>
         </div>
@@ -79,6 +99,8 @@
           <table class="table table-striped table-sm text-center">
             <thead>
               <tr>
+                <th>Elegir</th>
+                <th>Número de ID</th>
                 <th>Nombre</th>
                 <th>Teléfono</th>
                 <th>Actividad Económica</th>
@@ -88,116 +110,49 @@
             </thead>
             <tbody>
               <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
-                <td>sit</td>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0810-1990-00239</td>
+                <td>Juana Gabriela Cribas Barahona</td>
+                <td>+504-99552013</td>
+                <td>Comerciante Individual</td>
+                <td><a href="#">Más información</a></td>
+                <td><button type="button" class="btn btn-sm btn-critico">Crítico</button></td>
               </tr>
               <tr>
-                <td>1,002</td>
-                <td>amet</td>
-                <td>consectetur</td>
-                <td>adipiscing</td>
-                <td>elit</td>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0305-1995-01049</td>
+                <td>Ana María Martínez Muñoz</td>
+                <td>+502-59501883</td>
+                <td>Sin fines de lucro</td>
+                <td><a href="#">Más información</a></td>
+                <td><button type="button" class="btn btn-sm btn-alto">Alto</button></td>
               </tr>
               <tr>
-                <td>1,003</td>
-                <td>Integer</td>
-                <td>nec</td>
-                <td>odio</td>
-                <td>Praesent</td>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0810-1990-00239</td>
+                <td>Juan Gabriel Cribas Barahona</td>
+                <td>+504-99552013</td>
+                <td>Comerciante Individual</td>
+                <td><a href="#">Más información</a></td>
+                <td><button type="button" class="btn btn-sm btn-significativo">Significativo</button></td>
               </tr>
               <tr>
-                <td>1,003</td>
-                <td>libero</td>
-                <td>Sed</td>
-                <td>cursus</td>
-                <td>ante</td>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0810-1990-00239</td>
+                <td>Juan Gabriel Cribas Barahona</td>
+                <td>+504-99552013</td>
+                <td>Comerciante Individual</td>
+                <td><a href="#">Más información</a></td>
+                <td><button type="button" class="btn btn-sm btn-moderado">Moderado</button></td>
               </tr>
               <tr>
-                <td>1,004</td>
-                <td>dapibus</td>
-                <td>diam</td>
-                <td>Sed</td>
-                <td>nisi</td>
-              </tr>
-              <tr>
-                <td>1,005</td>
-                <td>Nulla</td>
-                <td>quis</td>
-                <td>sem</td>
-                <td>at</td>
-              </tr>
-              <tr>
-                <td>1,006</td>
-                <td>nibh</td>
-                <td>elementum</td>
-                <td>imperdiet</td>
-                <td>Duis</td>
-              </tr>
-              <tr>
-                <td>1,007</td>
-                <td>sagittis</td>
-                <td>ipsum</td>
-                <td>Praesent</td>
-                <td>mauris</td>
-              </tr>
-              <tr>
-                <td>1,008</td>
-                <td>Fusce</td>
-                <td>nec</td>
-                <td>tellus</td>
-                <td>sed</td>
-              </tr>
-              <tr>
-                <td>1,009</td>
-                <td>augue</td>
-                <td>semper</td>
-                <td>porta</td>
-                <td>Mauris</td>
-              </tr>
-              <tr>
-                <td>1,010</td>
-                <td>massa</td>
-                <td>Vestibulum</td>
-                <td>lacinia</td>
-                <td>arcu</td>
-              </tr>
-              <tr>
-                <td>1,011</td>
-                <td>eget</td>
-                <td>nulla</td>
-                <td>Class</td>
-                <td>aptent</td>
-              </tr>
-              <tr>
-                <td>1,012</td>
-                <td>taciti</td>
-                <td>sociosqu</td>
-                <td>ad</td>
-                <td>litora</td>
-              </tr>
-              <tr>
-                <td>1,013</td>
-                <td>torquent</td>
-                <td>per</td>
-                <td>conubia</td>
-                <td>nostra</td>
-              </tr>
-              <tr>
-                <td>1,014</td>
-                <td>per</td>
-                <td>inceptos</td>
-                <td>himenaeos</td>
-                <td>Curabitur</td>
-              </tr>
-              <tr>
-                <td>1,015</td>
-                <td>sodales</td>
-                <td>ligula</td>
-                <td>in</td>
-                <td>libero</td>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0305-1995-01049</td>
+                <td>Ana María Martínez Muñoz</td>
+                <td>+502-59501883</td>
+                <td>Sin fines de lucro</td>
+                <td><a href="#">Más información</a></td>
+                <td><button type="button" class="btn btn-sm btn-bajo">Bajo</button></td>
               </tr>
             </tbody>
           </table>
