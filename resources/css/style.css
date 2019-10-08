@@ -44,7 +44,9 @@
   background-color: rgba(102, 102, 102, 0.7);
 }
 
-.btn-alto:hover{
+
+
+/* .btn-alto:hover{
   background-color: rgba(255, 127, 16, 1);
 }
 
@@ -60,7 +62,7 @@
 }
 .btn-moderado:hover{
   background-color: rgba(102, 102, 102, 1);
-}
+} */
 
 .navbar-color {
     background-color: rgba(102, 102, 102, 0.3);
@@ -115,6 +117,15 @@
 .img-small {
   width:8%;
 }
+/* 
+.checkbox{
+  -ms-transform: scale(1); IE
+    -moz-transform: scale(1); FF
+    -webkit-transform: scale(1); Safari and Chrome
+    -o-transform: scale(1); Opera
+    transform: scale(1);
+    padding: 0px;
+} */
 
 /*******************************************************************************************/
 /*!
@@ -395,7 +406,7 @@
   [type="button"]:not(:disabled),
   [type="reset"]:not(:disabled),
   [type="submit"]:not(:disabled) {
-    cursor: pointer;
+    cursor: default;
   }
   
   button::-moz-focus-inner,
@@ -2166,6 +2177,7 @@
   
   .form-check-label {
     margin-bottom: 0;
+    padding-left: 1em;
   }
   
   .form-check-inline {

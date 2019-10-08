@@ -79,16 +79,126 @@
   
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-          <h1 class="h2">Subir archivo</h1>
+          <h1 class="h2">Tablero</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Buscar cliente">
+              <span class="input-group-btn">
+                <button class="btn btn-color" type="button">Buscar</button>
+              </span>
+            </div>
+          </div>
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-primary">Exportar</button>
+          </div>
         </div>
-        <div class="input-group">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-            <label class="custom-file-label" for="inputGroupFile04"></label>
-          </div>
-          <div class="input-group-append">
-            <button class="btn btn-color" type="button" id="inputGroupFileAddon04">Subir</button>
-          </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-sm text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th>Elegir</th>
+                <th>Número de ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Actividad Económica</th>
+                <th>Nivel de Riesgo</th>
+                <th>Detalles del Cliente</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0810-1990-00239</td>
+                <td>Alexander Gabriel Castellanos Valenzuela</td>
+                <td>+504-99552013</td>
+                <td>Comerciante Individual</td>
+                <td><button type="button" class="btn btn-sm btn-critico">Crítico</button></td>
+                <td><a href="#">Más información</a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0305-1995-01049</td>
+                <td>Ana María Martínez Muñoz</td>
+                <td>+502-59501883</td>
+                <td>Sin fines de lucro</td>
+                <td><button type="button" class="btn btn-sm btn-alto">Alto</button></td>
+                <td><a href="#">Más información</a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0810-1990-00239</td>
+                <td>Juan Gabriel Cribas Barahona</td>
+                <td>+504-99552013</td>
+                <td>Comerciante Individual</td>
+                <td><button type="button" class="btn btn-sm btn-significativo">Significativo</button></td>
+                <td><a href="#">Más información</a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0810-1990-00239</td>
+                <td>Juan Gabriel Cribas Barahona</td>
+                <td>+504-99552013</td>
+                <td>Comerciante Individual</td>
+                <td><button type="button" class="btn btn-sm btn-moderado">Moderado</button></td>
+                <td><a href="#">Más información</a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0305-1995-01049</td>
+                <td>Ana María Martínez Muñoz</td>
+                <td>+502-59501883</td>
+                <td>Sin fines de lucro</td>
+                <td><button type="button" class="btn btn-sm btn-bajo">Bajo</button></td>
+                <td><a href="#">Más información</a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0810-1990-00239</td>
+                <td>Alexander Gabriel Castellanos Valenzuela</td>
+                <td>+504-99552013</td>
+                <td>Comerciante Individual</td>
+                <td><button type="button" class="btn btn-sm btn-critico">Crítico</button></td>
+                <td><a href="#">Más información</a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0305-1995-01049</td>
+                <td>Ana María Martínez Muñoz</td>
+                <td>+502-59501883</td>
+                <td>Sin fines de lucro</td>
+                <td><button type="button" class="btn btn-sm btn-alto">Alto</button></td>
+                <td><a href="#">Más información</a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0810-1990-00239</td>
+                <td>Juan Gabriel Cribas Barahona</td>
+                <td>+504-99552013</td>
+                <td>Comerciante Individual</td>
+                <td><button type="button" class="btn btn-sm btn-significativo">Significativo</button></td>
+                <td><a href="#">Más información</a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0810-1990-00239</td>
+                <td>Juan Gabriel Cribas Barahona</td>
+                <td>+504-99552013</td>
+                <td>Comerciante Individual</td>
+                <td><button type="button" class="btn btn-sm btn-moderado">Moderado</button></td>
+                <td><a href="#">Más información</a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input position-static" type="checkbox" id="" value=""></td>
+                <td>0305-1995-01049</td>
+                <td>Ana María Martínez Muñoz</td>
+                <td>+502-59501883</td>
+                <td>Sin fines de lucro</td>
+                <td><button type="button" class="btn btn-sm btn-bajo">Bajo</button></td>
+                <td><a href="#">Más información</a></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </main>
     </div>
