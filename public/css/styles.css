@@ -20,6 +20,7 @@
 
 .btn-color{
     background-color: rgba(255, 127, 16, 0.5);
+    align-self: center;
 }
 
 .btn-color:hover{
@@ -102,6 +103,11 @@
     font-size: 84px;
 }
 
+.text-title-card{
+  font-size: 30px;
+  margin: 0;
+}
+
 .links > a {
     color:rgb(255, 127, 16);
     padding: 0 25px;
@@ -123,6 +129,7 @@
 .img-small {
   width:8%;
 }
+
 /* 
 .checkbox{
   -ms-transform: scale(1); IE
@@ -4731,7 +4738,7 @@
   .card-body {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    padding: 1.25rem;
+    padding: 0.25rem 1.25rem
   }
   
   .card-title {
@@ -4802,14 +4809,15 @@
   }
   
   .card-img {
-    width: 100%;
+    width: 50%;
     border-radius: calc(0.25rem - 1px);
   }
   
   .card-img-top {
-    width: 100%;
     border-top-left-radius: calc(0.25rem - 1px);
     border-top-right-radius: calc(0.25rem - 1px);
+    width: 50%;
+    align-self: center;
   }
   
   .card-img-bottom {

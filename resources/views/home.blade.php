@@ -92,7 +92,6 @@
             <button type="button" class="btn btn-sm btn-primary">Exportar</button>
           </div>
         </div>
-
         <div class="table-responsive">
           <table class="table table-striped table-hover table-sm text-center">
             <thead class="thead-dark">
@@ -199,6 +198,22 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img src="{{ asset('img/bajo.png') }}" class="card-img-top" alt="...">
+          <p class="text-center text-title-card">Puntaje: 5.0</p>
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-success flex-center"><button type="button" class="btn btn-sm btn-color">Reportar</button></div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img src="{{ asset('img/bajo.png') }}" class="card-img-top" alt="...">
+          <p class="text-center text-title-card">Puntaje: 5.0</p>
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-success flex-center"><button type="button" class="btn btn-sm btn-color">Reportar</button></div>
         </div>
       </main>
     </div>
