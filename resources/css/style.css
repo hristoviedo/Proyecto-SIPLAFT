@@ -26,6 +26,11 @@
   background-color: rgba(255, 127, 16, 1);
 }
 
+.btn-subir{
+  margin-top: 3rem;
+  font-size: 2rem;
+}
+
 .btn-alto{
   background-color: rgba(255, 127, 16, 0.7);
 }
@@ -3967,7 +3972,7 @@
     position: relative;
     z-index: 2;
     width: 100%;
-    height: calc(1.5em + 0.75rem + 2px);
+    height: 1rem;
     margin: 0;
     opacity: 0;
   }
