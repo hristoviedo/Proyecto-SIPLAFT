@@ -26,6 +26,7 @@
   background-color: rgba(255, 127, 16, 1);
 }
 
+
 .btn-subir{
   margin-top: 3rem;
   font-size: 2rem;
@@ -2558,7 +2559,8 @@
   } */
   
   .btn.disabled, .btn:disabled {
-    opacity: 0.65;
+    opacity: 0.3;
+    pointer-events: none;
   }
   
   a.btn.disabled,
