@@ -18,6 +18,18 @@
     text-align: center;
 }
 
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .btn-color{
     background-color: rgba(255, 127, 16, 0.5);
     align-self: center;
@@ -51,25 +63,23 @@
   background-color: rgba(102, 102, 102, 0.7);
 }
 
-
-
-/* .btn-alto:hover{
-  background-color: rgba(255, 127, 16, 1);
+.bg-alto{
+  background-color: rgba(255, 127, 16, 0.3);
 }
 
-.btn-bajo:hover{
-  background-color: rgba(0, 128, 0, 1);
+.bg-bajo{
+  background-color: rgba(0, 128, 0, 0.3);
 }
 
-.btn-critico:hover{
-  background-color: rgba(255, 0, 0, 1);
+.bg-critico{
+  background-color: rgba(255, 0, 0, 0.3);
 }
-.btn-significativo:hover{
-  background-color: rgba(255, 255, 0, 1);
+.bg-significativo{
+  background-color: rgba(252, 252, 79, 0.3);
 }
-.btn-moderado:hover{
-  background-color: rgba(102, 102, 102, 1);
-} */
+.bg-moderado{
+  background-color: rgba(102, 102, 102, 0.3);
+}
 
 .navbar-color {
     background-color: rgba(102, 102, 102, 0.3);
@@ -104,7 +114,7 @@
 }
 
 .text-title-card{
-  font-size: 30px;
+  font-size: 20px;
   margin: 0;
 }
 
@@ -252,7 +262,8 @@
   ul,
   dl {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
+    padding-left: 25px;
   }
   
   ol ol,
@@ -515,7 +526,7 @@
   
   h1, h2, h3, h4, h5, h6,
   .h1, .h2, .h3, .h4, .h5, .h6 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
     font-weight: 500;
     line-height: 1.2;
   }
@@ -2002,6 +2013,7 @@
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    margin: 20px;
   }
   
   .table-responsive > .table-bordered {
@@ -4705,14 +4717,17 @@
   .navbar-dark .navbar-text a:hover, .navbar-dark .navbar-text a:focus {
     color: #fff;
   }
-  
+  .card-w{
+    width: 25rem;
+  }
+
   .card {
     position: relative;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
-    min-width: 0;
+    /* min-width: 100px; */
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
@@ -4765,8 +4780,9 @@
   .card-header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(0, 0, 0, 0.03);
+    /* background-color: rgba(0, 123, 255, 0.5); */
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    text-align: center;
   }
   
   .card-header:first-child {
@@ -4831,13 +4847,14 @@
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
+    margin: 20px;
   }
   
   .card-deck .card {
     margin-bottom: 15px;
   }
   
-  @media (min-width: 576px) {
+  @media (min-width: 700px) {
     .card-deck {
       -ms-flex-flow: row wrap;
       flex-flow: row wrap;
@@ -4847,28 +4864,28 @@
     .card-deck .card {
       display: -ms-flexbox;
       display: flex;
-      -ms-flex: 1 0 0%;
-      flex: 1 0 0%;
+      /* flex: 1 0 0%; */
       -ms-flex-direction: column;
       flex-direction: column;
       margin-right: 15px;
-      margin-bottom: 0;
+      margin-bottom: 25px;
       margin-left: 15px;
     }
   }
   
   .card-group {
-    display: -ms-flexbox;
-    display: flex;
+    /* display: -ms-flexbox; */
+    display: inline-flex;
     -ms-flex-direction: column;
     flex-direction: column;
+    margin: 20px;
   }
   
   .card-group > .card {
     margin-bottom: 15px;
   }
   
-  @media (min-width: 576px) {
+  @media (min-width: 200px) {
     .card-group {
       -ms-flex-flow: row wrap;
       flex-flow: row wrap;
@@ -5797,10 +5814,10 @@
   
   .close {
     float: right;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 1;
-    color: #000;
+    color: rgb(0, 0, 0);
     text-shadow: 0 1px 0 #fff;
     opacity: .5;
   }
