@@ -1,0 +1,14 @@
+id,identity,name,age,email,phone1,phone2,nationality,households,total_amount,activity,funding,score_risk,risk,registered_by,created_at,updated_at
+1,0301-1990-00214,JUANA LAINEZ,29,juana.laines@yahoo.es,99657284,,Honduras,3,300000,Comerciante individual / independiente,Financiamiento banco,5,alto,Alex,2019-12-25,2019-12-25
+2,0801-1982-03221,MARIO RAMIREZ,37,mario123@gmail.com,98885552,22445874,Honduras,1,300000,Trabajador asalariado,Autofinanciado Transf. de cta del cliente,1.5,bajo,Alex,2019-12-25,2019-12-25
+3,0801-1988-03222,MARITZA ABARCA ,31,maeillanes@hotmail.com,33252521,25444675,Honduras,4,1000000,Negocio informal,Autofinanciado Transf. de terceros,2.5,alto,Alex,2019-12-25,2019-12-25
+4,0801-1992-03223,OSVALDO LAZO ,27,osabarca@hotmail.com,99564122,23535341,Honduras,2,122244.35,PEP,Depósito en efectivo en ctas de la empresa,3.5,bajo,Alex,2019-12-25,2019-12-25
+5,0801-1982-03224,CAMILA JIMENEZ,37,cabrigo@garmendia.cl,9564412,22564411,Honduras,3,300000,Sin fines de lucro (Ongs),Efectivo,4.5,alto,Alex,2019-12-25,2019-12-25
+6,0801-1986-03225,IGNACIO ABRIGO ,33,Sb.nashxo.sk8@hotmail.com,86695421,22559787,Honduras,4,450000,Trabajador asalariado,Depósito en efectivo en ctas de la empresa,1,bajo,Alex,2019-12-25,2019-12-25
+7,0801-1982-03226,FRANCISCA ABUMOHOR ,37,fran.afull@live.cl,98888684,22454147,Honduras,3,2450222.3,Sin fines de lucro (Ongs),Autofinanciado Transf. de terceros,2,alto,Alex,2019-12-25,2019-12-25
+8,0801-1975-03227,CARLOS AGUILERA ,44,carlosaguileram@hotmail.com,88787455,22154744,Honduras,4,500000.23,PEP,Autofinanciado Transf. de terceros,3,bajo,Alex,2019-12-25,2019-12-25
+9,0801-1980-03228,CATALINA GOMEZ ,39,ikis_rojo@hotmail.com,22454411,26699874,Honduras,2,30700.3,Negocio informal,Depósito en efectivo en ctas de la empresa,4,alto,Alex,2019-12-25,2019-12-25
+10,0801-1982-03229,DANIELA LAZO ,37,daniela_aguilera_m500@hotmail.com,99885655,25221199,Honduras,3,45224444,PEP,Efectivo,5,bajo,Alex,2019-12-25,2019-12-25
+11,0801-1972-03230,FRANCISCA AGUILERA ,47,vizkala@hotmail.com,97451236,20202015,Honduras,4,80511.23,Trabajador asalariado,Autofinanciado Transf. de terceros,2,alto,Alex,2019-12-25,2019-12-25
+12,0801-1982-03231,FRANCISCO TORRES,37,alexus3@hotmail.com,96321478,23232014,Honduras,5,89012.23,Negocio informal,Efectivo,2,bajo,Alex,2019-12-25,2019-12-25
+13,0801-1992-03232,LUIS LAGOS ,27,capitanaguilera@hotmail.com,95511237,20157464,Honduras,3,199130.23,Sin fines de lucro (Ongs),Efectivo,1,alto,Alex,2019-12-25,2019-12-25
