@@ -95,7 +95,6 @@
           <table class="table table-striped table-hover table-sm text-center">
             <thead class="thead-dark">
               <tr>
-
                 <th>Número de ID</th>
                 <th>Nombre</th>
                 <th>Teléfono</th>
@@ -113,46 +112,6 @@
                 <td><button type="button" class="btn btn-sm btn-critico">Crítico</button></td>
                 <td><a href="#">Más información</a></td>
               </tr>
-              <tr>
-                <td>0305-1995-01049</td>
-                <td>Ana María Martínez Muñoz</td>
-                <td>+502-59501883</td>
-                <td>Sin fines de lucro</td>
-                <td><button type="button" class="btn btn-sm btn-alto">Alto</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
-              <tr>
-                <td>0810-1990-00239</td>
-                <td>Juan Gabriel Cribas Barahona</td>
-                <td>+504-99552013</td>
-                <td>Comerciante Individual</td>
-                <td><button type="button" class="btn btn-sm btn-significativo">Significativo</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
-              <tr>
-                <td>0810-1990-00239</td>
-                <td>Juan Gabriel Cribas Barahona</td>
-                <td>+504-99552013</td>
-                <td>Comerciante Individual</td>
-                <td><button type="button" class="btn btn-sm btn-moderado">Moderado</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
-              <tr>
-                <td>0305-1995-01049</td>
-                <td>Ana María Martínez Muñoz</td>
-                <td>+502-59501883</td>
-                <td>Sin fines de lucro</td>
-                <td><button type="button" class="btn btn-sm btn-alto">Alto</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
-              <tr>
-                <td>0305-1995-01049</td>
-                <td>Ana María Martínez Muñoz</td>
-                <td>+502-59501883</td>
-                <td>Sin fines de lucro</td>
-                <td><button type="button" class="btn btn-sm btn-bajo">Bajo</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -160,6 +119,9 @@
           <div class="card card-w">
             <div class="card-header bg-alto">
               <img src="{{ asset('img/alto.png') }}" class="card-img-top" alt="...">
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
               <p class="text-center text-title-card">MODERADO</p>
             </div>
             <div class="card-body">
@@ -193,24 +155,4 @@
       </main>
     </div>
   </div>
-
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 @endsection

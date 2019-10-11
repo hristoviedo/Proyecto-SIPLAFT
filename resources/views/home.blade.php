@@ -88,14 +88,13 @@
             </div>
           </div>
           <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-primary">Exportar</button>
+            <button type="button" class="btn btn-sm btn-primary">Crear reporte</button>
           </div>
         </div>
         <div class="table-responsive">
           <table class="table table-striped table-hover table-sm text-center">
             <thead class="thead-dark">
               <tr>
-
                 <th>Número de ID</th>
                 <th>Nombre</th>
                 <th>Teléfono</th>
@@ -107,50 +106,10 @@
             <tbody>
               <tr>
                 <td>0810-1990-00239</td>
-                <td>Alexander Gabriel Castellanos Valenzuela</td>
+                <td>Gabriel Alexander Castellanos Valenzuela</td>
                 <td>+504-99552013</td>
                 <td>Comerciante Individual</td>
                 <td><button type="button" class="btn btn-sm btn-critico">Crítico</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
-              <tr>
-                <td>0305-1995-01049</td>
-                <td>Ana María Martínez Muñoz</td>
-                <td>+502-59501883</td>
-                <td>Sin fines de lucro</td>
-                <td><button type="button" class="btn btn-sm btn-alto">Alto</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
-              <tr>
-                <td>0810-1990-00239</td>
-                <td>Juan Gabriel Cribas Barahona</td>
-                <td>+504-99552013</td>
-                <td>Comerciante Individual</td>
-                <td><button type="button" class="btn btn-sm btn-significativo">Significativo</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
-              <tr>
-                <td>0810-1990-00239</td>
-                <td>Juan Gabriel Cribas Barahona</td>
-                <td>+504-99552013</td>
-                <td>Comerciante Individual</td>
-                <td><button type="button" class="btn btn-sm btn-moderado">Moderado</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
-              <tr>
-                <td>0305-1995-01049</td>
-                <td>Ana María Martínez Muñoz</td>
-                <td>+502-59501883</td>
-                <td>Sin fines de lucro</td>
-                <td><button type="button" class="btn btn-sm btn-alto">Alto</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
-              <tr>
-                <td>0305-1995-01049</td>
-                <td>Ana María Martínez Muñoz</td>
-                <td>+502-59501883</td>
-                <td>Sin fines de lucro</td>
-                <td><button type="button" class="btn btn-sm btn-bajo">Bajo</button></td>
                 <td><a href="#">Más información</a></td>
               </tr>
             </tbody>
@@ -196,24 +155,4 @@
       </main>
     </div>
   </div>
-
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 @endsection
