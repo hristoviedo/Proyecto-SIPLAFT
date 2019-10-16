@@ -49496,7 +49496,14 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-
+var button = document.getElementById('button');
+var modal = document.getElementById('modal');
+button.addEventListener('click', function () {
+  return modal.classList.add('modal--show');
+});
+modal.addEventListener('click', function (e) {
+  if (e.target.classList.contain('modal')) modal.classList.remove('modal--show');
+});
 
 /***/ }),
 
