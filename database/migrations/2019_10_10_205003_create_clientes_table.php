@@ -19,7 +19,9 @@ class CreateClientesTable extends Migration
             $table->string('name'); //Nombre completo
             $table->integer('age'); //Edad (años)
             $table->string('email'); //Correo electrónico
+            $table->string('workplace'); //Correo electrónico
             $table->string('phone1'); //Teléfono principal
+            $table->string('phone2'); //Teléfono secundario
             $table->string('nationality'); //Nacionalidad
             $table->integer('households'); //Cantidad de viviendas adquiridas
             $table->decimal('total_amount',10,2); //Monto total de dinero invertido

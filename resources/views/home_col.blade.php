@@ -37,20 +37,18 @@
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-          <h1 class="h2">Subir archivo</h1>
-        </div>
+		  <h1 class="h2">Subir archivo</h1>
+		</div>
+		<div>
+			@if (Session::has('message'))
+				<p class="lead importacion__message">{{ Session::get('message') }}</p>
+			@endif
+		</div>
         <div class="input-group custom-file">
             <form action="{{ route('client.import.excel') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @if (Session::has('message'))
-                    <div class="modal" id="modal">
-                        <div class="modal__content">
-                            <p>{{ Session::get('message') }}</p>
-                        </div>
-                    </div>
-                @endif
-                <input type="file" accept=".xlsx" name="file" class="custom-file-input" id="file">
-                <label class="custom-file-label" for="file">Elija el archivo</label>
+				@csrf
+                <input type="file" accept=".xlsx" name="file" class="custom-file-input" id="customFile" required>
+                <label class="custom-file-label" for="customFile"></label>
                 <button class="btn btn-block btn-subir btn-color" id="button">Importar Clientes</button>
             </form>
         </div>
