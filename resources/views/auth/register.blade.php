@@ -42,12 +42,12 @@
                         <div class="form-group row">
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de usuario') }}</label>
                             <div class="col-md-6">
-                                {{-- <input  --}}
-                                  <select id="type" type="text" class="form-control" name="type">
+                                <select id="type" type="text" class="form-control" name="type">
+                                    {{-- Valores del tipo de usuario  --}}
                                     <option>Colaborador</option>
                                     <option>Supervisor</option>
                                     <option>Administrador</option>
-                                  </select>
+                                </select>
                             </div>
                         </div>
 

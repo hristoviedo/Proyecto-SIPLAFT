@@ -1,13 +1,14 @@
+{{-- Inicio de la plantilla principal --}}
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> {{-- Lenguaje predeterminado = ES --}}
+<head> {{-- Inicio del head --}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SIPLAFT') }}</title>
+    <title>{{ config('app.name', 'SIPLAFT') }}</title> {{-- Nombre de la aplicación [Ver /.env] --}}
 
     <!-- Icono de la web -->
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
@@ -15,44 +16,38 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
-
     <!-- Styles -->
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-</head>
-<body class="">
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-color">
+
+</head> {{-- Fin del head --}}
+<body> {{-- Inicio del body --}}
+    <div id="app"> {{-- id usado por Vuejs --}}
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-color"> {{-- Inicio de la barra de navegación superior --}}
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('img/logo.png') }}" class="img-fluid img-small" alt="Responsive image">
-                    {{ config('app.name', 'SIPLAFT') }}
+                <a class="navbar-brand" href="{{ route('welcome') }}"> {{-- Enlace a la raiz --}}
+                    <img src="{{ asset('img/logo.png') }}" class="img-fluid img-small" alt="Responsive image"> {{-- Logo de la aplicación [Ver /public/img/logo.png]--}}
+                    {{ config('app.name', 'SIPLAFT') }} {{-- Nombre de la aplicación [Ver /.env]--}}
                 </a>
+                {{-- Botón responsive --}}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
+                        {{-- Inicio de guest (invitado) --}}
+                        @guest {{-- Usuario no autenticado --}}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('INICIAR SESIÓN') }}</a>
                             </li>
+                            {{-- Inicio de condición --}}
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('REGISTRARSE') }}</a>
                                 </li>
-                            @endif
-                        @else
+                            @endif {{-- Fin de condición  --}}
+                        @else {{-- Usuario autenticado --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} ({{ Auth::user()->type }}) <span class="caret"></span>
@@ -70,18 +65,20 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        @endguest {{-- Fin de guest (invitado) --}}
                     </ul>
                 </div>
             </div>
         </nav>
-
+        {{-- Inicio del main --}}
         <main class="py-4">
-            @yield('content')
-        </main>
+            @yield('content') {{-- Contenido de la páginas que usen la plantilla --}}
+        </main> {{-- Fin del main --}}
+        {{-- Inicio del footer --}}
         <footer class="mt-auto py-2 page-footer" id="copyright">
-            <small class="">Copyright &copy; 2019 - SIPLAFT - Todos los derechos reservados</small>
-        </footer>
+            <small>Copyright &copy; 2019 - SIPLAFT - Todos los derechos reservados</small>
+        </footer> {{-- Fin del footer --}}
     </div>
-</body>
+</body> {{-- Fin del body --}}
 </html>
+{{-- Fin de la plantilla principal --}}
