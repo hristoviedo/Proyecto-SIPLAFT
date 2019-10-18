@@ -49493,16 +49493,32 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************!*\
   !*** ./resources/js/js.js ***!
   \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var button = document.getElementById('button');
-var modal = document.getElementById('modal');
-button.addEventListener('click', function () {
-  return modal.classList.add('modal--show');
-});
-modal.addEventListener('click', function (e) {
-  if (e.target.classList.contain('modal')) modal.classList.remove('modal--show');
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+new Vue({
+  el: '#sup',
+  created: function created() {
+    this.clients();
+  },
+  data: {
+    clients: []
+  },
+  methods: {
+    getClients: function getClients() {
+      var _this = this;
+
+      var urlClients = 'client/{client}/list';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClients).then(function (response) {
+        _this.clients = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),

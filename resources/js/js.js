@@ -1,8 +1,20 @@
-const button = document.getElementById('button')
-const modal = document.getElementById('modal')
+import Axios from "axios";
 
-button.addEventListener('click', () => modal.classList.add('modal--show'))
+new Vue({
+    el: '#sup',
+    created: function(){
+        this.clients();
+    },
+    data:{
+        clients: []
+    },
 
-modal.addEventListener('click', (e) =>{
-    if (e.target.classList.contain('modal')) modal.classList.remove('modal--show')
-})
+    methods:{
+        getClients: function(){
+            var urlClients = 'client/{client}/list';
+            Axios.get(urlClients).then(response => {
+                this.clients = response.data
+            })
+        }
+    },
+});

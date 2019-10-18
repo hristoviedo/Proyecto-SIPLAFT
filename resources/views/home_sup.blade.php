@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container-fluid">
+  <div id="sup" class="container-fluid"> {{-- id usado por la app de Vuejs --}}
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light">
         <div class="">
@@ -151,6 +151,11 @@
             </div>
             <div class="card-footer bg-transparent border-warning flex-center"><button type="button" class="btn btn-block btn-color">Reportar</button></div>
           </div>
+        </div>
+        <div>
+          <pre>
+            @{{ $data }}
+          </pre>
         </div>
       </main>
     </div>

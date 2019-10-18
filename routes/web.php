@@ -26,3 +26,5 @@ Route::get('/home.sup', 'HomeController@home_supervisor')->name('home.sup'); // 
 Route::get('/descarga', 'HomeController@exportExcel')->name('client.excel'); // /descarga llama a la función 'exportExcel' de HomeController
 
 Route::post('/carga', 'HomeController@importExcel')->name('client.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
+
+Route::resource('/client.list', 'ClientController')->middleware('auth'); // /client.list ClientController

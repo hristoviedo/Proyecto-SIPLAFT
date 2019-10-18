@@ -21,7 +21,7 @@
 
 </head> {{-- Fin del head --}}
 <body> {{-- Inicio del body --}}
-    <div id="app"> {{-- id usado por Vuejs --}}
+    <div>
         <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-color"> {{-- Inicio de la barra de navegación superior --}}
             <div class="container">
                 <a class="navbar-brand" href="{{ route('welcome') }}"> {{-- Enlace a la raiz --}}
