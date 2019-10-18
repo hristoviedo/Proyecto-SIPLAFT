@@ -40,9 +40,14 @@ class HomeController extends Controller
         return view('welcome'); //Muestra la vista de 'welcome.blade.php'
     }//Fin de la función
 
-    //Inicio de la función descargar_clientes
-    public function descargar_clientes(){
+    //Inicio de la función home_colaborador
+    public function home_colaborador(){
         return view('home_col'); //Muestra la vista de 'home_col.blade.php'
+    }//Fin de la función
+
+    //Inicio de la función home_supervisor
+    public function home_supervisor(){
+        return view('home_sup'); //Muestra la vista de 'home_sup.blade.php'
     }//Fin de la función
 
     //Inicio de la función exportExcel
