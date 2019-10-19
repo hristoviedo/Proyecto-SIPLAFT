@@ -14,14 +14,23 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
+        // $clients = Cliente::get();
 
-        return Cliente::where('id', '1')->get();
+        // return $clients;
 
-        // if($request->ajax()){
-        //     return Nota::where('user_id', auth()->id())->get();
-        // }else{
-        //     return view('home');
-        // }
+        $clients = Cliente::orderBy('id', 'DESC')->paginate(5);
+
+        return [
+            'pagination' => [
+                'total'        => $clients->total(),
+                'current_page' => $clients->currentPage(),
+                'per_page'     => $clients->perPage(),
+                'last_page'    => $clients->lastPage(),
+                'from'         => $clients->firstItem(),
+                'to'           => $clients->lastItem(),
+            ],
+            'clients' => $clients,
+        ];
     }
 
     /**

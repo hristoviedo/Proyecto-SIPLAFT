@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div id="sup" class="container-fluid"> {{-- id usado por la app de Vuejs --}}
+  <div class="container-fluid"> {{-- id usado por la app de Vuejs --}}
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light">
         <div class="">
@@ -91,7 +91,7 @@
             <button type="button" class="btn btn-sm btn-primary">Exportar</button>
           </div>
         </div>
-        <div class="table-responsive">
+        <div id="sup" class="table-responsive">
           <table class="table table-striped table-hover table-sm text-center">
             <thead class="thead-dark">
               <tr>
@@ -104,16 +104,35 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>0810-1990-00239</td>
-                <td>Alexander Gabriel Castellanos Valenzuela</td>
-                <td>+504-99552013</td>
-                <td>Comerciante Individual</td>
-                <td><button type="button" class="btn btn-sm btn-critico">Crítico</button></td>
+              <tr v-for="client in clients">
+              <td>@{{ client.identity}}</td>
+                <td>@{{ client.name}}</td>
+                <td>@{{ client.phone1}}</td>
+                <td>@{{ client.activity}}</td>
+                <td><button type="button" class="btn btn-sm btn-critico">@{{ client.risk }}</button></td>
                 <td><a href="#">Más información</a></td>
               </tr>
             </tbody>
           </table>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item" v-if="pagination.current_page > 1">
+                    <a class="page-link" href="#" @click.prevent="changePage(pagination.current_page - 1)">
+                        <span>Atrás</span>
+                    </a>
+                </li>
+                <li class="page-item" v-for="page in pagesNumber" v-bind:class="[ page == isActived ? 'active' : '']">
+                    <a class="page-link" href="#" @click.prevent="changePage(page)">
+                        @{{ page }}
+                    </a>
+                </li>
+                <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+                    <a class="page-link" href="#" @click.prevent="changePage(pagination.current_page + 1)">
+                        <span>Siguiente</span>
+                    </a>
+                </li>
+            </ul>
+          </nav>
         </div>
         <div class="card-deck flex-center">
           <div class="card card-w">
@@ -151,11 +170,6 @@
             </div>
             <div class="card-footer bg-transparent border-warning flex-center"><button type="button" class="btn btn-block btn-color">Reportar</button></div>
           </div>
-        </div>
-        <div>
-          <pre>
-            @{{ $data }}
-          </pre>
         </div>
       </main>
     </div>

@@ -49504,19 +49504,64 @@ __webpack_require__.r(__webpack_exports__);
 new Vue({
   el: '#sup',
   created: function created() {
-    this.clients();
+    this.getClients();
   },
   data: {
-    clients: []
+    clients: [],
+    pagination: {
+      'total': 0,
+      'current_page': 0,
+      'per_page': 0,
+      'last_page': 0,
+      'from': 0,
+      'to': 0
+    },
+    offset: 3
+  },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        return [];
+      }
+
+      var from = this.pagination.current_page - this.offset;
+
+      if (from < 1) {
+        from = 1;
+      }
+
+      var to = from + this.offset * 2;
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
   },
   methods: {
-    getClients: function getClients() {
+    getClients: function getClients(page) {
       var _this = this;
 
-      var urlClients = 'client/{client}/list';
+      var urlClients = 'list?page=' + page;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClients).then(function (response) {
-        _this.clients = response.data;
+        // this.clients = response.data,
+        _this.clients = response.data.clients.data, _this.pagination = response.data.pagination;
       });
+    },
+    changePage: function changePage(page) {
+      this.pagination.current_page = page;
+      this.getClients(page);
     }
   }
 });
