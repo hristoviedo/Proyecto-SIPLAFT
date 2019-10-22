@@ -49518,14 +49518,14 @@ var vm = new Vue({
       'to': 0
     },
     offset: 3,
-    name: ''
+    property: ''
   },
   computed: {
     searchClient: function searchClient() {
       var _this = this;
 
       return this.clients.filter(function (index) {
-        return index.name.includes(_this.name);
+        return index.identity.toUpperCase().includes(_this.property.toUpperCase()) || index.name.toUpperCase().includes(_this.property.toUpperCase()) || index.email.toUpperCase().includes(_this.property.toUpperCase()) || index.workplace.toUpperCase().includes(_this.property.toUpperCase()) || index.funding.toUpperCase().includes(_this.property.toUpperCase()) || index.risk.toUpperCase().includes(_this.property.toUpperCase()) || index.nationality.toUpperCase().includes(_this.property.toUpperCase()) || index.activity.toUpperCase().includes(_this.property.toUpperCase());
       });
     },
     isActived: function isActived() {

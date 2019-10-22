@@ -81,7 +81,7 @@
           <h1 class="h2">Tablero</h1>
           <div class="btn-toolbar mb-2 mb-md-0 flex-center">
             <div class="input-group">
-              <input v-model="name" type="text" class="form-control" placeholder="Buscar cliente">
+              <input v-model="property" type="text" class="form-control" placeholder="Buscar cliente">
               <span class="input-group-btn">
                 <button class="btn btn-color" type="button">Buscar</button>
               </span>

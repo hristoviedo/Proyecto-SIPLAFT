@@ -17,11 +17,20 @@ var vm = new Vue({
             'to':0,
         },
         offset: 3,
-        name: '',
+        property: '',
     },
     computed:{
         searchClient: function(){
-            return this.clients.filter((index) => index.name.includes(this.name));
+            return this.clients.filter((index) => {
+                return index.identity.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.name.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.email.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.workplace.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.funding.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.risk.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.nationality.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.activity.toUpperCase().includes(this.property.toUpperCase())
+            });
         },
         isActived: function(){
             return this.pagination.current_page;
