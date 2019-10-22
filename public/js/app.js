@@ -49501,16 +49501,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-new Vue({
+var vm = new Vue({
   el: '#sup',
   created: function created() {
     this.getClients();
   },
-  mounted: function mounted() {
-    this.addProperty();
-  },
   data: {
     clients: [],
+    chosenClient: [],
     pagination: {
       'total': 0,
       'current_page': 0,
@@ -49562,13 +49560,13 @@ new Vue({
         _this.clients = response.data.clients.data, _this.pagination = response.data.pagination;
       });
     },
-    addProperty: function addProperty() {
-      for (i in this.clients) {
-        // this.clients[client].isVisible = false;
-        Vue.set(this.clients[i], 'isVisible', false);
-      }
-
-      ;
+    addClient: function addClient(index) {
+      this.chosenClient = {
+        client: this.clients[index]
+      };
+    },
+    deleteClient: function deleteClient() {
+      this.chosenClient = '';
     },
     changePage: function changePage(page) {
       this.pagination.current_page = page;

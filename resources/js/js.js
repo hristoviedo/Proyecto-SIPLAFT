@@ -1,16 +1,13 @@
 import Axios from "axios";
 
-new Vue({
+var vm = new Vue({
     el: '#sup',
     created: function(){
         this.getClients();
     },
-    mounted: function(){
-        this.addProperty();
-    },
     data:{
-        clients: [
-        ],
+        clients: [],
+        chosenClient:[],
         pagination: {
             'total': 0,
             'current_page': 0,
@@ -58,11 +55,12 @@ new Vue({
             });
         },
 
-        addProperty: function(){
-            for(i in this.clients){
-                // this.clients[client].isVisible = false;
-                Vue.set(this.clients[i], 'isVisible', false);
-            };
+        addClient: function(index){
+           this.chosenClient = {client:this.clients[index]};
+        },
+
+        deleteClient: function(){
+            this.chosenClient = '';
         },
 
         changePage:function(page){

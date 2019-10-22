@@ -126,41 +126,42 @@
                 <td>@{{ client.phone1 }}</td>
                 <td>@{{ client.activity }}</td>
                 <td><button type="button" class="btn btn-sm btn-critico">@{{ client.risk }}</button></td>
-                <td><a href="#" v-on:click='addClient()'>Más información</a></td>
+                <td><a href="#" v-on:click.prevent='addClient(index)'>Más información</a></td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="card-deck flex-center" v-for="(client, index) in clients" :key="index" >
+        <div class="card-deck flex-center" v-for="(client, index) in chosenClient" :key="index" >
           <div class="card card-w">
             <div class="card-header bg-alto">
               <img src="{{ asset('img/alto.png') }}" class="card-img-top" alt="...">
-              <button type="button" class="close" aria-label="Close">
+              <button type="button" class="close" aria-label="Close" v-on:click.prevent='deleteClient()'>
                 <span aria-hidden="true">&times;</span>
               </button>
-            <p class="text-center text-title-card">@{{ client.risk }}</p>
+            <p v-show='client.risk' class="text-center text-title-card">Nivel de Riesgo: @{{ client.risk }}</p>
             </div>
             <div class="card-body">
               <div class="card-text content">
-                  <p class="h3">
+                  <p class="h5"><strong>
                     @{{ client.name }}
-                  </p>
-                  <span class="">@{{ client.email }}</span>
+                  </strong></p>
+                  <span class="h6">@{{ client.email }}</span>
               </div>
               <div class="row">
-                  <div class="column">
+                  <div class="column1">
                       <ul>
-                        <li>@{{ client.phone1 }}</li>
-                        <li>@{{ client.phone2 }}</li>
-                        <li>@{{ client.nationality }}</li>
+                        <li v-show='client.identity'>@{{ client.identity }}</li>
+                        <li v-show='client.phone1'>@{{ client.phone1 }}</li>
+                        <li v-show='client.phone2'>@{{ client.phone2 }}</li>
+                        <li v-show='client.nationality'>@{{ client.nationality }}</li>
                       </ul>
                   </div>
-                  <div class="column">
+                  <div class="column2">
                     <ul>
-                      <li>@{{ client.activity }}</li>
-                      <li>@{{ client.funding }}</li>
-                      <li>@{{ client.age }} Años</li>
-                      <li>@{{ client.household }}</li>
+                      <li v-show='client.activity'>@{{ client.activity }}</li>
+                      <li v-show='client.funding'>@{{ client.funding }}</li>
+                      <li v-show='client.age'>@{{ client.age }} AÑOS</li>
+                      <li v-show='client.households'>@{{ client.households }} PROPIEDADES</li>
                     </ul>
                   </div>
               </div>

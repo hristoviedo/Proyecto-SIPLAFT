@@ -43,10 +43,18 @@
     text-align: center;
 }
 
-.column {
+.column1 {
   float: left;
-  width: 50%;
+  width: 40%;
 }
+.column2 {
+  float: left;
+  width: 60%;
+}
+.column1 .column2 {
+  float: left;
+}
+
 
 /* Clear floats after the columns */
 .row:after {
@@ -4776,7 +4784,7 @@
     color: #fff;
   }
   .card-w{
-    width: 25rem;
+    width: 35rem;
   }
 
   .card {
@@ -4890,7 +4898,7 @@
   .card-img-top {
     border-top-left-radius: calc(0.25rem - 1px);
     border-top-right-radius: calc(0.25rem - 1px);
-    width: 50%;
+    width: 35%;
     align-self: center;
   }
   
