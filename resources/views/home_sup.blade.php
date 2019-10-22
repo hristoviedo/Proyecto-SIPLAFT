@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="container-fluid"> {{-- id usado por la app de Vuejs --}}
+  <div id="sup" class="container-fluid"> {{-- id usado por la app de Vuejs --}}
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light">
         <div class="">
@@ -79,7 +79,7 @@
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
           <h1 class="h2">Tablero</h1>
-          <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-toolbar mb-2 mb-md-0 flex-center">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Buscar cliente">
               <span class="input-group-btn">
@@ -87,33 +87,6 @@
               </span>
             </div>
           </div>
-          <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-primary">Exportar</button>
-          </div>
-        </div>
-        <div id="sup" class="table-responsive">
-          <table class="table table-striped table-hover table-sm text-center">
-            <thead class="thead-dark">
-              <tr>
-                <th>Número de ID</th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Actividad Económica</th>
-                <th>Nivel de Riesgo</th>
-                <th>Detalles del Cliente</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="client in clients">
-              <td>@{{ client.identity}}</td>
-                <td>@{{ client.name}}</td>
-                <td>@{{ client.phone1}}</td>
-                <td>@{{ client.activity}}</td>
-                <td><button type="button" class="btn btn-sm btn-critico">@{{ client.risk }}</button></td>
-                <td><a href="#">Más información</a></td>
-              </tr>
-            </tbody>
-          </table>
           <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item" v-if="pagination.current_page > 1">
@@ -134,36 +107,60 @@
             </ul>
           </nav>
         </div>
-        <div class="card-deck flex-center">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-sm text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th>Número de ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Actividad Económica</th>
+                <th>Nivel de Riesgo</th>
+                <th>Detalles del Cliente</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(client, index) in clients" :key="index">
+                <td>@{{ client.identity }}</td>
+                <td>@{{ client.name }}</td>
+                <td>@{{ client.phone1 }}</td>
+                <td>@{{ client.activity }}</td>
+                <td><button type="button" class="btn btn-sm btn-critico">@{{ client.risk }}</button></td>
+                <td><a href="#" v-on:click='addClient()'>Más información</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-deck flex-center" v-for="(client, index) in clients" :key="index" >
           <div class="card card-w">
             <div class="card-header bg-alto">
               <img src="{{ asset('img/alto.png') }}" class="card-img-top" alt="...">
               <button type="button" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-              <p class="text-center text-title-card">MODERADO</p>
+            <p class="text-center text-title-card">@{{ client.risk }}</p>
             </div>
             <div class="card-body">
               <div class="card-text content">
                   <p class="h3">
-                      Jim Halpert
+                    @{{ client.name }}
                   </p>
-                  <span class="">hristo.oviedo@postensa.hn</span>
+                  <span class="">@{{ client.email }}</span>
               </div>
               <div class="row">
                   <div class="column">
                       <ul>
-                        <li>8901234567890</li>
-                        <li>(504)-99887276</li>
-                        <li>Guatemalteco</li>
+                        <li>@{{ client.phone1 }}</li>
+                        <li>@{{ client.phone2 }}</li>
+                        <li>@{{ client.nationality }}</li>
                       </ul>
                   </div>
                   <div class="column">
                     <ul>
-                      <li>Negocio Informal</li>
-                      <li>Financiamiento Banco</li>
-                      <li>40 Años</li>
-                      <li>2 Apartamentos</li>
+                      <li>@{{ client.activity }}</li>
+                      <li>@{{ client.funding }}</li>
+                      <li>@{{ client.age }} Años</li>
+                      <li>@{{ client.household }}</li>
                     </ul>
                   </div>
               </div>

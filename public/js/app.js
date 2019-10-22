@@ -49506,6 +49506,9 @@ new Vue({
   created: function created() {
     this.getClients();
   },
+  mounted: function mounted() {
+    this.addProperty();
+  },
   data: {
     clients: [],
     pagination: {
@@ -49558,6 +49561,14 @@ new Vue({
         // this.clients = response.data,
         _this.clients = response.data.clients.data, _this.pagination = response.data.pagination;
       });
+    },
+    addProperty: function addProperty() {
+      for (i in this.clients) {
+        // this.clients[client].isVisible = false;
+        Vue.set(this.clients[i], 'isVisible', false);
+      }
+
+      ;
     },
     changePage: function changePage(page) {
       this.pagination.current_page = page;

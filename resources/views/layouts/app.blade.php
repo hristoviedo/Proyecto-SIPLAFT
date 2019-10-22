@@ -23,7 +23,7 @@
 <body> {{-- Inicio del body --}}
     <div>
         <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-color"> {{-- Inicio de la barra de navegación superior --}}
-            <div class="container">
+            <div id="app" class="container">
                 <a class="navbar-brand" href="{{ route('welcome') }}"> {{-- Enlace a la raiz --}}
                     <img src="{{ asset('img/logo.png') }}" class="img-fluid img-small" alt="Responsive image"> {{-- Logo de la aplicación [Ver /public/img/logo.png]--}}
                     {{ config('app.name', 'SIPLAFT') }} {{-- Nombre de la aplicación [Ver /.env]--}}

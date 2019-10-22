@@ -5,8 +5,12 @@ new Vue({
     created: function(){
         this.getClients();
     },
+    mounted: function(){
+        this.addProperty();
+    },
     data:{
-        clients: [],
+        clients: [
+        ],
         pagination: {
             'total': 0,
             'current_page': 0,
@@ -54,9 +58,17 @@ new Vue({
             });
         },
 
+        addProperty: function(){
+            for(i in this.clients){
+                // this.clients[client].isVisible = false;
+                Vue.set(this.clients[i], 'isVisible', false);
+            };
+        },
+
         changePage:function(page){
             this.pagination.current_page = page;
             this.getClients(page);
-        }
+        },
+
     },
 });
