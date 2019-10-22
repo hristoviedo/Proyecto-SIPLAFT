@@ -17,8 +17,12 @@ var vm = new Vue({
             'to':0,
         },
         offset: 3,
+        name: '',
     },
     computed:{
+        searchClient: function(){
+            return this.clients.filter((index) => index.name.includes(this.name));
+        },
         isActived: function(){
             return this.pagination.current_page;
         },
@@ -63,7 +67,7 @@ var vm = new Vue({
             this.chosenClient = '';
         },
 
-        changePage:function(page){
+        changePage: function(page){
             this.pagination.current_page = page;
             this.getClients(page);
         },

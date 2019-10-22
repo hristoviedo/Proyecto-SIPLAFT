@@ -49517,9 +49517,17 @@ var vm = new Vue({
       'from': 0,
       'to': 0
     },
-    offset: 3
+    offset: 3,
+    name: ''
   },
   computed: {
+    searchClient: function searchClient() {
+      var _this = this;
+
+      return this.clients.filter(function (index) {
+        return index.name.includes(_this.name);
+      });
+    },
     isActived: function isActived() {
       return this.pagination.current_page;
     },
@@ -49552,12 +49560,12 @@ var vm = new Vue({
   },
   methods: {
     getClients: function getClients(page) {
-      var _this = this;
+      var _this2 = this;
 
       var urlClients = 'list?page=' + page;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClients).then(function (response) {
         // this.clients = response.data,
-        _this.clients = response.data.clients.data, _this.pagination = response.data.pagination;
+        _this2.clients = response.data.clients.data, _this2.pagination = response.data.pagination;
       });
     },
     addClient: function addClient(index) {
