@@ -82,9 +82,9 @@
           <div class="btn-toolbar mb-2 mb-md-0 flex-center">
             <div class="input-group">
               <input v-model="property" type="text" class="form-control" placeholder="Buscar cliente">
-              <span class="input-group-btn">
+              {{-- <span class="input-group-btn">
                 <button class="btn btn-color" type="button">Buscar</button>
-              </span>
+              </span> --}}
             </div>
           </div>
           <nav aria-label="Page navigation example">
@@ -156,7 +156,7 @@
                         <li v-show='client.phone1'>@{{ client.phone1 }}</li>
                         <li v-show='client.phone2'>@{{ client.phone2 }}</li>
                         <li v-show='client.nationality'>@{{ client.nationality }}</li>
-                        <li v-show='client.nationality'>@{{ client.score_risk }} de 5.00</li>
+                        <li v-show='client.score_risk'>@{{ client.score_risk }} de 5.00</li>
                       </ul>
                   </div>
                   <div class="column2">
