@@ -69,7 +69,7 @@ var vm = new Vue({
         },
 
         addClient: function(index){
-           this.chosenClient = {client:this.clients[index]};
+           this.chosenClient = {client:this.searchClient[index]};
         },
 
         deleteClient: function(){

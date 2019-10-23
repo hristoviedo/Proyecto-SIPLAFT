@@ -113,8 +113,9 @@
               <tr>
                 <th>Número de ID</th>
                 <th>Nombre</th>
-                <th>Teléfono</th>
+                <th>Email</th>
                 <th>Actividad Económica</th>
+                <th>Lugar de Trabajo</th>
                 <th>Nivel de Riesgo</th>
                 <th>Detalles del Cliente</th>
               </tr>
@@ -123,8 +124,9 @@
               <tr v-for="(client, index) in searchClient" :key="index">
                 <td>@{{ client.identity }}</td>
                 <td>@{{ client.name }}</td>
-                <td>@{{ client.phone1 }}</td>
+                <td>@{{ client.email }}</td>
                 <td>@{{ client.activity }}</td>
+                <td>@{{ client.workplace }}</td>
                 <td><button type="button" class="btn btn-sm btn-critico">@{{ client.risk }}</button></td>
                 <td><a href="#" v-on:click.prevent='addClient(index)'>Más información</a></td>
               </tr>
@@ -154,6 +156,7 @@
                         <li v-show='client.phone1'>@{{ client.phone1 }}</li>
                         <li v-show='client.phone2'>@{{ client.phone2 }}</li>
                         <li v-show='client.nationality'>@{{ client.nationality }}</li>
+                        <li v-show='client.nationality'>@{{ client.score_risk }} de 5.00</li>
                       </ul>
                   </div>
                   <div class="column2">
