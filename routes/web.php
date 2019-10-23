@@ -23,6 +23,8 @@ Route::get('/home.col', 'HomeController@home_colaborador')->name('home.col'); //
 
 Route::get('/home.sup', 'HomeController@home_supervisor')->name('home.sup'); // /home.sup llama a la función 'home_supervisor' de HomeController
 
+Route::get('/home.sup2', 'HomeController@home_supervisor2')->name('home.sup2'); // /home.sup2 llama a la función 'home_supervisor2' de HomeController
+
 Route::get('/descarga', 'HomeController@exportExcel')->name('client.excel'); // /descarga llama a la función 'exportExcel' de HomeController
 
 Route::post('/carga', 'HomeController@importExcel')->name('client.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
