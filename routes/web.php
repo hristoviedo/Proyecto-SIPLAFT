@@ -17,13 +17,11 @@ Auth::routes();
 
 Route::get('/', 'HomeController@welcome')->name('welcome'); //La raiz (/) llama a la función 'welcome' de HomeController
 
-Route::get('/home', 'HomeController@index')->name('home')->name('home'); // /home llama a la función 'home' de HomeController
+// Route::get('/home', 'HomeController@index')->name('home')->name('home'); // /home llama a la función 'home' de HomeController
 
 Route::get('/home.col', 'HomeController@home_colaborador')->name('home.col'); // /home.col llama a la función 'home_colaborador' de HomeController
 
-Route::get('/home.sup', 'HomeController@home_supervisor')->name('home.sup'); // /home.sup llama a la función 'home_supervisor' de HomeController
-
-Route::get('/home.sup2', 'HomeController@home_supervisor2')->name('home.sup2'); // /home.sup2 llama a la función 'home_supervisor2' de HomeController
+Route::get('/home', 'HomeController@home_supervisor')->name('home.sup'); // /home.sup llama a la función 'home_supervisor' de HomeController
 
 Route::get('/descarga', 'HomeController@exportExcel')->name('client.excel'); // /descarga llama a la función 'exportExcel' de HomeController
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cliente;
 
+
 class ClientController extends Controller
 {
     /**
@@ -33,7 +34,7 @@ class ClientController extends Controller
         ];
     }
 
-    public function index2(Request $request)
+    public function index2()
     {
         $clients = Cliente::get();
 

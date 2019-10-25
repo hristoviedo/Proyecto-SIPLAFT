@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-use app\Cliente;
+use DB;
 
 use App\Exports\ClientExport;
 use App\Imports\ClientImport;
@@ -64,6 +64,7 @@ class HomeController extends Controller
     public function importExcel(Request $request){ //Recibe como parámetro el archivo de excel
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new ClientImport, $file); //Llama a la clase ClientImport para subir y la lista de clientes de un excel.
+        $order = DB::select('CALL agruparClientes');
         return back()->with('message', 'Importación de clientes completada'); //Retorna a la página anterior cuando termina de importar
     }//Fin de la función
 } //Fin del controlador

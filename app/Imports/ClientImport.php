@@ -17,7 +17,7 @@ class ClientImport implements ToModel
     public function model(array $row)
     {
         //Inicio de la condición
-        if (((!isset($row[0])) and (!isset($row[1]))) or (($row[2] == 0) and ($row[8] == 0))) { //Verifica si el registro tiene vacío el campo identity y name, o si los campos de tipo enteros son 0
+        if (((!isset($row[0]))) or (($row[2] == 0) and ($row[8] == 0))) { //Verifica si el registro tiene vacío el campo identity y name, o si los campos de tipo enteros son 0
             return null; //No guarda el registro y salta el siguiente
         }//Fin de la condición
 

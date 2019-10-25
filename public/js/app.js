@@ -49594,6 +49594,10 @@ var vm = new Vue({
     changePage: function changePage(page) {
       this.pagination.current_page = page;
       this.getClients(page);
+    },
+    formatPrice: function formatPrice(value) {
+      var val = (value / 1).toFixed(2).replace(',', '.');
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
   }
 });
