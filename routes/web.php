@@ -29,4 +29,6 @@ Route::get('/descarga', 'HomeController@exportExcel')->name('client.excel'); // 
 
 Route::post('/carga', 'HomeController@importExcel')->name('client.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
 
+Route::get('/list/index2', 'ClientController@index2'); //
+
 Route::resource('/list', 'ClientController'); //

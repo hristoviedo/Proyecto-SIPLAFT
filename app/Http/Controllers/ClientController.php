@@ -33,6 +33,13 @@ class ClientController extends Controller
         ];
     }
 
+    public function index2(Request $request)
+    {
+        $clients = Cliente::get();
+
+        return $clients;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
