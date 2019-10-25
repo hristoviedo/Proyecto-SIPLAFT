@@ -24,7 +24,7 @@ class CreateClientesTable extends Migration
             $table->string('phone2')->nullable(); //Teléfono secundario (nullable)
             $table->string('nationality')->nullable(); //Nacionalidad (nullable)
             $table->integer('households')->default(null)->nullable(); //Cantidad de viviendas adquiridas (valor por defecto = 0 y nullable)
-            $table->decimal('total_amount',10,2)->default(null)->nullable(); //Monto total de dinero invertido (valor por defecto = 0.00 y nullable)
+            $table->decimal('total_amount',13,2)->default(null)->nullable(); //Monto total de dinero invertido (valor por defecto = 0.00 y nullable)
             $table->string('activity')->default(null)->nullable(); //Actividad económica (valor por defecto = null y nullable)
             $table->string('funding')->default(null)->nullable(); //Fuente de financiamiento (valor por defecto = null y nullable)
             $table->decimal('score_risk', 3, 2)->default(null)->nullable(); //Puntuación de riesgo (valor por defecto = 0.00 y nullable)
