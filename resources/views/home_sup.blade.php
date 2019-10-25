@@ -79,15 +79,7 @@
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
           <h1 class="h2">Tablero</h1>
-          <div class="btn-toolbar mb-2 mb-md-0 flex-center">
-            <div class="input-group">
-              <input v-model="property" type="text" class="form-control" placeholder="Buscar cliente">
-              {{-- <span class="input-group-btn">
-                <button class="btn btn-color" type="button">Buscar</button>
-              </span> --}}
-            </div>
-          </div>
-          <nav aria-label="Page navigation example">
+          <nav v-if = '!property' aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item" v-if="pagination.current_page > 1">
                     <a class="page-link" href="#" @click.prevent="changePage(pagination.current_page - 1)">
@@ -106,6 +98,11 @@
                 </li>
             </ul>
           </nav>
+          <div class="btn-toolbar mb-2 mb-md-0 flex-center">
+            <div class="input-group">
+              <input v-model="property" type="text" class="form-control" placeholder="Buscar cliente">
+            </div>
+          </div>
         </div>
         <div class="table-responsive">
           <table class="table table-striped table-hover table-sm text-center">
@@ -120,8 +117,19 @@
                 <th>Detalles del Cliente</th>
               </tr>
             </thead>
-            <tbody>
-              <tr v-for="(client, index) in searchClient" :key="index">
+            <tbody v-if = "property">
+              <tr v-for="(client, index) in searchClientAll" :key="index">
+                <td>@{{ client.identity }}</td>
+                <td>@{{ client.name }}</td>
+                <td>@{{ client.email }}</td>
+                <td>@{{ client.activity }}</td>
+                <td>@{{ client.workplace }}</td>
+                <td><button type="button" class="btn btn-sm btn-critico">@{{ client.risk }}</button></td>
+                <td><a href="#" v-on:click.prevent='addClientAll(index)'>Más información</a></td>
+              </tr>
+            </tbody>
+            <tbody v-else>
+              <tr v-for="(client, index) in clients" :key="index">
                 <td>@{{ client.identity }}</td>
                 <td>@{{ client.name }}</td>
                 <td>@{{ client.email }}</td>

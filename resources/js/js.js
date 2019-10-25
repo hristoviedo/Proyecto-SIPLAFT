@@ -4,9 +4,11 @@ var vm = new Vue({
     el: '#sup',
     created: function(){
         this.getClients();
+        this.getClientsAll();
     },
     data:{
         clients: [],
+        clientsAll: [],
         chosenClient:[],
         pagination: {
             'total': 0,
@@ -20,8 +22,8 @@ var vm = new Vue({
         property: '',
     },
     computed:{
-        searchClient: function(){
-            return this.clients.filter((index) => {
+        searchClientAll: function(){
+            return this.clientsAll.filter((index) => {
                 return index.identity.toUpperCase().includes(this.property.toUpperCase()) ||
                 index.name.toUpperCase().includes(this.property.toUpperCase()) ||
                 index.email.toUpperCase().includes(this.property.toUpperCase()) ||
@@ -67,9 +69,17 @@ var vm = new Vue({
                 this.pagination = response.data.pagination
             });
         },
+        getClientsAll: function(){
+            var urlClientsAll = 'list/index2';
+            Axios.get(urlClientsAll).then(response => {this.clientsAll = response.data});
+        },
 
         addClient: function(index){
-           this.chosenClient = {client:this.searchClient[index]};
+           this.chosenClient = {client:this.clients[index]};
+        },
+
+        addClientAll: function(index){
+           this.chosenClient = {client:this.searchClientAll[index]};
         },
 
         deleteClient: function(){

@@ -49505,9 +49505,11 @@ var vm = new Vue({
   el: '#sup',
   created: function created() {
     this.getClients();
+    this.getClientsAll();
   },
   data: {
     clients: [],
+    clientsAll: [],
     chosenClient: [],
     pagination: {
       'total': 0,
@@ -49521,10 +49523,10 @@ var vm = new Vue({
     property: ''
   },
   computed: {
-    searchClient: function searchClient() {
+    searchClientAll: function searchClientAll() {
       var _this = this;
 
-      return this.clients.filter(function (index) {
+      return this.clientsAll.filter(function (index) {
         return index.identity.toUpperCase().includes(_this.property.toUpperCase()) || index.name.toUpperCase().includes(_this.property.toUpperCase()) || index.email.toUpperCase().includes(_this.property.toUpperCase()) || index.workplace.toUpperCase().includes(_this.property.toUpperCase()) || index.funding.toUpperCase().includes(_this.property.toUpperCase()) || index.risk.toUpperCase().includes(_this.property.toUpperCase()) || index.nationality.toUpperCase().includes(_this.property.toUpperCase()) || index.activity.toUpperCase().includes(_this.property.toUpperCase());
       });
     },
@@ -49568,9 +49570,22 @@ var vm = new Vue({
         _this2.clients = response.data.clients.data, _this2.pagination = response.data.pagination;
       });
     },
+    getClientsAll: function getClientsAll() {
+      var _this3 = this;
+
+      var urlClientsAll = 'list/index2';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClientsAll).then(function (response) {
+        _this3.clientsAll = response.data;
+      });
+    },
     addClient: function addClient(index) {
       this.chosenClient = {
-        client: this.searchClient[index]
+        client: this.clients[index]
+      };
+    },
+    addClientAll: function addClientAll(index) {
+      this.chosenClient = {
+        client: this.searchClientAll[index]
       };
     },
     deleteClient: function deleteClient() {
