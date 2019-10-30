@@ -2,7 +2,7 @@
 
 @section('content') {{-- Inicio de la seccion --}}
 
-<div class="container-fluid">
+<div  id="col" class="container-fluid">
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light sidebar"> {{-- Inicio de la barra de navegación lateral --}}
         <div class="sidebar-sticky">
@@ -33,10 +33,12 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
             <h1 class="h2">Subir archivo</h1>
         </div>
-        <div>
+        <div class="mostrar_ocultar">
             {{-- Inicio de la condición --}}
             @if (Session::has('message')) {{-- ¿Existe un mensaje que mostrar? --}}
-                <p class="lead importacion__message">{{ Session::get('message') }}</p> {{-- Muestra el mensaje --}}
+                <div class="alert alert-success" role="alert">
+                  <p class="lead importacion__message">{{ Session::get('message') }}</p> {{-- Muestra el mensaje --}}
+                </div>
             @endif {{-- Fin de la condición --}}
         </div>
         <div class="input-group custom-file">
@@ -53,7 +55,10 @@
                 <label class="custom-file-label" for="customFile"></label>
 
                 {{-- Botón para subir la lista de clientes --}}
-                <button class="btn btn-block btn-subir btn-color" id="button">Importar Clientes</button>
+                <button class="btn btn-block btn-subir btn-color" id="button">
+                  {{-- <span class="spinner-border spinner-border-sm mr-2"></span> --}}
+                  Importar Clientes
+                </button>
             </form>{{-- Fin del formulario --}}
         </div>
       </main> {{-- Fin del main --}}

@@ -5,6 +5,9 @@ namespace App\Imports;
 use App\Cliente;
 use Maatwebsite\Excel\Concerns\ToModel;
 
+
+setlocale (LC_ALL, 'es_MX');
+
 //Inicio de la clase
 class ClientImport implements ToModel
 {
@@ -43,17 +46,17 @@ class ClientImport implements ToModel
         //Realiza la inserción del registro con datos en mayúsculas y sin espacios al principio o final
         return new Cliente([
             'identity'      => trim($identity),
-            'name'          => trim(strtoupper($name)),
+            'name'          => trim(mb_strtoupper($name,'UTF-8')),
             'age'           => $age,
-            'email'         => trim(strtoupper($email)),
-            'workplace'     => trim(strtoupper($workplace)),
+            'email'         => trim($email),
+            'workplace'     => trim(mb_strtoupper($workplace,'UTF-8')),
             'phone1'        => trim(strtoupper($phone1)),
             'phone2'        => trim(strtoupper($phone2)),
-            'nationality'   => trim(strtoupper($nationality)),
+            'nationality'   => trim(mb_strtoupper($nationality,'UTF-8')),
             'households'    => $households,
             'total_amount'  => $total_amount,
-            'activity'      => trim(strtoupper($activity)),
-            'funding'       => trim(strtoupper($funding)),
+            'activity'      => trim(mb_strtoupper($activity,'UTF-8')),
+            'funding'       => trim(mb_strtoupper($funding,'UTF-8')),
         ]);
     }//Fin de la función
 } //Fin de la clase
