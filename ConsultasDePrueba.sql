@@ -1,4 +1,4 @@
-SELECT * FROM clientes ORDER BY id DESC;
+SELECT activity FROM clientes GROUP BY activity;
 
 SELECT COUNT(*) AS CantidadClientes FROM clientes;
 
