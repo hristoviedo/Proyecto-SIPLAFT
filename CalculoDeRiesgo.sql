@@ -1,12 +1,5 @@
+SELECT id, name, activity, funding, age, households, score_risk FROM clientes WHERE id = 48;
 SELECT * FROM clientes;
-
-DROP TEMPORARY TABLE IF EXISTS t1;
-
-CREATE TEMPORARY TABLE IF NOT EXISTS t1 SELECT id, age, households, activity, funding, score_risk FROM clientes;
-
-SELECT * FROM t1;
-
-SELECT * FROM t1 WHERE id = 601;
 
 DROP PROCEDURE IF EXISTS calcularRiesgo;
 
@@ -18,14 +11,26 @@ BEGIN
     DECLARE percAge FLOAT DEFAULT 0.25;
     DECLARE percHouseholds FLOAT DEFAULT 0.2;
     DECLARE score FLOAT DEFAULT 0.0;
+    DECLARE risk VARCHAR(15) DEFAULT '';
+    DECLARE id INTEGER DEFAULT 0;
     DECLARE age FLOAT DEFAULT 0;
     DECLARE activity VARCHAR(45) DEFAULT '';
     DECLARE funding VARCHAR(45) DEFAULT '';
     DECLARE households FLOAT DEFAULT 0;
+    DECLARE fin INTEGER DEFAULT 0;
 	
-    SELECT c.households, c.activity, c.age, c.funding INTO households, activity, age, funding FROM t1 c WHERE id = 601;
-	
-    CASE
+    DECLARE risk_cursor CURSOR FOR
+		SELECT c.id, c.households, c.activity, c.age, c.funding FROM clientes c;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin=1;
+    
+    OPEN risk_cursor;
+    get_clients: LOOP 
+		FETCH risk_cursor INTO id, households, activity, age, funding;
+    IF fin = 1 THEN
+       LEAVE get_clients;
+    END IF;
+    
+	CASE
     WHEN activity = 'TRABAJADOR ASALARIADO' THEN SET score = score + (1*percActivity);
 	WHEN activity = 'COMERCIANTE INDIVIDUAL / INDEPENDIENTE' THEN SET score = score + (2*percActivity);
 	WHEN activity = 'NEGOCIO INFORMAL' THEN SET score = score + (3*percActivity);
@@ -61,7 +66,21 @@ BEGIN
     ELSE SET score = score + (0*percHouseholds);
 	END CASE;
     
-	UPDATE t1 c SET c.score_risk = score WHERE id = 601;
+    CASE
+    WHEN score > 4 THEN SET risk = 'CRÍTICO';
+	WHEN score > 3 AND score <= 4 THEN SET risk = 'ALTO';
+	WHEN score > 2 AND score <= 3 THEN SET risk = 'SIGNIFICATIVO';
+    WHEN score > 1 AND score <= 2 THEN SET risk = 'MODERADO';
+    WHEN score > 0 AND score <= 1 THEN SET risk = 'BAJO';
+    ELSE SET risk = 'NO DISPONIBLE';
+	END CASE;
+    
+	UPDATE clientes c SET c.score_risk = score, c.risk = risk WHERE c.id = id;
+    SET score = 0;
+    SET risk = '';
+	END LOOP get_clients;
+    CLOSE risk_cursor;
+    
 END$$
 DELIMITER ;
 

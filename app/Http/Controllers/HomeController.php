@@ -65,6 +65,7 @@ class HomeController extends Controller
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new ClientImport, $file); //Llama a la clase ClientImport para subir y la lista de clientes de un excel.
         $order = DB::select('CALL agruparClientes');
+        $risk = DB::select('CALL calcularRiesgo');
         return back()->with('message', 'Importación de clientes completada'); //Retorna a la página anterior cuando termina de importar
     }//Fin de la función
 } //Fin del controlador

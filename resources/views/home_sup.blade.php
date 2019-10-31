@@ -124,7 +124,7 @@
                 <td>@{{ client.email }}</td>
                 <td>@{{ client.activity }}</td>
                 <td>@{{ client.workplace }}</td>
-                <td><button type="button" class="btn btn-sm btn-critico">@{{ client.risk }}</button></td>
+                <td><button type="button" class="btn btn-sm btn-significativo">@{{ client.risk }}</button></td>
                 <td><a href="#" v-on:click.prevent='addClientAll(index)'>Más información</a></td>
               </tr>
             </tbody>

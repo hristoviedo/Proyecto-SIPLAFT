@@ -1,4 +1,4 @@
-SELECT activity FROM clientes GROUP BY activity;
+SELECT * FROM clientes;
 
 SELECT COUNT(*) AS CantidadClientes FROM clientes;
 
