@@ -114,7 +114,7 @@
                 <th>Actividad Económica</th>
                 <th>Lugar de Trabajo</th>
                 <th>Nivel de Riesgo</th>
-                <th>Detalles del Cliente</th>
+                <th>Detalles</th>
               </tr>
             </thead>
             <tbody v-if = "property">
@@ -124,7 +124,7 @@
                 <td>@{{ client.email }}</td>
                 <td>@{{ client.activity }}</td>
                 <td>@{{ client.workplace }}</td>
-                <td><button type="button" class="btn btn-sm btn-alto">@{{ client.risk }}</button></td>
+                <td><button type="button" class="btn btn-sm btn-risk">@{{ client.risk }}</button></td>
                 <td><a href="#" v-on:click.prevent='addClientAll(index)'>Más información</a></td>
               </tr>
             </tbody>
@@ -135,7 +135,24 @@
                 <td>@{{ client.email }}</td>
                 <td>@{{ client.activity }}</td>
                 <td>@{{ client.workplace }}</td>
-                <td><button type="button" class="btn btn-sm btn-alto">@{{ client.risk }}</button></td>
+                <td v-if = "clients[index].risk == 'CRÍTICO'">
+                  <button type="button" class="btn btn-sm" :class="{'btn-critico':true}">@{{ client.risk }}</button>
+                </td>
+                <td v-else-if = "clients[index].risk == 'ALTO'">
+                  <button type="button" class="btn btn-sm" :class="{'btn-alto':true}">@{{ client.risk }}</button>
+                </td>
+                <td v-else-if = "clients[index].risk == 'SIGNIFICATIVO'">
+                  <button type="button" class="btn btn-sm" :class="{'btn-significativo':true}">@{{ client.risk }}</button>
+                </td>
+                <td v-else-if = "clients[index].risk == 'MODERADO'">
+                  <button type="button" class="btn btn-sm" :class="{'btn-moderado':true}">@{{ client.risk }}</button>
+                </td>
+                <td v-else-if = "clients[index].risk == 'BAJO'">
+                  <button type="button" class="btn btn-sm" :class="{'btn-bajo':true}">@{{ client.risk }}</button>
+                </td>
+                <td v-else>
+                    <button type="button" class="btn btn-sm" :class="{'btn-risk':true}">@{{ client.risk }}</button>
+                </td>
                 <td><a href="#" v-on:click.prevent='addClient(index)'>Más información</a></td>
               </tr>
             </tbody>

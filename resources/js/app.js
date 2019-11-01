@@ -55,6 +55,8 @@ var vm = new Vue({
         property: '',
     },
     computed:{
+        
+
         searchClientAll: function(){
             return this.clientsAll.filter((index) => {
                 return index.identity.toUpperCase().includes(this.property.toUpperCase()) ||
@@ -106,7 +108,6 @@ var vm = new Vue({
             var urlClientsAll = 'list/index2';
             Axios.get(urlClientsAll).then(response => {this.clientsAll = response.data});
         },
-
         addClient: function(index){
            this.chosenClient = {client:this.clients[index]};
         },
@@ -134,12 +135,6 @@ var vm = new Vue({
 
 var vm = new Vue({
     el: '#col',
-
     data:{
-        message: '¡Archivo subido exitosamente!',
     },
-    methods:{
-        mostrarMensaje: function(){
-        },
-    }
 });

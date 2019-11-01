@@ -49480,12 +49480,7 @@ var vm = new Vue({
 });
 var vm = new Vue({
   el: '#col',
-  data: {
-    message: '¡Archivo subido exitosamente!'
-  },
-  methods: {
-    mostrarMensaje: function mostrarMensaje() {}
-  }
+  data: {}
 });
 
 /***/ }),
