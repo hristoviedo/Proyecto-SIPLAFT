@@ -55,8 +55,6 @@ var vm = new Vue({
         property: '',
     },
     computed:{
-        
-
         searchClientAll: function(){
             return this.clientsAll.filter((index) => {
                 return index.identity.toUpperCase().includes(this.property.toUpperCase()) ||
@@ -129,7 +127,64 @@ var vm = new Vue({
             let val = (value/1).toFixed(2).replace(',', '.');
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
-
+        riskColor: function(index){
+            if (this.clients[index].risk == 'CRÍTICO') {
+                return {'background-color':'rgba(255, 0, 0, 0.7)'};
+            } else if(this.clients[index].risk == 'ALTO') {
+                return {'background-color':'rgba(255, 127, 16, 0.7)'};
+            } else if(this.clients[index].risk == 'SIGNIFICATIVO') {
+                return {'background-color':'rgba(255, 255, 0, 0.7)'};
+            } else if(this.clients[index].risk == 'MODERADO') {
+                return {'background-color':'rgba(102, 102, 102, 0.7)'};
+            } else if(this.clients[index].risk == 'BAJO') {
+                return {'background-color':'rgba(0, 128, 0, 0.7)'};
+            } else {
+                return {'background-color':'rgba(50, 75, 200, 0.7)'};
+            }
+        },
+        riskColorAll: function(index){
+            if (this.searchClientAll[index].risk == 'CRÍTICO') {
+                return {'background-color':'rgba(255, 0, 0, 0.7)'};
+            } else if(this.searchClientAll[index].risk == 'ALTO') {
+                return {'background-color':'rgba(255, 127, 16, 0.7)'};
+            } else if(this.searchClientAll[index].risk == 'SIGNIFICATIVO') {
+                return {'background-color':'rgba(255, 255, 0, 0.7)'};
+            } else if(this.searchClientAll[index].risk == 'MODERADO') {
+                return {'background-color':'rgba(102, 102, 102, 0.7)'};
+            } else if(this.searchClientAll[index].risk == 'BAJO') {
+                return {'background-color':'rgba(0, 128, 0, 0.7)'};
+            } else {
+                return {'background-color':'rgba(50, 75, 200, 0.7)'};
+            }
+        },
+        riskColorCard: function(index){
+            if (this.chosenClient[index].risk == 'CRÍTICO') {
+                return {'background-color':'rgba(255, 0, 0, 0.3)'};
+            } else if(this.chosenClient[index].risk == 'ALTO') {
+                return {'background-color':'rgba(255, 127, 16, 0.3)'};
+            } else if(this.chosenClient[index].risk == 'SIGNIFICATIVO') {
+                return {'background-color':'rgba(255, 255, 0, 0.3)'};
+            } else if(this.chosenClient[index].risk == 'MODERADO') {
+                return {'background-color':'rgba(102, 102, 102, 0.3)'};
+            } else if(this.chosenClient[index].risk == 'BAJO') {
+                return {'background-color':'rgba(0, 128, 0, 0.3)'};
+            } else {
+                return {'background-color':'rgba(50, 75, 200, 0.3)'};
+            }
+        },
+        riskImageCard: function(index){
+            if (this.chosenClient[index].risk == 'CRÍTICO') {
+                return "img/critico.png";
+            } else if(this.chosenClient[index].risk == 'ALTO') {
+                return "img/alto.png";
+            } else if(this.chosenClient[index].risk == 'SIGNIFICATIVO') {
+                return "img/significativo.png";
+            } else if(this.chosenClient[index].risk == 'MODERADO') {
+                return "img/moderado.png";
+            } else if(this.chosenClient[index].risk == 'BAJO') {
+                return "img/bajo.png";
+            }
+        }
     },
 });
 

@@ -124,7 +124,7 @@
                 <td>@{{ client.email }}</td>
                 <td>@{{ client.activity }}</td>
                 <td>@{{ client.workplace }}</td>
-                <td><button type="button" class="btn btn-sm btn-risk">@{{ client.risk }}</button></td>
+                <td><button type="button" class="btn btn-sm" :style="riskColorAll(index)">@{{ client.risk }}</button></td>
                 <td><a href="#" v-on:click.prevent='addClientAll(index)'>Más información</a></td>
               </tr>
             </tbody>
@@ -135,23 +135,8 @@
                 <td>@{{ client.email }}</td>
                 <td>@{{ client.activity }}</td>
                 <td>@{{ client.workplace }}</td>
-                <td v-if = "clients[index].risk == 'CRÍTICO'">
-                  <button type="button" class="btn btn-sm" :class="{'btn-critico':true}">@{{ client.risk }}</button>
-                </td>
-                <td v-else-if = "clients[index].risk == 'ALTO'">
-                  <button type="button" class="btn btn-sm" :class="{'btn-alto':true}">@{{ client.risk }}</button>
-                </td>
-                <td v-else-if = "clients[index].risk == 'SIGNIFICATIVO'">
-                  <button type="button" class="btn btn-sm" :class="{'btn-significativo':true}">@{{ client.risk }}</button>
-                </td>
-                <td v-else-if = "clients[index].risk == 'MODERADO'">
-                  <button type="button" class="btn btn-sm" :class="{'btn-moderado':true}">@{{ client.risk }}</button>
-                </td>
-                <td v-else-if = "clients[index].risk == 'BAJO'">
-                  <button type="button" class="btn btn-sm" :class="{'btn-bajo':true}">@{{ client.risk }}</button>
-                </td>
-                <td v-else>
-                    <button type="button" class="btn btn-sm" :class="{'btn-risk':true}">@{{ client.risk }}</button>
+                <td>
+                  <button type="button" class="btn btn-sm" :style="riskColor(index)">@{{ client.risk }}</button>
                 </td>
                 <td><a href="#" v-on:click.prevent='addClient(index)'>Más información</a></td>
               </tr>
@@ -160,8 +145,8 @@
         </div>
         <div class="card-deck flex-center" v-for="(client, index) in chosenClient" :key="index" >
           <div class="card card-w">
-            <div class="card-header bg-alto">
-              <img src="{{ asset('img/alto.png') }}" class="card-img-top" alt="...">
+            <div class="card-header" :style="riskColorCard(index)">
+              <img :src="riskImageCard(index)" class="card-img-top" alt="...">
               <button type="button" class="close" aria-label="Close" v-on:click.prevent='deleteClient()'>
                 <span aria-hidden="true">&times;</span>
               </button>
