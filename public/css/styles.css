@@ -1,11 +1,45 @@
-/*********************************************/
+/*************Código CSS personalizado****************/
+/*Estilos generales del proyecto*/
 .body {
-    background-color:#ffffff;
-    color: rgb(102, 102, 102)  ;
-    font-family:sans-serif;
-    font-weight: 200;
-    height: 100vh;
-    margin: 0;
+  background-color:#ffffff;
+  color: rgb(102, 102, 102)  ;
+  font-family:sans-serif;
+  font-weight: 200;
+  height: 100vh;
+  margin: 0;
+}
+
+/*Color de barra de navgación*/
+.navbar-color {
+    background-color: rgba(102, 102, 102, 0.3);
+}
+
+.full-height {
+    height: 95vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+  }
+  
+  .title {
+      font-size: 84px;
+  }
+
+  .content {
+    text-align: center;
 }
 
 .visible{
@@ -14,31 +48,7 @@
   display: none;
 }
 
-.modal{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  transform: scale(0);
-  transition: transform .3s;
-}
-
-.modal__content{
-  background-color: rgba(255, 255, 255, 1);
-  width: 100vw;
-  height: 100vw;
-  padding: 1rem;;
-}
-
-.modal--show{
-  transform: scale(1);
-}
-
+/*Pie de página*/
 .page-footer {
     position: absolute;
     left: 0;
@@ -48,7 +58,7 @@
     color: rgba(102, 102, 102, 1);
     text-align: center;
 }
-
+/*Columnas en Cards*/
 .column1 {
   float: left;
   width: 40%;
@@ -69,9 +79,11 @@
   clear: both;
 }
 
+/*************************Estilo de botones*****************************/
 .btn-color{
     background-color: rgba(255, 127, 16, 0.5);
     align-self: center;
+    margin: 0.5rem;
 }
 
 .btn-color:hover{
@@ -107,6 +119,7 @@
   background-color: rgba(102, 102, 102, 0.7);
 }
 
+/*Colores de Fondo [No implementados]*/
 .bg-alto{
   background-color: rgba(255, 127, 16, 0.3);
 }
@@ -125,43 +138,13 @@
   background-color: rgba(102, 102, 102, 0.3);
 }
 
-.navbar-color {
-    background-color: rgba(102, 102, 102, 0.3);
-}
-
-.full-height {
-    height: 95vh;
-}
-
-.flex-center {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-
-.position-ref {
-    position: relative;
-}
-
-.top-right {
-    position: absolute;
-    right: 10px;
-    top: 18px;
-}
-
-.content {
-    text-align: center;
-}
-
-.title {
-    font-size: 84px;
-}
 
 .text-title-card{
   font-size: 20px;
   margin: 0;
 }
 
+/*Estilos de enlaces*/
 .links > a {
     color:rgb(255, 127, 16);
     padding: 0 25px;
@@ -176,6 +159,7 @@
     margin-bottom: 30px;
 }
 
+/*Estilo de imágenes*/
 .img-logo {
     width:20%;
 }
@@ -184,6 +168,7 @@
   width:8%;
 }
 
+/*Estilo para subir archivos*/
 .file-input {
   visibility: hidden;
   width: 0;
@@ -218,16 +203,6 @@
     margin-top: 0;
     margin-bottom: 0;
 }
-
-/* 
-.checkbox{
-  -ms-transform: scale(1); IE
-    -moz-transform: scale(1); FF
-    -webkit-transform: scale(1); Safari and Chrome
-    -o-transform: scale(1); Opera
-    transform: scale(1);
-    padding: 0px;
-} */
 
 /*******************************************************************************************/
 /*!

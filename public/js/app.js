@@ -49373,21 +49373,30 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+//Elemento raíz para la generaldades de la página [No Implementado]
 
 var app = new Vue({
   el: '#app'
 });
+ //Elemento raíz para supervisor
 
 var vm = new Vue({
   el: '#sup',
+  // id donde se implementa Vue
+  // Cuando se crea la instancia se ejecutan las siguientes funciones
   created: function created() {
-    this.getClients();
-    this.getClientsAll();
+    this.getClients(); // Carga la lista de clientes compaginados
+
+    this.getClientsAll(); // Carga la lista de todos los clientes en un mismo arreglo
   },
   data: {
     clients: [],
+    // Arreglo que contiene la lista de clientes según paginación
     clientsAll: [],
+    // Arreglo que contiene la lista de todos los clientes
     chosenClient: [],
+    // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
+    // Objeto que contiene los atributos de la paginación
     pagination: {
       'total': 0,
       'current_page': 0,
@@ -49396,10 +49405,14 @@ var vm = new Vue({
       'from': 0,
       'to': 0
     },
-    offset: 3,
-    property: ''
+    offset: 4,
+    // Indica la cantidad de paginación a la izquierda y derecha de la actual
+    property: '',
+    // Variable que determina la búsqueda del usuario
+    viewAll: false
   },
   computed: {
+    // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
     searchClientAll: function searchClientAll() {
       var _this = this;
 
@@ -49407,25 +49420,31 @@ var vm = new Vue({
         return index.identity.toUpperCase().includes(_this.property.toUpperCase()) || index.name.toUpperCase().includes(_this.property.toUpperCase()) || index.email.toUpperCase().includes(_this.property.toUpperCase()) || index.workplace.toUpperCase().includes(_this.property.toUpperCase()) || index.funding.toUpperCase().includes(_this.property.toUpperCase()) || index.risk.toUpperCase().includes(_this.property.toUpperCase()) || index.nationality.toUpperCase().includes(_this.property.toUpperCase()) || index.activity.toUpperCase().includes(_this.property.toUpperCase());
       });
     },
+    // Retorna la página que está activa
     isActived: function isActived() {
       return this.pagination.current_page;
     },
+    // Asigna el número de páginas en la paginación
     pagesNumber: function pagesNumber() {
+      // Si no hay página, retorna vacío
       if (!this.pagination.to) {
         return [];
-      }
+      } // Si [from] - [offset] es menor que uno, entonces [from] es uno
+
 
       var from = this.pagination.current_page - this.offset;
 
       if (from < 1) {
         from = 1;
-      }
+      } // Si [to] es mayor o igual que [last_page], entonces [to] es [last_page]
+
 
       var to = from + this.offset * 2;
 
       if (to >= this.pagination.last_page) {
         to = this.pagination.last_page;
-      }
+      } // mientras [from] sea menor o igual a [to] entonces el [pagesArray] guardará [from]
+
 
       var pagesArray = [];
 
@@ -49438,15 +49457,20 @@ var vm = new Vue({
     }
   },
   methods: {
+    showEverything: function showEverything() {
+      this.property = ' ';
+      this.viewAll = !this.viewAll;
+    },
+    // Llama a la ruta /list y usa [page] como variable opcional para cargar los registros de clientes en MySQL
     getClients: function getClients(page) {
       var _this2 = this;
 
       var urlClients = 'list?page=' + page;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClients).then(function (response) {
-        // this.clients = response.data,
         _this2.clients = response.data.clients.data, _this2.pagination = response.data.pagination;
       });
     },
+    // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
     getClientsAll: function getClientsAll() {
       var _this3 = this;
 
@@ -49455,29 +49479,35 @@ var vm = new Vue({
         _this3.clientsAll = response.data;
       });
     },
+    // Agrega un objeto cliente de [clients] para ser visto en la card
     addClient: function addClient(index) {
       this.chosenClient = {
         client: this.clients[index]
       };
     },
+    // Agrega un objeto cliente de [searchClientsAll] para ser visto en la card
     addClientAll: function addClientAll(index) {
       this.chosenClient = {
         client: this.searchClientAll[index]
       };
     },
+    // Deja vacío el arreglo [chosenClient] y la card desaparece
     deleteClient: function deleteClient() {
       this.chosenClient = '';
     },
+    // Realiza el cambio de página
     changePage: function changePage(page) {
       this.pagination.current_page = page;
       this.getClients(page);
     },
+    // Da formato a las cantidades de dinero
     formatPrice: function formatPrice(value) {
       var val = (value / 1).toFixed(2).replace(',', '.');
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
+    // Asigna color según el riesgo del cliente en la paginación
     riskColor: function riskColor(index) {
-      if (this.clients[index].risk == 'CRÍTICO') {
+      if (this.clients[index].risk == 'CRITICO') {
         return {
           'background-color': 'rgba(255, 0, 0, 0.7)'
         };
@@ -49503,8 +49533,9 @@ var vm = new Vue({
         };
       }
     },
+    //Asigna color según el riesgo del cliente en las búsquedas
     riskColorAll: function riskColorAll(index) {
-      if (this.searchClientAll[index].risk == 'CRÍTICO') {
+      if (this.searchClientAll[index].risk == 'CRITICO') {
         return {
           'background-color': 'rgba(255, 0, 0, 0.7)'
         };
@@ -49530,8 +49561,9 @@ var vm = new Vue({
         };
       }
     },
+    // Asigna color según el riesgo del cliente en la card
     riskColorCard: function riskColorCard(index) {
-      if (this.chosenClient[index].risk == 'CRÍTICO') {
+      if (this.chosenClient[index].risk == 'CRITICO') {
         return {
           'background-color': 'rgba(255, 0, 0, 0.3)'
         };
@@ -49557,8 +49589,9 @@ var vm = new Vue({
         };
       }
     },
+    // Asigna la imagen según el riesgo del cliente en la card
     riskImageCard: function riskImageCard(index) {
-      if (this.chosenClient[index].risk == 'CRÍTICO') {
+      if (this.chosenClient[index].risk == 'CRITICO') {
         return "img/critico.png";
       } else if (this.chosenClient[index].risk == 'ALTO') {
         return "img/alto.png";
@@ -49571,7 +49604,8 @@ var vm = new Vue({
       }
     }
   }
-});
+}); //Elemento raíz para colaborador [No Implementado]
+
 var vm = new Vue({
   el: '#col',
   data: {}

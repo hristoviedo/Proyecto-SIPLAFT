@@ -1,19 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-
-Auth::routes();
+Auth::routes(); // Todas las funciones de usuarios
 
 Route::get('/', 'HomeController@welcome')->name('welcome'); //La raiz (/) llama a la función 'welcome' de HomeController
 
@@ -27,6 +14,6 @@ Route::get('/descarga', 'HomeController@exportExcel')->name('client.excel'); // 
 
 Route::post('/carga', 'HomeController@importExcel')->name('client.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
 
-Route::get('/list/index2', 'ClientController@index2'); //
+Route::get('/list/index2', 'ClientController@index2')->name('list2'); // /list2 llama a la función 'index2' de ClientController
 
-Route::resource('/list', 'ClientController'); //
+Route::resource('/list', 'ClientController'); // /list1 llama a la función 'index' de ClientController

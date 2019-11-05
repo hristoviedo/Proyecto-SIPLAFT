@@ -1,7 +1,3 @@
-SELECT * FROM clientes;
-
-SELECT COUNT(*) AS CantidadClientes FROM clientes;
-
 DROP PROCEDURE IF EXISTS agruparClientes;
 
 DELIMITER $$

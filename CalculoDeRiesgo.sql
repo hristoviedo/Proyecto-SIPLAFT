@@ -1,4 +1,3 @@
-SELECT id, name, activity, funding, age, households, score_risk FROM clientes WHERE id = 48;
 SELECT * FROM clientes;
 
 DROP PROCEDURE IF EXISTS calcularRiesgo;
@@ -67,7 +66,7 @@ BEGIN
 	END CASE;
     
     CASE
-    WHEN score > 4 THEN SET risk = 'CRÍTICO';
+    WHEN score > 4 AND score <= 5 THEN SET risk = 'CRITICO';
 	WHEN score > 3 AND score <= 4 THEN SET risk = 'ALTO';
 	WHEN score > 2 AND score <= 3 THEN SET risk = 'SIGNIFICATIVO';
     WHEN score > 1 AND score <= 2 THEN SET risk = 'MODERADO';

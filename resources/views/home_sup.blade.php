@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.app') {{-- Extiende de app.blade.php --}}
 
-@section('content')
+@section('content') {{-- Contenido agregada --}}
 
-  <div id="sup" class="container-fluid"> {{-- id usado por la app de Vuejs --}}
+  <div id="sup" class="container-fluid"> {{-- id usado por Vuejs --}}
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light">
         <div class="">
@@ -19,12 +19,12 @@
                 Perfil
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="#">
                     <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 Reportes
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle></svg>
@@ -34,15 +34,15 @@
           </ul>
 
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Reportes Recientes</span>
+            <span>Reportes</span>
           </h6>
           <ul class="nav flex-column mb-2">
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link" href="#">
                 <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 Último Guardado
               </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -102,6 +102,9 @@
             <div class="input-group">
               <input v-model="property" type="text" class="form-control" placeholder="Buscar cliente">
             </div>
+            <div v-if = "">
+                <button type="button" @click.prevent="showEverything()" class="btn btn-sm btn-color">Ver todos</button>
+            </div>
           </div>
         </div>
         <div class="table-responsive">
@@ -113,6 +116,7 @@
                 <th>Email</th>
                 <th>Actividad Económica</th>
                 <th>Lugar de Trabajo</th>
+                <th>Inmobiliaria</th>
                 <th>Nivel de Riesgo</th>
                 <th>Detalles</th>
               </tr>
@@ -124,7 +128,10 @@
                 <td>@{{ client.email }}</td>
                 <td>@{{ client.activity }}</td>
                 <td>@{{ client.workplace }}</td>
-                <td><button type="button" class="btn btn-sm" :style="riskColorAll(index)">@{{ client.risk }}</button></td>
+                <td>INMOBILIARIA XYZ</td>
+                <td>
+                  <button type="button" class="btn btn-sm" :style="riskColorAll(index)">@{{ client.risk }}</button>
+                </td>
                 <td><a href="#" v-on:click.prevent='addClientAll(index)'>Más información</a></td>
               </tr>
             </tbody>
@@ -135,6 +142,7 @@
                 <td>@{{ client.email }}</td>
                 <td>@{{ client.activity }}</td>
                 <td>@{{ client.workplace }}</td>
+                <td>INMOBILIARIA XYZ</td>
                 <td>
                   <button type="button" class="btn btn-sm" :style="riskColor(index)">@{{ client.risk }}</button>
                 </td>
