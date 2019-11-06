@@ -49608,7 +49608,17 @@ var vm = new Vue({
 
 var vm = new Vue({
   el: '#col',
-  data: {}
+  data: {
+    name: '',
+    households: households,
+    age: age,
+    activity: ''
+  },
+  methods: {
+    imageForm: function imageForm() {
+      return "img/bajo.png";
+    }
+  }
 });
 
 /***/ }),

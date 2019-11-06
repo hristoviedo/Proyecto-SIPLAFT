@@ -55,6 +55,10 @@ class HomeController extends Controller
         return view('home_sup2'); //Muestra la vista de 'home_sup.blade.php'
     }//Fin de la función
 
+    public function simulation(){
+        return view('simulation'); //Muestra la vista de 'simulation.blade.php'
+    }//Fin de la función
+
     //Inicio de la función exportExcel
     public function exportExcel(){
         return Excel::download(new ClientExport, 'client-list.xlsx'); //Llama a la clase ClientExport para crear y descargar la lista de clientes en excel.

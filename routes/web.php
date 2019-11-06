@@ -4,7 +4,7 @@ Auth::routes(); // Todas las funciones de usuarios
 
 Route::get('/', 'HomeController@welcome')->name('welcome'); //La raiz (/) llama a la función 'welcome' de HomeController
 
-// Route::get('/home', 'HomeController@index')->name('home')->name('home'); // /home llama a la función 'home' de HomeController
+Route::get('/simulation', 'HomeController@simulation')->name('simulation.col'); // /simulation llama a la función 'simulation' de HomeController
 
 Route::get('/home.col', 'HomeController@home_colaborador')->name('home.col'); // /home.col llama a la función 'home_colaborador' de HomeController
 

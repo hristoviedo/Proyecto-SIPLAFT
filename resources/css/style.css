@@ -342,7 +342,7 @@
   
   b,
   strong {
-    font-weight: bolder;
+    font-weight: bold;
   }
   
   small {
@@ -544,7 +544,8 @@
   
   [type="number"]::-webkit-inner-spin-button,
   [type="number"]::-webkit-outer-spin-button {
-    height: auto;
+    -webkit-appearance: none;
+    margin: 0;
   }
   
   [type="search"] {

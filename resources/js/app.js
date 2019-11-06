@@ -219,5 +219,14 @@ var vm = new Vue({
 var vm = new Vue({
     el: '#col',
     data:{
+        name: '',
+        households,
+        age,
+        activity: '',
+    },
+    methods:{
+        imageForm: function(){
+            return "img/bajo.png";
+        }
     },
 });
