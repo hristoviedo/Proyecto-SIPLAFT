@@ -215,18 +215,119 @@ var vm = new Vue({
     },
 });
 
-//Elemento raíz para colaborador [No Implementado]
+//Elemento raíz para colaborador
 var vm = new Vue({
     el: '#col',
     data:{
-        name: '',
-        households,
-        age,
+        activityArray: ['','TRABAJADOR ASALARIADO','COMERCIANTE INDIVIDUAL / INDEPENDIENTE', 'NEGOCIO INFORMAL', 'PEP', 'SIN FINES DE LUCRO (ONGS)'],
+        fundingArray: ['','FINANCIAMIENTO BANCO','AUTOFINANCIADO TRANSF. DE CTA DEL CLIENTE', 'AUTOFINANCIADO TRANSF. DE TERCEROS', 'DEPÓSITO EN EFECTIVO EN CTAS DE LA EMPRESA', 'EFECTIVO'],
+        name:'',
+        households: '',
+        age: '',
         activity: '',
+        funding: '',
+        risk: '',
+        scoreRisk: 0,
+        percActivity:  0.25,
+        percFunding:  0.3,
+        percAge:  0.25,
+        percHouseholds:  0.2,
+    },
+    computed:{
+        
     },
     methods:{
-        imageForm: function(){
-            return "img/bajo.png";
-        }
+        calculateRisk: function() {
+            this.scoreRisk = 0;
+            if(this.age >= 66){
+                this.scoreRisk = this.scoreRisk + 1*this.percAge;
+            }else if(this.age >= 56 && this.age <= 65){
+                this.scoreRisk = this.scoreRisk + 2*this.percAge;
+            }else if(this.age >= 46 && this.age <= 55){
+                this.scoreRisk = this.scoreRisk + 3*this.percAge;
+            }else if(this.age >= 36 && this.age <= 45){
+                this.scoreRisk = this.scoreRisk + 4*this.percAge;
+            }else if(this.age >= 18 && this.age <= 55){
+                this.scoreRisk = this.scoreRisk + 5*this.percAge;
+            }
+            if(this.households > 7){
+                this.scoreRisk = this.scoreRisk + 5*this.percHouseholds;
+            }else if(this.households >= 6 && this.households <= 7){
+                this.scoreRisk = this.scoreRisk + 4*this.percHouseholds;
+            }else if(this.households >= 4 && this.households <= 5){
+                this.scoreRisk = this.scoreRisk + 3*this.percHouseholds;
+            }else if(this.households >= 2 && this.households <= 3){
+                this.scoreRisk = this.scoreRisk + 2*this.percHouseholds;
+            }else if(this.households >= 1){
+                this.scoreRisk = this.scoreRisk + 1*this.percHouseholds;
+            }
+
+            if(this.funding == 'EFECTIVO'){
+                this.scoreRisk = this.scoreRisk + 5*this.percFunding;
+            }else if(this.funding == 'DEPÓSITO EN EFECTIVO EN CTAS DE LA EMPRESA'){
+                this.scoreRisk = this.scoreRisk + 4*this.percFunding;
+            }else if(this.funding == 'AUTOFINANCIADO TRANSF. DE TERCEROS'){
+                this.scoreRisk = this.scoreRisk + 3*this.percFunding;
+            }else if(this.funding == 'AUTOFINANCIADO TRANSF. DE CTA DEL CLIENTE'){
+                this.scoreRisk = this.scoreRisk + 2*this.percFunding;
+            }else if(this.funding == 'FINANCIAMIENTO BANCO'){
+                this.scoreRisk = this.scoreRisk + 1*this.percFunding;
+            }
+
+            if(this.activity == 'SIN FINES DE LUCRO (ONGS)'){
+                this.scoreRisk = this.scoreRisk + 5*this.percActivity;
+            }else if(this.activity == 'PEP'){
+                this.scoreRisk = this.scoreRisk + 4*this.percActivity;
+            }else if(this.activity == 'NEGOCIO INFORMAL'){
+                this.scoreRisk = this.scoreRisk + 3*this.percActivity;
+            }else if(this.activity == 'COMERCIANTE INDIVIDUAL / INDEPENDIENTE'){
+                this.scoreRisk = this.scoreRisk + 2*this.percActivity;
+            }else if(this.activity == 'TRABAJADOR ASALARIADO'){
+                this.scoreRisk = this.scoreRisk + 1*this.percActivity;
+            }
+
+            if(this.scoreRisk > 4 && this.scoreRisk<= 5){
+                this.risk = 'CRITICO';
+            }else if(this.scoreRisk > 3 && this.scoreRisk <= 4){
+                this.risk = 'ALTO';
+            }else if(this.scoreRisk > 2 && this.scoreRisk <= 3){
+                this.risk = 'SIGNIFICATIVO';
+            }else if(this.scoreRisk > 1 && this.scoreRisk <= 2){
+                this.risk = 'MODERADO';
+            }else if(this.scoreRisk > 0 && this.scoreRisk <= 1){
+                this.risk = 'BAJO';
+            }
+        },
+
+        // Asigna color según el riesgo del cliente en la preevaluación
+        riskColor: function(){
+            if (this.risk == 'CRITICO') {
+                return {'background-color':'rgba(255, 0, 0, 0.3)'};
+            } else if(this.risk == 'ALTO') {
+                return {'background-color':'rgba(255, 127, 16, 0.3)'};
+            } else if(this.risk == 'SIGNIFICATIVO') {
+                return {'background-color':'rgba(255, 255, 0, 0.3)'};
+            } else if(this.risk == 'MODERADO') {
+                return {'background-color':'rgba(102, 102, 102, 0.3)'};
+            } else if(this.risk == 'BAJO') {
+                return {'background-color':'rgba(0, 128, 0, 0.3)'};
+            }
+        },
+
+        // Da formato a las cantidades de dinero
+        formatPrice: function(value) {
+            let val = (value/1).toFixed(2).replace(',', '.');
+            val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return val;
+        },
+        clearProperty: function() {
+            this.name = '',
+            this.households = '',
+            this.age = '',
+            this.activity = '',
+            this.funding = '',
+            this.risk = '',
+            this.scoreRisk = ''
+        },
     },
 });
