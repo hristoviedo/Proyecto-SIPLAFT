@@ -45,6 +45,11 @@ class HomeController extends Controller
         return view('home_col'); //Muestra la vista de 'home_col.blade.php'
     }//Fin de la función
 
+    //Inicio de la función home_administrador
+    public function home_administrador(){
+        return view('home_adm'); //Muestra la vista de 'home_adm.blade.php'
+    }//Fin de la función
+
     //Inicio de la función home_supervisor
     public function home_supervisor(){
         return view('home_sup'); //Muestra la vista de 'home_sup.blade.php'

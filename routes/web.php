@@ -8,7 +8,9 @@ Route::get('/simulation', 'HomeController@simulation')->name('simulation.col'); 
 
 Route::get('/home.col', 'HomeController@home_colaborador')->name('home.col'); // /home.col llama a la función 'home_colaborador' de HomeController
 
-Route::get('/home', 'HomeController@home_supervisor')->name('home.sup'); // /home.sup llama a la función 'home_supervisor' de HomeController
+Route::get('/home.adm', 'HomeController@home_administrador')->name('home.adm'); // /home.adm llama a la función 'home_administrador' de HomeController
+
+Route::get('/home.sup', 'HomeController@home_supervisor')->name('home.sup'); // /home.sup llama a la función 'home_supervisor' de HomeController
 
 Route::get('/descarga', 'HomeController@exportExcel')->name('client.excel'); // /descarga llama a la función 'exportExcel' de HomeController
 

@@ -41,12 +41,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('INICIAR SESIÓN') }}</a>
                             </li>
-                            {{-- Inicio de condición --}}
-                            @if (Route::has('register'))
+
+                            {{-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('REGISTRARSE') }}</a>
                                 </li>
-                            @endif {{-- Fin de condición  --}}
+                            @endif --}}
                         @else {{-- Usuario autenticado --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
