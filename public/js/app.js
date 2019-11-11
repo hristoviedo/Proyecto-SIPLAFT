@@ -49676,13 +49676,13 @@ var vm = new Vue({
         this.scoreRisk = this.scoreRisk + 1 * this.percActivity;
       }
 
-      if (this.scoreRisk > 4 && this.scoreRisk <= 5) {
+      if (this.scoreRisk >= 4 && this.scoreRisk <= 5) {
         this.risk = 'CRITICO';
-      } else if (this.scoreRisk > 3 && this.scoreRisk <= 4) {
+      } else if (this.scoreRisk >= 3 && this.scoreRisk < 4) {
         this.risk = 'ALTO';
-      } else if (this.scoreRisk > 2 && this.scoreRisk <= 3) {
+      } else if (this.scoreRisk >= 2 && this.scoreRisk < 3) {
         this.risk = 'SIGNIFICATIVO';
-      } else if (this.scoreRisk > 1 && this.scoreRisk <= 2) {
+      } else if (this.scoreRisk > 1 && this.scoreRisk < 2) {
         this.risk = 'MODERADO';
       } else if (this.scoreRisk > 0 && this.scoreRisk <= 1) {
         this.risk = 'BAJO';
