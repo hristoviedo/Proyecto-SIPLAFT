@@ -44,8 +44,4 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class);
     }
-    
-    public function clientes(){
-        return $this->belongsToMany(Cliente::class)->withTimestamps();
-    }
 }
