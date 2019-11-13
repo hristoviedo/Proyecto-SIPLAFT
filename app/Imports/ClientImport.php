@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Cliente;
+use App\ClientsUpload;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 
@@ -34,17 +34,15 @@ class ClientImport implements ToModel
         $phone2 = $row[6];
         $nationality = $row[7];
         $households = $row[8];
-        $total_amount = $row[9];
-        $activity = $row[10];
-        $funding = $row[11];
+        $activity = $row[9];
+        $funding = $row[10];
 
         //Cambia el tipo de variable para que coincida con los predefinidos en la base de datos
         $age = (int)$age;
         $households = (int)$households;
-        $total_amount = (float)$total_amount;
 
         //Realiza la inserción del registro con datos en mayúsculas y sin espacios al principio o final
-        return new Cliente([
+        return new ClientsUpload([
             'identity'      => trim($identity),
             'name'          => trim(mb_strtoupper($name,'UTF-8')),
             'age'           => $age,
@@ -54,7 +52,6 @@ class ClientImport implements ToModel
             'phone2'        => trim(strtoupper($phone2)),
             'nationality'   => trim(mb_strtoupper($nationality,'UTF-8')),
             'households'    => $households,
-            'total_amount'  => $total_amount,
             'activity'      => trim(mb_strtoupper($activity,'UTF-8')),
             'funding'       => trim(mb_strtoupper($funding,'UTF-8')),
         ]);

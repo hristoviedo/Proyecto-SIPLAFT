@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Cliente;
+use App\Client;
 
 
 class ClientController extends Controller
@@ -15,11 +15,11 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        // $clients = Cliente::get();
+        // $clients = Client::get();
 
         // return $clients;
 
-        $clients = Cliente::orderBy('id', 'DESC')->paginate(10);
+        $clients = Client::orderBy('id', 'DESC')->paginate(10);
 
         return [
             'pagination' => [
@@ -36,7 +36,7 @@ class ClientController extends Controller
 
     public function index2()
     {
-        $clients = Cliente::get();
+        $clients = Client::get();
 
         return $clients;
     }

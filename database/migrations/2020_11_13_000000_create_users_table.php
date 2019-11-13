@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id'); //Número de registro en la base de datos (autoincremental)
             $table->unsignedBigInteger('role_id')->default(null)->nullable(); //Id del rol (valor por defecto = null, sin signo y nullable)
             $table->unsignedBigInteger('company_id')->default(null)->nullable(); //Id de la compañía(valor por defecto = null, sin signo y nullable)
             $table->string('name');
@@ -23,6 +23,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('role_id')->references('id')->on('roles')
+                    ->onDelete('set null')
+                    ->onUpdate('cascade');
+
+            $table->foreign('company_id')->references('id')->on('companies')
+                    ->onDelete('set null')
+                    ->onUpdate('cascade');
         });
     }
 

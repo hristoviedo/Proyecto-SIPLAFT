@@ -14,7 +14,7 @@ class CreateActivitiesTable extends Migration
     public function up()
     {
         Schema::create('activities', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id');//Número de registro en la base de datos (autoincremental)
             $table->string('name', 40);
             $table->timestamps();
         });

@@ -14,8 +14,8 @@ class CreateCompaniesTable extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name', 20);
+            $table->bigIncrements('id');//Número de registro en la base de datos (autoincremental)
+            $table->string('name', 35);
             $table->unsignedInteger('type')->nullable();
             $table->timestamps();
         });

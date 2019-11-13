@@ -39,17 +39,31 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de usuario') }}</label>
+                        {{-- <div class="form-group row">
+                            <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Role del usuario') }}</label>
                             <div class="col-md-6">
                                 <select id="type" type="text" class="form-control" name="type">
-                                    {{-- Valores del tipo de usuario  --}}
+                                    {{-- Valores del tipo de usuario
                                     <option>Colaborador</option>
                                     <option>Supervisor</option>
                                     <option>Administrador</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
+
+                        {{-- <div class="form-group row">
+                            <label for="company_id" class="col-md-4 col-form-label text-md-right">{{ __('Empresa a la que pertenece') }}</label>
+                            <div class="col-md-6">
+                                <select id="company_id" type="text" class="form-control" name="company_id">
+                                    {{-- Valores del tipo de usuario
+                                    <option>Distrito Verde</option>
+                                    <option>EcoVivienda</option>
+                                    <option>Empresa 3</option>
+                                    <option>Empresa 4</option>
+                                    <option>Empresa 5</option>
+                                </select>
+                            </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

@@ -14,7 +14,7 @@ class CreateFundingsTable extends Migration
     public function up()
     {
         Schema::create('fundings', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id'); //Número de registro en la base de datos (autoincremental)
             $table->string('name', 45);
             $table->timestamps();
         });

@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Cliente;
+use App\ClientsUpload;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 //Inicio de la clase
@@ -16,7 +16,7 @@ class ClientExport implements FromCollection
     public function collection()
     {
         // return Cliente::all(); //Retorna todos los datos del cliente
-        return Cliente::select("id","identity","name","email")->get(); //Retorna 4 datos del cliente
+        return ClientsUpload::select("id","identity","name","email")->get(); //Retorna 4 datos del cliente
 
     }//Fin de la función
 }//Fin de la clase

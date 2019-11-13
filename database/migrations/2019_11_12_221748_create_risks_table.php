@@ -14,7 +14,7 @@ class CreateRisksTable extends Migration
     public function up()
     {
         Schema::create('risks', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id');//Número de registro en la base de datos (autoincremental)
             $table->string('name', 15);
             $table->unsignedDecimal('minimum_value',3,2)->default(null)->nullable();
             $table->unsignedDecimal('maximum_value',3,2)->default(null)->nullable();

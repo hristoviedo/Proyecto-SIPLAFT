@@ -16,8 +16,8 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->bigIncrements('id'); //Número de registro en la base de datos (autoincremental)
             $table->unsignedBigInteger('activity_id')->default(null)->nullable(); //Id de la actividad económica (valor por defecto = null, sin signo y nullable)
-            $table->unsignedBigInteger('risk_id')->default(null)->nullable(); //Id del nivel de riesgo (valor por defecto = null, sin signo y nullable)
             $table->unsignedBigInteger('funding_id')->default(null)->nullable(); //Id de la fuente de financiamiento (valor por defecto = null, sin signo y nullable)
+            $table->unsignedBigInteger('risk_id')->default(null)->nullable(); //Id del nivel de riesgo (valor por defecto = null, sin signo y nullable)
             $table->string('identity', 15); //Número de identidad del cliente (not null)
             $table->string('name', 45)->nullable(); //Nombre completo del cliente (not null)
             $table->unsignedInteger('age')->nullable(); //Edad en años (nullable)
@@ -30,6 +30,18 @@ class CreateClientsTable extends Migration
             $table->unsignedDecimal('total_amount',11,2)->default(null)->nullable(); //Monto total de dinero invertido (valor por defecto = 0.00 y nullable)
             $table->unsignedDecimal('score_risk', 3, 2)->default(null)->nullable(); //Puntuación de riesgo (valor por defecto = 0.00 y nullable)
             $table->timestamps(); //Fecha de creación y modificación del registro (valor por defecto = null y nullable)
+
+            $table->foreign('activity_id')->references('id')->on('activities')
+                    ->onDelete('set null')
+                    ->onUpdate('cascade');
+
+            $table->foreign('funding_id')->references('id')->on('fundings')
+                    ->onDelete('set null')
+                    ->onUpdate('cascade');
+
+            $table->foreign('risk_id')->references('id')->on('risks')
+                    ->onDelete('set null')
+                    ->onUpdate('cascade');
         });
     }
 
