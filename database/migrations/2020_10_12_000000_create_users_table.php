@@ -15,9 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('role_id')->default(null)->nullable(); //Id del rol (valor por defecto = null, sin signo y nullable)
+            $table->unsignedBigInteger('company_id')->default(null)->nullable(); //Id de la compañía(valor por defecto = null, sin signo y nullable)
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('type');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
