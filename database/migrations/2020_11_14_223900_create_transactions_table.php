@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->bigIncrements('id');//Número de registro en la base de datos, autoincremental
             $table->unsignedBigInteger('client_id')->nullable(); //Id del cliente
             $table->unsignedBigInteger('user_id')->nullable(); //Id del usuario que lo registró
+            $table->unsignedBigInteger('company_id')->nullable(); //Id de la compañía donde se registró
             $table->date('transaction_date'); //Fecha en que registró la transacción
             $table->boolean('cash'); //¿La transacción se hizo en efectivo? True si es verdadero
             $table->boolean('transaction_lempiras'); //¿La transacción se hizo en lempiras? True si es verdadero
@@ -28,6 +29,10 @@ class CreateTransactionsTable extends Migration
                     ->onUpdate('cascade');
 
             $table->foreign('user_id')->references('id')->on('users')
+                    ->onDelete('set null')
+                    ->onUpdate('cascade');
+
+            $table->foreign('company_id')->references('id')->on('companies')
                     ->onDelete('set null')
                     ->onUpdate('cascade');
         });
