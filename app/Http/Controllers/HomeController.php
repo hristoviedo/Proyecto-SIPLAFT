@@ -65,16 +65,31 @@ class HomeController extends Controller
     }//Fin de la función
 
     //Inicio de la función exportExcel
-    public function exportExcel(){
+    public function exportClientExcel(){
         return Excel::download(new ClientExport, 'client-list.xlsx'); //Llama a la clase ClientExport para crear y descargar la lista de clientes en excel.
     }//Fin de la función
 
-    //Inicio de la función importExcel
-    public function importExcel(Request $request){ //Recibe como parámetro el archivo de excel
+    //Inicio de la función exportExcel
+    public function exportTransactionExcel(){
+        return Excel::download(new TransactionExport, 'transaction-list.xlsx'); //Llama a la clase ClientExport para crear y descargar la lista de clientes en excel.
+    }//Fin de la función
+
+    //Inicio de la función importClientExcel
+    public function importClientExcel(Request $request){ //Recibe como parámetro el archivo de excel
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new ClientImport, $file); //Llama a la clase ClientImport para subir y la lista de clientes de un excel.
         $order = DB::select('CALL agruparClientes');
         $risk = DB::select('CALL calcularRiesgo');
-        return back()->with('message', 'Importación de clientes completada'); //Retorna a la página anterior cuando termina de importar
+        return back()->with('message', 'Subida de clientes completada'); //Retorna a la página anterior cuando termina de importar
     }//Fin de la función
+
+    //Inicio de la función importTransactionExcel
+    public function importTransactionExcel(Request $request){ //Recibe como parámetro el archivo de excel
+        $file = $request->file('file'); //Guarda en la variable $file el archivo excel
+        Excel::import(new TransactionImport, $file); //Llama a la clase ClientImport para subir y la lista de clientes de un excel.
+        // $order = DB::select('CALL agruparClientes');
+        // $risk = DB::select('CALL calcularRiesgo');
+        return back()->with('message', 'Subida de transacciones completada'); //Retorna a la página anterior cuando termina de importar
+    }//Fin de la función
+
 } //Fin del controlador

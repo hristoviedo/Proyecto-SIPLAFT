@@ -12,9 +12,13 @@ Route::get('/home.adm', 'HomeController@home_administrador')->name('home.adm'); 
 
 Route::get('/home.sup', 'HomeController@home_supervisor')->name('home.sup'); // /home.sup llama a la función 'home_supervisor' de HomeController
 
-Route::get('/descarga', 'HomeController@exportExcel')->name('client.excel'); // /descarga llama a la función 'exportExcel' de HomeController
+Route::get('/clients.descarga', 'HomeController@exportClientExcel')->name('client.export.excel'); // /clients.descarga llama a la función 'exportClientExcel' de HomeController
 
-Route::post('/carga', 'HomeController@importExcel')->name('client.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
+Route::get('/transactions.descarga', 'HomeController@exportTransactionExcel')->name('transactions.export.excel'); // /transactions.descarga llama a la función 'exportTransactionExcel' de HomeController
+
+Route::post('/clients.carga', 'HomeController@importClientExcel')->name('client.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
+
+Route::post('/transactions.carga', 'HomeController@importTransactionExcel')->name('transaction.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
 
 Route::get('/list/index2', 'ClientController@index2')->name('list2'); // /list2 llama a la función 'index2' de ClientController
 
