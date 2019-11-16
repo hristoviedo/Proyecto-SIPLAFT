@@ -49378,13 +49378,19 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
- //Elemento raíz para supervisor
+ //Elemento raíz para supervisor clientes
 
 var vm = new Vue({
-  el: '#sup',
+  el: '#sup_clients',
   // id donde se implementa Vue
   // Cuando se crea la instancia se ejecutan las siguientes funciones
   created: function created() {
+    this.getRisks(); // Carga la lista de clientes compaginados
+
+    this.getActivities(); // Carga la lista de clientes compaginados
+
+    this.getFundings(); // Carga la lista de clientes compaginados
+
     this.getClients(); // Carga la lista de clientes compaginados
 
     this.getClientsAll(); // Carga la lista de todos los clientes en un mismo arreglo
@@ -49394,6 +49400,12 @@ var vm = new Vue({
     // Arreglo que contiene la lista de clientes según paginación
     clientsAll: [],
     // Arreglo que contiene la lista de todos los clientes
+    risks: [],
+    // Arreglo que contiene la lista de clientes según paginación
+    activities: [],
+    // Arreglo que contiene la lista de clientes según paginación
+    fundings: [],
+    // Arreglo que contiene la lista de clientes según paginación
     chosenClient: [],
     // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
     // Objeto que contiene los atributos de la paginación
@@ -49477,6 +49489,298 @@ var vm = new Vue({
       var urlClientsAll = 'list/index2';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClientsAll).then(function (response) {
         _this3.clientsAll = response.data;
+      });
+    },
+    // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
+    getRisks: function getRisks() {
+      var _this4 = this;
+
+      var urlRisks = 'list/indexRisk';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlRisks).then(function (response) {
+        _this4.risks = response.data;
+      });
+    },
+    // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
+    getActivities: function getActivities() {
+      var _this5 = this;
+
+      var urlActivities = 'list/indexActivity';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlActivities).then(function (response) {
+        _this5.activities = response.data;
+      });
+    },
+    // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
+    getFundings: function getFundings() {
+      var _this6 = this;
+
+      var urlFundings = 'list/indexFunding';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlFundings).then(function (response) {
+        _this6.fundings = response.data;
+      });
+    },
+    // Agrega un objeto cliente de [clients] para ser visto en la card
+    addClient: function addClient(index) {
+      this.chosenClient = {
+        client: this.clients[index]
+      };
+    },
+    // Agrega un objeto cliente de [searchClientsAll] para ser visto en la card
+    addClientAll: function addClientAll(index) {
+      this.chosenClient = {
+        client: this.searchClientAll[index]
+      };
+    },
+    // Deja vacío el arreglo [chosenClient] y la card desaparece
+    deleteClient: function deleteClient() {
+      this.chosenClient = '';
+    },
+    // Realiza el cambio de página
+    changePage: function changePage(page) {
+      this.pagination.current_page = page;
+      this.getClients(page);
+    },
+    // Da formato a las cantidades de dinero
+    formatPrice: function formatPrice(value) {
+      var val = (value / 1).toFixed(2).replace(',', '.');
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    // Asigna color según el riesgo del cliente en la paginación
+    riskColor: function riskColor(index) {
+      if (this.clients[index].risk == 'CRITICO') {
+        return {
+          'background-color': 'rgba(255, 0, 0, 0.7)'
+        };
+      } else if (this.clients[index].risk == 'ALTO') {
+        return {
+          'background-color': 'rgba(255, 127, 16, 0.7)'
+        };
+      } else if (this.clients[index].risk == 'SIGNIFICATIVO') {
+        return {
+          'background-color': 'rgba(255, 255, 0, 0.7)'
+        };
+      } else if (this.clients[index].risk == 'MODERADO') {
+        return {
+          'background-color': 'rgba(102, 102, 102, 0.7)'
+        };
+      } else if (this.clients[index].risk == 'BAJO') {
+        return {
+          'background-color': 'rgba(0, 128, 0, 0.7)'
+        };
+      } else {
+        return {
+          'background-color': 'rgba(50, 75, 200, 0.7)'
+        };
+      }
+    },
+    //Asigna color según el riesgo del cliente en las búsquedas
+    riskColorAll: function riskColorAll(index) {
+      if (this.searchClientAll[index].risk == 'CRITICO') {
+        return {
+          'background-color': 'rgba(255, 0, 0, 0.7)'
+        };
+      } else if (this.searchClientAll[index].risk == 'ALTO') {
+        return {
+          'background-color': 'rgba(255, 127, 16, 0.7)'
+        };
+      } else if (this.searchClientAll[index].risk == 'SIGNIFICATIVO') {
+        return {
+          'background-color': 'rgba(255, 255, 0, 0.7)'
+        };
+      } else if (this.searchClientAll[index].risk == 'MODERADO') {
+        return {
+          'background-color': 'rgba(102, 102, 102, 0.7)'
+        };
+      } else if (this.searchClientAll[index].risk == 'BAJO') {
+        return {
+          'background-color': 'rgba(0, 128, 0, 0.7)'
+        };
+      } else {
+        return {
+          'background-color': 'rgba(50, 75, 200, 0.7)'
+        };
+      }
+    },
+    // Asigna color según el riesgo del cliente en la card
+    riskColorCard: function riskColorCard(index) {
+      if (this.chosenClient[index].risk == 'CRITICO') {
+        return {
+          'background-color': 'rgba(255, 0, 0, 0.3)'
+        };
+      } else if (this.chosenClient[index].risk == 'ALTO') {
+        return {
+          'background-color': 'rgba(255, 127, 16, 0.3)'
+        };
+      } else if (this.chosenClient[index].risk == 'SIGNIFICATIVO') {
+        return {
+          'background-color': 'rgba(255, 255, 0, 0.3)'
+        };
+      } else if (this.chosenClient[index].risk == 'MODERADO') {
+        return {
+          'background-color': 'rgba(102, 102, 102, 0.3)'
+        };
+      } else if (this.chosenClient[index].risk == 'BAJO') {
+        return {
+          'background-color': 'rgba(0, 128, 0, 0.3)'
+        };
+      } else {
+        return {
+          'background-color': 'rgba(50, 75, 200, 0.3)'
+        };
+      }
+    },
+    // Asigna la imagen según el riesgo del cliente en la card
+    riskImageCard: function riskImageCard(index) {
+      if (this.chosenClient[index].risk == 'CRITICO') {
+        return "img/critico.png";
+      } else if (this.chosenClient[index].risk == 'ALTO') {
+        return "img/alto.png";
+      } else if (this.chosenClient[index].risk == 'SIGNIFICATIVO') {
+        return "img/significativo.png";
+      } else if (this.chosenClient[index].risk == 'MODERADO') {
+        return "img/moderado.png";
+      } else if (this.chosenClient[index].risk == 'BAJO') {
+        return "img/bajo.png";
+      }
+    }
+  }
+}); //Elemento raíz para supervisor transacciones
+
+var vm = new Vue({
+  el: '#sup_transaction',
+  // id donde se implementa Vue
+  // Cuando se crea la instancia se ejecutan las siguientes funciones
+  created: function created() {
+    this.getRisks(); // Carga la lista de clientes compaginados
+
+    this.getActivities(); // Carga la lista de clientes compaginados
+
+    this.getFundings(); // Carga la lista de clientes compaginados
+
+    this.getClients(); // Carga la lista de clientes compaginados
+
+    this.getClientsAll(); // Carga la lista de todos los clientes en un mismo arreglo
+  },
+  data: {
+    clients: [],
+    // Arreglo que contiene la lista de clientes según paginación
+    clientsAll: [],
+    // Arreglo que contiene la lista de todos los clientes
+    risks: [],
+    // Arreglo que contiene la lista de clientes según paginación
+    activities: [],
+    // Arreglo que contiene la lista de clientes según paginación
+    fundings: [],
+    // Arreglo que contiene la lista de clientes según paginación
+    chosenClient: [],
+    // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
+    // Objeto que contiene los atributos de la paginación
+    pagination: {
+      'total': 0,
+      'current_page': 0,
+      'per_page': 0,
+      'last_page': 0,
+      'from': 0,
+      'to': 0
+    },
+    offset: 4,
+    // Indica la cantidad de paginación a la izquierda y derecha de la actual
+    property: '',
+    // Variable que determina la búsqueda del usuario
+    viewAll: false
+  },
+  computed: {
+    // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
+    searchClientAll: function searchClientAll() {
+      var _this7 = this;
+
+      return this.clientsAll.filter(function (index) {
+        return index.identity.toUpperCase().includes(_this7.property.toUpperCase()) || index.name.toUpperCase().includes(_this7.property.toUpperCase()) || index.email.toUpperCase().includes(_this7.property.toUpperCase()) || index.workplace.toUpperCase().includes(_this7.property.toUpperCase()) || index.funding.toUpperCase().includes(_this7.property.toUpperCase()) || index.risk.toUpperCase().includes(_this7.property.toUpperCase()) || index.nationality.toUpperCase().includes(_this7.property.toUpperCase()) || index.activity.toUpperCase().includes(_this7.property.toUpperCase());
+      });
+    },
+    // Retorna la página que está activa
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    // Asigna el número de páginas en la paginación
+    pagesNumber: function pagesNumber() {
+      // Si no hay página, retorna vacío
+      if (!this.pagination.to) {
+        return [];
+      } // Si [from] - [offset] es menor que uno, entonces [from] es uno
+
+
+      var from = this.pagination.current_page - this.offset;
+
+      if (from < 1) {
+        from = 1;
+      } // Si [to] es mayor o igual que [last_page], entonces [to] es [last_page]
+
+
+      var to = from + this.offset * 2;
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      } // mientras [from] sea menor o igual a [to] entonces el [pagesArray] guardará [from]
+
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
+  methods: {
+    showEverything: function showEverything() {
+      this.property = ' ';
+      this.viewAll = !this.viewAll;
+    },
+    // Llama a la ruta /list y usa [page] como variable opcional para cargar los registros de clientes en MySQL
+    getTransactions: function getTransactions(page) {
+      var _this8 = this;
+
+      var urlTransactions = 'list?page=' + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlTransactions).then(function (response) {
+        _this8.transactions = response.data.transactions.data, _this8.pagination = response.data.pagination;
+      });
+    },
+    // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+    getTransactionsAll: function getTransactionsAll() {
+      var _this9 = this;
+
+      var urlTransactionsAll = 'list/index2';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlTransactionsAll).then(function (response) {
+        _this9.transactionsAll = response.data;
+      });
+    },
+    // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
+    getClients: function getClients() {
+      var _this10 = this;
+
+      var urlClients = 'list/indexRisk';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClients).then(function (response) {
+        _this10.clients = response.data;
+      });
+    },
+    // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
+    getUsers: function getUsers() {
+      var _this11 = this;
+
+      var urlUsers = 'list/indexActivity';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlUsers).then(function (response) {
+        _this11.users = response.data;
+      });
+    },
+    // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
+    getCompanies: function getCompanies() {
+      var _this12 = this;
+
+      var urlCompanies = 'list/indexFunding';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlCompanies).then(function (response) {
+        _this12.companies = response.data;
       });
     },
     // Agrega un objeto cliente de [clients] para ser visto en la card

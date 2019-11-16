@@ -51,13 +51,13 @@ class HomeController extends Controller
     }//Fin de la función
 
     //Inicio de la función home_supervisor
-    public function home_supervisor(){
-        return view('home_sup'); //Muestra la vista de 'home_sup.blade.php'
+    public function sup_client(){
+        return view('sup_client'); //Muestra la vista de 'home_sup.blade.php'
     }//Fin de la función
 
     //Inicio de la función home_supervisor
-    public function home_supervisor2(){
-        return view('home_sup2'); //Muestra la vista de 'home_sup.blade.php'
+    public function sup_transaction(){
+        return view('sup_transaction'); //Muestra la vista de 'home_sup.blade.php'
     }//Fin de la función
 
     public function simulation(){

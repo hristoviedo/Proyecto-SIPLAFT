@@ -2,7 +2,7 @@
 
 @section('content') {{-- Contenido agregada --}}
 
-  <div id="sup" class="container-fluid"> {{-- id usado por Vuejs --}}
+  <div id="sup_clients" class="container-fluid"> {{-- id usado por Vuejs --}}
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light">
         <div class="">
