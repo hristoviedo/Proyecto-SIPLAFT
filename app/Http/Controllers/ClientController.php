@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\Activity;
+use App\Funding;
+use App\Risk;
 
 
 class ClientController extends Controller
@@ -39,6 +42,27 @@ class ClientController extends Controller
         $clients = Client::get();
 
         return $clients;
+    }
+
+    public function indexRisk()
+    {
+        $risks = Risk::get();
+
+        return $risks;
+    }
+
+    public function indexFunding()
+    {
+        $fundings = Funding::get();
+
+        return $fundings;
+    }
+
+    public function indexActivity()
+    {
+        $activities = Activity::get();
+
+        return $activities;
     }
 
     /**
