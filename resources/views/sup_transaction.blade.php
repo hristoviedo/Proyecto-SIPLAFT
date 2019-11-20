@@ -130,7 +130,7 @@
               </tr>
             </tbody>
             <tbody v-else>
-              <tr v-for="(client, index) in clients" :key="index">
+              <tr v-for="(client, index) in transactions" :key="index">
                 <td>@{{ client.identity }}</td>
                 <td>@{{ client.name }}</td>
                 <td>@{{ client.email }}</td>
@@ -145,7 +145,7 @@
             </tbody>
           </table>
         </div>
-        <div class="card-deck flex-center" v-for="(client, index) in chosenClient" :key="index" >
+        <div class="card-deck flex-center" v-for="(client, index) in chosenTransactions" :key="index" >
           <div class="card card-w">
             <div class="card-header" :style="riskColorCard(index)">
               <img :src="riskImageCard(index)" class="card-img-top" alt="...">

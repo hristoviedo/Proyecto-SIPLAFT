@@ -24,12 +24,22 @@ Route::post('/clients.carga', 'HomeController@importClientExcel')->name('client.
 
 Route::post('/transactions.carga', 'HomeController@importTransactionExcel')->name('transaction.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
 
-Route::get('/list/indexRisk', 'ClientController@indexRisk')->name('indexRisk'); // /list2 llama a la función 'index2' de ClientController
+Route::get('/list-clients/indexRisk', 'ClientController@indexRisk'); // /list2 llama a la función 'index2' de ClientController
 
-Route::get('/list/indexFunding', 'ClientController@indexFunding')->name('indexFunding'); // /list2 llama a la función 'index2' de ClientController
+Route::get('/list-clients/indexFunding', 'ClientController@indexFunding'); // /list2 llama a la función 'index2' de ClientController
 
-Route::get('/list/indexActivity', 'ClientController@indexActivity')->name('indexActivity'); // /list2 llama a la función 'index2' de ClientController
+Route::get('/list-clients/indexActivity', 'ClientController@indexActivity'); // /list2 llama a la función 'index2' de ClientController
 
-Route::get('/list/index2', 'ClientController@index2')->name('list2'); // /list2 llama a la función 'index2' de ClientController
+Route::get('/list-clients/indexAll', 'ClientController@index2'); // /list llama a la función 'index2' de ClientController
 
-Route::resource('/list', 'ClientController'); // /list1 llama a la función 'index' de ClientController
+Route::get('/list-trans/indexAll', 'TransactionController@indexTransactionsAll'); // /list2 llama a la función 'index2' de ClientController
+
+Route::get('/list-users/indexAll', 'UserController@indexUsersAll'); // /list1 llama a la función 'index' de ClientController
+
+Route::get('/list-users/indexCompany', 'UserController@indexCompany'); // /list2 llama a la función 'index2' de ClientController
+
+Route::resource('/list-clients', 'ClientController'); // /list1 llama a la función 'index' de ClientController
+
+Route::resource('/list-trans', 'TransactionController'); // /list1 llama a la función 'index' de ClientController
+
+Route::resource('/list-users', 'UserController'); // /list1 llama a la función 'index' de ClientController
