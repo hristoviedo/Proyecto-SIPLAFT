@@ -10,13 +10,17 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('home.sup') }}">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                Tablero <span class="sr-only">(current)</span>
+                Tablero de Clientes <span class="sr-only">(current)</span>
+              </a>
+              <a class="nav-link" href="{{ route('home.sup') }}">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Tablero de Transacciones <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
-                Perfil
+                Perfil de Usuario
                 </a>
             </li>
             <li class="nav-item">
@@ -72,7 +76,7 @@
       </nav>
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-          <h1 class="h2">Tablero</h1>
+          <h1 class="h2">Tablero de Transacciones</h1>
           <nav v-if = '!property' aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item" v-if="pagination.current_page > 1">
@@ -96,9 +100,12 @@
             <div class="input-group">
               <input v-model="property" type="text" class="form-control" placeholder="Buscar cliente">
             </div>
-            <div v-if = "">
+            <div v-if = 'property'>
+                <button type="reset" @click.prevent="showpagination()"  class="btn btn-sm btn-color">Ver paginación</button>
+              </div>
+              <div v-else>
                 <button type="button" @click.prevent="showEverything()" class="btn btn-sm btn-color">Ver todos</button>
-            </div>
+              </div>
           </div>
         </div>
         <div class="table-responsive">
@@ -106,41 +113,40 @@
             <thead class="thead-dark">
               <tr>
                 <th>Número de ID</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Actividad Económica</th>
-                <th>Lugar de Trabajo</th>
-                <th>Inmobiliaria</th>
-                <th>Nivel de Riesgo</th>
+                <th>Nombre del Cliente</th>
+                <th>Mes de Transacción</th>
+                <th>¿En Efectivo?</th>
+                <th>¿En Lempiras?</th>
+                <th>Monto en Lempiras</th>
+                <th>Monto en Dólares</th>
+                <th>Empresa</th>
                 <th>Detalles</th>
               </tr>
             </thead>
             <tbody v-if = "property">
-              <tr v-for="(client, index) in searchClientAll" :key="index">
-                <td>@{{ client.identity }}</td>
-                <td>@{{ client.name }}</td>
-                <td>@{{ client.email }}</td>
-                <td>@{{ client.activity }}</td>
-                <td>@{{ client.workplace }}</td>
-                <td>INMOBILIARIA XYZ</td>
-                <td>
-                  <button type="button" class="btn btn-sm" :style="riskColorAll(index)">@{{ client.risk }}</button>
-                </td>
-                <td><a href="#" v-on:click.prevent='addClientAll(index)'>Más información</a></td>
+              <tr>
+                <td>0321-1989-00417</td>
+                <td>Juan A. Laínez</td>
+                <td>Noviembre</td>
+                <td>Sí</td>
+                <td>No</td>
+                <td>24,300.00</td>
+                <td>1,000.00</td>
+                <td>Inmobiliaria La Ronda</td>
+                <td><a href="#">Más información</a></td>
               </tr>
             </tbody>
             <tbody v-else>
-              <tr v-for="(client, index) in transactions" :key="index">
-                <td>@{{ client.identity }}</td>
-                <td>@{{ client.name }}</td>
-                <td>@{{ client.email }}</td>
-                <td>@{{ client.activity }}</td>
-                <td>@{{ client.workplace }}</td>
-                <td>INMOBILIARIA XYZ</td>
-                <td>
-                  <button type="button" class="btn btn-sm" :style="riskColor(index)">@{{ client.risk }}</button>
-                </td>
-                <td><a href="#" v-on:click.prevent='addClient(index)'>Más información</a></td>
+              <tr>
+                <td>0321-1989-00417</td>
+                <td>Juan A. Laínez</td>
+                <td>Noviembre</td>
+                <td>Sí</td>
+                <td>No</td>
+                <td>24,300.00</td>
+                <td>1,000.00</td>
+                <td>Inmobiliaria La Ronda</td>
+                <td><a href="#">Más información</a></td>
               </tr>
             </tbody>
           </table>

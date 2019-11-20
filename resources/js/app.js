@@ -111,40 +111,77 @@ var vm = new Vue({
         },
     },
     methods:{
+        // Asigna un valor a [property] para mostrar todos los registros.
         showEverything: function(){
             this.property = ' ';
-            this.viewAll = !this.viewAll;
+        },
+        // Limpia el valor de [property] para mostrar la paginación.
+        showpagination: function(){
+            this.property = '';
         },
         // Llama a la ruta /list y usa [page] como variable opcional para cargar los registros de clientes en MySQL
         getClients: function(page){
             var urlClients = 'list-clients?page='+page;
-            Axios.get(urlClients).then(response => {
+            Axios
+            .get(urlClients)
+            .then(response => {
                 this.clients = response.data.clients.data,
                 this.pagination = response.data.pagination
+            })
+            .catch(err => {
+                console.log(err);
             });
         },
         // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
         getClientsAll: function(){
             var urlClientsAll = 'list-clients/indexAll';
-            Axios.get(urlClientsAll).then(response => {this.clientsAll = response.data});
+            Axios
+            .get(urlClientsAll)
+            .then(response => {
+                this.clientsAll = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
         },
 
         // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
         getRisks: function(){
             var urlRisks = 'list-clients/indexRisk';
-            Axios.get(urlRisks).then(response => {this.risks = response.data});
+            Axios
+            .get(urlRisks)
+            .then(response => {
+                this.risks = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
         },
 
         // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
         getActivities: function(){
             var urlActivities = 'list-clients/indexActivity';
-            Axios.get(urlActivities).then(response => {this.activities = response.data});
+            Axios
+            .get(urlActivities)
+            .then(response => {
+                this.activities = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
         },
 
         // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
         getFundings: function(){
             var urlFundings = 'list-clients/indexFunding';
-            Axios.get(urlFundings).then(response => {this.fundings = response.data});
+            Axios
+            .get(urlFundings)
+            .then(response => {
+                this.fundings = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
         },
 
         // Agrega un objeto cliente de [clients] para ser visto en la card
@@ -271,7 +308,7 @@ var vm = new Vue({
         property: '', // Variable que determina la búsqueda del usuario
         viewAll: false,
     },
-    computed:{
+    computed:{  
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
         searchTransactionsAll: function(){
             return this.transactionsAll.filter((index) => {
@@ -314,40 +351,70 @@ var vm = new Vue({
         },
     },
     methods:{
+        // Asigna un valor a [property] para mostrar todos los registros.
         showEverything: function(){
             this.property = ' ';
-            this.viewAll = !this.viewAll;
         },
-        // Llama a la ruta /list y usa [page] como variable opcional para cargar los registros de clientes en MySQL
+        // Limpia el valor de [property] para mostrar la paginación.
+        showpagination: function(){
+            this.property = '';
+        },
         getTransactions: function(page){
             var urlTransactions = 'list-trans?page='+page;
-            Axios.get(urlTransactions).then(response => {
+            Axios
+            .get(urlTransactions)
+            .then(response => {
                 this.transactions = response.data.transactions.data,
                 this.pagination = response.data.pagination
-            });
+            })
+            .catch(err => {
+                console.log(err);
+            });;
         },
         // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
         getTransactionsAll: function(){
             var urlTransactionsAll = 'list-trans/indexAll';
-            Axios.get(urlTransactionsAll).then(response => {this.transactionsAll = response.data});
+            Axios
+            .get(urlTransactionsAll)
+            .then(response => {
+                this.transactionsAll = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
         },
 
         // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
         getClientsAll: function(){
             var urlClients = 'list-clients/indexAll';
-            Axios.get(urlClients).then(response => {this.clientsAll = response.data});
+            Axios
+            .get(urlClients)
+            .then(response => {
+                this.clientsAll = response.data
+            });
         },
 
         // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
         getUsers: function(){
             var urlUsers = 'list-users/indexAll';
-            Axios.get(urlUsers).then(response => {this.users = response.data});
+            Axios
+            .get(urlUsers)
+            .then(response => {
+                this.users = response.data
+            });
         },
 
         // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
         getCompanies: function(){
             var urlCompanies = 'list-users/indexCompany';
-            Axios.get(urlCompanies).then(response => {this.companies = response.data});
+            Axios
+            .get(urlCompanies)
+            .then(response => {
+                this.companies = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
         },
 
         // Agrega un objeto cliente de [clients] para ser visto en la card

@@ -49469,9 +49469,13 @@ var vm = new Vue({
     }
   },
   methods: {
+    // Asigna un valor a [property] para mostrar todos los registros.
     showEverything: function showEverything() {
       this.property = ' ';
-      this.viewAll = !this.viewAll;
+    },
+    // Limpia el valor de [property] para mostrar la paginación.
+    showpagination: function showpagination() {
+      this.property = '';
     },
     // Llama a la ruta /list y usa [page] como variable opcional para cargar los registros de clientes en MySQL
     getClients: function getClients(page) {
@@ -49480,6 +49484,8 @@ var vm = new Vue({
       var urlClients = 'list-clients?page=' + page;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClients).then(function (response) {
         _this2.clients = response.data.clients.data, _this2.pagination = response.data.pagination;
+      })["catch"](function (err) {
+        console.log(err);
       });
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
@@ -49489,6 +49495,8 @@ var vm = new Vue({
       var urlClientsAll = 'list-clients/indexAll';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClientsAll).then(function (response) {
         _this3.clientsAll = response.data;
+      })["catch"](function (err) {
+        console.log(err);
       });
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
@@ -49498,6 +49506,8 @@ var vm = new Vue({
       var urlRisks = 'list-clients/indexRisk';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlRisks).then(function (response) {
         _this4.risks = response.data;
+      })["catch"](function (err) {
+        console.log(err);
       });
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
@@ -49507,6 +49517,8 @@ var vm = new Vue({
       var urlActivities = 'list-clients/indexActivity';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlActivities).then(function (response) {
         _this5.activities = response.data;
+      })["catch"](function (err) {
+        console.log(err);
       });
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
@@ -49516,6 +49528,8 @@ var vm = new Vue({
       var urlFundings = 'list-clients/indexFunding';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlFundings).then(function (response) {
         _this6.fundings = response.data;
+      })["catch"](function (err) {
+        console.log(err);
       });
     },
     // Agrega un objeto cliente de [clients] para ser visto en la card
@@ -49734,18 +49748,24 @@ var vm = new Vue({
     }
   },
   methods: {
+    // Asigna un valor a [property] para mostrar todos los registros.
     showEverything: function showEverything() {
       this.property = ' ';
-      this.viewAll = !this.viewAll;
     },
-    // Llama a la ruta /list y usa [page] como variable opcional para cargar los registros de clientes en MySQL
+    // Limpia el valor de [property] para mostrar la paginación.
+    showpagination: function showpagination() {
+      this.property = '';
+    },
     getTransactions: function getTransactions(page) {
       var _this8 = this;
 
       var urlTransactions = 'list-trans?page=' + page;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlTransactions).then(function (response) {
         _this8.transactions = response.data.transactions.data, _this8.pagination = response.data.pagination;
+      })["catch"](function (err) {
+        console.log(err);
       });
+      ;
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
     getTransactionsAll: function getTransactionsAll() {
@@ -49754,6 +49774,8 @@ var vm = new Vue({
       var urlTransactionsAll = 'list-trans/indexAll';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlTransactionsAll).then(function (response) {
         _this9.transactionsAll = response.data;
+      })["catch"](function (err) {
+        console.log(err);
       });
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
@@ -49781,6 +49803,8 @@ var vm = new Vue({
       var urlCompanies = 'list-users/indexCompany';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlCompanies).then(function (response) {
         _this12.companies = response.data;
+      })["catch"](function (err) {
+        console.log(err);
       });
     },
     // Agrega un objeto cliente de [clients] para ser visto en la card

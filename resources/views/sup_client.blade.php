@@ -72,7 +72,7 @@
       </nav>
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-          <h1 class="h2">Tablero</h1>
+          <h1 class="h2">Tablero de Clientes</h1>
           <nav v-if = '!property' aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item" v-if="pagination.current_page > 1">
@@ -96,8 +96,11 @@
             <div class="input-group">
               <input v-model="property" type="text" class="form-control" placeholder="Buscar cliente">
             </div>
-            <div v-if = "">
-                <button type="button" @click.prevent="showEverything()" class="btn btn-sm btn-color">Ver todos</button>
+            <div v-if = 'property'>
+              <button type="reset" @click.prevent="showpagination()"  class="btn btn-sm btn-color">Ver paginación</button>
+            </div>
+            <div v-else>
+              <button type="button" @click.prevent="showEverything()" class="btn btn-sm btn-color">Ver todos</button>
             </div>
           </div>
         </div>
@@ -116,31 +119,33 @@
               </tr>
             </thead>
             <tbody v-if = "property">
-              <tr v-for="(client, index) in searchClientAll" :key="index">
-                <td>@{{ client.identity }}</td>
-                <td>@{{ client.name }}</td>
-                <td>@{{ client.email }}</td>
-                <td>@{{ client.activity }}</td>
-                <td>@{{ client.workplace }}</td>
-                <td>INMOBILIARIA XYZ</td>
-                <td>
+              <tr>
+                <td>0321-1995-33655</td>
+                <td>José Manuel García</td>
+                <td>jose.garcia@test.com</td>
+                <td>PEP</td>
+                <td>Postensa</td>
+                <td>Inmobiliaria Distrito Verde</td>
+                <td>Alto</td>
+                {{-- <td>
                   <button type="button" class="btn btn-sm" :style="riskColorAll(index)">@{{ client.risk }}</button>
-                </td>
-                <td><a href="#" v-on:click.prevent='addClientAll(index)'>Más información</a></td>
+                </td> --}}
+                <td><a href="#" >Más información</a></td>
               </tr>
             </tbody>
             <tbody v-else>
-              <tr v-for="(client, index) in clients" :key="index">
-                <td>@{{ client.identity }}</td>
-                <td>@{{ client.name }}</td>
-                <td>@{{ client.email }}</td>
-                <td>@{{ client.activity }}</td>
-                <td>@{{ client.workplace }}</td>
-                <td>INMOBILIARIA XYZ</td>
-                <td>
+              <tr>
+                <td>0321-1995-33655</td>
+                <td>José Manuel García</td>
+                <td>jose.garcia@test.com</td>
+                <td>PEP</td>
+                <td>Concremix</td>
+                <td>Inmobiliaria Distrito Verde</td>
+                <td>Alto</td>
+                {{-- <td>
                   <button type="button" class="btn btn-sm" :style="riskColor(index)">@{{ client.risk }}</button>
-                </td>
-                <td><a href="#" v-on:click.prevent='addClient(index)'>Más información</a></td>
+                </td> --}}
+                <td><a href="#" >Más información</a></td>
               </tr>
             </tbody>
           </table>
