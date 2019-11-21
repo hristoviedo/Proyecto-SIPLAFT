@@ -12,6 +12,6 @@ class TransactionExport implements FromCollection
     */
     public function collection()
     {
-        return Transaction::all();
+        return Transaction::all(); //Retorna todos los dato de todas las transacciones (Falta implementarlo)
     }
 }

@@ -22,8 +22,10 @@ class ClientController extends Controller
 
         // return $clients;
 
+        // Ordena los clientes de forma descendente y los agrupa de 10 en 10
         $clients = Client::orderBy('id', 'DESC')->paginate(10);
 
+        // Retorna la lista de clientes, el total y otros datos para la paginación
         return [
             'pagination' => [
                 'total'        => $clients->total(),
@@ -39,30 +41,34 @@ class ClientController extends Controller
 
     public function index2()
     {
+        // Selecciona todos los clientes de la tabla
         $clients = Client::get();
 
-        return $clients;
+        return $clients; // Retorna la lista de clientes
     }
 
     public function indexRisk()
     {
+        // Selecciona todos los riesgos de la tabla
         $risks = Risk::get();
 
-        return $risks;
+        return $risks; // Retorna la lista de riesgos
     }
 
     public function indexFunding()
     {
+        // Selecciona todos las fuentes de financiamientos de la tabla
         $fundings = Funding::get();
 
-        return $fundings;
+        return $fundings; // Retorna la lista de fuentes
     }
 
     public function indexActivity()
     {
+        // Selecciona todas las actividades financieras de la tabla
         $activities = Activity::get();
 
-        return $activities;
+        return $activities; // Retorna la lista de actividades
     }
 
     /**

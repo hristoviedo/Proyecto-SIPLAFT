@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
-use App\User;
+use App\Company; // Accede al modelo Company
+use App\User; // Accede al modelo User
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,16 +12,22 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+    */
+
+
+    // Inicio de la función indexCompany
     public function indexCompany()
     {
+        // Selecciona todas las compañías de la tabla
         $companies = Company::get();
 
         return $companies;
     }
 
+    // Inicio de la función indexUsersAll
     public function indexUsersAll()
     {
+        // Selecciona todos los usuarios de la tabla
         $users = User::get();
 
         return $users;

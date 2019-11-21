@@ -15,8 +15,8 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');//Número de registro en la base de datos (autoincremental)
-            $table->string('name', 35);
-            $table->unsignedInteger('type')->nullable();
+            $table->string('name', 35); //Nombre de la compañía (35 caracteres max, not null)
+            $table->unsignedInteger('type')->nullable(); //Tipo de compañía, número dado por la autoridades competentes (nullable)
             $table->timestamps();
         });
     }

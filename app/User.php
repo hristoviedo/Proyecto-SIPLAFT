@@ -37,18 +37,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /*
+    Funciones que definen la relación de la tabla transactions con el resto
+    */
+
+    //Inicio de la función transactions
     public function transactions()
     {
+        //Un usuario realiza muchas transacciones
         return $this->belongsToMany('Transaction::class')->withTimestamps();
     }
+    //Fin de la función
 
+    //Inicio de la función role
     public function role()
     {
         return $this->belongsTo('Role::class');
     }
+    //Fin de la función
 
+    //Inicio de la función company
     public function company()
     {
         return $this->belongsTo('Company::class');
     }
+    //Fin de la función
 }

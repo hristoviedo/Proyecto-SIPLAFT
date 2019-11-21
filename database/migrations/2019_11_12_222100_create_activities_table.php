@@ -15,7 +15,7 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->bigIncrements('id');//Número de registro en la base de datos (autoincremental)
-            $table->string('name', 40);
+            $table->string('name', 40); //Nombre de la actividad (40 caracteres max, not null)
             $table->timestamps();
         });
     }

@@ -31,17 +31,17 @@ class CreateClientsTable extends Migration
             $table->unsignedDecimal('score_risk', 3, 2)->default(null)->nullable(); //Puntuación de riesgo (valor por defecto = 0.00 y nullable)
             $table->timestamps(); //Fecha de creación y modificación del registro (valor por defecto = null y nullable)
 
-            $table->foreign('activity_id')->references('id')->on('activities')
-                    ->onDelete('set null')
-                    ->onUpdate('cascade');
+            $table->foreign('activity_id')->references('id')->on('activities') //Relación con la tabla activities
+                    ->onDelete('set null') //No borrar cliente
+                    ->onUpdate('cascade'); //Actualizar en cascada
 
-            $table->foreign('funding_id')->references('id')->on('fundings')
-                    ->onDelete('set null')
-                    ->onUpdate('cascade');
+            $table->foreign('funding_id')->references('id')->on('fundings') //Relación con la tabla fundings
+                    ->onDelete('set null') //No borrar cliente
+                    ->onUpdate('cascade'); //Actualizar en cascada
 
-            $table->foreign('risk_id')->references('id')->on('risks')
-                    ->onDelete('set null')
-                    ->onUpdate('cascade');
+            $table->foreign('risk_id')->references('id')->on('risks') //Relación con la tabla risks
+                    ->onDelete('set null') //No borrar cliente
+                    ->onUpdate('cascade'); //Actualizar en cascada
         });
     }
 

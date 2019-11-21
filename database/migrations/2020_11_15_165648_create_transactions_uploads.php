@@ -15,13 +15,13 @@ class CreateTransactionsUploads extends Migration
     {
         Schema::create('transactions_uploads', function (Blueprint $table) {
             $table->bigIncrements('id');//Número de registro en la base de datos, autoincremental
-            $table->string('client_identity'); //Id del cliente
-            $table->string('user_id'); //Id del usuario que lo registró
-            $table->date('transaction_date'); //Fecha en que registró la transacción
-            $table->boolean('cash'); //¿La transacción se hizo en efectivo? True si es verdadero
-            $table->boolean('transaction_lempiras'); //¿La transacción se hizo en lempiras? True si es verdadero
-            $table->unsignedDecimal('transaction_amount_lempiras',12,2); //Monto de la transacción en lempiras
-            $table->unsignedDecimal('transaction_amount_dollars',10,2); //Monto de la transacción en dólares
+            $table->string('client_identity'); //Id del cliente (not null)
+            // $table->string('user_id'); //Id del usuario que lo registró (not null)
+            $table->date('transaction_date'); //Fecha en que registró la transacción (not null)
+            $table->boolean('cash'); //¿La transacción se hizo en efectivo? True si es verdadero (not null)
+            $table->boolean('transaction_lempiras'); //¿La transacción se hizo en lempiras? True si es verdadero (not null)
+            $table->unsignedDecimal('transaction_amount_lempiras',12,2); //Monto de la transacción en lempiras (not null)
+            $table->unsignedDecimal('transaction_amount_dollars',10,2); //Monto de la transacción en dólares (not null)
         });
     }
 
