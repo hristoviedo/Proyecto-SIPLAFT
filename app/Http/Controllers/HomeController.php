@@ -48,14 +48,14 @@ class HomeController extends Controller
     //Fin de la función
 
     //Inicio de la función home_colaborador
-    public function home_colaborador(){
-        return view('home_col'); //Muestra la vista de 'home_col.blade.php'
+    public function col_client(){
+        return view('col_client'); //Muestra la vista de 'home_col.blade.php'
     }
     //Fin de la función
 
-    //Inicio de la función home_administrador
-    public function home_administrador(){
-        return view('home_adm'); //Muestra la vista de 'home_adm.blade.php'
+    //Inicio de la función home_colaborador
+    public function col_transaction(){
+        return view('col_transaction'); //Muestra la vista de 'home_col.blade.php'
     }
     //Fin de la función
 
@@ -71,8 +71,8 @@ class HomeController extends Controller
     }
     //Fin de la función
 
-    public function simulation(){
-        return view('simulation'); //Muestra la vista de 'simulation.blade.php'
+    public function col_simulation(){
+        return view('col_simulation'); //Muestra la vista de 'simulation.blade.php'
     }
     //Fin de la función
 
