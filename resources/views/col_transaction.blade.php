@@ -3,7 +3,7 @@
 @section('content.col') {{-- Inicio de la seccion --}}
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"> {{-- Inicio del main --}}
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <h1 class="h2">Enviar archivo de clientes</h1>
+        <h1 class="h2">Enviar lista de transacciones</h1>
     </div>
     <div class="mostrar_ocultar">
         {{-- Inicio de la condición --}}
@@ -16,7 +16,7 @@
     <div class="input-group custom-file">
 
         {{-- Inicio del formulario --}}
-        <form action="{{ route('client.import.excel') }}" method="POST" enctype="multipart/form-data"> {{-- Manda el excel a la ruta /carga --}}
+        <form action="{{ route('transaction.import.excel') }}" method="POST" enctype="multipart/form-data"> {{-- Manda el excel a la ruta /carga --}}
 
             @csrf {{-- Token generado --}}
 

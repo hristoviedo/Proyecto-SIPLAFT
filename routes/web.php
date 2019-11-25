@@ -14,7 +14,7 @@ Route::get('/col.transaction', 'HomeController@col_transaction')->name('col.tran
 
 Route::get('/sup.client', 'HomeController@sup_client')->name('sup.client'); // /home.sup llama a la función 'sup_client' de HomeController
 
-Route::get('/sup.transaction', 'HomeController@sup_transaction')->name('sup.trans'); // /home.trans llama a la función 'sup_transaction' de HomeController
+Route::get('/sup.transaction', 'HomeController@sup_transaction')->name('sup.transaction'); // /home.trans llama a la función 'sup_transaction' de HomeController
 
 Route::get('/adm.user', 'AdminController@adm_user')->name('adm.user'); // /home.adm llama a la función 'home_administrador' de HomeController
 
@@ -36,13 +36,13 @@ Route::get('/adm.log', 'AdminController@adm_log')->name('adm.log'); // /home.adm
 
 Auth::routes(); // Todas las funciones de usuarios
 
-Route::post('/clients.carga', 'HomeController@importClientExcel')->name('client.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
+Route::post('/clients.carga', 'HomeController@clientImportExcel')->name('client.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
 
-Route::post('/transactions.carga', 'HomeController@importTransactionExcel')->name('transaction.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
+Route::post('/transactions.carga', 'HomeController@transactionImportExcel')->name('transaction.import.excel'); // /descarga llama a la función 'importExcel' de HomeController
 
-Route::get('/clients.descarga', 'HomeController@exportClientExcel')->name('client.export.excel'); // /clients.descarga llama a la función 'exportClientExcel' de HomeController
+Route::get('/clients.descarga', 'HomeController@clientExportExcel')->name('client.export.excel'); // /clients.descarga llama a la función 'exportClientExcel' de HomeController
 
-Route::get('/transactions.descarga', 'HomeController@exportTransactionExcel')->name('transactions.export.excel'); // /transactions.descarga llama a la función 'exportTransactionExcel' de HomeController
+Route::get('/transactions.descarga', 'HomeController@transactionExportExcel')->name('transactions.export.excel'); // /transactions.descarga llama a la función 'exportTransactionExcel' de HomeController
 
 Route::get('/list-clients/indexRisk', 'ClientController@indexRisk'); // /list2 llama a la función 'index2' de ClientController
 

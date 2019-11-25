@@ -4,19 +4,19 @@ namespace App\Imports;
 
 use App\ClientsUpload;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
 
-setlocale (LC_ALL, 'es_MX');
-
-//Inicio de la clase
-class ClientImport implements ToModel
+class ClientImport implements ToModel, WithBatchInserts, WithChunkReading
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    //Inicio de la función
+
+    // Inicio de la función
     public function model(array $row)
     {
         //Inicio de la condición
@@ -54,6 +54,19 @@ class ClientImport implements ToModel
             'households'    => $households,
             'activity'      => trim(mb_strtoupper($activity,'UTF-8')),
             'funding'       => trim(mb_strtoupper($funding,'UTF-8')),
-        ]);
-    }//Fin de la función
+            ]);
+        }//Fin de la función
+
+        // Inicio de la función
+        public function batchSize(): int
+        {
+            return 10;
+        }//Fin de la función
+
+        // Inicio de la función
+        public function chunkSize(): int
+        {
+            return 10;
+        }//Fin de la función
+
 } //Fin de la clase

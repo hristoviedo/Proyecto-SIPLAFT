@@ -25,6 +25,7 @@ class CreateClientsUploads extends Migration
             $table->string('nationality', 20)->nullable(); //Nacionalidad (nullable)
             $table->string('activity')->default(null)->nullable(); //Actividad económica (valor por defecto = null, sin signo y nullable)
             $table->string('funding')->default(null)->nullable(); //Fuente de financiamiento (valor por defecto = null, sin signo y nullable)
+            $table->timestamps(); //Fecha de creación y modificación del registro
         });
     }
 

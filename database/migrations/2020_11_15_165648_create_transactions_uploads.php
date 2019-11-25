@@ -18,10 +18,11 @@ class CreateTransactionsUploads extends Migration
             $table->string('client_identity'); //Id del cliente (not null)
             // $table->string('user_id'); //Id del usuario que lo registró (not null)
             $table->date('transaction_date'); //Fecha en que registró la transacción (not null)
-            $table->boolean('cash'); //¿La transacción se hizo en efectivo? True si es verdadero (not null)
-            $table->boolean('transaction_lempiras'); //¿La transacción se hizo en lempiras? True si es verdadero (not null)
+            $table->string('cash')->default('NO'); //¿La transacción se hizo en efectivo? True si es verdadero (not null)
+            $table->string('transaction_dollars')->default('NO'); //¿La transacción se hizo en lempiras? True si es verdadero (not null)
             $table->unsignedDecimal('transaction_amount_lempiras',12,2); //Monto de la transacción en lempiras (not null)
             $table->unsignedDecimal('transaction_amount_dollars',10,2); //Monto de la transacción en dólares (not null)
+            $table->timestamps(); //Fecha de creación y modificación del registro
         });
     }
 

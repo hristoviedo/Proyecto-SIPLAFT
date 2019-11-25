@@ -25,14 +25,12 @@ class TransactionImport implements ToModel
         $client_identity = $row[0];
         $transaction_date = $row[1];
         $cash = $row[2];
-        $transaction_lempiras = $row[3];
+        $transaction_dollars = $row[3];
         $transaction_amount_lempiras = $row[4];
         $transaction_amount_dollars = $row[5];
 
         //Cambia el tipo de variable para que coincida con los predefinidos en la base de datos
         $transaction_date = new DateTime($transaction_date);
-        $cash = (boolean)$cash;
-        $transaction_lempiras = (boolean)$transaction_lempiras;
         $transaction_amount_lempiras = (float)$transaction_amount_lempiras;
         $transaction_amount_dollars = (float)$transaction_amount_dollars;
 
@@ -41,7 +39,7 @@ class TransactionImport implements ToModel
             'client_identity'               => trim($client_identity),
             'transaction_date'              => $transaction_date,
             'cash'                          => $cash,
-            'transaction_lempiras'          => $transaction_lempiras,
+            'transaction_dollars'           => $transaction_dollars,
             'transaction_amount_lempiras'   => $transaction_amount_lempiras,
             'transaction_amount_dollars'    => $transaction_amount_dollars,
         ]);

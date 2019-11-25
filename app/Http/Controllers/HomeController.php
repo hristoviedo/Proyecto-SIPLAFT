@@ -76,32 +76,32 @@ class HomeController extends Controller
     }
     //Fin de la función
 
-    //Inicio de la función exportClientExcel
-    public function exportClientExcel(){
+    //Inicio de la función clientExportExcel
+    public function clientExportExcel(){
         return Excel::download(new ClientExport, 'client-list.xlsx'); //Llama a la clase ClientExport para crear y descargar la lista de clientes en un excel.
     }
     //Fin de la función
 
-    //Inicio de la función exportTransactionExcel
-    public function exportTransactionExcel(){
+    //Inicio de la función transactionExportExcel
+    public function transactionExportExcel(){
         return Excel::download(new TransactionExport, 'transaction-list.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
 
-    //Inicio de la función importClientExcel
-    public function importClientExcel(Request $request){ //Recibe como parámetro el archivo de excel
+    //Inicio de la función clientImportExcel
+    public function clientImportExcel(Request $request){ //Recibe como parámetro el archivo de excel
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new ClientImport, $file); //Llama a la clase ClientImport para subir la lista de clientes del excel.
-        $order = DB::select('CALL agruparClientes'); // Procedimiento Almacenado en desuso
-        $risk = DB::select('CALL calcularRiesgo'); // Procedimiento Almacenado en desuso
-        return back()->with('message', 'Subida de clientes completada'); //Retorna a la página anterior cuando termina de importar
+        //$order = DB::select('CALL agruparClientes'); // Procedimiento Almacenado en desuso
+        //$risk = DB::select('CALL calcularRiesgo'); // Procedimiento Almacenado en desuso
+        return back()->with('message', 'Lista de clientes enviada'); //Retorna a la página anterior cuando termina de importar
     }
     //Fin de la función
 
-    //Inicio de la función importTransactionExcel
-    public function importTransactionExcel(Request $request){ //Recibe como parámetro el archivo de excel
+    //Inicio de la función transactionImportExcel
+    public function TransactionImportExcel(Request $request){ //Recibe como parámetro el archivo de excel
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new TransactionImport, $file); //Llama a la clase TransactionImport para subir la lista de transacciones del excel.
-        return back()->with('message', 'Subida de transacciones completada'); //Retorna a la página anterior cuando termina de importar
+        return back()->with('message', 'Lista de transacciones enviada'); //Retorna a la página anterior cuando termina de importar
     }
     //Fin de la función
 
