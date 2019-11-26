@@ -34,12 +34,14 @@ class ClientImport implements ToModel, WithBatchInserts, WithChunkReading
         $phone2 = $row[6];
         $nationality = $row[7];
         $households = $row[8];
-        $activity = $row[9];
-        $funding = $row[10];
+        $total_amount = $row[9];
+        $activity = $row[10];
+        $funding = $row[11];
 
         //Cambia el tipo de variable para que coincida con los predefinidos en la base de datos
         $age = (int)$age;
         $households = (int)$households;
+        $total_amount = (float)$total_amount;
 
         //Realiza la inserción del registro con datos en mayúsculas y sin espacios al principio o final
         return new ClientsUpload([
@@ -52,6 +54,7 @@ class ClientImport implements ToModel, WithBatchInserts, WithChunkReading
             'phone2'        => trim(strtoupper($phone2)),
             'nationality'   => trim(mb_strtoupper($nationality,'UTF-8')),
             'households'    => $households,
+            'total_amount'  => $total_amount,
             'activity'      => trim(mb_strtoupper($activity,'UTF-8')),
             'funding'       => trim(mb_strtoupper($funding,'UTF-8')),
             ]);

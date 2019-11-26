@@ -1,9 +1,9 @@
-SELECT * FROM clientes;
+SELECT * FROM clients;
 
-DROP PROCEDURE IF EXISTS calcularRiesgo;
+DROP PROCEDURE IF EXISTS calculateRisks;
 
 DELIMITER $$
-CREATE PROCEDURE calcularRiesgo()
+CREATE PROCEDURE calculateRisks()
 BEGIN
     DECLARE percActivity FLOAT DEFAULT 0.25;
     DECLARE percFunding FLOAT DEFAULT 0.3;
@@ -16,17 +16,21 @@ BEGIN
     DECLARE activity VARCHAR(45) DEFAULT '';
     DECLARE funding VARCHAR(45) DEFAULT '';
     DECLARE households FLOAT DEFAULT 0;
+    DECLARE riskID INTEGER DEFAULT 0;
     DECLARE fin INTEGER DEFAULT 0;
 	
     DECLARE risk_cursor CURSOR FOR
-		SELECT c.id, c.households, c.activity, c.age, c.funding FROM clientes c;
+		SELECT c.id, c.households, c.age, a.name, f.name 
+        FROM clients c, activities a, fundings f 
+        WHERE c.activity_id = a.id AND c.funding_id = f.id 
+        ORDER BY c.id;
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin=1;
     
     OPEN risk_cursor;
-    get_clients: LOOP 
-		FETCH risk_cursor INTO id, households, activity, age, funding;
+    get_risks: LOOP 
+		FETCH risk_cursor INTO id, households, age, activity, funding;
     IF fin = 1 THEN
-       LEAVE get_clients;
+       LEAVE get_risks;
     END IF;
     
 	CASE
@@ -74,13 +78,15 @@ BEGIN
     ELSE SET risk = 'NO DISPONIBLE';
 	END CASE;
     
-	UPDATE clientes c SET c.score_risk = score, c.risk = risk WHERE c.id = id;
+    SET riskID := (SELECT r.id FROM risks r WHERE r.name = risk);
+    
+	UPDATE clients c SET c.score_risk = score, c.risk_id = riskID WHERE c.id = id;
     SET score = 0;
-    SET risk = '';
-	END LOOP get_clients;
+    SET riskID = 0;
+	END LOOP get_risks;
     CLOSE risk_cursor;
     
 END$$
 DELIMITER ;
 
-CALL calcularRiesgo();
+CALL calculateRisks();
