@@ -1,6 +1,3 @@
-SELECT * FROM clients ORDER BY id DESC;
-
-
 DROP PROCEDURE IF EXISTS groupClients;
 
 DELIMITER $$

@@ -16,7 +16,7 @@ BEGIN
     DECLARE cuFunding VARCHAR(45) DEFAULT '';
     DECLARE cuHouseholds INTEGER DEFAULT 0;
     DECLARE cuTotalAmount FLOAT DEFAULT 0;
-    
+
     DECLARE activityID INTEGER DEFAULT 0;
     DECLARE fundingID INTEGER DEFAULT 0;
     DECLARE fin INTEGER DEFAULT 0;
@@ -31,13 +31,13 @@ BEGIN
      IF fin = 1 THEN
        LEAVE getProperty;
     END IF;
-    
+
 	SET activityID := (SELECT DISTINCT a.id FROM activities a WHERE cuActivity = a.name);
     SET fundingID := (SELECT DISTINCT f.id FROM fundings f WHERE cuFunding = f.name);
 
     INSERT INTO clients (activity_id, funding_id, identity, name, age, email, workplace, phone1, phone2, nationality, households, total_amount) 
 				VALUES (activityID, fundingID, cuIdentity, cuName, cuAge, cuEmail, cuWorkplace, cuPhone1, cuPhone2, cuNationality, cuHouseholds, cuTotalAmount);
-    
+
     END LOOP getProperty;
     CLOSE propertyCursor;
 	TRUNCATE TABLE clients_uploads;
