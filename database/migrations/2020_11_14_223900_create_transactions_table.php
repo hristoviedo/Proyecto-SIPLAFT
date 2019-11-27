@@ -19,8 +19,8 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable(); //Id del usuario que lo registró (nullable)
             $table->unsignedBigInteger('company_id')->nullable(); //Id de la compañía donde se registró (nullable)
             $table->date('transaction_date'); //Fecha en que registró la transacción (not null)
-            $table->boolean('cash'); //¿La transacción se hizo en efectivo? True si es verdadero (not null)
-            $table->boolean('transaction_lempiras'); //¿La transacción se hizo en lempiras? True si es verdadero (not null)
+            $table->boolean('transaction_cash'); //¿La transacción se hizo en efectivo? True si es verdadero (not null)
+            $table->boolean('transaction_dollars'); //¿La transacción se hizo en lempiras? True si es verdadero (not null)
             $table->unsignedDecimal('transaction_amount_lempiras',12,2); //Monto de la transacción en lempiras (not null)
             $table->unsignedDecimal('transaction_amount_dollars',10,2); //Monto de la transacción en dólares (not null)
 

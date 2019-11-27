@@ -11,6 +11,9 @@ use App\Imports\ClientImport; // Permite realizar exportaciones según los datos
 use App\Exports\ClientExport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
 use App\Imports\TransactionImport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
 use App\Exports\TransactionExport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
+use App\Http\Controllers\Auth;
+
+
 
 //Inicio del controlador
 class HomeController extends Controller
@@ -91,16 +94,20 @@ class HomeController extends Controller
     public function clientImportExcel(Request $request){ //Recibe como parámetro el archivo de excel
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new ClientImport, $file); //Llama a la clase ClientImport para subir la lista de clientes del excel.
-        //$order = DB::select('CALL agruparClientes'); // Procedimiento Almacenado en desuso
-        //$risk = DB::select('CALL calcularRiesgo'); // Procedimiento Almacenado en desuso
+        $matchTablesClients = DB::select('CALL matchTablesClients'); // Procedimiento Almacenado para relacionar clientes con otras tablas
+        $groupClients = DB::select('CALL groupClients'); // Procedimiento Almacenado para agrupar a los clientes con un mismo número de identidad
+        $calculateRisks = DB::select('CALL calculateRisks'); // Procedimiento Almacenado para calcular el riesgo
         return back()->with('message', 'Lista de clientes enviada'); //Retorna a la página anterior cuando termina de importar
     }
     //Fin de la función
 
     //Inicio de la función transactionImportExcel
     public function TransactionImportExcel(Request $request){ //Recibe como parámetro el archivo de excel
+        $company_id = auth()->user()->company_id;
+        $user_id =  auth()->user()->id;
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new TransactionImport, $file); //Llama a la clase TransactionImport para subir la lista de transacciones del excel.
+        $matchTablesTransactions = DB::select('CALL matchTablesTransactions (?, ?)', array($user_id,$company_id)); // Procedimiento Almacenado para relacionar clientes con otras tablas
         return back()->with('message', 'Lista de transacciones enviada'); //Retorna a la página anterior cuando termina de importar
     }
     //Fin de la función

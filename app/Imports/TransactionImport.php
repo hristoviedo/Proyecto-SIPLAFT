@@ -4,10 +4,11 @@ namespace App\Imports;
 
 use App\TransactionsUpload;
 use DateTime;
-use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class TransactionImport implements ToModel
+class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading
 {
     /**
     * @param array $row
@@ -24,24 +25,35 @@ class TransactionImport implements ToModel
         //Se asigna el valor de cada campo en su respectiva variable
         $client_identity = $row[0];
         $transaction_date = $row[1];
-        $cash = $row[2];
+        $transaction_cash = $row[2];
         $transaction_dollars = $row[3];
         $transaction_amount_lempiras = $row[4];
         $transaction_amount_dollars = $row[5];
 
         //Cambia el tipo de variable para que coincida con los predefinidos en la base de datos
-        $transaction_date = new DateTime($transaction_date);
         $transaction_amount_lempiras = (float)$transaction_amount_lempiras;
         $transaction_amount_dollars = (float)$transaction_amount_dollars;
 
-        //Realiza la inserción del registro con datos en mayúsculas y sin espacios al principio o final
+        //Realiza la inserción del registro con datos sin espacios al principio o final
         return new TransactionsUpload([
             'client_identity'               => trim($client_identity),
-            'transaction_date'              => $transaction_date,
-            'cash'                          => $cash,
-            'transaction_dollars'           => $transaction_dollars,
+            'transaction_date'              => trim($transaction_date),
+            'transaction_cash'              => trim(mb_strtoupper($transaction_cash)),
+            'transaction_dollars'           => trim(mb_strtoupper($transaction_dollars)),
             'transaction_amount_lempiras'   => $transaction_amount_lempiras,
             'transaction_amount_dollars'    => $transaction_amount_dollars,
         ]);
-    }
+    }//Fin de la función
+
+    // Inicio de la función
+    public function batchSize(): int
+    {
+        return 10;
+    }//Fin de la función
+
+    // Inicio de la función
+    public function chunkSize(): int
+    {
+        return 10;
+    }//Fin de la función
 }
