@@ -28,10 +28,10 @@ class ClientController extends Controller
                                 'phone2', 'nationality', 'households', 'total_amount', 'score_risk')
                             ->orderBy('id', 'DESC')
                             ->paginate(10);
-        // $clients = Client::select('id', 'activity_id','funding_id', 'risk_id', 'identity', 'name', 'age', 'email', 'workplace', 'phone1',
-        //                         'phone2', 'nationality', 'households', 'total_amount', 'score_risk')
-        //                     ->orderBy('id', 'DESC')
-        //                     ->paginate(10);
+        // // $clients = Client::select('id', 'activity_id','funding_id', 'risk_id', 'identity', 'name', 'age', 'email', 'workplace', 'phone1',
+        // //                         'phone2', 'nationality', 'households', 'total_amount', 'score_risk')
+        // //                     ->orderBy('id', 'DESC')
+        // //                     ->paginate(10);
 
         // Retorna la lista de clientes, el total y otros datos para la paginación
         return [
