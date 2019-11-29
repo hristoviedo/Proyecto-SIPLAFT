@@ -19,7 +19,7 @@ class UserController extends Controller
     public function indexCompany()
     {
         // Selecciona todas las compañías de la tabla
-        $companies = Company::get();
+        $companies = Company::select('id', 'name')->get();
 
         return $companies;
     }
@@ -28,7 +28,7 @@ class UserController extends Controller
     public function indexUsersAll()
     {
         // Selecciona todos los usuarios de la tabla
-        $users = User::get();
+        $users = User::select('id', 'name', 'company_id')->get();
 
         return $users;
     }

@@ -17,7 +17,10 @@ class TransactionController extends Controller
     public function index()
     {
         // Ordena los transacciones de forma descendente y los agrupa de 10 en 10
-        $transactions = Transaction::orderBy('id', 'DESC')->paginate(10);
+        $transactions = Transaction::select('id', 'client_id','user_id', 'company_id', 'transaction_date', 'transaction_cash', 'transaction_dollars', 
+                                            'transaction_amount_lempiras', 'transaction_amount_dollars')
+                                    ->orderBy('id', 'DESC')
+                                    ->paginate(10);
 
         // Retorna la lista de clientes, el total y otros datos para la paginación
         return [
@@ -37,7 +40,9 @@ class TransactionController extends Controller
     public function indexTransactionsAll()
     {
         // Selecciona todas las transacciones de la tabla
-        $transactions = Transaction::get();
+        $transactions = Transaction::select('id', 'client_id','user_id', 'company_id', 'transaction_date', 'transaction_cash', 'transaction_dollars', 
+                                            'transaction_amount_lempiras', 'transaction_amount_dollars')
+                                    ->get();
 
         return $transactions; // Retorna la lista de transacciones
     }

@@ -26,7 +26,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-//Elemento raíz para la generaldades de la página [No Implementado]
+//Elemento raíz para la generaldades de la página
 const app = new Vue({
     el: '#app',
 });
@@ -38,18 +38,14 @@ var vm = new Vue({
     el: '#sup_clients', // id donde se implementa Vue
     // Cuando se crea la instancia se ejecutan las siguientes funciones
     created: function(){
-        this.getRisks(); // Carga la lista de clientes compaginados
-        this.getActivities(); // Carga la lista de clientes compaginados
-        this.getFundings(); // Carga la lista de clientes compaginados
         this.getClients(); // Carga la lista de clientes compaginados
         this.getClientsAll(); // Carga la lista de todos los clientes en un mismo arreglo
+        this.getClientXCompany(); // Carga la lista de todos los clientes en un mismo arreglo
     },
     data:{
         clients: [], // Arreglo que contiene la lista de clientes según paginación
+        clientXCompany: [], // Arreglo que contiene la lista de clientes según paginación
         clientsAll: [], // Arreglo que contiene la lista de todos los clientes
-        risks: [], // Arreglo que contiene la lista de clientes según paginación
-        activities: [], // Arreglo que contiene la lista de clientes según paginación
-        fundings: [], // Arreglo que contiene la lista de clientes según paginación
         chosenClient:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
         // Objeto que contiene los atributos de la paginación
         pagination: {
@@ -68,14 +64,14 @@ var vm = new Vue({
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
         searchClientAll: function(){
             return this.clientsAll.filter((index) => {
-                return index.identity.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.name.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.email.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.workplace.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.funding.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.risk.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.nationality.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.activity.toUpperCase().includes(this.property.toUpperCase())
+                return index.identity.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.email.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.workplace.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                // index.funding.toUpperCase().includes(this.property.toUpperCase()) ||
+                // index.risk.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.nationality.toUpperCase().includes(this.property.toUpperCase().trim())
+                // index.activity.toUpperCase().includes(this.property.toUpperCase())
             });
         },
         // Retorna la página que está activa
@@ -145,45 +141,6 @@ var vm = new Vue({
             });
         },
 
-        // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
-        getRisks: function(){
-            var urlRisks = 'list-clients/indexRisk';
-            Axios
-            .get(urlRisks)
-            .then(response => {
-                this.risks = response.data
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        },
-
-        // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
-        getActivities: function(){
-            var urlActivities = 'list-clients/indexActivity';
-            Axios
-            .get(urlActivities)
-            .then(response => {
-                this.activities = response.data
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        },
-
-        // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
-        getFundings: function(){
-            var urlFundings = 'list-clients/indexFunding';
-            Axios
-            .get(urlFundings)
-            .then(response => {
-                this.fundings = response.data
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        },
-
         // Agrega un objeto cliente de [clients] para ser visto en la card
         addClient: function(index){
            this.chosenClient = {client:this.clients[index]};
@@ -209,6 +166,31 @@ var vm = new Vue({
         formatPrice: function(value) {
             let val = (value/1).toFixed(2).replace(',', '.');
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        },
+
+        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        getClientXCompany: function(){
+            var urlClientXCompany = 'list-clientxcompany/indexAll';
+            Axios
+            .get(urlClientXCompany)
+            .then(response => {
+                this.clientXCompany = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        },
+        // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
+        getCompanies: function(){
+            var urlCompanies = 'list-users/indexCompany';
+            Axios
+            .get(urlCompanies)
+            .then(response => {
+                this.companies = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
         },
 
         // Asigna color según el riesgo del cliente en la paginación
@@ -283,15 +265,15 @@ var vm = new Vue({
     // Cuando se crea la instancia se ejecutan las siguientes funciones
     created: function(){
         this.getTransactionsAll(); // Carga la lista de clientes compaginados
-        this.getTransactions(); // Carga la lista de clientes compaginados
         this.getClientsAll(); // Carga la lista de todos los clientes en un mismo arreglo
+        this.getTransactions(); // Carga la lista de clientes compaginados
         this.getCompanies(); // Carga la lista de todos los clientes en un mismo arreglo
         this.getUsers(); // Carga la lista de todos los clientes en un mismo arreglo
     },
     data:{
-        clientsAll: [], // Arreglo que contiene la lista de todos los clientes
         transactionsAll:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
         transactions:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
+        clientsAll: [], // Arreglo que contiene la lista de todos los clientes
         users:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
         companies:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
         chosenTransactions:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
@@ -312,10 +294,10 @@ var vm = new Vue({
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
         searchTransactionsAll: function(){
             return this.transactionsAll.filter((index) => {
-                return index.transaction_date.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.cash.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.transaction_lempiras.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.transaction_dollars.toUpperCase().includes(this.property.toUpperCase())
+                return index.transaction_date.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.cash.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.transaction_lempiras.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.transaction_dollars.toUpperCase().includes(this.property.toUpperCase().trim())
             });
         },
         // Retorna la página que está activa
