@@ -60,14 +60,12 @@
 }
 /*Columnas en Cards*/
 .column1 {
-  float: left;
   width: 40%;
 }
 .column2 {
-  float: left;
   width: 60%;
 }
-.column1 .column2 {
+.column1 .column2{
   float: left;
 }
 
@@ -292,7 +290,7 @@
   
   p {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.2rem;
   }
   
   abbr[title],
@@ -4773,7 +4771,7 @@
     color: #fff;
   }
   .card-w{
-    width: 35rem;
+    width: 33rem;
   }
 
   .card {

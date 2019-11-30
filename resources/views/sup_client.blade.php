@@ -77,6 +77,9 @@
       </tbody>
     </table>
   </div>
+
+  {{------------------------------------------------- Card del cliente seleccionado -------------------------------------------------}}
+
   <div class="card-deck flex-center" v-for="(client, index) in chosenClient" :key="index" >
     <div class="card card-w">
       <div class="card-header" :style="riskColorCard(index)">
@@ -95,23 +98,30 @@
         </div>
         <div class="row">
           <div class="column1">
+            <p class="text-center"><strong>Datos Generales</strong></p>
             <ul>
               <li v-show='client.client_identity'>@{{ client.client_identity }}</li>
               <li v-show='client.client_phone1'>@{{ client.client_phone1 }}</li>
               <li v-show='client.client_phone2'>@{{ client.client_phone2 }}</li>
+              <li v-show='client.client_workplace'>@{{ client.client_workplace }}</li>
               <li v-show='client.client_nationality'>@{{ client.client_nationality }}</li>
-              <li v-show='client.client_score_risk'>@{{ client.client_score_risk }} de 5.00</li>
+            </ul>
+            <hr>
+            <p class="text-center"><strong>Inmoviliarias</strong></p>
+            <ul v-for="(clientxcompany, index) in clientXCompanies">
+              <li v-show='clientxcompany.client_id == client.client_id'>@{{ clientxcompany.company_name }}</li>
             </ul>
           </div>
           <div class="column2">
             <ul>
+              <p><strong>Datos de Interés</strong></p>
               <li v-show='client.client_age'>@{{ client.client_age }} AÑOS</li>
-              <li >@{{ client.client_activity}}</li>
-              <li >@{{ client.client_funding}}</li>
+              <li v-show='client.client_activity'>@{{ client.client_activity }}</li>
+              <li v-show='client.client_funding'>@{{ client.client_funding }}</li>
               <li v-show='client.client_households'>@{{ client.client_households }} PROPIEDADES</li>
-              <li v-show='client.client_total_amount'>L @{{ formatPrice(client.client_total_amount) }}</li>
+              <li v-show='client.client_score_risk'>@{{ client.client_score_risk }} de 5.00</li>
             </ul>
-            </div>
+          </div>
           </div>
         </div>
         <div class="card-footer bg-transparent border-warning flex-center"><button type="button" class="btn btn-block btn-color">Reportar</button></div>

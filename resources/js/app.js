@@ -44,7 +44,7 @@ var vm = new Vue({
     },
     data:{
         clients: [], // Arreglo que contiene la lista de clientes según paginación
-        clientXCompany: [], // Arreglo que contiene la lista de clientes según paginación
+        clientXCompanies: [], // Arreglo que contiene la lista de clientes según paginación
         clientsAll: [], // Arreglo que contiene la lista de todos los clientes
         chosenClient:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
         // Objeto que contiene los atributos de la paginación
@@ -64,14 +64,14 @@ var vm = new Vue({
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
         searchClientAll: function(){
             return this.clientsAll.filter((index) => {
-                return index.identity.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.email.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.workplace.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                // index.funding.toUpperCase().includes(this.property.toUpperCase()) ||
-                // index.risk.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.nationality.toUpperCase().includes(this.property.toUpperCase().trim())
-                // index.activity.toUpperCase().includes(this.property.toUpperCase())
+                return index.client_identity.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.client_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.client_email.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.client_workplace.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.client_funding.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.client_risk.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.client_nationality.toUpperCase().includes(this.property.toUpperCase().trim())||
+                index.client_activity.toUpperCase().includes(this.property.toUpperCase())
             });
         },
         // Retorna la página que está activa
@@ -174,7 +174,7 @@ var vm = new Vue({
             Axios
             .get(urlClientXCompany)
             .then(response => {
-                this.clientXCompany = response.data
+                this.clientXCompanies = response.data
             })
             .catch(err => {
                 console.log(err);

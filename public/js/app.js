@@ -49394,7 +49394,7 @@ var vm = new Vue({
   data: {
     clients: [],
     // Arreglo que contiene la lista de clientes según paginación
-    clientXCompany: [],
+    clientXCompanies: [],
     // Arreglo que contiene la lista de clientes según paginación
     clientsAll: [],
     // Arreglo que contiene la lista de todos los clientes
@@ -49421,9 +49421,7 @@ var vm = new Vue({
       var _this = this;
 
       return this.clientsAll.filter(function (index) {
-        return index.identity.toUpperCase().includes(_this.property.toUpperCase().trim()) || index.name.toUpperCase().includes(_this.property.toUpperCase().trim()) || index.email.toUpperCase().includes(_this.property.toUpperCase().trim()) || index.workplace.toUpperCase().includes(_this.property.toUpperCase().trim()) || // index.funding.toUpperCase().includes(this.property.toUpperCase()) ||
-        // index.risk.toUpperCase().includes(this.property.toUpperCase()) ||
-        index.nationality.toUpperCase().includes(_this.property.toUpperCase().trim()); // index.activity.toUpperCase().includes(this.property.toUpperCase())
+        return index.client_identity.toUpperCase().includes(_this.property.toUpperCase().trim()) || index.client_name.toUpperCase().includes(_this.property.toUpperCase().trim()) || index.client_email.toUpperCase().includes(_this.property.toUpperCase().trim()) || index.client_workplace.toUpperCase().includes(_this.property.toUpperCase().trim()) || index.client_funding.toUpperCase().includes(_this.property.toUpperCase()) || index.client_risk.toUpperCase().includes(_this.property.toUpperCase()) || index.client_nationality.toUpperCase().includes(_this.property.toUpperCase().trim()) || index.client_activity.toUpperCase().includes(_this.property.toUpperCase());
       });
     },
     // Retorna la página que está activa
@@ -49525,7 +49523,7 @@ var vm = new Vue({
 
       var urlClientXCompany = 'list-clientxcompany/indexAll';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClientXCompany).then(function (response) {
-        _this4.clientXCompany = response.data;
+        _this4.clientXCompanies = response.data;
       })["catch"](function (err) {
         console.log(err);
       });
