@@ -105,6 +105,7 @@
               <li v-show='client.client_phone2'>@{{ client.client_phone2 }}</li>
               <li v-show='client.client_workplace'>@{{ client.client_workplace }}</li>
               <li v-show='client.client_nationality'>@{{ client.client_nationality }}</li>
+              <li v-show='client.client_total_amount'>L @{{ formatPrice(client.client_total_amount) }}</li>
             </ul>
             <hr>
             <p class="text-center"><strong>Inmoviliarias</strong></p>
