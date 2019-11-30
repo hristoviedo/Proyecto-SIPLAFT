@@ -49543,23 +49543,23 @@ var vm = new Vue({
     },
     // Asigna color según el riesgo del cliente en la paginación
     riskColor: function riskColor(index) {
-      if (this.clients[index].risk == 'CRITICO') {
+      if (this.clients[index].client_risk == 'CRITICO') {
         return {
           'background-color': 'rgba(255, 0, 0, 0.7)'
         };
-      } else if (this.clients[index].risk == 'ALTO') {
+      } else if (this.clients[index].client_risk == 'ALTO') {
         return {
           'background-color': 'rgba(255, 127, 16, 0.7)'
         };
-      } else if (this.clients[index].risk == 'SIGNIFICATIVO') {
+      } else if (this.clients[index].client_risk == 'SIGNIFICATIVO') {
         return {
           'background-color': 'rgba(255, 255, 0, 0.7)'
         };
-      } else if (this.clients[index].risk == 'MODERADO') {
+      } else if (this.clients[index].client_risk == 'MODERADO') {
         return {
           'background-color': 'rgba(102, 102, 102, 0.7)'
         };
-      } else if (this.clients[index].risk == 'BAJO') {
+      } else if (this.clients[index].client_risk == 'BAJO') {
         return {
           'background-color': 'rgba(0, 128, 0, 0.7)'
         };
@@ -49571,23 +49571,23 @@ var vm = new Vue({
     },
     //Asigna color según el riesgo del cliente en las búsquedas
     riskColorAll: function riskColorAll(index) {
-      if (this.searchClientAll[index].risk == 'CRITICO') {
+      if (this.searchClientAll[index].client_risk == 'CRITICO') {
         return {
           'background-color': 'rgba(255, 0, 0, 0.7)'
         };
-      } else if (this.searchClientAll[index].risk == 'ALTO') {
+      } else if (this.searchClientAll[index].client_risk == 'ALTO') {
         return {
           'background-color': 'rgba(255, 127, 16, 0.7)'
         };
-      } else if (this.searchClientAll[index].risk == 'SIGNIFICATIVO') {
+      } else if (this.searchClientAll[index].client_risk == 'SIGNIFICATIVO') {
         return {
           'background-color': 'rgba(255, 255, 0, 0.7)'
         };
-      } else if (this.searchClientAll[index].risk == 'MODERADO') {
+      } else if (this.searchClientAll[index].client_risk == 'MODERADO') {
         return {
           'background-color': 'rgba(102, 102, 102, 0.7)'
         };
-      } else if (this.searchClientAll[index].risk == 'BAJO') {
+      } else if (this.searchClientAll[index].client_risk == 'BAJO') {
         return {
           'background-color': 'rgba(0, 128, 0, 0.7)'
         };
@@ -49599,23 +49599,23 @@ var vm = new Vue({
     },
     // Asigna color según el riesgo del cliente en la card
     riskColorCard: function riskColorCard(index) {
-      if (this.chosenClient[index].risk == 'CRITICO') {
+      if (this.chosenClient[index].client_risk == 'CRITICO') {
         return {
           'background-color': 'rgba(255, 0, 0, 0.3)'
         };
-      } else if (this.chosenClient[index].risk == 'ALTO') {
+      } else if (this.chosenClient[index].client_risk == 'ALTO') {
         return {
           'background-color': 'rgba(255, 127, 16, 0.3)'
         };
-      } else if (this.chosenClient[index].risk == 'SIGNIFICATIVO') {
+      } else if (this.chosenClient[index].client_risk == 'SIGNIFICATIVO') {
         return {
           'background-color': 'rgba(255, 255, 0, 0.3)'
         };
-      } else if (this.chosenClient[index].risk == 'MODERADO') {
+      } else if (this.chosenClient[index].client_risk == 'MODERADO') {
         return {
           'background-color': 'rgba(102, 102, 102, 0.3)'
         };
-      } else if (this.chosenClient[index].risk == 'BAJO') {
+      } else if (this.chosenClient[index].client_risk == 'BAJO') {
         return {
           'background-color': 'rgba(0, 128, 0, 0.3)'
         };
@@ -49627,15 +49627,15 @@ var vm = new Vue({
     },
     // Asigna la imagen según el riesgo del cliente en la card
     riskImageCard: function riskImageCard(index) {
-      if (this.chosenClient[index].risk == 'CRITICO') {
+      if (this.chosenClient[index].client_risk == 'CRITICO') {
         return "img/critico.png";
-      } else if (this.chosenClient[index].risk == 'ALTO') {
+      } else if (this.chosenClient[index].client_risk == 'ALTO') {
         return "img/alto.png";
-      } else if (this.chosenClient[index].risk == 'SIGNIFICATIVO') {
+      } else if (this.chosenClient[index].client_risk == 'SIGNIFICATIVO') {
         return "img/significativo.png";
-      } else if (this.chosenClient[index].risk == 'MODERADO') {
+      } else if (this.chosenClient[index].client_risk == 'MODERADO') {
         return "img/moderado.png";
-      } else if (this.chosenClient[index].risk == 'BAJO') {
+      } else if (this.chosenClient[index].client_risk == 'BAJO') {
         return "img/bajo.png";
       }
     }

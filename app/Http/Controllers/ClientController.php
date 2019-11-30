@@ -24,10 +24,15 @@ class ClientController extends Controller
         // return $clients;
 
         // Ordena los clientes de forma descendente y los agrupa de 10 en 10
-        $clients = Client::select('id', 'activity_id','funding_id', 'risk_id', 'identity', 'name', 'age', 'email', 'workplace', 'phone1',
-                                'phone2', 'nationality', 'households', 'total_amount', 'score_risk')
-                            ->orderBy('id', 'DESC')
-                            ->paginate(10);
+        $clients = DB::table('clients')
+        ->join('activities','clients.activity_id','=','activities.id')
+        ->join('fundings','clients.funding_id','=','fundings.id')
+        ->join('risks','clients.risk_id','=','risks.id')
+        ->select('clients.id AS client_id', 'clients.identity AS client_identity', 'clients.name AS client_name', 'clients.age AS client_age', 'clients.email AS client_email',
+                'clients.workplace AS client_workplace', 'clients.phone1 AS client_phone1', 'clients.phone2 AS client_phone2', 'clients.nationality AS client_nationality',
+                'clients.households AS client_households', 'clients.total_amount AS client_total_amount', 'clients.score_risk AS client_score_risk',
+                'activities.name AS client_activity','fundings.name AS client_funding', 'risks.name AS client_risk')
+                ->paginate(10);
         // $clients = Client::select('id', 'activity_id','funding_id', 'risk_id', 'identity', 'name', 'age', 'email', 'workplace', 'phone1',
         //                         'phone2', 'nationality', 'households', 'total_amount', 'score_risk')
         //                     ->orderBy('id', 'DESC')
@@ -50,7 +55,13 @@ class ClientController extends Controller
     public function index2()
     {
         // Selecciona todos los clientes de la tabla
-        $sql = 'SELECT cl.id AS id_client, cl.identity AS identity_client, cl.name AS name_client, cl.email AS email_client, cl.age AS age_client, cl.workplace AS workplace_client, cl.phone1 AS phone1_client, cl.phone2 AS phone2_client, cl.nationality AS nationality_client, cl.households AS households_client, cl.total_amount AS total_amount_client, cl.score_risk AS score_risk_client, ac.name AS activity_client, fu.name AS funding_client, ri.name AS risk_client FROM clients cl, activities ac, fundings fu, risks ri WHERE cl.activity_id = ac.id AND cl.funding_id = fu.id AND cl.risk_id = ri.id ORDER BY id_client DESC';
+        $sql = 'SELECT cl.id AS client_id, cl.identity AS client_identity, cl.name AS client_name, cl.email AS client_email, cl.age AS client_age, cl.workplace AS client_workplace,
+                        cl.phone1 AS client_phone1, cl.phone2 AS client_phone2, cl.nationality AS client_nationality, cl.households AS client_households,
+                        cl.total_amount AS client_total_amount, cl.score_risk AS client_score_risk, ac.name AS client_activity, fu.name AS client_funding,
+                        ri.name AS client_risk
+                        FROM clients cl, activities ac, fundings fu, risks ri
+                        WHERE cl.activity_id = ac.id AND cl.funding_id = fu.id AND cl.risk_id = ri.id
+                        ORDER BY client_id DESC';
         $clients = DB::select($sql);
 
         return $clients; // Retorna la lista de clientes

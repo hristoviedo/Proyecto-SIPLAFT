@@ -51,28 +51,26 @@
       </thead>
       <tbody v-if = "property">
         <tr v-for="(client, index) in searchClientAll" :key="index">
-          <td>@{{ client.identity }}</td>
-          <td>@{{ client.name}}</td>
-          <td>@{{ client.email}}</td>
-          <td>@{{ client.phone1}}</td>
-          <td>@{{ client.workplace}}</td>
-          {{-- <td>@{{ companies.find(company => company.id === transactionsAll.company_id) && (transactions.client_id === client.id).name }}</td> --}}
+          <td>@{{ client.client_identity }}</td>
+          <td>@{{ client.client_name}}</td>
+          <td>@{{ client.client_email}}</td>
+          <td>@{{ client.client_phone1}}</td>
+          <td>@{{ client.client_workplace}}</td>
           <td>
-            <button type="button" class="btn btn-sm" :style="riskColorAll(index)">@{{ client.risk }}</button>
+            <button type="button" class="btn btn-sm" :style="riskColorAll(index)">@{{ client.client_risk }}</button>
           </td>
           <td><a href="#" v-on:click.prevent='addClientAll(index)'>Más información</a></td>
         </tr>
       </tbody>
       <tbody v-else>
         <tr v-for="(client, index) in clients" :key="index">
-          <td>@{{ client.identity }}</td>
-          <td>@{{ client.name}}</td>
-          <td>@{{ client.email}}</td>
-          <td>@{{ client.phone1}}</td>
-          <td>@{{ client.workplace}}</td>
-          {{-- <td>@{{ transactionsAll.find(transaction => transactions.client_id === client.id).id }}</td> --}}
+          <td>@{{ client.client_identity }}</td>
+          <td>@{{ client.client_name}}</td>
+          <td>@{{ client.client_email}}</td>
+          <td>@{{ client.client_phone1}}</td>
+          <td>@{{ client.client_workplace}}</td>
           <td>
-            <button type="button" class="btn btn-sm" :style="riskColor(index)">@{{ client.risk }}</button>
+            <button type="button" class="btn btn-sm" :style="riskColor(index)">@{{ client.client_risk }}</button>
           </td>
           <td><a href="#" v-on:click.prevent='addClient(index)'>Más información</a></td>
         </tr>
@@ -86,33 +84,32 @@
         <button type="button" class="close" aria-label="Close" v-on:click.prevent='deleteClient()'>
           <span aria-hidden="true">&times;</span>
         </button>
-        <p v-show='client.risk' class="text-center text-title-card">Nivel de Riesgo: @{{ client.risk }}</p>
+        <p v-show='client.client_risk' class="text-center text-title-card">Nivel de Riesgo: @{{ client.client_risk }}</p>
       </div>
       <div class="card-body">
         <div class="card-text content">
           <p class="h5"><strong>
-            @{{ client.name }}
+            @{{ client.client_name }}
           </strong></p>
-          <span class="h6">@{{ client.email }}</span>
+          <span class="h6">@{{ client.client_email }}</span>
         </div>
         <div class="row">
           <div class="column1">
             <ul>
-              <li v-show='client.identity'>@{{ client.identity }}</li>
-              <li v-show='client.phone1'>@{{ client.phone1 }}</li>
-              <li v-show='client.phone2'>@{{ client.phone2 }}</li>
-              <li v-show='client.nationality'>@{{ client.nationality }}</li>
-              <li v-show='client.score_risk'>@{{ client.score_risk }} de 5.00</li>
+              <li v-show='client.client_identity'>@{{ client.client_identity }}</li>
+              <li v-show='client.client_phone1'>@{{ client.client_phone1 }}</li>
+              <li v-show='client.client_phone2'>@{{ client.client_phone2 }}</li>
+              <li v-show='client.client_nationality'>@{{ client.client_nationality }}</li>
+              <li v-show='client.client_score_risk'>@{{ client.client_score_risk }} de 5.00</li>
             </ul>
           </div>
           <div class="column2">
             <ul>
-              <li v-show='client.age'>@{{ client.age }} AÑOS</li>
-              <li >@{{ activities.find(activity => activity.id === client.activity_id).name }}</li>
-              <li >@{{ fundings.find(funding => funding.id === client.funding_id).name }}</li>
-              <li v-show='client.households'>@{{ client.households }} PROPIEDADES</li>
-              <li v-show='client.total_amount'>L @{{ formatPrice(client.total_amount) }}</li>
-              {{-- <li>@{{ companies.find(company => company.id === (transactionsAll.find(transaction => transaction.client_id === client.id).company_id)).name }}</li> --}}
+              <li v-show='client.client_age'>@{{ client.client_age }} AÑOS</li>
+              <li >@{{ client.client_activity}}</li>
+              <li >@{{ client.client_funding}}</li>
+              <li v-show='client.client_households'>@{{ client.client_households }} PROPIEDADES</li>
+              <li v-show='client.client_total_amount'>L @{{ formatPrice(client.client_total_amount) }}</li>
             </ul>
             </div>
           </div>
