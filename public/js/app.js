@@ -49375,10 +49375,10 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 //Elemento raíz para la generaldades de la página
 
+
 var app = new Vue({
   el: '#app'
-});
- //Elemento raíz para supervisor clientes
+}); //Elemento raíz para supervisor clientes
 
 var vm = new Vue({
   el: '#sup_clients',
@@ -49647,24 +49647,12 @@ var vm = new Vue({
   created: function created() {
     this.getTransactionsAll(); // Carga la lista de clientes compaginados
 
-    this.getClientsAll(); // Carga la lista de todos los clientes en un mismo arreglo
-
     this.getTransactions(); // Carga la lista de clientes compaginados
-
-    this.getCompanies(); // Carga la lista de todos los clientes en un mismo arreglo
-
-    this.getUsers(); // Carga la lista de todos los clientes en un mismo arreglo
   },
   data: {
     transactionsAll: [],
     // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
     transactions: [],
-    // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
-    clientsAll: [],
-    // Arreglo que contiene la lista de todos los clientes
-    users: [],
-    // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
-    companies: [],
     // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
     chosenTransactions: [],
     // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
@@ -49689,7 +49677,7 @@ var vm = new Vue({
       var _this6 = this;
 
       return this.transactionsAll.filter(function (index) {
-        return index.transaction_date.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.cash.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_lempiras.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_dollars.toUpperCase().includes(_this6.property.toUpperCase().trim());
+        return index.transaction_month.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_cash.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_lempiras.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_dollars.toUpperCase().includes(_this6.property.toUpperCase().trim());
       });
     },
     // Retorna la página que está activa
@@ -49759,35 +49747,6 @@ var vm = new Vue({
         console.log(err);
       });
     },
-    // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
-    getClientsAll: function getClientsAll() {
-      var _this9 = this;
-
-      var urlClients = 'list-clients/indexAll';
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlClients).then(function (response) {
-        _this9.clientsAll = response.data;
-      });
-    },
-    // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
-    getUsers: function getUsers() {
-      var _this10 = this;
-
-      var urlUsers = 'list-users/indexAll';
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlUsers).then(function (response) {
-        _this10.users = response.data;
-      });
-    },
-    // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
-    getCompanies: function getCompanies() {
-      var _this11 = this;
-
-      var urlCompanies = 'list-users/indexCompany';
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlCompanies).then(function (response) {
-        _this11.companies = response.data;
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
     // Agrega un objeto cliente de [clients] para ser visto en la card
     addTransaction: function addTransaction(index) {
       this.chosenTransactions = {
@@ -49813,104 +49772,6 @@ var vm = new Vue({
     formatPrice: function formatPrice(value) {
       var val = (value / 1).toFixed(2).replace(',', '.');
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    },
-    // Asigna color según el riesgo del cliente en la paginación
-    riskColor: function riskColor(index) {
-      if (this.transactions[index].risk == 'CRITICO') {
-        return {
-          'background-color': 'rgba(255, 0, 0, 0.7)'
-        };
-      } else if (this.transactions[index].risk == 'ALTO') {
-        return {
-          'background-color': 'rgba(255, 127, 16, 0.7)'
-        };
-      } else if (this.transactions[index].risk == 'SIGNIFICATIVO') {
-        return {
-          'background-color': 'rgba(255, 255, 0, 0.7)'
-        };
-      } else if (this.transactions[index].risk == 'MODERADO') {
-        return {
-          'background-color': 'rgba(102, 102, 102, 0.7)'
-        };
-      } else if (this.transactions[index].risk == 'BAJO') {
-        return {
-          'background-color': 'rgba(0, 128, 0, 0.7)'
-        };
-      } else {
-        return {
-          'background-color': 'rgba(50, 75, 200, 0.7)'
-        };
-      }
-    },
-    //Asigna color según el riesgo del cliente en las búsquedas
-    riskColorAll: function riskColorAll(index) {
-      if (this.searchTransactionsAll[index].risk == 'CRITICO') {
-        return {
-          'background-color': 'rgba(255, 0, 0, 0.7)'
-        };
-      } else if (this.searchTransactionsAll[index].risk == 'ALTO') {
-        return {
-          'background-color': 'rgba(255, 127, 16, 0.7)'
-        };
-      } else if (this.searchTransactionsAll[index].risk == 'SIGNIFICATIVO') {
-        return {
-          'background-color': 'rgba(255, 255, 0, 0.7)'
-        };
-      } else if (this.searchTransactionsAll[index].risk == 'MODERADO') {
-        return {
-          'background-color': 'rgba(102, 102, 102, 0.7)'
-        };
-      } else if (this.searchTransactionsAll[index].risk == 'BAJO') {
-        return {
-          'background-color': 'rgba(0, 128, 0, 0.7)'
-        };
-      } else {
-        return {
-          'background-color': 'rgba(50, 75, 200, 0.7)'
-        };
-      }
-    },
-    // Asigna color según el riesgo del cliente en la card
-    riskColorCard: function riskColorCard(index) {
-      if (this.chosenTransactions[index].risk == 'CRITICO') {
-        return {
-          'background-color': 'rgba(255, 0, 0, 0.3)'
-        };
-      } else if (this.chosenTransactions[index].risk == 'ALTO') {
-        return {
-          'background-color': 'rgba(255, 127, 16, 0.3)'
-        };
-      } else if (this.chosenTransactions[index].risk == 'SIGNIFICATIVO') {
-        return {
-          'background-color': 'rgba(255, 255, 0, 0.3)'
-        };
-      } else if (this.chosenTransactions[index].risk == 'MODERADO') {
-        return {
-          'background-color': 'rgba(102, 102, 102, 0.3)'
-        };
-      } else if (this.chosenTransactions[index].risk == 'BAJO') {
-        return {
-          'background-color': 'rgba(0, 128, 0, 0.3)'
-        };
-      } else {
-        return {
-          'background-color': 'rgba(50, 75, 200, 0.3)'
-        };
-      }
-    },
-    // Asigna la imagen según el riesgo del cliente en la card
-    riskImageCard: function riskImageCard(index) {
-      if (this.chosenTransactions[index].risk == 'CRITICO') {
-        return "img/critico.png";
-      } else if (this.chosenTransactions[index].risk == 'ALTO') {
-        return "img/alto.png";
-      } else if (this.chosenTransactions[index].risk == 'SIGNIFICATIVO') {
-        return "img/significativo.png";
-      } else if (this.chosenTransactions[index].risk == 'MODERADO') {
-        return "img/moderado.png";
-      } else if (this.chosenTransactions[index].risk == 'BAJO') {
-        return "img/bajo.png";
-      }
     }
   }
 }); //Elemento raíz para colaborador

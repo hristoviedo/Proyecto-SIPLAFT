@@ -26,7 +26,7 @@
     </nav>
     <div class="btn-toolbar mb-2 mb-md-0 flex-center">
       <div class="input-group">
-        <input v-model="property" type="text" class="form-control" placeholder="Buscar cliente">
+        <input v-model="property" type="text" class="form-control" placeholder="Buscar transacción">
       </div>
       <div v-if = 'property'>
           <button type="reset" @click.prevent="showpagination()"  class="btn btn-sm btn-color">Ver paginación</button>
@@ -40,41 +40,25 @@
     <table class="table table-striped table-hover table-sm text-center">
       <thead class="thead-dark">
         <tr>
-          <th>Número de ID</th>
+          <th>ID del Cliente</th>
           <th>Nombre del Cliente</th>
           <th>Mes de Transacción</th>
           <th>¿En Efectivo?</th>
-          <th>¿En Lempiras?</th>
+          <th>¿En Dolares?</th>
           <th>Monto en Lempiras</th>
           <th>Monto en Dólares</th>
           <th>Empresa</th>
-          <th>Detalles</th>
+          <th>Usuario</th>
         </tr>
       </thead>
       <tbody v-if = "property">
         <tr>
           <td>0321-1989-00417</td>
-          <td>Juan A. Laínez</td>
-          <td>Noviembre</td>
-          <td>Sí</td>
-          <td>No</td>
-          <td>24,300.00</td>
-          <td>1,000.00</td>
-          <td>Inmobiliaria La Ronda</td>
-          <td><a href="#">Más información</a></td>
         </tr>
       </tbody>
       <tbody v-else>
         <tr>
           <td>0321-1989-00417</td>
-          <td>Juan A. Laínez</td>
-          <td>Noviembre</td>
-          <td>Sí</td>
-          <td>No</td>
-          <td>24,300.00</td>
-          <td>1,000.00</td>
-          <td>Inmobiliaria La Ronda</td>
-          <td><a href="#">Más información</a></td>
         </tr>
       </tbody>
     </table>

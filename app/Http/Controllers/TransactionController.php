@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use Illuminate\Http\Request;
+use App\Client;
+use App\User;
+use App\Company;
+use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
+
 
 class TransactionController extends Controller
 {
@@ -17,10 +22,15 @@ class TransactionController extends Controller
     public function index()
     {
         // Ordena los transacciones de forma descendente y los agrupa de 10 en 10
-        $transactions = Transaction::select('id', 'client_id','user_id', 'company_id', 'transaction_date', 'transaction_cash', 'transaction_dollars', 
-                                            'transaction_amount_lempiras', 'transaction_amount_dollars')
-                                    ->orderBy('id', 'DESC')
-                                    ->paginate(10);
+        $transactions = DB::table('transactions')
+        ->join('users','transactions.user_id','=','users.id')
+        ->join('clients','transactions.client_id','=','clients.id')
+        ->join('companies','transactions.company_id','=','companies.id')
+        ->select('transactions.id AS transaction_id', 'transactions.date AS transaction_date', 'transactions.cash AS transaction_cash',
+                'transactions.dollars AS transaction_dollars', 'transactions.transaction_amount_lempiras AS transaction_amount_lempiras',
+                'transactions.transaction_amount_dollars AS transaction_amount_dollars', 'clients.identity AS client_identity', 'clients.name AS client_name',
+                'users.name AS user_name', 'companies.name AS company_name')
+        ->paginate(10);
 
         // Retorna la lista de clientes, el total y otros datos para la paginación
         return [
@@ -40,9 +50,12 @@ class TransactionController extends Controller
     public function indexTransactionsAll()
     {
         // Selecciona todas las transacciones de la tabla
-        $transactions = Transaction::select('id', 'client_id','user_id', 'company_id', 'transaction_date', 'transaction_cash', 'transaction_dollars', 
-                                            'transaction_amount_lempiras', 'transaction_amount_dollars')
-                                    ->get();
+        $sql = 'SELECT tr.id AS transaction_id, ELT(MONTH(tr.transaction_date), "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE") AS transaction_month,
+                        ELT(tr.transaction_cash + 1, "NO", "SI") AS transaction_cash, ELT(tr.transaction_cash + 1, "NO", "SI") AS transaction_dollars, tr.transaction_amount_lempiras AS transaction_amount_lempiras,
+                        tr.transaction_amount_dollars AS transaction_amount_dollars, cl.identity AS client_identity, cl.name AS client_name, co.name AS company_name, us.name AS user_name
+                FROM transactions tr, users us, companies co, clients cl
+                WHERE tr.user_id = us.id AND tr.company_id = co.id AND tr.client_id = cl.id';
+        $transactions = DB::select($sql);
 
         return $transactions; // Retorna la lista de transacciones
     }

@@ -32,7 +32,7 @@ class ClientController extends Controller
                 'clients.workplace AS client_workplace', 'clients.phone1 AS client_phone1', 'clients.phone2 AS client_phone2', 'clients.nationality AS client_nationality',
                 'clients.households AS client_households', 'clients.total_amount AS client_total_amount', 'clients.score_risk AS client_score_risk',
                 'activities.name AS client_activity','fundings.name AS client_funding', 'risks.name AS client_risk')
-                ->paginate(10);
+        ->paginate(10);
         // $clients = Client::select('id', 'activity_id','funding_id', 'risk_id', 'identity', 'name', 'age', 'email', 'workplace', 'phone1',
         //                         'phone2', 'nationality', 'households', 'total_amount', 'score_risk')
         //                     ->orderBy('id', 'DESC')
@@ -59,9 +59,8 @@ class ClientController extends Controller
                         cl.phone1 AS client_phone1, cl.phone2 AS client_phone2, cl.nationality AS client_nationality, cl.households AS client_households,
                         cl.total_amount AS client_total_amount, cl.score_risk AS client_score_risk, ac.name AS client_activity, fu.name AS client_funding,
                         ri.name AS client_risk
-                        FROM clients cl, activities ac, fundings fu, risks ri
-                        WHERE cl.activity_id = ac.id AND cl.funding_id = fu.id AND cl.risk_id = ri.id
-                        ORDER BY client_id DESC';
+                FROM clients cl, activities ac, fundings fu, risks ri
+                WHERE cl.activity_id = ac.id AND cl.funding_id = fu.id AND cl.risk_id = ri.id';
         $clients = DB::select($sql);
 
         return $clients; // Retorna la lista de clientes
