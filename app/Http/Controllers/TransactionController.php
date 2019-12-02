@@ -22,12 +22,13 @@ class TransactionController extends Controller
     public function index()
     {
         // Ordena los transacciones de forma descendente y los agrupa de 10 en 10
+
         $transactions = DB::table('transactions')
         ->join('users','transactions.user_id','=','users.id')
         ->join('clients','transactions.client_id','=','clients.id')
         ->join('companies','transactions.company_id','=','companies.id')
-        ->select('transactions.id AS transaction_id', 'transactions.date AS transaction_date', 'transactions.cash AS transaction_cash',
-                'transactions.dollars AS transaction_dollars', 'transactions.transaction_amount_lempiras AS transaction_amount_lempiras',
+        ->select('transactions.id AS transaction_id', 'transactions.transaction_date AS transaction_date', 'transactions.transaction_cash AS transaction_cash',
+                'transactions.transaction_dollars AS transaction_dollars', 'transactions.transaction_amount_lempiras AS transaction_amount_lempiras',
                 'transactions.transaction_amount_dollars AS transaction_amount_dollars', 'clients.identity AS client_identity', 'clients.name AS client_name',
                 'users.name AS user_name', 'companies.name AS company_name')
         ->paginate(10);

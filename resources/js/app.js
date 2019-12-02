@@ -58,7 +58,6 @@ var vm = new Vue({
         },
         offset: 4, // Indica la cantidad de paginación a la izquierda y derecha de la actual
         property: '', // Variable que determina la búsqueda del usuario
-        viewAll: false,
     },
     computed:{
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
@@ -259,13 +258,16 @@ var vm = new Vue({
     },
 });
 
+import moment from 'moment';
+moment.locale('ES');
+
 //Elemento raíz para supervisor transacciones
-var vm = new Vue({
+var vue = new Vue({
     el: '#sup_trans', // id donde se implementa Vue
     // Cuando se crea la instancia se ejecutan las siguientes funciones
     created: function(){
-        this.getTransactionsAll(); // Carga la lista de clientes compaginados
         this.getTransactions(); // Carga la lista de clientes compaginados
+        this.getTransactionsAll(); // Carga la lista de clientes compaginados
     },
     data:{
         transactionsAll:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
@@ -282,7 +284,6 @@ var vm = new Vue({
         },
         offset: 4, // Indica la cantidad de paginación a la izquierda y derecha de la actual
         property: '', // Variable que determina la búsqueda del usuario
-        viewAll: false,
     },
     computed:{
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
@@ -290,8 +291,11 @@ var vm = new Vue({
             return this.transactionsAll.filter((index) => {
                 return index.transaction_month.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.transaction_cash.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.transaction_lempiras.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.transaction_dollars.toUpperCase().includes(this.property.toUpperCase().trim())
+                index.transaction_dollars.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.client_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.client_identity.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.company_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.user_name.toUpperCase().includes(this.property.toUpperCase().trim())
             });
         },
         // Retorna la página que está activa
@@ -387,6 +391,21 @@ var vm = new Vue({
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
 
+        // Da formato a valores booleanos
+        formatBool: function(value) {
+            if (value == 1) {
+                return 'SI';
+            } else if(value == 0) {
+                return 'NO'
+            } else {
+                return 'NO DISPONIBLE';
+            }
+        },
+        // Da formato a la fecha de transacción (mes)
+        formatDate: function(value) {
+            var month = moment(value).format("MMMM");
+            return month.toUpperCase();
+        },
     },
 });
 

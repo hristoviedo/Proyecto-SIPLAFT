@@ -52,13 +52,29 @@
         </tr>
       </thead>
       <tbody v-if = "property">
-        <tr>
-          <td>0321-1989-00417</td>
+        <tr v-for="(transaction, index) in searchTransactionsAll" :key="index">
+          <td>@{{ transaction.client_identity }}</td>
+          <td>@{{ transaction.client_name }}</td>
+          <td>@{{ transaction.transaction_month }}</td>
+          <td>@{{ transaction.transaction_cash }}</td>
+          <td>@{{ transaction.transaction_dollars }}</td>
+          <td>L @{{ formatPrice(transaction.transaction_amount_lempiras) }}</td>
+          <td>$ @{{ formatPrice(transaction.transaction_amount_dollars) }}</td>
+          <td>@{{ transaction.company_name }}</td>
+          <td>@{{ transaction.user_name }}</td>
         </tr>
       </tbody>
       <tbody v-else>
-        <tr>
-          <td>0321-1989-00417</td>
+        <tr v-for="(transaction, index) in transactions" :key="index">
+          <td>@{{ transaction.client_identity }}</td>
+          <td>@{{ transaction.client_name }}</td>
+          <td>@{{ formatDate(transaction.transaction_date) }}</td>
+          <td>@{{ formatBool(transaction.transaction_cash) }}</td>
+          <td>@{{ formatBool(transaction.transaction_dollars) }}</td>
+          <td>L @{{ formatPrice(transaction.transaction_amount_lempiras) }}</td>
+          <td>$ @{{ formatPrice(transaction.transaction_amount_dollars) }}</td>
+          <td>@{{ transaction.company_name }}</td>
+          <td>@{{ transaction.user_name }}</td>
         </tr>
       </tbody>
     </table>
