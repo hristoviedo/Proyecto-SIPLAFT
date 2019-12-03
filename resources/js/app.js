@@ -26,14 +26,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-//Elemento raíz para la generaldades de la página
 import Axios from "axios";
 
-const app = new Vue({
-    el: '#app',
-});
+import moment from 'moment';
+moment.locale('ES');
 
-//Elemento raíz para supervisor clientes
+//*************************************************** Elemento raíz para supervisor clientes ***************************************************
 var vm = new Vue({
     el: '#sup_clients', // id donde se implementa Vue
     // Cuando se crea la instancia se ejecutan las siguientes funciones
@@ -258,11 +256,8 @@ var vm = new Vue({
     },
 });
 
-import moment from 'moment';
-moment.locale('ES');
-
-//Elemento raíz para supervisor transacciones
-var vue = new Vue({
+//*************************************************** Elemento raíz para supervisor transacciones ***************************************************
+var vm = new Vue({
     el: '#sup_trans', // id donde se implementa Vue
     // Cuando se crea la instancia se ejecutan las siguientes funciones
     created: function(){
@@ -409,7 +404,8 @@ var vue = new Vue({
     },
 });
 
-//Elemento raíz para colaborador
+//********************************************************** Elemento raíz para colaborador *********************************************************
+
 var vm = new Vue({
     el: '#col',
     data:{

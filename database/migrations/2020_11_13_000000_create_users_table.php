@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique(); //Correo electrónico del usuario (único, not null).
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password'); //Contraseña para inicio de sesión
+            $table->boolean('active')->nullable(); //¿El usuario está activo? True si es verdadero (not null)
             $table->rememberToken();
             $table->timestamps();
 

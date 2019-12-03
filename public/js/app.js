@@ -66980,12 +66980,10 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-//Elemento raíz para la generaldades de la página
 
 
-var app = new Vue({
-  el: '#app'
-}); //Elemento raíz para supervisor clientes
+
+moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale('ES'); //*************************************************** Elemento raíz para supervisor clientes ***************************************************
 
 var vm = new Vue({
   el: '#sup_clients',
@@ -67244,11 +67242,9 @@ var vm = new Vue({
       }
     }
   }
-});
+}); //*************************************************** Elemento raíz para supervisor transacciones ***************************************************
 
-moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale('ES'); //Elemento raíz para supervisor transacciones
-
-var vue = new Vue({
+var vm = new Vue({
   el: '#sup_trans',
   // id donde se implementa Vue
   // Cuando se crea la instancia se ejecutan las siguientes funciones
@@ -67396,7 +67392,7 @@ var vue = new Vue({
       return month.toUpperCase();
     }
   }
-}); //Elemento raíz para colaborador
+}); //********************************************************** Elemento raíz para colaborador *********************************************************
 
 var vm = new Vue({
   el: '#col',
