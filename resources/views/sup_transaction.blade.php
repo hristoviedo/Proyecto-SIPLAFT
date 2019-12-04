@@ -48,7 +48,7 @@
           <th>Monto en Lempiras</th>
           <th>Monto en Dólares</th>
           <th>Empresa</th>
-          <th>Usuario</th>
+          <th>Subido Por</th>
         </tr>
       </thead>
       <tbody v-if = "property">
