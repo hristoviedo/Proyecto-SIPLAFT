@@ -55,7 +55,7 @@
         <tr v-for="(transaction, index) in searchTransactionsAll" :key="index">
           <td>@{{ transaction.client_identity }}</td>
           <td>@{{ transaction.client_name }}</td>
-          <td>@{{ transaction.transaction_month }}</td>
+          <td>@{{ formatDate(transaction.transaction_date) }}</td>
           <td>@{{ transaction.transaction_cash }}</td>
           <td>@{{ transaction.transaction_dollars }}</td>
           <td>L @{{ formatPrice(transaction.transaction_amount_lempiras) }}</td>

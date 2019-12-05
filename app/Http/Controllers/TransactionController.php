@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use Illuminate\Http\Request;
-use App\Client;
-use App\User;
-use App\Company;
-use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
+
+use Illuminate\Support\Facades\DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 
 
 class TransactionController extends Controller
@@ -31,7 +29,8 @@ class TransactionController extends Controller
                 'transactions.transaction_dollars AS transaction_dollars', 'transactions.transaction_amount_lempiras AS transaction_amount_lempiras',
                 'transactions.transaction_amount_dollars AS transaction_amount_dollars', 'clients.identity AS client_identity', 'clients.name AS client_name',
                 'users.name AS user_name', 'companies.name AS company_name')
-        ->paginate(10);
+        ->orderByDesc('transaction_date')
+        ->paginate(15);
 
         // Retorna la lista de clientes, el total y otros datos para la paginación
         return [
@@ -51,11 +50,12 @@ class TransactionController extends Controller
     public function indexTransactionsAll()
     {
         // Selecciona todas las transacciones de la tabla
-        $sql = 'SELECT tr.id AS transaction_id, ELT(MONTH(tr.transaction_date), "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE") AS transaction_month,
-                        ELT(tr.transaction_cash + 1, "NO", "SI") AS transaction_cash, ELT(tr.transaction_cash + 1, "NO", "SI") AS transaction_dollars, tr.transaction_amount_lempiras AS transaction_amount_lempiras,
-                        tr.transaction_amount_dollars AS transaction_amount_dollars, cl.identity AS client_identity, cl.name AS client_name, co.name AS company_name, us.name AS user_name
+        $sql = 'SELECT tr.id AS transaction_id, tr.transaction_date AS transaction_date, tr.transaction_cash AS transaction_cash, tr.transaction_dollars AS transaction_dollars,
+                        tr.transaction_amount_lempiras AS transaction_amount_lempiras, tr.transaction_amount_dollars AS transaction_amount_dollars,
+                        cl.identity AS client_identity, cl.name AS client_name, co.name AS company_name, us.name AS user_name
                 FROM transactions tr, users us, companies co, clients cl
-                WHERE tr.user_id = us.id AND tr.company_id = co.id AND tr.client_id = cl.id';
+                WHERE tr.user_id = us.id AND tr.company_id = co.id AND tr.client_id = cl.id
+                ORDER BY transaction_date DESC';
         $transactions = DB::select($sql);
 
         return $transactions; // Retorna la lista de transacciones

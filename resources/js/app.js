@@ -36,9 +36,9 @@ var vm = new Vue({
     el: '#sup_clients', // id donde se implementa Vue
     // Cuando se crea la instancia se ejecutan las siguientes funciones
     created: function(){
+        this.getClientXCompany(); // Carga la lista de todos los clientes en un mismo arreglo
         this.getClients(); // Carga la lista de clientes compaginados
         this.getClientsAll(); // Carga la lista de todos los clientes en un mismo arreglo
-        this.getClientXCompany(); // Carga la lista de todos los clientes en un mismo arreglo
     },
     data:{
         clients: [], // Arreglo que contiene la lista de clientes según paginación
@@ -277,14 +277,14 @@ var vm = new Vue({
             'from':0,
             'to':0,
         },
-        offset: 4, // Indica la cantidad de paginación a la izquierda y derecha de la actual
+        offset: 6, // Indica la cantidad de paginación a la izquierda y derecha de la actual
         property: '', // Variable que determina la búsqueda del usuario
     },
     computed:{
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
         searchTransactionsAll: function(){
             return this.transactionsAll.filter((index) => {
-                return index.transaction_month.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                return index.transaction_date.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.transaction_cash.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.transaction_dollars.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
@@ -398,7 +398,7 @@ var vm = new Vue({
         },
         // Da formato a la fecha de transacción (mes)
         formatDate: function(value) {
-            var month = moment(value).format("MMMM");
+            var month = moment(value).format("MMMM - YYYY");
             return month.toUpperCase();
         },
     },

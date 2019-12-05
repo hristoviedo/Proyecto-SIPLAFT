@@ -66990,11 +66990,11 @@ var vm = new Vue({
   // id donde se implementa Vue
   // Cuando se crea la instancia se ejecutan las siguientes funciones
   created: function created() {
+    this.getClientXCompany(); // Carga la lista de todos los clientes en un mismo arreglo
+
     this.getClients(); // Carga la lista de clientes compaginados
 
     this.getClientsAll(); // Carga la lista de todos los clientes en un mismo arreglo
-
-    this.getClientXCompany(); // Carga la lista de todos los clientes en un mismo arreglo
   },
   data: {
     clients: [],
@@ -67269,7 +67269,7 @@ var vm = new Vue({
       'from': 0,
       'to': 0
     },
-    offset: 4,
+    offset: 6,
     // Indica la cantidad de paginación a la izquierda y derecha de la actual
     property: '' // Variable que determina la búsqueda del usuario
 
@@ -67280,7 +67280,7 @@ var vm = new Vue({
       var _this6 = this;
 
       return this.transactionsAll.filter(function (index) {
-        return index.transaction_month.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_cash.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_dollars.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_identity.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.company_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.user_name.toUpperCase().includes(_this6.property.toUpperCase().trim());
+        return index.transaction_date.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_cash.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_dollars.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_identity.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.company_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.user_name.toUpperCase().includes(_this6.property.toUpperCase().trim());
       });
     },
     // Retorna la página que está activa
@@ -67388,7 +67388,7 @@ var vm = new Vue({
     },
     // Da formato a la fecha de transacción (mes)
     formatDate: function formatDate(value) {
-      var month = moment__WEBPACK_IMPORTED_MODULE_1___default()(value).format("MMMM");
+      var month = moment__WEBPACK_IMPORTED_MODULE_1___default()(value).format("MMMM - YYYY");
       return month.toUpperCase();
     }
   }
