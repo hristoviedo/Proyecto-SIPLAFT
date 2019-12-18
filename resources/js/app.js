@@ -54,7 +54,7 @@ var vm = new Vue({
             'from':0,
             'to':0,
         },
-        offset: 4, // Indica la cantidad de paginación a la izquierda y derecha de la actual
+        offset: 5, // Indica la cantidad de paginación a la izquierda y derecha de la actual
         property: '', // Variable que determina la búsqueda del usuario
     },
     computed:{
@@ -277,7 +277,7 @@ var vm = new Vue({
             'from':0,
             'to':0,
         },
-        offset: 6, // Indica la cantidad de paginación a la izquierda y derecha de la actual
+        offset: 5, // Indica la cantidad de paginación a la izquierda y derecha de la actual
         property: '', // Variable que determina la búsqueda del usuario
     },
     computed:{
@@ -517,6 +517,122 @@ var vm = new Vue({
             this.funding = '',
             this.risk = '',
             this.scoreRisk = ''
+        },
+    },
+});
+
+
+//*************************************************** Elemento raíz para administrador usuarios ***************************************************
+var vm = new Vue({
+    el: '#adm_users', // id donde se implementa Vue
+    // Cuando se crea la instancia se ejecutan las siguientes funciones
+    created: function(){
+        this.getRoles(); // Carga la lista de clientes compaginados
+        this.getCompanies(); // Carga la lista de clientes compaginados
+        this.getUsersAll(); // Carga la lista de clientes compaginados
+    },
+    data:{
+        usersAll:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
+        companiesAll:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
+        rolesAll:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
+        errors:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
+        mostrar: false,
+        name: '',
+        email: '',
+        company: '',
+        role: '',
+        password: '',
+    },
+    computed:{
+    },
+    methods:{
+        clearProperty: function() {
+            this.name = '',
+            this.email = '',
+            this.password = '',
+            this.role = '',
+            this.company = '',
+            this.errors = []
+        },
+        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        mostrarDiv: function(){
+            this.mostrar = !this.mostrar;
+        },
+
+        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        createUser: function(index){
+            var url = 'users/'+id;
+            axios.post(url,{
+                name: this.name,
+                email: this.email,
+                password: this.password,
+                role: this.role,
+                company: this.company,
+            }).then(response => {
+            this.getUsersAll();
+            this.clearProperty();
+            alert("Usuario modificado con éxito");
+            }).catch(error => {
+                this.errors = error.response.data
+        });
+        },
+        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        deleteUser: function(id){
+            if (!confirm("¿Está seguro de eliminar al uSsuario? No podrá revertir la acción")) {
+                return false;
+            }
+            var url = 'users/'+id;
+            axios.delete(url).then(response => {
+            this.getUsersAll();
+            alert("Usuario eliminado con éxito")
+        });
+        },
+        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        getUsersAll: function(){
+            var urlUsersAll = 'list-users/indexAll';
+            Axios
+            .get(urlUsersAll)
+            .then(response => {
+                this.usersAll = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        },
+        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        getCompanies: function(){
+            var urlCompanies = 'list-companies/indexAll';
+            Axios
+            .get(urlCompanies)
+            .then(response => {
+                this.companiesAll = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        },
+        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        getRoles: function(){
+            var urlRoles = 'list-roles/indexAll';
+            Axios
+            .get(urlRoles)
+            .then(response => {
+                this.rolesAll = response.data
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        },
+
+        // Da formato a valores booleanos
+        formatBool: function(value) {
+            if (value == 1) {
+                return 'SI';
+            } else if(value == 0) {
+                return 'NO'
+            } else {
+                return 'NO DISPONIBLE';
+            }
         },
     },
 });

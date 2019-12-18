@@ -11,13 +11,12 @@
     <title>{{ config('app.name', 'SIPLAFT') }}</title> {{-- Nombre de la aplicación [Ver /.env] --}}
 
     <!-- Icono de la web -->
-    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="shortcut icon" href="{{ asset('/img/logo.png') }}">
 
     <!-- Styles -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/styles.css') }}" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head> {{-- Fin del head --}}
 <body> {{-- Inicio del body --}}
@@ -78,6 +77,8 @@
         <footer class="mt-auto py-2 page-footer" id="copyright">
             <small>Copyright &copy; 2019 - SIPLAFT - Todos los derechos reservados</small>
         </footer> {{-- Fin del footer --}}
+        <!-- Scripts -->
+        <script src="{{ asset('/js/app.js') }}" defer></script>
     </div>
 </body> {{-- Fin del body --}}
 </html>

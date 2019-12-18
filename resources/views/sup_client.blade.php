@@ -125,7 +125,7 @@
           </div>
           </div>
         </div>
-        <div class="card-footer bg-transparent border-warning flex-center"><button type="button" class="btn btn-block btn-color">Reportar</button></div>
+        {{-- <div class="card-footer bg-transparent border-warning flex-center"><button type="button" class="btn btn-block btn-color">Reportar</button></div> --}}
       </div>
     </div>
   </div>

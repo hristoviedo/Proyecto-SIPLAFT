@@ -43,8 +43,8 @@ class AdminController extends Controller
     //Fin de la función
 
     //Inicio de la función home_administrador
-    public function adm_log(){
-        return view('adm_log'); //Muestra la vista de 'home_adm.blade.php'
+    public function adm_record(){
+        return view('adm_record'); //Muestra la vista de 'home_adm.blade.php'
     }
     //Fin de la función
 

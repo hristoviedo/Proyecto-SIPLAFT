@@ -20,17 +20,7 @@ Route::get('/sup.transaction', 'HomeController@sup_transaction')->name('sup.tran
 
 Route::get('/adm.user', 'AdminController@adm_user')->name('adm.user'); // /home.adm llama a la función 'home_administrador' de HomeController
 
-Route::get('/adm.role', 'AdminController@adm_role')->name('adm.role'); // /home.adm llama a la función 'home_administrador' de HomeController
-
-Route::get('/adm.company', 'AdminController@adm_company')->name('adm.company'); // /home.adm llama a la función 'home_administrador' de HomeController
-
-Route::get('/adm.funding', 'AdminController@adm_funding')->name('adm.funding'); // /home.adm llama a la función 'home_administrador' de HomeController
-
-Route::get('/adm.risk', 'AdminController@adm_risk')->name('adm.risk'); // /home.adm llama a la función 'home_administrador' de HomeController
-
-Route::get('/adm.activity', 'AdminController@adm_activity')->name('adm.activity'); // /home.adm llama a la función 'home_administrador' de HomeController
-
-Route::get('/adm.log', 'AdminController@adm_log')->name('adm.log'); // /home.adm llama a la función 'home_administrador' de HomeController
+Route::get('/adm.record', 'AdminController@adm_record')->name('adm.record'); // /home.adm llama a la función 'home_administrador' de HomeController
 
 /**
  * Rutas de acceso a base de datos
@@ -53,6 +43,14 @@ Route::get('/list-transxclient/indexAll', 'ClientController@indexTransactionxCli
 Route::get('/list-trans/indexAll', 'TransactionController@indexTransactionsAll'); // /list2 llama a la función 'index2' de ClientController
 
 Route::get('/list-users/indexAll', 'UserController@indexUsersAll'); // /list1 llama a la función 'index' de ClientController
+
+Route::get('/list-companies/indexAll', 'UserController@indexCompaniesAll'); // /list1 llama a la función 'index' de ClientController
+
+Route::get('/list-roles/indexAll', 'UserController@indexRolesAll'); // /list1 llama a la función 'index' de ClientController
+
+Route::delete('/users/{id}', 'UserController@destroy'); // /list1 llama a la función 'index' de ClientController
+
+Route::put('/users/{id}', 'UserController@update'); // /list1 llama a la función 'index' de ClientController
 
 Route::get('/list-clientxcompany/indexAll', 'ClientController@indexClientXCompany'); // /list2 llama a la función 'index2' de ClientController
 

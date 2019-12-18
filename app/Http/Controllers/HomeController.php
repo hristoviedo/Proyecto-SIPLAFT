@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel; // Permite trabajar con archivos de Excel
-
 use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 
 use App\Imports\ClientImport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
@@ -81,13 +80,13 @@ class HomeController extends Controller
 
     //Inicio de la función clientExportExcel
     public function clientExportExcel(){
-        return Excel::download(new ClientExport, 'client-list.xlsx'); //Llama a la clase ClientExport para crear y descargar la lista de clientes en un excel.
+        return Excel::download(new ClientExport, 'client-list.csv'); //Llama a la clase ClientExport para crear y descargar la lista de clientes en un excel.
     }
     //Fin de la función
 
     //Inicio de la función transactionExportExcel
     public function transactionExportExcel(){
-        return Excel::download(new TransactionExport, 'transaction-list.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
+        return Excel::download(new TransactionExport, 'UIFTR0120191219.csv'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
 
     //Inicio de la función clientImportExcel
@@ -111,5 +110,4 @@ class HomeController extends Controller
         return back()->with('message', 'Lista de transacciones enviada'); //Retorna a la página anterior cuando termina de importar
     }
     //Fin de la función
-
 } //Fin del controlador
