@@ -3,8 +3,9 @@
 namespace App\Exports;
 
 use App\Transaction;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 
 
@@ -20,15 +21,24 @@ class TransactionExport implements FromCollection, WithHeadings, WithCustomCsvSe
     public function headings(): array{
         return [
             '#',
-            'Fecha_de_Transacción',
+            '#_de_Cliente',
+            '#_de_Usuario',
             '#_de_Compañía',
-            '#_de_Usuario'
+            'Fecha_de_Transacción',
+            'Efectivo?',
+            'Dolares?',
+            'Monto en lempiras',
+            'Monto en dolares',
         ];
     }
 
     public function collection()
     {
-        return Transaction::select("id","transaction_date","company_id","user_id")->get(); //Retorna 4 datos de los clientes (Falta implementarlo)
+        $data = DB::table('transactions') //Retorna 4 datos de los clientes (Falta implementarlo)
+                    ->whereYear('transaction_date', '2019')
+                    ->whereMonth('transaction_date', '04')
+                    ->get();
+        return $data;
     }
 
     public function getCsvSettings(): array

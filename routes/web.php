@@ -12,6 +12,8 @@ Route::get('/col.client', 'HomeController@col_client')->name('col.client'); // /
 
 Route::get('/col.transaction', 'HomeController@col_transaction')->name('col.transaction'); // /home.col llama a la función 'home_colaborador' de HomeController
 
+Route::get('/col.report', 'ColController@col_report')->name('col.report'); // /report llama a la función 'report' de SupController
+
 Route::get('/sup.client', 'HomeController@sup_client')->name('sup.client'); // /home.sup llama a la función 'sup_client' de HomeController
 
 Route::get('/sup.transaction', 'HomeController@sup_transaction')->name('sup.transaction'); // /home.trans llama a la función 'sup_transaction' de HomeController
