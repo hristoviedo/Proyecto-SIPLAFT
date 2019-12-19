@@ -13,34 +13,22 @@
         <h4 class="mb-3"></h4>
         <form class="">
           <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="name">Nombre completo</label>
-                <input type="text" class="form-control text-uppercase" id="name" placeholder="" v-model="name">
-                {{-- <div class="invalid-feedback">
-                  Valid first name is required.
-                </div> --}}
-              </div>
-            <div class="col-md-3 mb-3">
-              <label for="age">Edad</label>
-              <input type="number" class="form-control" id="age" placeholder="" v-model="age">
-              {{-- <div class="invalid-feedback">
-                Zip code required.
-              </div> --}}
-            </div>
-            <div class="col-md-3 mb-3">
-                <label class="" for="households">No. de Viviendas</label>
-                <input type="number" class="form-control" id="households" placeholder=""  v-model="households">
-                {{-- <div class="invalid-feedback">
-                  Zip code required.
-                </div> --}}
-              </div>
-          </div>
-          <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="activity">Actividad Económica</label>
-                <select class="custom-select d-block w-100" id="activity"  v-model="activity">
-                  <option v-for="(activityType, index) in activityArray" :key="index">
-                    @{{ activityType }}
+                <label for="month">Actividad Económica</label>
+                <select class="custom-select d-block w-100" id="month"  v-model="month">
+                  <option v-for="(month, index) in months" :key="index">
+                    @{{ month }}
+                  </option>
+                </select>
+                {{-- <div class="invalid-feedback">
+                  Please select a valid country.
+                </div> --}}
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="year">Actividad Económica</label>
+                <select class="custom-select d-block w-100" id="year"  v-model="year">
+                  <option v-for="(year, index) in years" :key="index">
+                    @{{ year }}
                   </option>
                 </select>
                 {{-- <div class="invalid-feedback">
