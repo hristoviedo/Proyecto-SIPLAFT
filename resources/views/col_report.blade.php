@@ -1,6 +1,6 @@
-@extends('layouts.sup')
+@extends('layouts.col')
 
-@section('content.sup')
+@section('content.col')
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"> {{-- Inicio del main --}}
     <div class="py-5 text-center">

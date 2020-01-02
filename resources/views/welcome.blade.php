@@ -23,7 +23,6 @@
                     @endauth
                 </div>
             @endif
-
             <div class="content">
                 <img src="{{ asset('img/logo.png') }}" class="img-fluid img-logo" alt="Responsive image">
                 <div class="title">

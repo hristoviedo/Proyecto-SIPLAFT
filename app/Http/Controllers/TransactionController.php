@@ -16,6 +16,12 @@ class TransactionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+    public function __construct()
+    {
+        $this->middleware('auth'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
+    }
+
     // Inicio de la función index
     public function index()
     {

@@ -12,6 +12,12 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
+    }
+
     public function index(Request $request)
     {
         // $clients = Client::get();
