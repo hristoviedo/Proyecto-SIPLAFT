@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel; // Permite trabajar con archivos de Excel
 use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 
@@ -10,7 +11,6 @@ use App\Imports\ClientImport; // Permite realizar exportaciones según los datos
 use App\Exports\ClientExport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
 use App\Imports\TransactionImport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
 use App\Exports\TransactionExport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
-use App\Http\Controllers\Auth;
 
 
 
@@ -45,7 +45,15 @@ class HomeController extends Controller
 
     //Inicio de la función welcome
     public function welcome(){
-        return view('welcome'); //Muestra la vista de 'welcome.blade.php'
+        if( Auth::user() ) //se valida si esta logueado
+            if( Auth::user()->role_id =='1' )        //se valida el tipo de usuario colaborador
+                return redirect('col.client');
+            elseif( Auth::user()->role_id =='2' )    //se valida el tipo de usuario supervisor
+                return redirect('sup.client');
+            else                                    //se valida el tipo de usuario adminnistrador
+                return redirect('adm.record');
+        else
+            return redirect('/login');
     }
     //Fin de la función
 
