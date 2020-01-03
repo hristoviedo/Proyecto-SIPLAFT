@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+//Inicio de la clase
 class CreateCompaniesTable extends Migration
 {
     /**
@@ -11,6 +12,7 @@ class CreateCompaniesTable extends Migration
      *
      * @return void
      */
+    //Inicio de la función up
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
@@ -19,15 +21,16 @@ class CreateCompaniesTable extends Migration
             $table->unsignedInteger('type')->nullable(); //Tipo de compañía, número dado por la autoridades competentes (nullable)
             $table->timestamps();
         });
-    }
+    }//Fin de la función
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
+    //Inicio de la función down
     public function down()
     {
-        Schema::dropIfExists('companies');
-    }
-}
+        Schema::dropIfExists('companies'); //Borra la tabla si existe
+    }//Fin de la función
+}//Fin de la clase

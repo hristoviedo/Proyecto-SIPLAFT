@@ -4,25 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//Inicio de la clase TransactionExport
 class AdminController extends Controller
 {
     // Inicio del constructor
     public function __construct()
     {
-        $this->middleware('adm'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
+        $this->middleware('adm'); //Verifica que la solicitud proviene de un usuario registrado con el role de administrador.
     }
     //Fin del constructor
 
-    //Inicio de la función home_administrador
+    //Inicio de la función adm_user
     public function adm_user(){
-        return view('adm_user'); //Muestra la vista de 'home_adm.blade.php'
+        return view('adm_user'); //Muestra la vista de 'adm_user.blade.php'
     }
     //Fin de la función
 
-    //Inicio de la función home_administrador
+    //Inicio de la función adm_record
     public function adm_record(){
-        return view('adm_record'); //Muestra la vista de 'home_adm.blade.php'
-    }
-    //Fin de la función
-
-}
+        return view('adm_record'); //Muestra la vista de 'adm_record.blade.php'
+    }//Fin de la función
+}//Fin de la clase

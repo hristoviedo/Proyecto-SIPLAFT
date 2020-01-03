@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+//Inicio de la clase
 class CreateTransactionsUploads extends Migration
 {
     /**
@@ -11,6 +11,7 @@ class CreateTransactionsUploads extends Migration
      *
      * @return void
      */
+    //Inicio de la función up
     public function up()
     {
         Schema::create('transactions_uploads', function (Blueprint $table) {
@@ -23,15 +24,16 @@ class CreateTransactionsUploads extends Migration
             $table->unsignedDecimal('transaction_amount_dollars',10,2); //Monto de la transacción en dólares (not null)
             $table->timestamps(); //Fecha de creación y modificación del registro
         });
-    }
+    }//Fin de la función
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
+    //Inicio de la función down
     public function down()
     {
-        Schema::dropIfExists('transactions_uploads');
-    }
-}
+        Schema::dropIfExists('transactions_uploads'); //Borra la tabla si existe
+    }//Fin de la función
+}//Fin de la clase

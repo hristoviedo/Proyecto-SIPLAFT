@@ -17,27 +17,29 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
     */
 
+    // Inicio del constructor
     public function __construct()
     {
         $this->middleware('auth'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
-    }
+    }//Fin del constructor
 
-    // Inicio de la función indexCompany
+    // Inicio de la función indexCompaniesAll
     public function indexCompaniesAll()
     {
         // Selecciona todas las compañías de la tabla
         $companies = Company::select('id', 'name')->get();
 
-        return $companies;
+        return $companies; // Retorna la lista de compañias
     }
 
+    // Inicio de la función indexRolesAll
     public function indexRolesAll()
     {
         // Selecciona todas las compañías de la tabla
         $roles = Role::select('id', 'name')->get();
 
-        return $roles;
-    }
+        return $roles; // Retorna la lista de roles
+    }// Fin de la función
 
     // Inicio de la función indexUsersAll
     public function indexUsersAll()
@@ -50,7 +52,7 @@ class UserController extends Controller
         ORDER BY user_id DESC';
         $users = DB::select($sql);
 
-        return $users;
+        return $users; //Retorna la lista de los usuarios registrados
     }
 
 
@@ -127,9 +129,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+    //Inicio de la función destroy
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-    }
-}
+        $user = User::find($id); //Busca el usuario que tenga el id del parametro
+        $user->delete(); //Elimina el registro
+    }//Fin de la función
+}//Fin de la clase

@@ -8,16 +8,13 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 
-
+//Inicio de la clase TransactionExport
 class TransactionExport implements FromCollection, WithHeadings, WithCustomCsvSettings
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    // public function collection()
-    // {
-    //     return Transaction::all(); //Retorna todos los dato de todas las transacciones (Falta implementarlo)
-    // }
+    //Inicio de la funcion headings
     public function headings(): array{
         return [
             '#',
@@ -29,22 +26,24 @@ class TransactionExport implements FromCollection, WithHeadings, WithCustomCsvSe
             'Dolares?',
             'Monto en lempiras',
             'Monto en dolares',
-        ];
-    }
+        ]; //Asigna el encabezado predeterminado de los datos a exportar
+    }//Fin de la funcion
 
+    //Inicio de la funcion collection
     public function collection()
     {
-        $data = DB::table('transactions') //Retorna 4 datos de los clientes (Falta implementarlo)
+        $data = DB::table('transactions')
                     ->whereYear('transaction_date', '2019')
                     ->whereMonth('transaction_date', '04')
                     ->get();
-        return $data;
-    }
+        return $data; //Retorna los datos de las transacciones segun el mes y año a reportar(Falta implementarlo)
+    }//Fin de la funcion
 
+    //Inicio de la funcion getCsvSettings
     public function getCsvSettings(): array
     {
         return [
             'delimiter' => '|'
-        ];
-    }
-}
+        ]; //Indica el caracter delimitador para los datos
+    }//Fin de la funcion
+}//Fin de la clase

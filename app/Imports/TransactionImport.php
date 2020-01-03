@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
+//Inicio de la clase
 class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading
 {
     /**
@@ -56,4 +57,4 @@ class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading
     {
         return 10;
     }//Fin de la función
-}
+} //Fin de la clase

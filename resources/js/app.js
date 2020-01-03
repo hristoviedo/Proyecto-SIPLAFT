@@ -1,31 +1,9 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 
 window.Vue = require('vue');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 import Axios from "axios";
 
 import moment from 'moment';
@@ -36,13 +14,13 @@ var vm = new Vue({
     el: '#sup_clients', // id donde se implementa Vue
     // Cuando se crea la instancia se ejecutan las siguientes funciones
     created: function(){
-        this.getClientXCompany(); // Carga la lista de todos los clientes en un mismo arreglo
+        this.getClientXCompany(); // Carga la lista de todos los clientes y el nombre de la empresa que lo registró en un mismo arreglo
         this.getClients(); // Carga la lista de clientes compaginados
         this.getClientsAll(); // Carga la lista de todos los clientes en un mismo arreglo
     },
     data:{
         clients: [], // Arreglo que contiene la lista de clientes según paginación
-        clientXCompanies: [], // Arreglo que contiene la lista de clientes según paginación
+        clientXCompanies: [], // Arreglo que contiene la lista de clientes y empresa
         clientsAll: [], // Arreglo que contiene la lista de todos los clientes
         chosenClient:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
         // Objeto que contiene los atributos de la paginación
@@ -104,7 +82,7 @@ var vm = new Vue({
         },
     },
     methods:{
-        // Asigna un valor a [property] para mostrar todos los registros.
+        // Asigna un espacio a [property] para mostrar todos los registros.
         showEverything: function(){
             this.property = ' ';
         },
@@ -112,7 +90,7 @@ var vm = new Vue({
         showpagination: function(){
             this.property = '';
         },
-        // Llama a la ruta /list y usa [page] como variable opcional para cargar los registros de clientes en MySQL
+        // Llama a la ruta /list-clients y usa [page] como variable opcional para cargar los registros de clientes en MySQL
         getClients: function(page){
             var urlClients = 'list-clients?page='+page;
             Axios
@@ -125,7 +103,7 @@ var vm = new Vue({
                 console.log(err);
             });
         },
-        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        // Llama a la ruta /list-clients/indexAll para cargar los registros de todos los clientes en MySQL
         getClientsAll: function(){
             var urlClientsAll = 'list-clients/indexAll';
             Axios
@@ -165,7 +143,7 @@ var vm = new Vue({
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
 
-        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        // Llama a la ruta /list-clientxcompany/indexAll para cargar los registros de todos los clientes y compañias relacionadas en MySQL
         getClientXCompany: function(){
             var urlClientXCompany = 'list-clientxcompany/indexAll';
             Axios
@@ -177,7 +155,7 @@ var vm = new Vue({
                 console.log(err);
             });
         },
-        // Llama a la ruta list/index2 para cargar los registros de todos los riesgos en MySQL
+        // Llama a la ruta /list-users/indexCompany para cargar los registros de todos las compañias en MySQL
         getCompanies: function(){
             var urlCompanies = 'list-users/indexCompany';
             Axios
@@ -265,9 +243,9 @@ var vm = new Vue({
         this.getTransactionsAll(); // Carga la lista de clientes compaginados
     },
     data:{
-        transactionsAll:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
-        transactions:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
-        chosenTransactions:[], // Arreglo que contiene un solo registro de cliente mostrado en la tarjeta [card]
+        transactionsAll:[], // Arreglo que contiene todos los registros de transacciones
+        transactions:[], // Arreglo que contiene un solo registro de transacción
+        chosenTransactions:[], // Arreglo que contiene un solo registro de transaccion mostrado en la tarjeta [card]
         // Objeto que contiene los atributos de la paginación
         pagination: {
             'total': 0,
@@ -334,6 +312,7 @@ var vm = new Vue({
         showpagination: function(){
             this.property = '';
         },
+        // Llama a la ruta list-trans y usa [page] como variable opcional para cargar los registros de las transacciones en MySQL
         getTransactions: function(page){
             var urlTransactions = 'list-trans?page='+page;
             Axios
@@ -346,7 +325,7 @@ var vm = new Vue({
                 console.log(err);
             });;
         },
-        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        // Llama a la ruta list-trans/indexAll para cargar los registros de todas las transacciones en MySQL
         getTransactionsAll: function(){
             var urlTransactionsAll = 'list-trans/indexAll';
             Axios
@@ -359,12 +338,12 @@ var vm = new Vue({
             });
         },
 
-        // Agrega un objeto cliente de [clients] para ser visto en la card
+        // Agrega un objeto transaccion de [transaction] para ser visto en la card
         addTransaction: function(index){
            this.chosenTransactions = {transaction:this.transactions[index]};
         },
 
-        // Agrega un objeto cliente de [searchClientsAll] para ser visto en la card
+        // Agrega un objeto transaction de [searchClientsAll] para ser visto en la card
         addTransactionsAll: function(index){
            this.chosenTransactions = {transaction:this.searchTransactionsAll[index]};
         },

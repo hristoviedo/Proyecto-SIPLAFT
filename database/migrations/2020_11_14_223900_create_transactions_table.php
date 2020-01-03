@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+//Inicio de la clase
 class CreateTransactionsTable extends Migration
 {
     /**
@@ -11,6 +11,7 @@ class CreateTransactionsTable extends Migration
      *
      * @return void
      */
+    //Inicio de la función up
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
@@ -36,15 +37,16 @@ class CreateTransactionsTable extends Migration
                     ->onDelete('set null') //No borrar transacción
                     ->onUpdate('cascade'); //Actualizar en cascada
         });
-    }
+    }//Fin de la función
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
+    //Inicio de la función down
     public function down()
     {
-        Schema::dropIfExists('transactions');
-    }
-}
+        Schema::dropIfExists('transactions'); //Borra la tabla si existe
+    }//Fin de la función
+}//Fin de la clase

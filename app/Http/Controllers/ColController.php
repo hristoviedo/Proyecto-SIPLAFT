@@ -4,50 +4,51 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//Inicio de la clase ColController
 class ColController extends Controller
 {
     // Inicio del constructor
     public function __construct()
     {
-        $this->middleware('col'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
-        // $this->middleware('adm'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
-    }
-    //Fin del constructor
+        $this->middleware('col'); //Verifica que la solicitud proviene de un usuario registrado con el role de colaborador.
+    }//Fin del constructor
 
-    //Inicio de la función home_colaborador
+    //---------------------------------------------------------- Vistas ----------------------------------------------------------
+
+    //Inicio de la función col_report
     public function col_report()
     {
-        return view('col_report');
-    }
-    //Fin de la función
+        return view('col_report'); //Muestra la vista de 'col_report.blade.php'
+    }//Fin de la función
 
-    //Inicio de la función home_colaborador
+    //Inicio de la función col_client
     public function col_client(){
-        return view('col_client'); //Muestra la vista de 'home_col.blade.php'
-    }
-    //Fin de la función
+        return view('col_client'); //Muestra la vista de 'col_client.blade.php'
+    }//Fin de la función
 
-    //Inicio de la función home_colaborador
+    //Inicio de la función col_transaction
     public function col_transaction(){
-        return view('col_transaction'); //Muestra la vista de 'home_col.blade.php'
-    }
-    //Fin de la función
+        return view('col_transaction'); //Muestra la vista de 'col_transaction.blade.php'
+    }//Fin de la función
 
+    //Inicio de la función col_simulation
     public function col_simulation(){
-        return view('col_simulation'); //Muestra la vista de 'simulation.blade.php'
-    }
-    //Fin de la función
+        return view('col_simulation'); //Muestra la vista de 'col_simulation.blade.php'
+    }//Fin de la función
+
+    //---------------------------------------------------------- Exportar Datos ----------------------------------------------------------
 
     //Inicio de la función clientExportExcel
     public function clientExportExcel(){
         return Excel::download(new ClientExport, 'client-list.csv'); //Llama a la clase ClientExport para crear y descargar la lista de clientes en un excel.
-    }
-    //Fin de la función
+    }//Fin de la función
 
     //Inicio de la función transactionExportExcel
     public function transactionExportExcel(){
         return Excel::download(new TransactionExport, 'UIFTR0120191219.csv'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
+
+    //---------------------------------------------------------- Importar Datos ----------------------------------------------------------
 
     //Inicio de la función clientImportExcel
     public function clientImportExcel(Request $request){ //Recibe como parámetro el archivo de excel
@@ -57,8 +58,7 @@ class ColController extends Controller
         // $groupClients = DB::select('CALL groupClients'); // Procedimiento Almacenado para agrupar a los clientes con un mismo número de identidad
         $calculateRisks = DB::select('CALL calculateRisks'); // Procedimiento Almacenado para calcular el riesgo
         return back()->with('message', 'Lista de clientes enviada'); //Retorna a la página anterior cuando termina de importar
-    }
-    //Fin de la función
+    }//Fin de la función
 
     //Inicio de la función transactionImportExcel
     public function TransactionImportExcel(Request $request){ //Recibe como parámetro el archivo de excel
@@ -68,6 +68,5 @@ class ColController extends Controller
         Excel::import(new TransactionImport, $file); //Llama a la clase TransactionImport para subir la lista de transacciones del excel.
         $matchTablesTransactions = DB::select('CALL matchTablesTransactions (?, ?)', array($user_id,$company_id)); // Procedimiento Almacenado para relacionar clientes con otras tablas
         return back()->with('message', 'Lista de transacciones enviada'); //Retorna a la página anterior cuando termina de importar
-    }
-    //Fin de la función
-}
+    }//Fin de la función
+}//Fin de la clase

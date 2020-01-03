@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-
+//Inicio de la clase
 class ClientImport implements ToModel, WithBatchInserts, WithChunkReading
 {
     /**
@@ -16,7 +16,7 @@ class ClientImport implements ToModel, WithBatchInserts, WithChunkReading
     * @return \Illuminate\Database\Eloquent\Model|null
     */
 
-    // Inicio de la función
+    // Inicio de la función model
     public function model(array $row)
     {
         //Inicio de la condición

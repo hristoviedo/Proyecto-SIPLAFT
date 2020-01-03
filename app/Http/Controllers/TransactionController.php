@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 
-
+//Inicio de la clase TransactionController
 class TransactionController extends Controller
 {
     /**
@@ -16,16 +16,16 @@ class TransactionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
+    // Inicio del constructor
     public function __construct()
     {
         $this->middleware('auth'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
-    }
+    }//Fin del constructor
 
     // Inicio de la función index
     public function index()
     {
-        // Ordena los transacciones de forma descendente y los agrupa de 10 en 10
+        // Ordena las transacciones de forma descendente y los agrupa de 15 en 15
 
         $transactions = DB::table('transactions')
         ->join('users','transactions.user_id','=','users.id')
@@ -38,7 +38,7 @@ class TransactionController extends Controller
         ->orderByDesc('transaction_date')
         ->paginate(15);
 
-        // Retorna la lista de clientes, el total y otros datos para la paginación
+        // Retorna la lista de transaccione, el total de registros y otros datos para la paginación
         return [
             'pagination' => [
                 'total'        => $transactions->total(),
@@ -132,4 +132,4 @@ class TransactionController extends Controller
     {
         //
     }
-}
+}//Fin de la clase

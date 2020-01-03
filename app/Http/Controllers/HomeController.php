@@ -36,24 +36,18 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    //Inicio de la función index
-    public function index()
-    {
-        return view('welcome'); //Muestra la vista de 'home.blade.php'
-    }
-    //Fin de la función
-
     //Inicio de la función welcome
     public function welcome(){
         if( Auth::user() ) //se valida si esta logueado
-            if( Auth::user()->role_id =='1' )        //se valida el tipo de usuario colaborador
+            if( Auth::user()->role_id =='1' )       //se valida el tipo de usuario colaborador
                 return redirect('col.client');
-            elseif( Auth::user()->role_id =='2' )    //se valida el tipo de usuario supervisor
+            elseif( Auth::user()->role_id =='2' )   //se valida el tipo de usuario supervisor
                 return redirect('sup.client');
-            else                                    //se valida el tipo de usuario adminnistrador
+            elseif( Auth::user()->role_id =='3' )   //se valida el tipo de usuario administrador
                 return redirect('adm.record');
+            else
+            return redirect('/login');              //se retorna al inicio de sesion
         else
-            return redirect('/login');
-    }
-    //Fin de la función
+            return redirect('/login');              //se retorna al inicio de sesion
+    }//Fin de la función
 } //Fin del controlador

@@ -19,7 +19,7 @@ class Client extends Model
         return $this->belongsToMany('Transaction::class')->withTimestamps();
     }
     //Fin de la función
-    
+
     //Inicio de la función risk
     public function risk()
     {
@@ -27,7 +27,7 @@ class Client extends Model
         return $this->belongsTo('Risk::class');
     }
     //Fin de la función
-    
+
     //Inicio de la función funding
     public function funding()
     {
@@ -35,8 +35,8 @@ class Client extends Model
         return $this->belongsTo('Funding::class');
     }
     //Fin de la función
-    
-    //Inicio de la función funding
+
+    //Inicio de la función activity
     public function activity()
     {
         //Un cliente tiene un tipo de actividad

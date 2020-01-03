@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+//Inicio de la clase
 class CreateClientsUploads extends Migration
 {
     /**
@@ -11,6 +11,7 @@ class CreateClientsUploads extends Migration
      *
      * @return void
      */
+    //Inicio de la función up
     public function up()
     {
         Schema::create('clients_uploads', function (Blueprint $table) {
@@ -29,15 +30,16 @@ class CreateClientsUploads extends Migration
             $table->unsignedDecimal('total_amount',11,2)->default(null)->nullable(); //Monto total de dinero invertido (valor por defecto = 0.00 y nullable)
             $table->timestamps(); //Fecha de creación y modificación del registro
         });
-    }
+    }//Fin de la función
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
+    //Inicio de la función down
     public function down()
     {
-        Schema::dropIfExists('clients_uploads');
-    }
-}
+        Schema::dropIfExists('clients_uploads'); //Borra la tabla si existe
+    }//Fin de la función
+}//Fin de la clase

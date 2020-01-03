@@ -13,16 +13,15 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     //Inicio del constructor
     public function __construct()
     {
         $this->middleware('auth'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
-    }
+    }//Fin del constructor
 
+    //Inicio de la funcion index
     public function index(Request $request)
     {
-        // $clients = Client::get();
-
-        // return $clients;
 
         // Ordena los clientes de forma descendente y los agrupa de 10 en 10
         $clients = DB::table('clients')
@@ -35,10 +34,6 @@ class ClientController extends Controller
                 'activities.name AS client_activity','fundings.name AS client_funding', 'risks.name AS client_risk')
         ->orderByDesc('client_score_risk')
         ->paginate(15);
-        // $clients = Client::select('id', 'activity_id','funding_id', 'risk_id', 'identity', 'name', 'age', 'email', 'workplace', 'phone1',
-        //                         'phone2', 'nationality', 'households', 'total_amount', 'score_risk')
-        //                     ->orderBy('id', 'DESC')
-        //                     ->paginate(10);
 
         // Retorna la lista de clientes, el total y otros datos para la paginación
         return [
@@ -52,8 +47,9 @@ class ClientController extends Controller
             ],
             'clients' => $clients,
         ];
-    }
+    }//Fin de la funcion
 
+    //Inicio de la función index2
     public function index2()
     {
         // Selecciona todos los clientes de la tabla
@@ -67,8 +63,9 @@ class ClientController extends Controller
         $clients = DB::select($sql);
 
         return $clients; // Retorna la lista de clientes
-    }
+    }//Fin de la funcion
 
+    //Inicio de la función indexClientXCompany
     public function indexClientXCompany()
     {
         // Selecciona todos los riesgos de la tabla
@@ -76,7 +73,7 @@ class ClientController extends Controller
         $clientxcompany = DB::select($sql);
 
         return $clientxcompany; // Retorna la lista de clientes por compañía
-    }
+    }//Fin de la funcion
 
     /**
      * Show the form for creating a new resource.

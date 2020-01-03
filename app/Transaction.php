@@ -18,7 +18,7 @@ class Transaction extends Model
         return $this->belongsTo('User::class')->withTimestamps();
     }
     //Fin de la función
-    
+
     //Inicio de la función companies
     public function companies()
     {
@@ -26,7 +26,7 @@ class Transaction extends Model
         return $this->belongsTo('Company::class')->withTimestamps();
     }
     //Fin de la función
-    
+
     //Inicio de la función clients
     public function clients()
     {

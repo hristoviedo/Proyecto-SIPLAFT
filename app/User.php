@@ -15,6 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    //Permite la subida masiva de información a la base de datos. Deben estar todos los campos de la tabla users
     protected $fillable = [
         'role_id','company_id','name', 'email', 'password','active'
     ];
