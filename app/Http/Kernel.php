@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'adm' => \App\Http\Middleware\admMiddleware::class,
         'sup' => \App\Http\Middleware\supMiddleware::class,
         'col' => \App\Http\Middleware\colMiddleware::class,
+        'active' => \App\Http\Middleware\activeMiddleware::class,
     ];
 
     /**
