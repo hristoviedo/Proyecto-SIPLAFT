@@ -11,6 +11,7 @@ class SupController extends Controller
     public function __construct()
     {
         $this->middleware('sup'); //Verifica que la solicitud proviene de un usuario registrado con el role de supervisor.
+        $this->middleware('active'); //Verifica que la solicitud proviene de un usuario activo.
     }
     //Fin del constructor
 

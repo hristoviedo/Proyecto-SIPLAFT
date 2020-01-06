@@ -3,6 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel; // Permite trabajar con archivos de Excel
+use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
+
+use App\Imports\ClientImport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
+use App\Exports\ClientExport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
+use App\Imports\TransactionImport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
+use App\Exports\TransactionExport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
+
 
 //Inicio de la clase ColController
 class ColController extends Controller
@@ -11,6 +20,7 @@ class ColController extends Controller
     public function __construct()
     {
         $this->middleware('col'); //Verifica que la solicitud proviene de un usuario registrado con el role de colaborador.
+        $this->middleware('active'); //Verifica que la solicitud proviene de un usuario activo.
     }//Fin del constructor
 
     //---------------------------------------------------------- Vistas ----------------------------------------------------------
@@ -55,7 +65,6 @@ class ColController extends Controller
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new ClientImport, $file); //Llama a la clase ClientImport para subir la lista de clientes del excel.
         $matchTablesClients = DB::select('CALL matchTablesClients'); // Procedimiento Almacenado para relacionar clientes con otras tablas
-        // $groupClients = DB::select('CALL groupClients'); // Procedimiento Almacenado para agrupar a los clientes con un mismo número de identidad
         $calculateRisks = DB::select('CALL calculateRisks'); // Procedimiento Almacenado para calcular el riesgo
         return back()->with('message', 'Lista de clientes enviada'); //Retorna a la página anterior cuando termina de importar
     }//Fin de la función

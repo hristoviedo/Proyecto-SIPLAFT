@@ -11,6 +11,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('adm'); //Verifica que la solicitud proviene de un usuario registrado con el role de administrador.
+        $this->middleware('active'); //Verifica que la solicitud proviene de un usuario activo.
     }
     //Fin del constructor
 
