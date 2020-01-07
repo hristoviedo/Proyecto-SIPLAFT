@@ -56,8 +56,8 @@
           <td>@{{ transaction.client_identity }}</td>
           <td>@{{ transaction.client_name }}</td>
           <td>@{{ formatDate(transaction.transaction_date) }}</td>
-          <td>@{{ transaction.transaction_cash }}</td>
-          <td>@{{ transaction.transaction_dollars }}</td>
+          <td>@{{ formatBool(transaction.transaction_cash) }}</td>
+          <td>@{{ formatBool(transaction.transaction_dollars) }}</td>
           <td>L @{{ formatPrice(transaction.transaction_amount_lempiras) }}</td>
           <td>$ @{{ formatPrice(transaction.transaction_amount_dollars) }}</td>
           <td>@{{ transaction.company_name }}</td>
