@@ -100,12 +100,12 @@
           <div class="column1">
             <p class="text-center"><strong>Datos Generales</strong></p>
             <ul>
-              <li v-show='client.client_identity'>@{{ client.client_identity }}</li>
-              <li v-show='client.client_phone1'>@{{ client.client_phone1 }}</li>
-              <li v-show='client.client_phone2'>@{{ client.client_phone2 }}</li>
-              <li v-show='client.client_workplace'>@{{ client.client_workplace }}</li>
-              <li v-show='client.client_nationality'>@{{ client.client_nationality }}</li>
-              <li v-show='client.client_total_amount'>L @{{ formatPrice(client.client_total_amount) }}</li>
+              <li v-show='client.client_identity'><b>No. de Identidad: </b>@{{ client.client_identity }}</li>
+              <li v-show='client.client_phone1'><b>No. de Teléfono No.1: </b>@{{ client.client_phone1 }}</li>
+              <li v-show='client.client_phone2'><b>No. de Teléfono No.2: </b>@{{ client.client_phone2 }}</li>
+              <li v-show='client.client_workplace'><b>Lugar de Trabajo: </b>@{{ client.client_workplace }}</li>
+              <li v-show='client.client_nationality'><b>Nacionalidad: </b>@{{ client.client_nationality }}</li>
+              <li v-show='client.client_total_amount'><b>Monto Total: </b>L @{{ formatPrice(client.client_total_amount) }}</li>
             </ul>
             <hr>
             <p class="text-center"><strong>Inmoviliarias</strong></p>
@@ -115,12 +115,12 @@
           </div>
           <div class="column2">
             <ul>
-              <p><strong>Datos de Interés</strong></p>
-              <li v-show='client.client_age'>@{{ client.client_age }} AÑOS</li>
-              <li v-show='client.client_activity'>@{{ client.client_activity }}</li>
-              <li v-show='client.client_funding'>@{{ client.client_funding }}</li>
-              <li v-show='client.client_households'>@{{ client.client_households }} PROPIEDADES</li>
-              <li v-show='client.client_score_risk'>@{{ client.client_score_risk }} de 5.00</li>
+              <p class="text-center"><strong>Datos de Interés</strong></p>
+              <li v-show='client.client_age'><b>Edad: </b>@{{ client.client_age }} AÑOS</li>
+              <li v-show='client.client_activity'><b>Actividad: </b>@{{ client.client_activity }}</li>
+              <li v-show='client.client_funding'><b>Fuente de Financiación: </b>@{{ client.client_funding }}</li>
+              <li v-show='client.client_households'><b>No. de Propiedades: </b>@{{ client.client_households }}</li>
+              <li v-show='client.client_score_risk'><b>Puntaje de Riesgo: </b>@{{ client.client_score_risk }} de 5.00</li>
             </ul>
           </div>
           </div>
