@@ -263,8 +263,6 @@ var vm = new Vue({
         searchTransactionsAll: function(){
             return this.transactionsAll.filter((index) => {
                 return index.transaction_date.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.transaction_cash.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.transaction_dollars.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_identity.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.company_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
@@ -368,7 +366,7 @@ var vm = new Vue({
         // Da formato a valores booleanos
         formatBool: function(value) {
             if (value == 1) {
-                return 'SI';
+                return 'SÍ';
             } else if(value == 0) {
                 return 'NO'
             } else {
@@ -606,7 +604,7 @@ var vm = new Vue({
         // Da formato a valores booleanos
         formatBool: function(value) {
             if (value == 1) {
-                return 'SI';
+                return 'SÍ';
             } else if(value == 0) {
                 return 'NO'
             } else {

@@ -67245,7 +67245,7 @@ var vm = new Vue({
       var _this6 = this;
 
       return this.transactionsAll.filter(function (index) {
-        return index.transaction_date.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_cash.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_dollars.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_identity.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.company_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.user_name.toUpperCase().includes(_this6.property.toUpperCase().trim());
+        return index.transaction_date.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_identity.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.company_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.user_name.toUpperCase().includes(_this6.property.toUpperCase().trim());
       });
     },
     // Retorna la página que está activa
@@ -67345,7 +67345,7 @@ var vm = new Vue({
     // Da formato a valores booleanos
     formatBool: function formatBool(value) {
       if (value == 1) {
-        return 'SI';
+        return 'SÍ';
       } else if (value == 0) {
         return 'NO';
       } else {
@@ -67586,7 +67586,7 @@ var vm = new Vue({
     // Da formato a valores booleanos
     formatBool: function formatBool(value) {
       if (value == 1) {
-        return 'SI';
+        return 'SÍ';
       } else if (value == 0) {
         return 'NO';
       } else {
