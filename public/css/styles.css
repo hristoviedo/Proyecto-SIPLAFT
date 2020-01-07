@@ -60,10 +60,10 @@
 }
 /*Columnas en Cards*/
 .column1 {
-  width: 40%;
+  width: 45%;
 }
 .column2 {
-  width: 60%;
+  width: 55%;
 }
 .column1 .column2{
   float: left;
@@ -4775,7 +4775,7 @@
     color: #fff;
   }
   .card-w{
-    width: 33rem;
+    width: 40rem;
   }
 
   .card {
