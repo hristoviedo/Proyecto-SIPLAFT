@@ -2,45 +2,46 @@
 
 @section('content.adm')
 
-<div id="adm_users" class="col-md-8 col-lg-11 px-4">
+<div id="adm_users" class="col-md-9 col-lg-10 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <h1 class="h2">Tabla de Usuarios</h1>
-        <div class="btn-group mr-2" v-if="!mostrar">
-            <button type="button" class="btn btn-success btn-action" @click.prevent='mostrarDiv'><i class="material-icons">person_add</i></button>
+        <div class="btn-group mr-2">
+            <a class="btn btn-success btn-action" role="button" href="register">
+                <i class="material-icons">person_add</i>
+            </a>
         </div>
-        <div class="btn-group mr-2" v-if="mostrar">
-            <button type="button" class="btn btn-danger btn-action" @click.prevent='mostrarDiv'><i class="material-icons">clear</i></button>
-        </div>
+        {{-- <div class="btn-group mr-2">
+            <button type="button" class="btn btn-danger btn-action"><i class="material-icons">clear</i></button>
+        </div> --}}
     </div>
     <div class="row">
-        <div class="col-md-9 order-md-1">
-            <table class="table table-striped table-hover table-sm text-center">
-            <thead class="thead-dark">
-                <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Rol</th>
-                <th>Empresa</th>
-                <th>¿Activo?</th>
-                <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(user, index) in usersAll" :key="index">
-                <td>@{{ user.user_name }}</td>
-                <td>@{{ user.user_email }}</td>
-                <td>@{{ user.user_role }}</td>
-                <td>@{{ user.user_company }}</td>
-                <td>@{{ formatBool(user.user_active) }}</td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-action" ><i class="material-icons">update</i></button>
-                    <button id="alert-target" type="button" class="btn btn-danger btn-action" v-on:click.prevent='deleteUser(user.user_id)'><i class="material-icons">delete</i></button>
-                </td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-        <div v-if="mostrar" class="col-md-3 order-md-2">
+        <table class="table table-striped table-hover table-sm text-center">
+        <thead class="thead-dark">
+            <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Empresa</th>
+            <th>¿Activo?</th>
+            <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(user, index) in usersAll" :key="index">
+            <td>@{{ user.user_name }}</td>
+            <td>@{{ user.user_email }}</td>
+            <td>@{{ user.user_role }}</td>
+            <td>@{{ user.user_company }}</td>
+            <td>@{{ formatBool(user.user_active) }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-action" ><i class="material-icons">update</i></button>
+                <button id="alert-target" type="button" class="btn btn-danger btn-action" v-on:click.prevent='deleteUser(user.user_id)'><i class="material-icons">delete</i></button>
+            </td>
+            </tr>
+        </tbody>
+        </table>
+
+        {{-- <div v-if="mostrar" class="col-md-3 order-md-2">
             <h4 class="mb-3">Datos del usuario</h4>
             <form class="">
                 <span v-for="error in errors" class="text-danger">@{{ error }}</span>
@@ -77,7 +78,7 @@
                     <button type="button" class="btn btn-sm btn-color" v-on:click.prevent='createUser'>Guardar usuario</button>
                 </div>
             </form>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection

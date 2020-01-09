@@ -2,11 +2,11 @@
 
 @section('content.adm')
 
-<div id="adm_users" class="col-md-9 ml-sm-auto col-lg-11 px-4">
+<div id="adm_users" class="col-md-9 col-lg-10 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <h1 class="h2">Tabla de Eventos</h1>
     </div>
-  <div class="table-responsive">
+  <div class="row">
     <table class="table table-striped table-hover table-sm text-center">
       <thead class="thead-dark">
         <tr>
