@@ -14,6 +14,11 @@
     background-color: rgba(102, 102, 102, 0.3);
 }
 
+.bar__extensive {
+    position: absolute;
+    height: 100%;
+}
+
 .full-height {
     height: 95vh;
 }
@@ -67,6 +72,9 @@
 }
 .column1 .column2{
   float: left;
+}
+.link__color{
+    color: rgb(255, 255, 255);
 }
 
 
@@ -135,7 +143,9 @@
 .bg-moderado{
   background-color: rgba(102, 102, 102, 0.3);
 }
-
+.bg-color{
+  background-color: rgba(255, 127, 16, 0.5);
+}
 
 .text-title-card{
   font-size: 20px;
@@ -368,7 +378,7 @@
   }
 
   a {
-    color: rgba(102, 102, 102, 1);
+    color: rgb(0, 0, 0);
     text-decoration: none;
     background-color: transparent;
   }
@@ -594,6 +604,7 @@
 
   h2, .h2 {
     font-size: 2rem;
+    padding: 0.5rem;
   }
 
   h3, .h3 {
@@ -1735,7 +1746,7 @@
 
   .table {
     width: 100%;
-    margin-bottom: 1rem;
+    /* margin: 1rem; */
     color: #212529;
   }
 
@@ -4380,7 +4391,7 @@
     align-items: center;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    padding: 0.5rem 1rem;
+    padding: 0rem 1rem;
   }
 
   .navbar > .container,
@@ -4790,6 +4801,7 @@
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
+    margin: 0.5rem;
   }
 
   .card > hr {
@@ -6799,7 +6811,7 @@
   }
 
   .bg-light {
-    background-color: #f8f9fa !important;
+    background-color: #343a40 !important;
   }
 
   a.bg-light:hover, a.bg-light:focus,
@@ -8391,7 +8403,7 @@
 
   .pt-4,
   .py-4 {
-    padding-top: 1.5rem !important;
+    padding-top: 0 !important;
   }
 
   .pr-4,
@@ -8401,7 +8413,7 @@
 
   .pb-4,
   .py-4 {
-    padding-bottom: 1.5rem !important;
+    padding-bottom: 2.5rem !important;
   }
 
   .pl-4,
@@ -10148,7 +10160,7 @@
   }
 
   .text-muted {
-    color: #6c757d !important;
+    color: #ffffff !important;
   }
 
   .text-black-50 {
