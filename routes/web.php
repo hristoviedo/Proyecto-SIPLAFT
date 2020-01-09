@@ -28,7 +28,7 @@ Route::get('/adm.user', 'AdminController@adm_user')->name('adm.user'); // /adm.u
 
 Route::get('/adm.record', 'AdminController@adm_record')->name('adm.record'); // /adm.record llama a la función 'adm_record' de AdminController
 
-// Route::get('/user.create', 'AdminController@user_create')->name('user.create'); // /user.create llama a la función 'user_create' de AdminController
+Route::get('/user.update', 'AdminController@user_update')->name('user.update'); // /user.update llama a la función 'user_update' de AdminController
 /**
  * Rutas de acceso a base de datos
  */
