@@ -28,11 +28,13 @@ Route::get('/adm.user', 'AdminController@adm_user')->name('adm.user'); // /adm.u
 
 Route::get('/adm.record', 'AdminController@adm_record')->name('adm.record'); // /adm.record llama a la función 'adm_record' de AdminController
 
+// Route::get('/user.create', 'AdminController@user_create')->name('user.create'); // /user.create llama a la función 'user_create' de AdminController
 /**
  * Rutas de acceso a base de datos
  */
 
-Auth::routes(); // Todas las funciones de usuarios
+Auth::routes(['verify' => true]); // Todas las funciones de usuarios
+// Auth::routes(['register' => false]); // Todas las funciones de usuarios
 
 Route::post('/clients.carga', 'ColController@clientImportExcel')->name('client.import.excel'); // /clients.carga llama a la función 'clientImportExcel' de ColController
 
