@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.adm')
 
-@section('content')
+@section('content.adm')
 <div class="container">
+    <h1 class="h2">Registrar Nuevo Usuario</h1>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header bg-color"><b>{{ __('Registro de Usuario') }}</b></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -39,23 +40,23 @@
                             </div>
                         </div>
 
-                        {{-- <div class="form-group row">
+                        <div class="form-group row">
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Role del usuario') }}</label>
                             <div class="col-md-6">
                                 <select id="type" type="text" class="form-control" name="type">
-                                    {{-- Valores del tipo de usuario
+                                    Valores del tipo de usuario
                                     <option>Colaborador</option>
                                     <option>Supervisor</option>
                                     <option>Administrador</option>
                                 </select>
                             </div>
-                        </div> --}}
+                        </div>
 
-                        {{-- <div class="form-group row">
+                        <div class="form-group row">
                             <label for="company_id" class="col-md-4 col-form-label text-md-right">{{ __('Empresa a la que pertenece') }}</label>
                             <div class="col-md-6">
                                 <select id="company_id" type="text" class="form-control" name="company_id">
-                                    {{-- Valores del tipo de usuario
+                                    Valores del tipo de usuario
                                     <option>Distrito Verde</option>
                                     <option>EcoVivienda</option>
                                     <option>Empresa 3</option>
@@ -63,7 +64,7 @@
                                     <option>Empresa 5</option>
                                 </select>
                             </div>
-                        </div> --}}
+                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -89,9 +90,15 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-color">
-                                    {{ __('Register') }}
+                                <button type="submit" class="btn btn-success">
+                                    {{ __('Registrar') }}
                                 </button>
+                                <a class="btn btn-color" role="button" href="adm.user">
+                                    <p class="">Limpiar</p>
+                                </a>
+                                <a class="btn btn-danger" role="button" href="adm.user">
+                                    <p class="">Cancelar</p>
+                                </a>
                             </div>
                         </div>
                     </form>
