@@ -90,9 +90,15 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-color">
-                                    {{ __('Registrar') }}
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Actualizar') }}
                                 </button>
+                                <a class="btn btn-color" role="button" href="adm.user">
+                                    <p class="">Limpiar</p>
+                                </a>
+                                <a class="btn btn-danger" role="button" href="adm.user">
+                                    <p class="">Cancelar</p>
+                                </a>
                             </div>
                         </div>
                     </form>
