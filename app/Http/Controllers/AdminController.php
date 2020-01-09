@@ -25,4 +25,9 @@ class AdminController extends Controller
     public function adm_record(){
         return view('adm_record'); //Muestra la vista de 'adm_record.blade.php'
     }//Fin de la función
+
+    //Inicio de la función adm_record
+    public function user_update(){
+        return view('user_update'); //Muestra la vista de 'adm_record.blade.php'
+    }//Fin de la función
 }//Fin de la clase
