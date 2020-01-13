@@ -10,11 +10,11 @@
             <li class="nav-item">
               <a class="nav-link link__color" href="{{ route('sup.client') }}">
                 <svg  width="20" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><line x1="17" y1="11" x2="7" y2="11"></line><line x1="12" y1="5" x2="12" y2="16"></line><circle cx="12" cy="11" r="11"></svg>
-                    Tabla de Clientes <span class="sr-only">(current)</span>
+                    Clientes <span class="sr-only">(current)</span>
               </a>
               <a class="nav-link link__color" href="{{ route('sup.transaction') }}">
                 <svg  width="20" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><line x1="17" y1="11" x2="7" y2="11"></line><line x1="12" y1="5" x2="12" y2="16"></line><circle cx="12" cy="11" r="11"></svg>
-                    Tabla de Transacciones <span class="sr-only">(current)</span>
+                    Transacciones <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
