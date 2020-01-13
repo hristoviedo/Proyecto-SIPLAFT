@@ -255,7 +255,7 @@ var vm = new Vue({
             'from':0,
             'to':0,
         },
-        offset: 5, // Indica la cantidad de paginación a la izquierda y derecha de la actual
+        offset: 3, // Indica la cantidad de paginación a la izquierda y derecha de la actual
         property: '', // Variable que determina la búsqueda del usuario
     },
     computed:{
@@ -501,7 +501,7 @@ var vm = new Vue({
 
 //*************************************************** Elemento raíz para administrador usuarios ***************************************************
 var vm = new Vue({
-    el: '#adm_users', // id donde se implementa Vue
+    el: '#adm_user', // id donde se implementa Vue
     // Cuando se crea la instancia se ejecutan las siguientes funciones
     created: function(){
         this.getRoles(); // Carga la lista de clientes compaginados
@@ -555,7 +555,7 @@ var vm = new Vue({
         },
         // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
         deleteUser: function(id){
-            if (!confirm("¿Está seguro de eliminar al uSsuario? No podrá revertir la acción")) {
+            if (!confirm("¿Está seguro de eliminar al usuario? No podrá revertir la acción")) {
                 return false;
             }
             var url = 'users/'+id;
