@@ -19,17 +19,33 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('client_id')->nullable(); //Id del cliente (nullable)
             $table->unsignedBigInteger('user_id')->nullable(); //Id del usuario que lo registró (nullable)
             $table->unsignedBigInteger('company_id')->nullable(); //Id de la compañía donde se registró (nullable)
-            $table->date('transaction_date'); //Fecha en que registró la transacción (not null)
+            $table->unsignedBigInteger('activity_id')->nullable(); //Id del cliente (nullable)
+            $table->unsignedBigInteger('funding_id')->nullable(); //Id del usuario que lo registró (nullable)
+            $table->string('transaction_apartment_number'); //Número de apartamento (not null)
+            $table->string('transaction_intermediary_bank'); //Número de apartamento (not null)
+            $table->string('transaction_operation_date'); //Fecha en que registró la operación (not null)
+            $table->string('transaction_transfer_date'); //Fecha en que registró el traspaso de escritura (not null)
+            $table->unsignedInteger('transaction_quantity'); //Cantidad de viviendas
             $table->boolean('transaction_cash'); //¿La transacción se hizo en efectivo? True si es verdadero (not null)
-            $table->boolean('transaction_dollars'); //¿La transacción se hizo en lempiras? True si es verdadero (not null)
-            $table->unsignedDecimal('transaction_amount_lempiras',12,2); //Monto de la transacción en lempiras (not null)
-            $table->unsignedDecimal('transaction_amount_dollars',10,2); //Monto de la transacción en dólares (not null)
+            $table->string('transaction_currency'); //Tipo de moneda en que se hizo la transacción (not null)
+            $table->unsignedDecimal('transaction_amount',12,2); //Monto de la transacción (not null)
+            $table->string('workplace', 30); //Lugar de trabajo (not null)
+            $table->string('workstation', 30); //Lugar de trabajo (not null)
+            $table->unsignedDecimal('salary',9,2); //Monto total del salario mensual (valor por defecto = 0.00)
 
             $table->foreign('client_id')->references('id')->on('clients') //Relación con la tabla clients
                     ->onDelete('set null') //No borrar transacción
                     ->onUpdate('cascade'); //Actualizar en cascada
 
             $table->foreign('user_id')->references('id')->on('users') //Relación con la tabla users
+                    ->onDelete('set null') //No borrar transaction
+                    ->onUpdate('cascade');
+
+            $table->foreign('activity_id')->references('id')->on('activities') //Relación con la tabla companies
+                    ->onDelete('set null') //No borrar transacción
+                    ->onUpdate('cascade'); //Actualizar en cascada
+
+            $table->foreign('funding_id')->references('id')->on('fundings') //Relación con la tabla users
                     ->onDelete('set null') //No borrar transaction
                     ->onUpdate('cascade');
 
