@@ -43,8 +43,10 @@ var vm = new Vue({
                 index.client_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_email.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_workplace.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.client_funding.toUpperCase().includes(this.property.toUpperCase()) ||
-                index.client_risk.toUpperCase().includes(this.property.toUpperCase()) ||
+                index.client_workstation.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.client_salary.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.client_funding.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.client_risk.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_nationality.toUpperCase().includes(this.property.toUpperCase().trim())||
                 index.client_activity.toUpperCase().includes(this.property.toUpperCase())
             });
@@ -262,7 +264,7 @@ var vm = new Vue({
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
         searchTransactionsAll: function(){
             return this.transactionsAll.filter((index) => {
-                return index.transaction_date.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                return index.transaction_operation_date.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_identity.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.company_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
