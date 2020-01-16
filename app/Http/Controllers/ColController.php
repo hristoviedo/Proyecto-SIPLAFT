@@ -50,12 +50,12 @@ class ColController extends Controller
 
     //Inicio de la función clientExportExcel
     public function clientExportExcel(){
-        return Excel::download(new ClientExport, 'client-list.csv'); //Llama a la clase ClientExport para crear y descargar la lista de clientes en un excel.
+        return Excel::download(new ClientExport, 'client-list.xlsx'); //Llama a la clase ClientExport para crear y descargar la lista de clientes en un excel.
     }//Fin de la función
 
     //Inicio de la función transactionExportExcel
     public function transactionExportExcel(){
-        return Excel::download(new TransactionExport, 'UIFTR0120191219.csv'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
+        return Excel::download(new TransactionExport, 'UIFTR0120191219.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
 
     //---------------------------------------------------------- Importar Datos ----------------------------------------------------------
