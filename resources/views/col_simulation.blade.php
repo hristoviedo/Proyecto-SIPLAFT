@@ -25,25 +25,25 @@
             <div>
               <h6 class="my-0 mx-2">Edad:</h6>
             </div>
-          <span class="text-muted"><b>@{{age}} AÑOS</b></span>
+          <span class="text-uppercase"><b>@{{age}} AÑOS</b></span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-condensed" v-show='households'>
             <div>
               <h6 class="my-0 mx-2">No. de Viviendas:</h6>
             </div>
-            <span class="text-muted"><b>@{{households}} VIVIENDAS</b></span>
+            <span class="text-uppercase"><b>@{{households}} VIVIENDAS</b></span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-condensed" v-show='activity'>
             <div>
               <h6 class="my-0 mx-2">Actividad Económica:</h6>
             </div>
-          <span class="text-muted"><b>@{{ activity }}</b></span>
+          <span class="text-uppercase"><b>@{{ activity }}</b></span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-condensed" v-show='funding'>
             <div>
               <h6 class="my-0 mx-2">Fuente de Financiamiento:</h6>
             </div>
-          <span class="text-muted"><b>@{{ funding }}</b></span>
+          <span class="text-uppercase"><b>@{{ funding }}</b></span>
           </li>
           <li class="list-group-item d-flex justify-content-between" :style="riskColor()" v-show='risk'>
             <div class="">
