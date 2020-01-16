@@ -29,9 +29,9 @@ class ClientController extends Controller
         ->join('fundings','clients.funding_id','=','fundings.id')
         ->join('risks','clients.risk_id','=','risks.id')
         ->select('clients.id AS client_id', 'clients.identity AS client_identity', 'clients.name AS client_name', 'clients.age AS client_age', 'clients.email AS client_email',
-                'clients.workplace AS client_workplace', 'clients.phone1 AS client_phone1', 'clients.phone2 AS client_phone2', 'clients.nationality AS client_nationality',
-                'clients.households AS client_households', 'clients.total_amount AS client_total_amount', 'clients.score_risk AS client_score_risk',
-                'activities.name AS client_activity','fundings.name AS client_funding', 'risks.name AS client_risk')
+                'clients.workplace AS client_workplace', 'clients.workstation AS client_workstation','clients.salary AS client_salary', 'clients.phone1 AS client_phone1',
+                'clients.phone2 AS client_phone2', 'clients.nationality AS client_nationality', 'clients.households AS client_households', 'clients.total_amount AS client_total_amount',
+                'clients.score_risk AS client_score_risk', 'activities.name AS client_activity','fundings.name AS client_funding', 'risks.name AS client_risk')
         ->orderByDesc('client_score_risk')
         ->paginate(15);
 
@@ -53,10 +53,9 @@ class ClientController extends Controller
     public function index2()
     {
         // Selecciona todos los clientes de la tabla
-        $sql = 'SELECT cl.id AS client_id, cl.identity AS client_identity, cl.name AS client_name, cl.email AS client_email, cl.age AS client_age, cl.workplace AS client_workplace,
-                        cl.phone1 AS client_phone1, cl.phone2 AS client_phone2, cl.nationality AS client_nationality, cl.households AS client_households,
-                        cl.total_amount AS client_total_amount, cl.score_risk AS client_score_risk, ac.name AS client_activity, fu.name AS client_funding,
-                        ri.name AS client_risk
+        $sql = 'SELECT cl.id AS client_id, cl.identity AS client_identity, cl.name AS client_name, cl.email AS client_email, cl.age AS client_age, cl.workplace AS client_workplace, cl.workstation AS client_workstation,
+                        cl.salary AS client_salary, cl.phone1 AS client_phone1, cl.phone2 AS client_phone2, cl.nationality AS client_nationality, cl.households AS client_households, cl.total_amount AS client_total_amount,
+                        cl.score_risk AS client_score_risk, ac.name AS client_activity, fu.name AS client_funding, ri.name AS client_risk
                 FROM clients cl, activities ac, fundings fu, risks ri
                 WHERE cl.activity_id = ac.id AND cl.funding_id = fu.id AND cl.risk_id = ri.id
                 ORDER BY client_score_risk DESC';
