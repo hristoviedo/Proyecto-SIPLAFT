@@ -43,10 +43,10 @@
           <th>ID del Cliente</th>
           <th>Nombre del Cliente</th>
           <th>Mes de Transacción</th>
+          <th>No. de Apartamento</th>
           <th>¿En Efectivo?</th>
-          <th>¿En Dolares?</th>
-          <th>Monto en Lempiras</th>
-          <th>Monto en Dólares</th>
+          <th>Monto</th>
+          <th>Moneda</th>
           <th>Empresa</th>
           <th>Subido Por</th>
         </tr>
@@ -55,24 +55,24 @@
         <tr v-for="(transaction, index) in searchTransactionsAll" :key="index">
           <td>@{{ transaction.client_identity }}</td>
           <td>@{{ transaction.client_name }}</td>
-          <td>@{{ formatDate(transaction.transaction_date) }}</td>
+          <td>@{{ formatDate(transaction.transaction_operation_date) }}</td>
+          <td>@{{ transaction.transaction_apartment_number }}</td>
           <td>@{{ formatBool(transaction.transaction_cash) }}</td>
-          <td>@{{ formatBool(transaction.transaction_dollars) }}</td>
-          <td>L @{{ formatPrice(transaction.transaction_amount_lempiras) }}</td>
-          <td>$ @{{ formatPrice(transaction.transaction_amount_dollars) }}</td>
+          <td>@{{ formatPrice(transaction.transaction_amount) }}</td>
+          <td>@{{ transaction.transaction_currency }}</td>
           <td>@{{ transaction.company_name }}</td>
           <td>@{{ transaction.user_name }}</td>
         </tr>
-      </tbody>
-      <tbody v-else>
+    </tbody>
+    <tbody v-else>
         <tr v-for="(transaction, index) in transactions" :key="index">
-          <td>@{{ transaction.client_identity }}</td>
-          <td>@{{ transaction.client_name }}</td>
-          <td>@{{ formatDate(transaction.transaction_date) }}</td>
-          <td>@{{ formatBool(transaction.transaction_cash) }}</td>
-          <td>@{{ formatBool(transaction.transaction_dollars) }}</td>
-          <td>L @{{ formatPrice(transaction.transaction_amount_lempiras) }}</td>
-          <td>$ @{{ formatPrice(transaction.transaction_amount_dollars) }}</td>
+            <td>@{{ transaction.client_identity }}</td>
+            <td>@{{ transaction.client_name }}</td>
+            <td>@{{ formatDate(transaction.transaction_operation_date) }}</td>
+            <td>@{{ transaction.transaction_apartment_number }}</td>
+            <td>@{{ formatBool(transaction.transaction_cash) }}</td>
+            <td>@{{ formatPrice(transaction.transaction_amount) }}</td>
+            <td>@{{ transaction.transaction_currency }}</td>
           <td>@{{ transaction.company_name }}</td>
           <td>@{{ transaction.user_name }}</td>
         </tr>
