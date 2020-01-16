@@ -31,12 +31,14 @@ class TransactionController extends Controller
         ->join('users','transactions.user_id','=','users.id')
         ->join('clients','transactions.client_id','=','clients.id')
         ->join('companies','transactions.company_id','=','companies.id')
-        ->select('transactions.id AS transaction_id', 'transactions.transaction_date AS transaction_date', 'transactions.transaction_cash AS transaction_cash',
-                'transactions.transaction_dollars AS transaction_dollars', 'transactions.transaction_amount_lempiras AS transaction_amount_lempiras',
-                'transactions.transaction_amount_dollars AS transaction_amount_dollars', 'clients.identity AS client_identity', 'clients.name AS client_name',
+        ->select('transactions.id AS transaction_id','transactions.transaction_apartment_number AS transaction_apartment_number',
+                'transactions.transaction_intermediary_bank AS transaction_intermediary_bank', 'transactions.transaction_operation_date AS transaction_operation_date',
+                'transactions.transaction_transfer_date AS transaction_transfer_date','transactions.transaction_quantity AS transaction_quantity',
+                'transactions.transaction_cash AS transaction_cash', 'transactions.transaction_currency AS transaction_currency',
+                'transactions.transaction_amount AS transaction_amount', 'clients.identity AS client_identity', 'clients.name AS client_name',
                 'users.name AS user_name', 'companies.name AS company_name')
-        ->orderByDesc('transaction_date')
-        ->paginate(15);
+        ->orderByDesc('transaction_operation_date')
+        ->paginate(20);
 
         // Retorna la lista de transaccione, el total de registros y otros datos para la paginación
         return [
@@ -56,12 +58,12 @@ class TransactionController extends Controller
     public function indexTransactionsAll()
     {
         // Selecciona todas las transacciones de la tabla
-        $sql = 'SELECT tr.id AS transaction_id, tr.transaction_date AS transaction_date, tr.transaction_cash AS transaction_cash, tr.transaction_dollars AS transaction_dollars,
-                        tr.transaction_amount_lempiras AS transaction_amount_lempiras, tr.transaction_amount_dollars AS transaction_amount_dollars,
+        $sql = 'SELECT tr.id AS transaction_id, tr.transaction_apartment_number AS transaction_apartment_number, tr.transaction_intermediary_bank AS transaction_intermediary_bank, tr.transaction_operation_date AS transaction_operation_date,
+                        tr.transaction_transfer_date AS transaction_transfer_date, tr.transaction_quantity AS transaction_quantity, tr.transaction_cash AS transaction_cash, tr.transaction_currency AS transaction_currency, tr.transaction_amount AS transaction_amount,
                         cl.identity AS client_identity, cl.name AS client_name, co.name AS company_name, us.name AS user_name
                 FROM transactions tr, users us, companies co, clients cl
                 WHERE tr.user_id = us.id AND tr.company_id = co.id AND tr.client_id = cl.id
-                ORDER BY transaction_date DESC';
+                ORDER BY transaction_operation_date DESC';
         $transactions = DB::select($sql);
 
         return $transactions; // Retorna la lista de transacciones
