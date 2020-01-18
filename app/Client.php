@@ -16,7 +16,7 @@ class Client extends Model
     public function transactions()
     {
         //Un cliente realiza muchas transacciones
-        return $this->belongsToMany('Transaction::class')->withTimestamps();
+        return $this->hasMany(Transaction::class)->withTimestamps();
     }
     //Fin de la función
 
@@ -24,7 +24,7 @@ class Client extends Model
     public function risk()
     {
         //Un cliente representa un tipo de riesgo
-        return $this->belongsTo('Risk::class');
+        return $this->belongsTo(Risk::class);
     }
     //Fin de la función
 
@@ -32,7 +32,7 @@ class Client extends Model
     public function funding()
     {
         //Un cliente tiene un tipo de fuente
-        return $this->belongsTo('Funding::class');
+        return $this->belongsTo(Funding::class);
     }
     //Fin de la función
 
@@ -40,7 +40,7 @@ class Client extends Model
     public function activity()
     {
         //Un cliente tiene un tipo de actividad
-        return $this->belongsTo('Activity::class');
+        return $this->belongsTo(Activity::class);
     }
     //Fin de la función
 }//Fin de la clase
