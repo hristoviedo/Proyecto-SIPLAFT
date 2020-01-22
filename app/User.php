@@ -45,22 +45,22 @@ class User extends Authenticatable
     //Inicio de la función transactions
     public function transactions()
     {
-        //Un usuario realiza muchas transacciones
-        return $this->belongsToMany('Transaction::class')->withTimestamps();
+        //Un usuario registra muchas transacciones
+        return $this->hasMany('Transaction::class')->withTimestamps();
     }
     //Fin de la función
 
     //Inicio de la función role
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo('Role::class');
+        return $this->hasOne('Role::class');
     }
     //Fin de la función
 
     //Inicio de la función company
-    public function company()
+    public function companies()
     {
-        return $this->belongsTo('Company::class');
+        return $this->hasOne('Company::class');
     }
     //Fin de la función
 }

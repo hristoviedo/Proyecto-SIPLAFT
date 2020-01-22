@@ -21,7 +21,7 @@ class Client extends Model
     //Fin de la función
 
     //Inicio de la función risk
-    public function risk()
+    public function risks()
     {
         //Un cliente representa un tipo de riesgo
         return $this->belongsTo(Risk::class);
@@ -29,7 +29,7 @@ class Client extends Model
     //Fin de la función
 
     //Inicio de la función funding
-    public function funding()
+    public function fundings()
     {
         //Un cliente tiene un tipo de fuente
         return $this->belongsTo(Funding::class);
@@ -37,7 +37,7 @@ class Client extends Model
     //Fin de la función
 
     //Inicio de la función activity
-    public function activity()
+    public function activities()
     {
         //Un cliente tiene un tipo de actividad
         return $this->belongsTo(Activity::class);

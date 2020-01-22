@@ -15,7 +15,7 @@ class Transaction extends Model
     public function users()
     {
         //Una transacción pertenece a un usuario
-        return $this->hasOne(User::class)->withTimestamps();
+        return $this->belongsTo(User::class)->withTimestamps();
     }
     //Fin de la función
 
@@ -23,7 +23,7 @@ class Transaction extends Model
     public function companies()
     {
         //Una transacción pertenece a una compañía
-        return $this->hasOne(Company::class)->withTimestamps();
+        return $this->belongsTo(Company::class)->withTimestamps();
     }
     //Fin de la función
 
@@ -31,23 +31,23 @@ class Transaction extends Model
     public function clients()
     {
         //Una transacción pertenece a un cliente
-        return $this->hasOne(Client::class)->withTimestamps();
+        return $this->belongsTo(Client::class)->withTimestamps();
     }
     //Fin de la función
 
      //Inicio de la función funding
-     public function funding()
+     public function fundings()
      {
          //Una transacción tiene un tipo de fuente
-         return $this->hasOne(Funding::class);
+         return $this->belongsTo(Funding::class);
      }
      //Fin de la función
 
      //Inicio de la función activity
-    public function activity()
+    public function activities()
     {
         //Una transacción tiene un tipo de actividad
-        return $this->hasOne(Activity::class);
+        return $this->belongsTo(Activity::class);
     }
     //Fin de la función
 
