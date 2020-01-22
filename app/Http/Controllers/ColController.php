@@ -10,7 +10,7 @@ use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 use App\Imports\ClientImport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
 use App\Exports\ClientExport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
 use App\Imports\TransactionImport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
-use App\Exports\TransactionExport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
+use App\Exports\TransactionsReport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
 
 
 //Inicio de la clase ColController
@@ -55,7 +55,10 @@ class ColController extends Controller
 
     //Inicio de la función transactionExportExcel
     public function transactionExportExcel(){
-        return Excel::download(new TransactionExport, 'UIFTR0120191219.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
+        $year = 2018;
+        $month = 07;
+        $company_id = auth()->user()->company_id;
+        return (new TransactionsReport)->forMonth($month)->forYear($year)->forCompanyID($company_id)->download('REPORTE' . '-' . $month . '-' . $year . '.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
 
     //---------------------------------------------------------- Importar Datos ----------------------------------------------------------
