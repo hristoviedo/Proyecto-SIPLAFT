@@ -1,25 +1,33 @@
-select
-co.name as EMPRESA,
-cl.name as CLIENTES, 
-tr.transaction_apartment_number as No_DE_APARTAMENTO,
-tr.transaction_operation_date as FECHAS_DE_OPERACION,
-tr.transaction_amount as MONTO_DE_OPERACION,
-tr.transaction_transfer_date as FECHA_DE_TRASPASO_DE_ESCRITURA,
-if(tr.transaction_intermediary_bank = "CONTADO","",tr.transaction_intermediary_bank) as BANCO_INTERMEDIARIO,
-if(fu.id = 5,"FINANCIAMIENTO","") as FONDOS,
-if(fu.id != 5, fu.name, "") as FORMA_DE_PAGO,
-tr.workplace as LUGAR_DE_TRABAJO,
-if(cl.activity_id = 2, tr.workstation, "") as PUESTO,
-if(cl.activity_id = 2, tr.salary, "") as SALARIO,
-ac.name as FUENTE_DE_INGRESO,
-cl.age as EDAD,
-cl.identity as IDENTIDAD,
-tr.transaction_quantity as No_DE_APARTAMENTOS,
-cl.households as No_DE_APARTAMENTOS_ACUMULADOS
-from clients cl, transactions tr,companies co,fundings fu,users us, activities ac
-where tr.user_id = us.id and tr.client_id = cl.id and tr.funding_id = fu.id and us.company_id = co.id and tr.activity_id = ac.id;
+DROP PROCEDURE IF EXISTS reportTransactions;
 
+DELIMITER $$
 
-select us.name, co.name
-from users us, companies co 
-where us.company_id = co.id;
+CREATE PROCEDURE reportTransactions(IN monthReport INT, IN yearReport INT,IN companyID BIGINT)
+BEGIN
+	SET @rownum = 0;
+	SELECT
+    @rownum:= @rownum +1 AS RowNum,
+	cl.name AS CLIENTES, 
+	tr.transaction_apartment_number AS No_DE_APARTAMENTO,
+	tr.transaction_operation_date AS FECHAS_DE_OPERACION,
+	tr.transaction_amount AS MONTO_DE_OPERACION,
+	tr.transaction_transfer_date AS FECHA_DE_TRASPASO_DE_ESCRITURA,
+	IF(tr.transaction_intermediary_bank = "CONTADO","",tr.transaction_intermediary_bank) AS BANCO_INTERMEDIARIO,
+	IF(fu.id = 5,"FINANCIAMIENTO","") AS FONDOS,
+	IF(fu.id != 5, fu.name, "") AS FORMA_DE_PAGO,
+	tr.workplace AS LUGAR_DE_TRABAJO,
+	IF(cl.activity_id = 2, tr.workstation, "") AS PUESTO,
+	IF(cl.activity_id = 2, tr.salary, "") AS SALARIO,
+	ac.name AS FUENTE_DE_INGRESO,
+	cl.age AS EDAD,
+	cl.identity AS IDENTIDAD,
+	tr.transaction_quantity AS No_DE_APARTAMENTOS,
+	cl.households AS No_DE_APARTAMENTOS_ACUMULADOS
+	FROM clients cl, transactions tr,fundings fu,activities ac
+	WHERE tr.company_id = companyID AND tr.client_id = cl.id AND tr.funding_id = fu.id AND tr.activity_id = ac.id
+	AND MONTH(tr.transaction_operation_date) = monthReport AND YEAR(tr.transaction_operation_date) = yearReport
+    ORDER BY RowNum;
+END$$
+DELIMITER ;
+
+CALL reportTransactions(07,2018,02);
