@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel; // Permite trabajar con archivos de Excel
 use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 
-use App\Imports\ClientImport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
+use Maatwebsite\Excel\Facades\Excel; // Permite trabajar con archivos de Excel
 use App\Exports\ClientExport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
+use App\Imports\ClientImport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
 use App\Imports\TransactionImport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
 use App\Exports\TransactionsReport; // Permite realizar exportaciones según los datos seleccionados de la transacción (No implementados)
 
@@ -54,9 +55,9 @@ class ColController extends Controller
     }//Fin de la función
 
     //Inicio de la función transactionExportExcel
-    public function transactionExportExcel(){
-        $year = 2018;
-        $month = 07;
+    public function transactionExportExcel(Request $request){
+        $month = $request->input('month');
+        $year = $request->input('year');
         $company_id = auth()->user()->company_id;
         return (new TransactionsReport)->forMonth($month)->forYear($year)->forCompanyID($company_id)->download('REPORTE' . '-' . $month . '-' . $year . '.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
