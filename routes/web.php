@@ -42,7 +42,7 @@ Route::post('/transactions.carga', 'ColController@transactionImportExcel')->name
 
 Route::get('/clients.descarga', 'ColController@clientExportExcel')->name('client.export.excel'); // /clients.descarga llama a la función 'clientExportExcel' de ColController
 
-Route::get('/transactions.descarga', 'ColController@transactionExportExcel')->name('transactions.export.excel'); // /transactions.descarga llama a la función 'transactionExportExcel' de ColController
+Route::post('/transactions.descarga', 'ColController@transactionExportExcel')->name('transactions.export.excel'); // /transactions.descarga llama a la función 'transactionExportExcel' de ColController
 
 Route::get('/list-clients/indexAll', 'ClientController@index2'); // /list-clients/indexAll llama a la función 'index2' de ClientController
 
