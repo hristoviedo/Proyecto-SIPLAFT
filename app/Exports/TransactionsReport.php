@@ -44,7 +44,8 @@ class TransactionsReport implements WithHeadings, ShouldAutoSize, FromArray, Wit
             'Edad',
             'Identidad',
             'No. de Apartamentos',
-            'No. de Apartamentos Acumulados'],
+            'No. de Apartamentos Acumulados',
+            'Riesgo'],
         ]; //Asigna el encabezado predeterminado de los datos a exportar
     }//Fin de la funcion
 
@@ -110,7 +111,7 @@ class TransactionsReport implements WithHeadings, ShouldAutoSize, FromArray, Wit
                     ],
                 ];
 
-                $event->sheet->getDelegate()->getStyle('A4:Q4')->applyFromArray($styleArray);
+                $event->sheet->getDelegate()->getStyle('A4:R4')->applyFromArray($styleArray);
             },
         ];
     }
