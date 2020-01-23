@@ -6,7 +6,7 @@ CREATE PROCEDURE reportTransactions(IN monthReport INT, IN yearReport INT,IN com
 BEGIN
 	SET @rownum = 0;
 	SELECT
-    @rownum:= @rownum +1 AS RowNum,
+    @rownum:= @rownum +1 AS NUMERO_REGISTRO,
 	cl.name AS CLIENTES, 
 	tr.transaction_apartment_number AS No_DE_APARTAMENTO,
 	tr.transaction_operation_date AS FECHAS_DE_OPERACION,
@@ -22,11 +22,12 @@ BEGIN
 	cl.age AS EDAD,
 	cl.identity AS IDENTIDAD,
 	tr.transaction_quantity AS No_DE_APARTAMENTOS,
-	cl.households AS No_DE_APARTAMENTOS_ACUMULADOS
-	FROM clients cl, transactions tr,fundings fu,activities ac
-	WHERE tr.company_id = companyID AND tr.client_id = cl.id AND tr.funding_id = fu.id AND tr.activity_id = ac.id
+	cl.households AS No_DE_APARTAMENTOS_ACUMULADOS,
+    ri.name AS RIESGO_CALCULADO
+	FROM clients cl, transactions tr,fundings fu,activities ac, risks ri
+	WHERE tr.company_id = companyID AND tr.client_id = cl.id AND tr.funding_id = fu.id AND tr.activity_id = ac.id AND cl.risk_id = ri.id
 	AND MONTH(tr.transaction_operation_date) = monthReport AND YEAR(tr.transaction_operation_date) = yearReport
-    ORDER BY RowNum;
+    ORDER BY NUMERO_REGISTRO;
 END$$
 DELIMITER ;
 
