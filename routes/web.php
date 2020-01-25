@@ -16,12 +16,17 @@ Route::get('/col.transaction', 'ColController@col_transaction')->name('col.trans
 
 Route::get('/col.report', 'ColController@col_report')->name('col.report'); // /col.report llama a la función 'col_report' de ColController
 
+Route::get('/col.report.all', 'ColController@col_report_all')->name('col.report.all'); // /col.report llama a la función 'col_report' de ColController
+
 //-------------------------------------------------------------------------------------------------------------------------------------------
 
 Route::get('/sup.client', 'SupController@sup_client')->name('sup.client'); // /sup.client llama a la función 'sup_client' de SupController
 
 Route::get('/sup.transaction', 'SupController@sup_transaction')->name('sup.transaction'); // //sup.transaction llama a la función 'sup_transaction' de SupController
 
+Route::get('/sup.report', 'SupController@sup_report')->name('sup.report'); // /sup.report llama a la función 'sup_report' de SupController
+
+Route::get('/sup.report.all', 'SupController@sup_report_all')->name('sup.report.all'); // /sup.report.all llama a la función 'sup_report.all' de SupController
 //-------------------------------------------------------------------------------------------------------------------------------------------
 
 Route::get('/adm.user', 'AdminController@adm_user')->name('adm.user'); // /adm.user llama a la función 'adm_user' de AdminController
@@ -42,7 +47,13 @@ Route::post('/transactions.carga', 'ColController@transactionImportExcel')->name
 
 Route::get('/clients.descarga', 'ColController@clientExportExcel')->name('client.export.excel'); // /clients.descarga llama a la función 'clientExportExcel' de ColController
 
-Route::post('/transactions.descarga', 'ColController@transactionExportExcel')->name('transactions.export.excel'); // /transactions.descarga llama a la función 'transactionExportExcel' de ColController
+Route::post('/transactions.report', 'ColController@transactionExportExcel')->name('transactions.export.excel'); // /transactions.descarga llama a la función 'transactionExportExcel' de ColController
+
+Route::post('/transactions.report.sup', 'SupController@transactionExportExcel')->name('transactions.report.excel.sup'); // /transactions.descarga llama a la función 'transactionExportExcel' de ColController
+
+Route::get('/transactions.all.report', 'ColController@transactionExportAllExcel')->name('transactions.all.excel'); // /transactions.descarga llama a la función 'transactionExportExcel' de ColController
+
+Route::get('/transactions.all.report.sup', 'SupController@transactionExportAllExcel')->name('transactions.all.excel.sup'); // /transactions.descarga llama a la función 'transactionExportExcel' de ColController
 
 Route::get('/list-clients/indexAll', 'ClientController@index2'); // /list-clients/indexAll llama a la función 'index2' de ClientController
 
