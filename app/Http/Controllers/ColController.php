@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Exports\TransactionExport;
 use Illuminate\Support\Facades\Auth;
-use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 
+use App\Exports\TransactionsReportAll;
+use App\Exports\TransactionsReportMonth;
+use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 use Maatwebsite\Excel\Facades\Excel; // Permite trabajar con archivos de Excel
 use App\Exports\ClientExport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
 use App\Imports\ClientImport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
@@ -47,6 +50,10 @@ class ColController extends Controller
         return view('col_simulation'); //Muestra la vista de 'col_simulation.blade.php'
     }//Fin de la función
 
+    //Inicio de la función col_report_all
+    public function col_report_all(){
+        return view('col_report_all'); //Muestra la vista de 'col_simulation.blade.php'
+    }//Fin de la función
     //---------------------------------------------------------- Exportar Datos ----------------------------------------------------------
 
     //Inicio de la función clientExportExcel
@@ -59,7 +66,23 @@ class ColController extends Controller
         $month = $request->input('month');
         $year = $request->input('year');
         $company_id = auth()->user()->company_id;
-        return (new TransactionsReport)->forMonth($month)->forYear($year)->forCompanyID($company_id)->download('REPORTE' . '-' . $month . '-' . $year . '.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
+        $companyName = DB::table('users')
+            ->join('companies','users.company_id','=','companies.id')
+            ->select('companies.name')
+            ->where('users.id','=',auth()->user()->id)
+            ->value('name');
+        return (new TransactionsReportMonth)->forCompanyName($companyName)->forMonth($month)->forYear($year)->forCompanyID($company_id)->download($companyName . '-'. 'REPORTE' . '-' . $month . '-' . $year . '.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
+    }//Fin de la función
+
+    //Inicio de la función transactionExportAllExcel
+    public function transactionExportAllExcel(){
+        $company_id = auth()->user()->company_id;
+        $companyName = DB::table('users')
+            ->join('companies','users.company_id','=','companies.id')
+            ->select('companies.name')
+            ->where('users.id','=',auth()->user()->id)
+            ->value('name');
+        return (new TransactionsReportAll)->forCompanyName($companyName)->forCompanyID($company_id)->download($companyName . '-'. 'REPORTE-COMPLETO.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
 
     //---------------------------------------------------------- Importar Datos ----------------------------------------------------------

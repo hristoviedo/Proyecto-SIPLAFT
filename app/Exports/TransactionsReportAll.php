@@ -21,13 +21,13 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 
-class TransactionsReport implements WithHeadings, ShouldAutoSize, FromArray, WithTitle, WithColumnFormatting, WithEvents
+class TransactionsReportAll implements WithHeadings, ShouldAutoSize, FromArray, WithTitle, WithColumnFormatting, WithEvents
 {
     use Exportable;
 
     public function headings(): array{
         return [
-            [' '],['Empresa: ', $this->companyName],[' '],
+            [' '],['','Empresa: ', $this->companyName],[' '],
             ['#',
             'Clientes',
             'No de Apartamento',
@@ -65,18 +65,6 @@ class TransactionsReport implements WithHeadings, ShouldAutoSize, FromArray, Wit
         return $this;
     }
 
-    public function forYear(int $year)
-    {
-        $this->year = $year;
-        return $this;
-    }
-
-    public function forMonth(int $month)
-    {
-        $this->month = $month;
-        return $this;
-    }
-
     public function forCompanyID(int $companyID)
     {
         $this->companyID = $companyID;
@@ -85,12 +73,12 @@ class TransactionsReport implements WithHeadings, ShouldAutoSize, FromArray, Wit
 
     public function array(): array
     {
-        return DB::select('CALL reportTransactions (?, ?, ?)', array($this->month,$this->year,$this->companyID)); // Procedimiento Almacenado para generar reporte por mes
+        return DB::select('CALL reportTransactionsAll (?)', array($this->companyID)); // Procedimiento Almacenado para generar reporte un total
     }
 
     public function title(): string
     {
-        return 'Reporte Mensual';
+        return 'Reporte Completo';
     }
 
     public function registerEvents(): array
@@ -136,7 +124,7 @@ class TransactionsReport implements WithHeadings, ShouldAutoSize, FromArray, Wit
                     ],
                 ];
 
-                $event->sheet->getDelegate()->getStyle('A2:B2')->applyFromArray($styleArrayTitle);
+                $event->sheet->getDelegate()->getStyle('B2:C2')->applyFromArray($styleArrayTitle);
                 $event->sheet->getDelegate()->getStyle('A4:R4')->applyFromArray($styleArrayheadings);
             },
         ];

@@ -3,33 +3,32 @@
 namespace App\Exports;
 
 use App\Client;
+use App\Company;
 use App\Funding;
 use App\Activity;
 use App\Transaction;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Events\AfterSheet;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
-// use Maatwebsite\Excel\Concerns\WithMapping;
 
-
-//Inicio de la clase TransactionExport
-class TransactionExport implements WithHeadings, ShouldAutoSize, WithColumnFormatting, FromQuery
-// , WithCustomCsvSettings
+class TransactionExport implements WithHeadings, ShouldAutoSize, FromArray, WithTitle, WithColumnFormatting, WithEvents
 {
     use Exportable;
 
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    //Inicio de la funcion headings
     public function headings(): array{
         return [
-            '#',
+            [' '],['Empresa: ', $this->companyName],[' '],
+            ['#',
             'Clientes',
             'No de Apartamento',
             'Fecha de Operación',
@@ -46,6 +45,7 @@ class TransactionExport implements WithHeadings, ShouldAutoSize, WithColumnForma
             'Identidad',
             'No. de Apartamentos',
             'No. de Apartamentos Acumulados',
+            'Riesgo'],
         ]; //Asigna el encabezado predeterminado de los datos a exportar
     }//Fin de la funcion
 
@@ -59,32 +59,74 @@ class TransactionExport implements WithHeadings, ShouldAutoSize, WithColumnForma
         ];
     }
 
-    //Inicio de la funcion collection
-    public function query()
+    public function forCompanyName(string $companyName)
     {
-        DB::statement(DB::raw('SET @rownum = 0'));
+        $this->companyName = $companyName;
+        return $this;
+    }
 
-        $data = DB::table('transactions')
-                ->join('clients','transactions.client_id','=','clients.id')
-                ->join('fundings','transactions.funding_id','=','fundings.id')
-                ->join('activities','transactions.activity_id','=','activities.id')
-                ->select(DB::raw('@rownum := @rownum + 1 as rownum'),'clients.name','transactions.transaction_apartment_number',
-                        'transactions.transaction_operation_date','transactions.transaction_amount',
-                        'transactions.transaction_transfer_date','transactions.transaction_intermediary_bank',
-                        'transactions.workplace','transactions.workstation',
-                        'transactions.salary','clients.age','clients.identity',
-                        'transactions.transaction_quantity','clients.households','transactions.funding_id')
-                ->whereMonth('transactions.transaction_operation_date', '=', '12')
-                ->whereYear('transactions.transaction_operation_date', '=', '2016')
-                ->get();
-        return $data; //Retorna los datos de las transacciones segun el mes y año a reportar(Falta implementarlo)
-    }//Fin de la funcion
+    public function forCompanyID(int $companyID)
+    {
+        $this->companyID = $companyID;
+        return $this;
+    }
 
-    //Inicio de la funcion getCsvSettings
-    // public function getCsvSettings(): array
-    // {
-    //     return [
-    //         'delimiter' => '|'
-    //     ]; //Indica el caracter delimitador para los datos
-    //}Fin de la funcion
-}//Fin de la clase
+    public function array(): array
+    {
+        return DB::select('CALL reportTransactionsAll (?)', array($this->companyID)); // Procedimiento Almacenado para generar reporte un total
+    }
+
+    public function title(): string
+    {
+        return 'Reporte Completo';
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $styleArrayheadings = [
+                    'font' => [
+                        'bold' => true,
+                        'size' => 12,
+                        'name' => 'Arial',
+                        'color' => ['argb' => 'FFFFFFFF'],
+                    ],
+                    'borders' => [
+                        'outline' => [
+                            'borderStyle' => Border::BORDER_THIN,
+                        ],
+                    ],
+                    'fill' => [
+                        'fillType' => Fill::FILL_SOLID,
+                        'startColor' => [
+                            'argb' => '00000000',
+                        ],
+                    ],
+                ];
+                $styleArrayTitle = [
+                    'font' => [
+                        'bold' => true,
+                        'size' => 13,
+                        'name' => 'Arial',
+                        'color' => ['argb' => '00000000'],
+                    ],
+                    'borders' => [
+                        'outline' => [
+                            'borderStyle' => Border::BORDER_THICK,
+                        ],
+                    ],
+                    'fill' => [
+                        'fillType' => Fill::FILL_SOLID,
+                        'startColor' => [
+                            'argb' => 'FFFFFFFF',
+                        ],
+                    ],
+                ];
+
+                $event->sheet->getDelegate()->getStyle('A2:B2')->applyFromArray($styleArrayTitle);
+                $event->sheet->getDelegate()->getStyle('A4:R4')->applyFromArray($styleArrayheadings);
+            },
+        ];
+    }
+}

@@ -21,13 +21,13 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 
-class TransactionsReport implements WithHeadings, ShouldAutoSize, FromArray, WithTitle, WithColumnFormatting, WithEvents
+class TransactionsReportMonth implements WithHeadings, ShouldAutoSize, FromArray, WithTitle, WithColumnFormatting, WithEvents
 {
     use Exportable;
 
     public function headings(): array{
         return [
-            [' '],['Empresa: ', $this->companyName],[' '],
+            [' '],['','Empresa: ', $this->companyName],[' '],
             ['#',
             'Clientes',
             'No de Apartamento',
@@ -136,7 +136,7 @@ class TransactionsReport implements WithHeadings, ShouldAutoSize, FromArray, Wit
                     ],
                 ];
 
-                $event->sheet->getDelegate()->getStyle('A2:B2')->applyFromArray($styleArrayTitle);
+                $event->sheet->getDelegate()->getStyle('B2:C2')->applyFromArray($styleArrayTitle);
                 $event->sheet->getDelegate()->getStyle('A4:R4')->applyFromArray($styleArrayheadings);
             },
         ];
