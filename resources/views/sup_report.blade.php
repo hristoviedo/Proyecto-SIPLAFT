@@ -1,17 +1,17 @@
-@extends('layouts.col')
+@extends('layouts.sup')
 
-@section('content.col')
+@section('content.sup')
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"> {{-- Inicio del main --}}
     <div class="py-5 text-center">
       {{-- <img src="{{ asset('img/logo.png') }}" class="img-fluid img-small" alt="Responsive image"> --}}
       <h2>Reporte Mensual de Transacciones</h2>
-      <p class="">En esta sección exportará las transacciones según el mes y año en formato .xlsx</p>
+      <p class="">En esta sección exportará las transacciones registradas en formato .xlsx</p>
     </div>
     <div class="panel panel-default">
         <div class="panel-body col-xs-8">
             <div class="text-center">
-                <form action="{{ route('transactions.export.excel') }}" method="POST">
+                <form action="{{ route('transactions.report.excel.sup') }}" method="POST">
                     @csrf
                     {{ Form::label('month', 'Escoja el mes y año a reportar') }}
                     <select name="month">
@@ -28,7 +28,12 @@
                         <option value="11">NOVIEMBRE</option>
                         <option value="12">DICIEMBRE</option>
                     </select>
-                    {{ Form::selectRange('year', 2025, 1950, 2020, array('class' => 'year')) }}
+                    {{ Form::selectRange('year', 2025, 1990, 2020, array('class' => 'year')) }}
+                    <select name="company">
+                        @foreach($companies as $company)
+                            <option value="{{ $company->id }}">{{ $company->name }}</option>
+                        @endforeach
+                    </select>
                     <br>
                     <button type="submit" class="btn btn-default btn-color">Crear Reporte</button>
                 </form>
