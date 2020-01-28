@@ -28,7 +28,7 @@
                 <div class="title">
                     <strong>SIPLAFT</strong>
                 </div>
-                <p><strong>Sistema Informático para la Prevención del Lavado de Activos y Financiación Terrorista</strong></p>
+                <p><strong>Sistema Informático contra la Prevención del Lavado de Activos y Financiación Terrorista</strong></p>
                 <br>
                 <br>
                 <div class="links">
@@ -42,7 +42,7 @@
         </div>
         <div>
             <footer class="mt-auto py-2 page-footer" >
-                <div id="copyright"><small class="">Copyright &copy; 2019 - SIPLAFT - Todos los derechos reservados</small></div>
+                <div id="copyright"><small class="">Copyright &copy; {{ date('Y') }} - SIPLAFT - Todos los derechos reservados</small></div>
             </footer>
         </div>
     </body>
