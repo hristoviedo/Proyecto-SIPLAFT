@@ -31,6 +31,8 @@ Route::get('/sup.report.all', 'SupController@sup_report_all')->name('sup.report.
 
 Route::get('/adm.user', 'AdminController@adm_user')->name('adm.user'); // /adm.user llama a la función 'adm_user' de AdminController
 
+Route::get('/adm.create.user', 'AdminController@adm_create_user')->name('adm.create.user'); // /adm.create.user llama a la función 'adm_create_user' de AdminController
+
 Route::get('/adm.record', 'AdminController@adm_record')->name('adm.record'); // /adm.record llama a la función 'adm_record' de AdminController
 
 Route::get('/user.update', 'AdminController@user_update')->name('user.update'); // /user.update llama a la función 'user_update' de AdminController
