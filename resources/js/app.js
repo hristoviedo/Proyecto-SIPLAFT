@@ -557,7 +557,7 @@ var vm = new Vue({
         },
         // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
         deleteUser: function(id){
-            if (!confirm("¿Está seguro de eliminar al uSsuario? No podrá revertir la acción")) {
+            if (!confirm("¿Está seguro de eliminar al usuario? No podrá revertir la acción")) {
                 return false;
             }
             var url = 'users/'+id;
