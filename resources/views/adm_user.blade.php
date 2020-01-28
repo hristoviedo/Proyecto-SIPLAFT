@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <h1 class="h2">Tabla de Usuarios</h1>
         <div class="btn-group mr-2">
-            <a class="btn btn-success btn-action" role="button" href="register">
+            <a class="btn btn-success btn-action" role="button" href="{{ route('adm.create.user') }}">
                 <i class="material-icons">person_add</i>
             </a>
         </div>
