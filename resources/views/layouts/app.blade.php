@@ -75,7 +75,7 @@
         </main> {{-- Fin del main --}}
         {{-- Inicio del footer --}}
         <footer class="mt-auto py-2 page-footer" id="copyright">
-            <small>Copyright &copy; 2019 - SIPLAFT - Todos los derechos reservados</small>
+            <small>Copyright &copy; {{ date('Y') }} - SIPLAFT - Todos los derechos reservados</small>
         </footer> {{-- Fin del footer --}}
         <!-- Scripts -->
         <script src="{{ asset('/js/app.js') }}" defer></script>

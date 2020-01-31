@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Funding;
+
+use App\Activity;
 use Illuminate\Http\Request;
 
 use App\Exports\TransactionExport;
 use Illuminate\Support\Facades\Auth;
-
 use App\Exports\TransactionsReportAll;
 use App\Exports\TransactionsReportMonth;
 use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
@@ -47,7 +49,9 @@ class ColController extends Controller
 
     //Inicio de la función col_simulation
     public function col_simulation(){
-        return view('col_simulation'); //Muestra la vista de 'col_simulation.blade.php'
+        $fundings = Funding::all();
+        $activities = Activity::all();
+        return view('col_simulation', compact('fundings', 'activities')); //Muestra la vista de 'col_simulation.blade.php'
     }//Fin de la función
 
     //Inicio de la función col_report_all

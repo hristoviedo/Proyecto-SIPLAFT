@@ -42,7 +42,7 @@
         <tr>
           <th>ID del Cliente</th>
           <th>Nombre del Cliente</th>
-          <th>Mes de Transacción</th>
+          <th>Fecha de Transacción</th>
           <th>No. de Apartamento</th>
           <th>¿En Efectivo?</th>
           <th>Monto</th>

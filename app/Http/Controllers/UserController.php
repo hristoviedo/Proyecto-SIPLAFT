@@ -20,7 +20,7 @@ class UserController extends Controller
     // Inicio del constructor
     public function __construct()
     {
-        $this->middleware('auth'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
+        $this->middleware('adm'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
     }//Fin del constructor
 
     // Inicio de la función indexCompaniesAll
@@ -76,17 +76,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'role_id'       => 'required',
-            'company_id'    => 'required',
-            'name'          => 'required',
-            'email'         => 'required',
-            'password'      => 'required',
-            'active'        => 'required'
-        ]);
-
-        User::create($request->all());
-        return;
     }
 
     /**
@@ -120,7 +109,24 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'role_id' => 'required|integer|confirmed',
+            'company_id' => 'required|integer|confirmed',
+            'active' => 'required|boolean|confirmed',
+            'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required_with:password|same:password|string|min:8|confirmed',
+        ]);
+        User::update([
+            'name' => trim(mb_strtoupper($request['name'])),
+            'email' => $request['email'],
+            'role_id' => $request['role_id'],
+            'company_id' => $request['company_id'],
+            'active' => $request['active'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return back()->with('message', 'Usuario Actualizado'); //Retorna a la página anterior cuando registra al usuario
     }
 
     /**

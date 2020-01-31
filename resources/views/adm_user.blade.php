@@ -10,9 +10,6 @@
                 <i class="material-icons">person_add</i>
             </a>
         </div>
-        {{-- <div class="btn-group mr-2">
-            <button type="button" class="btn btn-danger btn-action"><i class="material-icons">clear</i></button>
-        </div> --}}
     </div>
     <div class="row">
         <table class="table table-striped table-hover table-sm text-center">
@@ -23,7 +20,7 @@
             <th>Rol</th>
             <th>Empresa</th>
             <th>¿Activo?</th>
-            <th>Acciones</th>
+            <th>Actualizar</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +31,7 @@
             <td>@{{ user.user_company }}</td>
             <td>@{{ formatBool(user.user_active) }}</td>
             <td>
-                <button type="button" class="btn btn-primary btn-action" ><i class="material-icons">update</i></button>
+                <button type="button" class="btn btn-primary btn-action" v-on:click='showUser(user.user_id)'><i class="material-icons">update</i></button>
                 <button id="alert-target" type="button" class="btn btn-danger btn-action" v-on:click.prevent='deleteUser(user.user_id)'><i class="material-icons">delete</i></button>
             </td>
             </tr>

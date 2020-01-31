@@ -13,7 +13,7 @@ BEGIN
 	tr.transaction_amount AS MONTO_DE_OPERACION,
 	tr.transaction_transfer_date AS FECHA_DE_TRASPASO_DE_ESCRITURA,
 	IF(tr.transaction_intermediary_bank = "CONTADO","",tr.transaction_intermediary_bank) AS BANCO_INTERMEDIARIO,
-	IF(fu.id = 5,"FINANCIAMIENTO","") AS FONDOS,
+	IF(fu.id = 5,"FINANCIAMIENTO","CONTADO") AS FONDOS,
 	IF(fu.id != 5, fu.name, "") AS FORMA_DE_PAGO,
 	tr.workplace AS LUGAR_DE_TRABAJO,
 	IF(cl.activity_id = 2, tr.workstation, "") AS PUESTO,

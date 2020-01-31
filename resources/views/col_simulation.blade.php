@@ -59,21 +59,21 @@
           <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="name">Nombre completo</label>
-                <input type="text" class="form-control text-uppercase" id="name" placeholder="" v-model="name">
+                <input type="text" class="form-control text-uppercase" id="name" placeholder="" v-model="name" maxlength="40" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" /><i>(Máximo 40 caracteres)</i>
                 {{-- <div class="invalid-feedback">
                   Valid first name is required.
                 </div> --}}
               </div>
             <div class="col-md-3 mb-3">
               <label for="age">Edad</label>
-              <input type="number" class="form-control" id="age" placeholder="" v-model="age">
+              <input type="number" class="form-control" min="0" maxlength="3" id="age" placeholder="" v-model="age" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" /><i>(Máximo 3 dígitos)</i>
               {{-- <div class="invalid-feedback">
                 Zip code required.
               </div> --}}
             </div>
             <div class="col-md-3 mb-3">
                 <label class="" for="households">No. de Viviendas</label>
-                <input type="number" class="form-control" id="households" placeholder=""  v-model="households">
+                <input type="number" class="form-control" id="households" maxlength="2" placeholder=""  v-model="households" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" /><i>(Máximo 2 dígitos)</i>
                 {{-- <div class="invalid-feedback">
                   Zip code required.
                 </div> --}}
@@ -82,10 +82,10 @@
           <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="activity">Actividad Económica</label>
-                <select class="custom-select d-block w-100" id="activity"  v-model="activity">
-                  <option v-for="(activityType, index) in activityArray" :key="index">
-                    @{{ activityType }}
-                  </option>
+                <select name="activity" class="custom-select d-block w-100" id="activity"  v-model="activity">
+                    @foreach($activities as $activity)
+                        <option>{{ $activity->name }}</option>
+                    @endforeach
                 </select>
                 {{-- <div class="invalid-feedback">
                   Please select a valid country.
@@ -93,10 +93,10 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="funding">Fuente de Financiamiento</label>
-                <select class="custom-select d-block w-100" id="funding"  v-model="funding">
-                  <option v-for="(fundingType, index) in fundingArray" :key="index">
-                    @{{ fundingType }}
-                  </option>
+                <select name="funding" class="custom-select d-block w-100" v-model="funding">
+                    @foreach($fundings as $funding)
+                        <option>{{ $funding->name }}</option>
+                    @endforeach
                 </select>
                 {{-- <div class="invalid-feedback">
                   Please provide a valid state.

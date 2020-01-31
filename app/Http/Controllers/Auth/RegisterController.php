@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserValidation;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -37,7 +39,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('adm');
+        $this->middleware('adm'); //Verifica que la solicitud proviene de un usuario registrado con el role de administrador.
+        $this->middleware('active'); //Verifica que la solicitud proviene de un usuario activo.
     }
 
     /**
@@ -46,15 +49,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(Request $request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role_id' => ['required', 'integer', 'confirmed'],
-            'company_id' => ['required', 'integer', 'confirmed'],
-        ]);
+
     }
 
     /**
@@ -63,14 +60,32 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function register(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'role_id' => $data['role_id'],
-            'company_id' => $data['company_id'],
-            'password' => Hash::make($data['password']),
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'role_id' => 'required|integer|confirmed',
+            'company_id' => 'required|integer|confirmed',
+            'active' => 'required|boolean|confirmed',
+            'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required_with:password|same:password|string|min:8|confirmed',
         ]);
+        if ($validator->fails()) {
+            return redirect('adm.create.user')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else{
+            User::create([
+                'name' => trim(mb_strtoupper($request['name'])),
+                'email' => $request['email'],
+                'role_id' => $request['role_id'],
+                'company_id' => $request['company_id'],
+                'active' => $request['active'],
+                'password' => Hash::make($request['password']),
+            ]);
+            return back()->with('message', 'Usuario registrado'); //Retorna a la página anterior cuando registra al usuario
+        }
     }
 }

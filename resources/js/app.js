@@ -264,10 +264,13 @@ var vm = new Vue({
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
         searchTransactionsAll: function(){
             return this.transactionsAll.filter((index) => {
-                return index.transaction_operation_date.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                return moment(index.transaction_operation_date).format("MMMM-YYYY").toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_identity.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.company_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.transaction_apartment_number.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.transaction_currency.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.transaction_amount.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.user_name.toUpperCase().includes(this.property.toUpperCase().trim())
             });
         },
@@ -388,8 +391,6 @@ var vm = new Vue({
 var vm = new Vue({
     el: '#col',
     data:{
-        activityArray: ['','TRABAJADOR ASALARIADO','COMERCIANTE INDIVIDUAL / INDEPENDIENTE', 'NEGOCIO INFORMAL', 'PEP', 'SIN FINES DE LUCRO (ONGS)'],
-        fundingArray: ['','FINANCIAMIENTO BANCO','AUTOFINANCIADO TRANSF. DE CTA DEL CLIENTE', 'AUTOFINANCIADO TRANSF. DE TERCEROS', 'DEPÓSITO EN EFECTIVO EN CTAS DE LA EMPRESA', 'EFECTIVO'],
         name:'',
         households: '',
         age: '',
@@ -426,7 +427,7 @@ var vm = new Vue({
                 this.scoreRisk = this.scoreRisk + 3*this.percHouseholds;
             }else if(this.households >= 2 && this.households <= 3){
                 this.scoreRisk = this.scoreRisk + 2*this.percHouseholds;
-            }else if(this.households >= 1){
+            }else if(this.households >= 0){
                 this.scoreRisk = this.scoreRisk + 1*this.percHouseholds;
             }
 
@@ -565,6 +566,11 @@ var vm = new Vue({
             this.getUsersAll();
             alert("Usuario eliminado con éxito")
         });
+        },
+        // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+        showUser: function(id){
+            var url = 'adm.show.user/'+id;
+            window.location.href = url;
         },
         // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
         getUsersAll: function(){

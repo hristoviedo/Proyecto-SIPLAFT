@@ -67245,7 +67245,7 @@ var vm = new Vue({
       var _this6 = this;
 
       return this.transactionsAll.filter(function (index) {
-        return index.transaction_operation_date.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_identity.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.company_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.user_name.toUpperCase().includes(_this6.property.toUpperCase().trim());
+        return moment__WEBPACK_IMPORTED_MODULE_1___default()(index.transaction_operation_date).format("MMMM-YYYY").toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_identity.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.company_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_apartment_number.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_currency.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_amount.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.user_name.toUpperCase().includes(_this6.property.toUpperCase().trim());
       });
     },
     // Retorna la página que está activa
@@ -67363,8 +67363,6 @@ var vm = new Vue({
 var vm = new Vue({
   el: '#col',
   data: {
-    activityArray: ['', 'TRABAJADOR ASALARIADO', 'COMERCIANTE INDIVIDUAL / INDEPENDIENTE', 'NEGOCIO INFORMAL', 'PEP', 'SIN FINES DE LUCRO (ONGS)'],
-    fundingArray: ['', 'FINANCIAMIENTO BANCO', 'AUTOFINANCIADO TRANSF. DE CTA DEL CLIENTE', 'AUTOFINANCIADO TRANSF. DE TERCEROS', 'DEPÓSITO EN EFECTIVO EN CTAS DE LA EMPRESA', 'EFECTIVO'],
     name: '',
     households: '',
     age: '',
@@ -67402,7 +67400,7 @@ var vm = new Vue({
         this.scoreRisk = this.scoreRisk + 3 * this.percHouseholds;
       } else if (this.households >= 2 && this.households <= 3) {
         this.scoreRisk = this.scoreRisk + 2 * this.percHouseholds;
-      } else if (this.households >= 1) {
+      } else if (this.households >= 0) {
         this.scoreRisk = this.scoreRisk + 1 * this.percHouseholds;
       }
 
@@ -67539,7 +67537,7 @@ var vm = new Vue({
     deleteUser: function deleteUser(id) {
       var _this10 = this;
 
-      if (!confirm("¿Está seguro de eliminar al uSsuario? No podrá revertir la acción")) {
+      if (!confirm("¿Está seguro de eliminar al usuario? No podrá revertir la acción")) {
         return false;
       }
 
@@ -67549,6 +67547,11 @@ var vm = new Vue({
 
         alert("Usuario eliminado con éxito");
       });
+    },
+    // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
+    showUser: function showUser(id) {
+      var url = 'adm.show.user/' + id;
+      window.location.href = url;
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
     getUsersAll: function getUsersAll() {

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Role;
+use App\User;
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 //Inicio de la clase TransactionExport
 class AdminController extends Controller
@@ -35,8 +37,15 @@ class AdminController extends Controller
         return view('Auth/register', compact('companies','roles')); //Muestra la vista de 'adm_record.blade.php'
     }//Fin de la función
 
-    //Inicio de la función adm_record
-    public function user_update(){
-        return view('user_update'); //Muestra la vista de 'adm_record.blade.php'
-    }//Fin de la función
+    //Inicio de la función adm_user
+    public function adm_show_user($id){
+        $user = DB::table('users')
+                ->where('id', $id)
+                ->get();
+        // dd($user);
+        $roles = Role::all();
+        $companies = Company::all();
+        return view('user_update', compact('user','companies','roles')); //Muestra la vista de 'user_update.blade.php'
+    }
+    //Fin de la función
 }//Fin de la clase

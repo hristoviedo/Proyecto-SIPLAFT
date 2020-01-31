@@ -5,6 +5,14 @@
     <h1 class="h2">Registrar Nuevo Usuario</h1>
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="mostrar_ocultar">
+                {{-- Inicio de la condición --}}
+                @if (Session::has('message')) {{-- ¿Existe un mensaje que mostrar? --}}
+                    <div class="alert alert-success" role="alert">
+                      <p class="lead importacion__message">{{ Session::get('message') }}</p> {{-- Muestra el mensaje --}}
+                    </div>
+                @endif {{-- Fin de la condición --}}
+            </div>
             <div class="card">
                 <div class="card-header bg-color"><b>{{ __('Registro de Usuario') }}</b></div>
 
@@ -16,7 +24,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="text-uppercase form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -41,28 +49,48 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Role del usuario') }}</label>
+                            <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('Role del usuario') }}</label>
                             <div class="col-md-6">
-                                <select id="type" type="text" class="form-control" name="type">
-                                    Valores del tipo de usuario
-                                    <option>Colaborador</option>
-                                    <option>Supervisor</option>
-                                    <option>Administrador</option>
+                                <select name="role_id" class="form-control">
+                                    @foreach($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
                                 </select>
+                                @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="company_id" class="col-md-4 col-form-label text-md-right">{{ __('Empresa a la que pertenece') }}</label>
                             <div class="col-md-6">
-                                <select id="company_id" type="text" class="form-control" name="company_id">
-                                    Valores del tipo de usuario
-                                    <option>Distrito Verde</option>
-                                    <option>EcoVivienda</option>
-                                    <option>Empresa 3</option>
-                                    <option>Empresa 4</option>
-                                    <option>Empresa 5</option>
+                                <select name="company_id" class="form-control">
+                                    @foreach($companies as $company)
+                                        <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                    @endforeach
                                 </select>
+                                @error('company_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="active" class="col-md-4 col-form-label text-md-right">{{ __('¿Activo?') }}</label>
+                            <div class="col-md-6">
+                                <select name="active" class="form-control">
+                                    <option value="1">SÍ</option>
+                                    <option value="0">NO</option>
+                                </select>
+                                @error('active')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -93,10 +121,7 @@
                                 <button type="submit" class="btn btn-success">
                                     {{ __('Registrar') }}
                                 </button>
-                                <a class="btn btn-color" role="button" href="adm.user">
-                                    <p class="">Limpiar</p>
-                                </a>
-                                <a class="btn btn-danger" role="button" href="adm.user">
+                                <a class="btn btn-danger" role="button" href="{{ route('adm.user') }}">
                                     <p class="">Cancelar</p>
                                 </a>
                             </div>
