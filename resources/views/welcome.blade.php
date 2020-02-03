@@ -42,7 +42,7 @@
         </div>
         <div>
             <footer class="mt-auto py-2 page-footer" >
-                <div id="copyright"><small class="">Copyright &copy; 2019 - SIPLAFT - Todos los derechos reservados</small></div>
+                <div id="copyright"><small class="">Copyright &copy; {{ date('Y') }} - SIPLAFT - Todos los derechos reservados</small></div>
             </footer>
         </div>
     </body>
