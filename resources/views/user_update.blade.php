@@ -25,7 +25,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="text-uppercase form-control @error('name') is-invalid @enderror" name="name" value="{{ $userUpdate->name }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="text-uppercase form-control @error('name') is-invalid @enderror" name="name" value="{{ $userUpdate->name }}" onKeyUp="this.value=this.value.toUpperCase();" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -91,24 +91,15 @@
                             <label for="active" class="col-md-4 col-form-label text-md-right">{{ __('¿Activo?') }}</label>
                             <div class="col-md-6">
                                 <select name="active" class="form-control">
-                                    <option value="1">SÍ</option>
+                                    @if($userUpdate->active == 0)
+                                        <option value="0" default selected>NO</option>
+                                        <option value="1">SI</option>
+                                    @else
+                                    <option value="1" default selected>SI</option>
                                     <option value="0">NO</option>
+                                    @endif
                                 </select>
                                 @error('active')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" value="{{ $userUpdate->password }}" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
