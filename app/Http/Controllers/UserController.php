@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Company; // Accede al modelo Company
-use App\Role; // Accede al modelo Company
-use App\User; // Accede al modelo User
 use Illuminate\Http\Request;
+use App\User; // Accede al modelo User
+use App\Role; // Accede al modelo Company
+use Illuminate\Support\Facades\Validator;
+use App\Company; // Accede al modelo Company
 use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 
 
@@ -107,25 +108,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make(request()->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'role_id' => 'required|integer|confirmed',
-            'company_id' => 'required|integer|confirmed',
-            'active' => 'required|boolean|confirmed',
-            'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required_with:password|same:password|string|min:8|confirmed',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'role_id' => 'required|integer',
+            'company_id' => 'required|integer',
+            'active' => 'required|boolean',
         ]);
-        User::update([
-            'name' => trim(mb_strtoupper($request['name'])),
-            'email' => $request['email'],
-            'role_id' => $request['role_id'],
-            'company_id' => $request['company_id'],
-            'active' => $request['active'],
-            'password' => Hash::make($request['password']),
-        ]);
+
+        if ($validator->fails()) {
+            return redirect('adm.show.user/' . $id)->withInput()->withErrors($validator);
+        };
+
+        $user = User::findOrFail($id);
+        $user->fill(request()->all());
+        $user->save();
         return back()->with('message', 'Usuario Actualizado'); //Retorna a la página anterior cuando registra al usuario
     }
 
