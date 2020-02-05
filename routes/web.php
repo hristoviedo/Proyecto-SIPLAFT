@@ -47,6 +47,8 @@ Auth::routes(['verify' => true]); // Todas las funciones de usuarios
 
 Route::post('/clients.carga', 'ColController@clientImportExcel')->name('client.import.excel'); // /clients.carga llama a la función 'clientImportExcel' de ColController
 
+Route::post('/register', 'UserController@register')->name('register'); // /clients.carga llama a la función 'clientImportExcel' de ColController
+
 Route::post('/transactions.carga', 'ColController@transactionImportExcel')->name('transaction.import.excel'); // /descarga llama a la función 'transactionImportExcel' de ColController
 
 Route::get('/clients.descarga', 'ColController@clientExportExcel')->name('client.export.excel'); // /clients.descarga llama a la función 'clientExportExcel' de ColController
