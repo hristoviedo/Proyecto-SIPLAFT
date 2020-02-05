@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Events\EventsSIPLAFT;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Exports\TransactionsReportMonth;
 use App\Exports\TransactionsReportAllSup;
 
@@ -53,11 +56,38 @@ class SupController extends Controller
             ->select('companies.name')
             ->where('companies.id','=',$company_id)
             ->value('name');
+        $user_modifier_id = Auth::user()->id;
+        $record_date = Carbon::now()->toDateTimeString();
+        $record_modified_table = null;
+        $record_action = 'DESCARGÓ REPORTE MENSUAL DE TRANSACCIONES';
+        $record_modified_register = null;
+        $record_modified_field = null;
+        $record_new_data = null;
+        $record_old_data = null;
+        $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+        event( new EventsSIPLAFT( $data ));
+        $findLastRecord = DB::table('records')->latest('id')->first();
+        $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+
         return (new TransactionsReportMonth)->forCompanyName($companyName)->forMonth($month)->forYear($year)->forCompanyID($company_id)->download($companyName . '-'. 'REPORTE' . '-' . $month . '-' . $year . '.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
 
     //Inicio de la función transactionExportAllExcel
     public function transactionExportAllExcel(){
+
+        $user_modifier_id = Auth::user()->id;
+        $record_date = Carbon::now()->toDateTimeString();
+        $record_modified_table = null;
+        $record_action = 'DESCARGÓ REPORTE TOTAL DE TRANSACCIONES';
+        $record_modified_register = null;
+        $record_modified_field = null;
+        $record_new_data = null;
+        $record_old_data = null;
+        $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+        event( new EventsSIPLAFT( $data ));
+        $findLastRecord = DB::table('records')->latest('id')->first();
+        $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+
         return (new TransactionsReportAllSup)->download('REPORTE-COMPLETO.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
 }//Fin de la clase
