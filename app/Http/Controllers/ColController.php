@@ -6,7 +6,8 @@ use App\Funding;
 
 use App\Activity;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
+use App\Events\EventsSIPLAFT;
 use App\Exports\TransactionExport;
 use Illuminate\Support\Facades\Auth;
 use App\Exports\TransactionsReportAll;
@@ -75,6 +76,20 @@ class ColController extends Controller
             ->select('companies.name')
             ->where('users.id','=',auth()->user()->id)
             ->value('name');
+
+        $user_modifier_id = Auth::user()->id;
+        $record_date = Carbon::now()->toDateTimeString();
+        $record_modified_table = null;
+        $record_action = 'REPORTE MENSUAL DE CLIENTES EXPORTADO';
+        $record_modified_register = null;
+        $record_modified_field = null;
+        $record_new_data = null;
+        $record_old_data = null;
+        $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+        event( new EventsSIPLAFT( $data ));
+        $findLastRecord = DB::table('records')->latest('id')->first();
+        $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+
         return (new TransactionsReportMonth)->forCompanyName($companyName)->forMonth($month)->forYear($year)->forCompanyID($company_id)->download($companyName . '-'. 'REPORTE' . '-' . $month . '-' . $year . '.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
 
@@ -86,6 +101,20 @@ class ColController extends Controller
             ->select('companies.name')
             ->where('users.id','=',auth()->user()->id)
             ->value('name');
+
+        $user_modifier_id = Auth::user()->id;
+        $record_date = Carbon::now()->toDateTimeString();
+        $record_modified_table = null;
+        $record_action = 'REPORTE TOTAL DE CLIENTES EXPORTADO';
+        $record_modified_register = null;
+        $record_modified_field = null;
+        $record_new_data = null;
+        $record_old_data = null;
+        $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+        event( new EventsSIPLAFT( $data ));
+        $findLastRecord = DB::table('records')->latest('id')->first();
+        $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+
         return (new TransactionsReportAll)->forCompanyName($companyName)->forCompanyID($company_id)->download($companyName . '-'. 'REPORTE-COMPLETO.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
 
@@ -97,6 +126,20 @@ class ColController extends Controller
         Excel::import(new ClientImport, $file); //Llama a la clase ClientImport para subir la lista de clientes del excel.
         $matchTablesClients = DB::select('CALL matchTablesClients'); // Procedimiento Almacenado para relacionar clientes con otras tablas
         $calculateRisks = DB::select('CALL calculateRisks'); // Procedimiento Almacenado para calcular el riesgo
+
+        $user_modifier_id = Auth::user()->id;
+        $record_date = Carbon::now()->toDateTimeString();
+        $record_modified_table = null;
+        $record_action = 'EXCEL DE CLIENTES IMPORTADO';
+        $record_modified_register = null;
+        $record_modified_field = null;
+        $record_new_data = null;
+        $record_old_data = null;
+        $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+        event( new EventsSIPLAFT( $data ));
+        $findLastRecord = DB::table('records')->latest('id')->first();
+        $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+
         return back()->with('message', 'Lista de clientes enviada'); //Retorna a la página anterior cuando termina de importar
     }//Fin de la función
 
@@ -107,6 +150,20 @@ class ColController extends Controller
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new TransactionImport, $file); //Llama a la clase TransactionImport para subir la lista de transacciones del excel.
         $matchTablesTransactions = DB::select('CALL matchTablesTransactions (?, ?)', array($user_id,$company_id)); // Procedimiento Almacenado para relacionar clientes con otras tablas
+
+        $user_modifier_id = Auth::user()->id;
+        $record_date = Carbon::now()->toDateTimeString();
+        $record_modified_table = null;
+        $record_action = 'EXCEL DE TRANSACCIONES IMPORTADO';
+        $record_modified_register = null;
+        $record_modified_field = null;
+        $record_new_data = null;
+        $record_old_data = null;
+        $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+        event( new EventsSIPLAFT( $data ));
+        $findLastRecord = DB::table('records')->latest('id')->first();
+        $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+
         return back()->with('message', 'Lista de transacciones enviada'); //Retorna a la página anterior cuando termina de importar
     }//Fin de la función
 }//Fin de la clase
