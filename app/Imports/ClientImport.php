@@ -20,7 +20,7 @@ class ClientImport implements ToModel, WithBatchInserts, WithChunkReading
     public function model(array $row)
     {
         //Inicio de la condición
-        if (((!isset($row[0]))) or (($row[2] == 0) and ($row[10] == 0))) { //Verifica si el registro tiene vacío el campo identity o si los campos de tipo enteros son 0
+        if (((!isset($row[0]))) or ((!isset($row[13]))) or (($row[2] == 0) and ($row[10] == 0))) { //Verifica si el registro tiene vacío el campo identity o si los campos de tipo enteros son 0
             return null; //No guarda el registro y salta el siguiente
         }//Fin de la condición
 
