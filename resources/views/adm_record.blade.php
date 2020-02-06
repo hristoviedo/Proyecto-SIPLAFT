@@ -11,6 +11,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Nombre del Usuario</th>
+                    <th>Rol del Usuario</th>
                     <th>Accion</th>
                     <th>Fecha</th>
                     <th>Tabla Modificada</th>
@@ -25,10 +26,16 @@
                     <tr>
                         @if( $record->user_modifier_id == null )
                             <td>INVITADO</td>
+                            <td></td>
                         @else
                             @foreach($users as $user)
                                 @if( $record->user_modifier_id == $user->id )
                                     <td>{{ $user->name }}</td>
+                                    @foreach($roles as $role)
+                                        @if( $user->role_id == $role->id )
+                                            <td>{{ $role->name }}</td>
+                                        @endif
+                                    @endforeach
                                 @endif
                             @endforeach
                         @endif
