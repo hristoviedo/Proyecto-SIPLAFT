@@ -32,50 +32,10 @@
             <td>@{{ formatBool(user.user_active) }}</td>
             <td>
                 <button type="button" class="btn btn-primary btn-action" v-on:click='showUser(user.user_id)'><i class="material-icons">update</i></button>
-                {{-- <button id="alert-target" type="button" class="btn btn-danger btn-action" v-on:click.prevent='deleteUser(user.user_id)'><i class="material-icons">delete</i></button> --}}
             </td>
             </tr>
         </tbody>
         </table>
-
-        {{-- <div v-if="mostrar" class="col-md-3 order-md-2">
-            <h4 class="mb-3">Datos del usuario</h4>
-            <form class="">
-                <span v-for="error in errors" class="text-danger">@{{ error }}</span>
-                <div class="col-md-12 mb-3">
-                    <label for="name">Nombre completo</label>
-                    <input type="text" class="form-control text-uppercase" name="name" placeholder="INGRESE EL NOMBRE"  v-model="name">
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label for="email">Correo Electrónico</label>
-                    <input type="text" class="form-control" name="email" placeholder="INGRESE EL CORREO"  v-model="email">
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label class="" for="password">Contraseña</label>
-                    <input type="password" class="form-control" name="password" placeholder="INGRESE LA CONTRASEÑA"  v-model="password">
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label for="company">Empresa</label>
-                    <select class="custom-select d-block w-100" name="company"  v-model="company">
-                        <option v-for="(company, index) in companiesAll" :key="index" value="index">
-                        @{{ company.name }}
-                        </option>
-                    </select>
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label for="role">Role</label>
-                    <select class="custom-select d-block w-100" name="role"  v-model="role">
-                        <option v-for="(role, index) in rolesAll" :key="index">
-                        @{{ role.name }}
-                        </option>
-                    </select>
-                </div>
-                <div class="col-auto">
-                    <button type="button" class="btn btn-sm btn-color" @click.prevent='clearProperty'>Limpiar</button>
-                    <button type="button" class="btn btn-sm btn-color" v-on:click.prevent='createUser'>Guardar usuario</button>
-                </div>
-            </form>
-        </div> --}}
     </div>
 </div>
 @endsection
