@@ -28,9 +28,11 @@ class AdminController extends Controller
     //Inicio de la función adm_record
     public function adm_record(){
         $records = DB::table('records')
+                ->latest('record_date')
                 ->get();
         $users = User::all();
-        return view('adm_record', compact('records','users')); //Muestra la vista de 'adm_record.blade.php'
+        $roles = Role::all();
+        return view('adm_record', compact('records','users','roles')); //Muestra la vista de 'adm_record.blade.php'
     }//Fin de la función
 
     //Inicio de la función adm_record
