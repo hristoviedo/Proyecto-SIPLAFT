@@ -106,7 +106,7 @@ class UserController extends Controller
                 'password' => Hash::make($request['password']),
                 ]);
                 $record_modified_table = 'USERS';
-                $record_action = 'USUARIO REGISTRADO';
+                $record_action = 'REGISTRÓ NUEVO USUARIO';
                 $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
                 // dd($data);
                 event( new EventsSIPLAFT( $data ));
@@ -182,54 +182,39 @@ class UserController extends Controller
             return redirect('adm.show.user/' . $id)->withInput()->withErrors($validator);
         }else{
             $userUpdate = User::find($id);
-            $record_action = 'USUARIO ACTUALIZADO';
+            $record_action = 'ACTUALIZÓ USUARIO';
             $record_modified_register = request()->email;
-            // dd($userUpdate->name);
             if (request()->name != $userUpdate->name ){
                 $record_modified_field = 'name';
                 $record_new_data = request()->name;
                 $record_old_data = $userUpdate->name;
-                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-                event( new EventsSIPLAFT( $data ));
-                $findLastRecord = DB::table('records')->latest('id')->first();
-                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
             };
             if (request()->email != $userUpdate->email ){
                 $record_modified_field = 'email';
                 $record_new_data = request()->email;
                 $record_old_data = $userUpdate->email;
-                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-                event( new EventsSIPLAFT( $data ));
-                $findLastRecord = DB::table('records')->latest('id')->first();
-                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
             };
             if (request()->role_id != $userUpdate->role_id ){
                 $record_modified_field = 'role_id';
                 $record_new_data = request()->role_id;
                 $record_old_data = $userUpdate->role_id;
-                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-                event( new EventsSIPLAFT( $data ));
-                $findLastRecord = DB::table('records')->latest('id')->first();
-                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
             };
             if (request()->company_id != $userUpdate->company_id ){
                 $record_modified_field = 'company_id';
                 $record_new_data = request()->company_id;
                 $record_old_data = $userUpdate->company_id;
                 $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-                event( new EventsSIPLAFT( $data ));
-                $findLastRecord = DB::table('records')->latest('id')->first();
-                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
             };
             if (request()->active != $userUpdate->active ){
                 $record_modified_field = 'active';
                 $record_new_data = request()->active;
                 $record_old_data = $userUpdate->active;
-                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-                event( new EventsSIPLAFT( $data ));
-                $findLastRecord = DB::table('records')->latest('id')->first();
-                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
             };
+            $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+            event( new EventsSIPLAFT( $data ));
+            $findLastRecord = DB::table('records')->latest('id')->first();
+            $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+
             $userUpdate->fill(request()->all());
             $userUpdate->save();
             return back()->with('message', 'Usuario Actualizado'); //Retorna a la página anterior cuando registra al usuario
@@ -252,7 +237,7 @@ class UserController extends Controller
         $user_modifier_id = Auth::user()->id;
         $record_date = Carbon::now()->toDateTimeString();
         $record_modified_table = 'USERS';
-        $record_action = 'USUARIO ELIMINADO';
+        $record_action = 'ELIMINÓ USUARIO';
         $record_modified_register = $userDelete->email;
         $record_modified_field = null;
         $record_new_data = null;
