@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\EventsSIPLAFT;
+use App\Events\EventsSiplaft;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EventsSIPLAFTListener
+class EventsSiplaftListener
 {
     /**
      * Create the event listener.
@@ -22,11 +22,12 @@ class EventsSIPLAFTListener
     /**
      * Handle the event.
      *
-     * @param  EventsSIPLAFT  $event
+     * @param  EventsSiplaft  $event
      * @return void
      */
-    public function handle(EventsSIPLAFT $event)
+    public function handle(EventsSiplaft $event)
     {
-        $InsertRegister = DB::table('records')->insert($event->data);
+        $insertRecord = DB::table('records')->insert($event->data);
+        // dd($insertRecord);
     }
 }
