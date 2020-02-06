@@ -6,32 +6,43 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <h1 class="h2">Tabla de Eventos</h1>
     </div>
-  <div class="row">
-    <table class="table table-striped table-hover table-sm text-center">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Correo</th>
-          <th>Rol</th>
-          <th>Empresa</th>
-          <th>¿Activo?</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(user, index) in usersAll" :key="index">
-          <td>@{{ user.user_name }}</td>
-          <td>@{{ user.user_email }}</td>
-          <td>@{{ user.user_rol }}</td>
-          <td>@{{ user.user_company }}</td>
-          <td>@{{ formatBool(user.user_active) }}</td>
-          <td>
-            <button type="button" class="btn btn-primary btn-action" v-on:click.prevent='updateUser(user)'>MODIFICAR</button>
-            <button type="button" class="btn btn-danger btn-action" v-on:click.prevent='deleteUser(user)'>ELIMINAR</button>
-        </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="row">
+        <table class="table table-striped table-hover table-sm text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre del Usuario</th>
+                    <th>Accion</th>
+                    <th>Fecha</th>
+                    <th>Tabla Modificada</th>
+                    <th>Registro Modificado</th>
+                    <th>Campo Modificado</th>
+                    <th>Valor Nuevo</th>
+                    <th>Valor Antiguo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($records as $record)
+                    <tr>
+                        @if( $record->user_modifier_id == null )
+                            <td>INVITADO</td>
+                        @else
+                            @foreach($users as $user)
+                                @if( $record->user_modifier_id == $user->id )
+                                    <td>{{ $user->name }}</td>
+                                @endif
+                            @endforeach
+                        @endif
+                        <td>{{ $record->record_action }}</td>
+                        <td>{{ $record->record_date }}</td>
+                        <td>{{ $record->record_modified_table }}</td>
+                        <td>{{ $record->record_modified_register }}</td>
+                        <td>{{ $record->record_modified_field }}</td>
+                        <td>{{ $record->record_new_data }}</td>
+                        <td>{{ $record->record_old_data }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection
