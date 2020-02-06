@@ -15,8 +15,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\EventsSIPLAFT' => [
-            'App\Listeners\EventsSIPLAFTListener',
+        'App\Events\EventsSiplaft' => [
+            'App\Listeners\EventsSiplaftListener',
         ],
     ];
 
