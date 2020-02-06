@@ -68,11 +68,11 @@ BEGIN
 	END CASE;
 
     CASE
-    WHEN score >= 4 AND score <= 5 THEN SET risk = 'CRITICO';
-	WHEN score >= 3 AND score < 4 THEN SET risk = 'ALTO';
-	WHEN score >= 2 AND score < 3 THEN SET risk = 'SIGNIFICATIVO';
-    WHEN score >= 1 AND score < 2 THEN SET risk = 'MODERADO';
-    WHEN score > 0 AND score < 1 THEN SET risk = 'BAJO';
+    WHEN score > 4 AND score <= 5 THEN SET risk = 'CRITICO';
+	WHEN score > 3 AND score <= 4 THEN SET risk = 'ALTO';
+	WHEN score > 2 AND score <= 3 THEN SET risk = 'SIGNIFICATIVO';
+    WHEN score > 1 AND score <= 2 THEN SET risk = 'MODERADO';
+    WHEN score > 0 AND score <= 1 THEN SET risk = 'BAJO';
     ELSE SET risk = 'NO DISPONIBLE';
 	END CASE;
 
