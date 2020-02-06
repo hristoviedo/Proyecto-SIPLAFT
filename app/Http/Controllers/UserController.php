@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Events\EventsSIPLAFT;
+use App\Events\EventsSiplaft;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User; // Accede al modelo User
@@ -90,8 +90,7 @@ class UserController extends Controller
             $record_action = 'FALLÓ REGISTRO DE USUARIO';
             $record_modified_table = null;
             $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-            // dd($data);
-            event( new EventsSIPLAFT( $data ));
+            event( new EventsSiplaft( $data ));
             $findLastRecord = DB::table('records')->latest('id')->first();
             $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
 
@@ -108,8 +107,7 @@ class UserController extends Controller
                 $record_modified_table = 'USERS';
                 $record_action = 'REGISTRÓ NUEVO USUARIO';
                 $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-                // dd($data);
-                event( new EventsSIPLAFT( $data ));
+                event( new EventsSiplaft( $data ));
                 $findLastRecord = DB::table('records')->latest('id')->first();
                 $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
                 return back()->with('message', 'Usuario registrado'); //Retorna a la página anterior cuando registra al usuario
@@ -178,7 +176,9 @@ class UserController extends Controller
             $record_modified_register = null;
             $record_modified_field = null;
             $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-            event( new EventsSIPLAFT( $data ));
+            event( new EventsSiplaft( $data ));
+            $findLastRecord = DB::table('records')->latest('id')->first();
+            $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
             return redirect('adm.show.user/' . $id)->withInput()->withErrors($validator);
         }else{
             $userUpdate = User::find($id);
@@ -211,7 +211,7 @@ class UserController extends Controller
                 $record_old_data = $userUpdate->active;
             };
             $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-            event( new EventsSIPLAFT( $data ));
+            event( new EventsSiplaft( $data ));
             $findLastRecord = DB::table('records')->latest('id')->first();
             $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
 
@@ -243,7 +243,7 @@ class UserController extends Controller
         $record_new_data = null;
         $record_old_data = null;
         $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-        event( new EventsSIPLAFT( $data ));
+        event( new EventsSiplaft( $data ));
         $findLastRecord = DB::table('records')->latest('id')->first();
         $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
         $userDelete->delete(); //Elimina el registro
