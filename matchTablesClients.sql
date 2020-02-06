@@ -44,7 +44,7 @@ BEGIN
        UPDATE clients SET 
        activity_id = activityID, funding_id = fundingID,
        identity = cuIdentity, name = cuName, age = cuAge, email =cuEmail, workplace = cuWorkplace, workstation = cuWorkstation, salary = cuSalary, phone1 = cuPhone1,
-       phone2 = cuPhone2,nationality = cuNationality, households = cuHouseholds, total_amount = cuTotalAmount
+       phone2 = cuPhone2,nationality = cuNationality, households = cuHouseholds + households, total_amount = cuTotalAmount +  total_amount
        WHERE clients.identity = cuIdentity;
 	ELSE
 		INSERT INTO clients (activity_id, funding_id , identity, name, age, email, workplace, workstation, salary, phone1, phone2, nationality, households, total_amount, created_at, updated_at) 
