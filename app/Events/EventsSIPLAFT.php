@@ -10,7 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class EventsSIPLAFT
+class EventsSiplaft
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -21,7 +21,7 @@ class EventsSIPLAFT
      */
     public function __construct($data)
     {
-        $this->data= $data;
+        $this->data = $data;
     }
 
     /**
