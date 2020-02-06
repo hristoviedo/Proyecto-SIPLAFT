@@ -32,7 +32,7 @@
             <td>@{{ formatBool(user.user_active) }}</td>
             <td>
                 <button type="button" class="btn btn-primary btn-action" v-on:click='showUser(user.user_id)'><i class="material-icons">update</i></button>
-                <button id="alert-target" type="button" class="btn btn-danger btn-action" v-on:click.prevent='deleteUser(user.user_id)'><i class="material-icons">delete</i></button>
+                {{-- <button id="alert-target" type="button" class="btn btn-danger btn-action" v-on:click.prevent='deleteUser(user.user_id)'><i class="material-icons">delete</i></button> --}}
             </td>
             </tr>
         </tbody>
