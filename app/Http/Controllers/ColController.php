@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Funding;
 
 use App\Activity;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Events\EventsSIPLAFT;
+use Illuminate\Http\Request;
+use App\Events\EventsSiplaft;
 use App\Exports\TransactionExport;
 use Illuminate\Support\Facades\Auth;
 use App\Exports\TransactionsReportAll;
@@ -80,13 +80,13 @@ class ColController extends Controller
         $user_modifier_id = Auth::user()->id;
         $record_date = Carbon::now()->toDateTimeString();
         $record_modified_table = null;
-        $record_action = 'REPORTE MENSUAL DE CLIENTES EXPORTADO';
+        $record_action = 'EXPORTÓ REPORTE MENSUAL DE CLIENTES';
         $record_modified_register = null;
         $record_modified_field = null;
         $record_new_data = null;
         $record_old_data = null;
         $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-        event( new EventsSIPLAFT( $data ));
+        event( new EventsSiplaft( $data ));
         $findLastRecord = DB::table('records')->latest('id')->first();
         $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
 
@@ -105,13 +105,13 @@ class ColController extends Controller
         $user_modifier_id = Auth::user()->id;
         $record_date = Carbon::now()->toDateTimeString();
         $record_modified_table = null;
-        $record_action = 'REPORTE TOTAL DE CLIENTES EXPORTADO';
+        $record_action = 'EXPORTÓ REPORTE TOTAL DE CLIENTES';
         $record_modified_register = null;
         $record_modified_field = null;
         $record_new_data = null;
         $record_old_data = null;
         $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-        event( new EventsSIPLAFT( $data ));
+        event( new EventsSiplaft( $data ));
         $findLastRecord = DB::table('records')->latest('id')->first();
         $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
 
@@ -130,13 +130,13 @@ class ColController extends Controller
         $user_modifier_id = Auth::user()->id;
         $record_date = Carbon::now()->toDateTimeString();
         $record_modified_table = null;
-        $record_action = 'EXCEL DE CLIENTES IMPORTADO';
+        $record_action = 'IMPORTÓ EXCEL DE CLIENTES';
         $record_modified_register = null;
         $record_modified_field = null;
         $record_new_data = null;
         $record_old_data = null;
         $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-        event( new EventsSIPLAFT( $data ));
+        event( new EventsSiplaft( $data ));
         $findLastRecord = DB::table('records')->latest('id')->first();
         $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
 
@@ -154,13 +154,13 @@ class ColController extends Controller
         $user_modifier_id = Auth::user()->id;
         $record_date = Carbon::now()->toDateTimeString();
         $record_modified_table = null;
-        $record_action = 'EXCEL DE TRANSACCIONES IMPORTADO';
+        $record_action = 'IMPORTÓ EXCEL DE TRANSACCIONES';
         $record_modified_register = null;
         $record_modified_field = null;
         $record_new_data = null;
         $record_old_data = null;
         $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-        event( new EventsSIPLAFT( $data ));
+        event( new EventsSiplaft( $data ));
         $findLastRecord = DB::table('records')->latest('id')->first();
         $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
 
