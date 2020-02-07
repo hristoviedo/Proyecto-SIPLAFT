@@ -29,10 +29,9 @@ class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading
         $transaction_intermediary_bank = $row[2];
         $transaction_operation_date = $row[3];
         $transaction_transfer_date = $row[4];
-        $transaction_quantity = $row[5];
-        $transaction_cash = $row[6];
-        $transaction_currency = $row[7];
-        $transaction_amount = $row[8];
+        $transaction_cash = $row[5];
+        $transaction_currency = $row[6];
+        $transaction_amount = $row[7];
 
         //Cambia el tipo de variable para que coincida con los predefinidos en la base de datos
         $transaction_amount = (float)$transaction_amount;
@@ -44,7 +43,6 @@ class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading
             'transaction_intermediary_bank' => trim(mb_strtoupper($transaction_intermediary_bank)),
             'transaction_operation_date'    => trim($transaction_operation_date),
             'transaction_transfer_date'     => trim($transaction_transfer_date),
-            'transaction_quantity'          => $transaction_quantity,
             'transaction_cash'              => trim(mb_strtoupper($transaction_cash)),
             'transaction_currency'          => trim(mb_strtoupper($transaction_currency)),
             'transaction_amount'            => $transaction_amount,
@@ -54,12 +52,12 @@ class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading
     // Inicio de la función
     public function batchSize(): int
     {
-        return 10;
+        return 1;
     }//Fin de la función
 
     // Inicio de la función
     public function chunkSize(): int
     {
-        return 10;
+        return 1;
     }//Fin de la función
 } //Fin de la clase
