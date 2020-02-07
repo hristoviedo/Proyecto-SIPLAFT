@@ -19,7 +19,7 @@ class CreateClientsUploads extends Migration
             $table->string('identity', 15); //Número de identidad del cliente (not null)
             $table->string('name', 45)->nullable(); //Nombre completo del cliente (not null)
             $table->unsignedInteger('age')->nullable(); //Edad en años (nullable)
-            $table->string('email', 30)->nullable(); //Correo electrónico (nullable)
+            $table->string('email', 40)->nullable(); //Correo electrónico (nullable)
             $table->string('workplace', 30)->nullable(); //Lugar de trabajo (nullable)
             $table->string('workstation', 45)->nullable(); //Puesto de trabajo (nullable)
             $table->unsignedDecimal('salary',9,2)->default(null)->nullable(); //Monto total del salario mensual (valor por defecto = 0.00 y nullable)
