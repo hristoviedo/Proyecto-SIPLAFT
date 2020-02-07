@@ -9,7 +9,6 @@ BEGIN
     DECLARE tuBank VARCHAR(50) DEFAULT '';
     DECLARE tuOperationDate VARCHAR(30) DEFAULT '';
     DECLARE tuTransferDate VARCHAR(30) DEFAULT '';
-    DECLARE tuQuantity INTEGER DEFAULT 0;
     DECLARE tuCash VARCHAR(10) DEFAULT '';
     DECLARE tuCurrency VARCHAR(20) DEFAULT '';
     DECLARE tuAmount FLOAT DEFAULT 0.00;
@@ -23,16 +22,16 @@ BEGIN
     DECLARE clWorkstation VARCHAR(30) DEFAULT '';
     DECLARE clSalary FLOAT DEFAULT 0;
     DECLARE cashBool BOOLEAN DEFAULT FALSE;
-    
+
     DECLARE fin INTEGER DEFAULT 0;
 
 	DECLARE propertyCursor CURSOR FOR
-		SELECT tu.client_identity, tu.transaction_apartment_number, tu.transaction_intermediary_bank, tu.transaction_operation_date, tu.transaction_transfer_date, tu.transaction_quantity, tu.transaction_cash, tu.transaction_currency, tu.transaction_amount FROM transactions_uploads tu;
+		SELECT tu.client_identity, tu.transaction_apartment_number, tu.transaction_intermediary_bank, tu.transaction_operation_date, tu.transaction_transfer_date, tu.transaction_cash, tu.transaction_currency, tu.transaction_amount FROM transactions_uploads tu;
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin=1;
 
     OPEN propertyCursor;
     getProperty: LOOP
-    FETCH propertyCursor INTO tuIdentity, tuApartmentNumber, tuBank, tuOperationDate, tuTransferDate, tuQuantity, tuCash,tuCurrency,tuAmount;
+    FETCH propertyCursor INTO tuIdentity, tuApartmentNumber, tuBank, tuOperationDate, tuTransferDate, tuCash,tuCurrency,tuAmount;
      IF fin = 1 THEN
        LEAVE getProperty;
     END IF;
@@ -45,14 +44,14 @@ BEGIN
     SET clSalary := (SELECT c.salary FROM clients c WHERE tuIdentity = c.identity);
     SET dateOperationDate := STR_TO_DATE(tuOperationDate ,GET_FORMAT(DATE,'ISO'));
     SET dateTransferDate := STR_TO_DATE(tuTransferDate ,GET_FORMAT(DATE,'ISO'));
-    
+
     CASE
     WHEN tuCash = 'SI' OR  tuCash = 'YES' OR  tuCash = 'TRUE' OR  tuCash = 'AFIRMATIVO' OR tuCash = '1' THEN SET cashBool = TRUE;
     ELSE SET cashBool = FALSE;
 	END CASE;
 
-    INSERT INTO transactions (client_id, user_id , company_id, activity_id, funding_id, transaction_apartment_number, transaction_intermediary_bank, transaction_operation_date, transaction_transfer_date, transaction_quantity, transaction_cash, transaction_currency, transaction_amount, workplace, workstation, salary) 
-				VALUES (clientID, userID, companyID, activityID, fundingID, tuApartmentNumber, tuBank, tuOperationDate, tuTransferDate, tuQuantity, cashBool, tuCurrency, tuAmount, clWorkplace, clWorkstation, clSalary);
+    INSERT INTO transactions (client_id, user_id , company_id, activity_id, funding_id, transaction_apartment_number, transaction_intermediary_bank, transaction_operation_date, transaction_transfer_date, transaction_cash, transaction_currency, transaction_amount, workplace, workstation, salary)
+				VALUES (clientID, userID, companyID, activityID, fundingID, tuApartmentNumber, tuBank, tuOperationDate, tuTransferDate, cashBool, tuCurrency, tuAmount, clWorkplace, clWorkstation, clSalary);
 
     END LOOP getProperty;
     CLOSE propertyCursor;
