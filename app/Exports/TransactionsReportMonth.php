@@ -43,7 +43,6 @@ class TransactionsReportMonth implements WithHeadings, ShouldAutoSize, FromArray
             'Fuente de Ingreso',
             'Edad',
             'Identidad',
-            'No. de Apartamentos',
             'No. de Apartamentos Acumulados',
             'Riesgo'],
         ]; //Asigna el encabezado predeterminado de los datos a exportar

@@ -43,7 +43,6 @@ class TransactionsReportAllSup implements WithHeadings, ShouldAutoSize, FromArra
             'Fuente de Ingreso',
             'Edad',
             'Identidad',
-            'No. de Apartamentos',
             'No. de Apartamentos Acumulados',
             'Riesgo',
             'Empresa'],
