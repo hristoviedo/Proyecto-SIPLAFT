@@ -68,13 +68,13 @@ class ClientImport implements ToModel, WithBatchInserts, WithChunkReading
         // Inicio de la función
         public function batchSize(): int
         {
-            return 10;
+            return 50;
         }//Fin de la función
 
         // Inicio de la función
         public function chunkSize(): int
         {
-            return 10;
+            return 50;
         }//Fin de la función
 
 } //Fin de la clase
