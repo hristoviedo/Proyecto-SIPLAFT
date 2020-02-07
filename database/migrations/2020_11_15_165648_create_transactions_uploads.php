@@ -21,7 +21,6 @@ class CreateTransactionsUploads extends Migration
             $table->string('transaction_intermediary_bank'); //Número de apartamento (not null)
             $table->string('transaction_operation_date'); //Fecha en que registró la operación (not null)
             $table->string('transaction_transfer_date'); //Fecha en que registró el traspaso de escritura (not null)
-            $table->unsignedInteger('transaction_quantity'); //Cantidad de viviendas
             $table->string('transaction_cash')->default('NO'); //¿La transacción se hizo en efectivo? True si es verdadero (not null)
             $table->string('transaction_currency'); //Tipo de moneda en que se hizo la transacción (not null)
             $table->unsignedDecimal('transaction_amount',12,2); //Monto de la transacción en lempiras (not null)
