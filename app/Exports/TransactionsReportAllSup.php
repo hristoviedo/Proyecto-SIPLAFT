@@ -43,7 +43,7 @@ class TransactionsReportAllSup implements WithHeadings, ShouldAutoSize, FromArra
             'Fuente de Ingreso',
             'Edad',
             'Identidad',
-            'No. de Apartamentos Acumulados',
+            'Cantidad de Apartamentos Acumulados',
             'Riesgo',
             'Empresa'],
         ]; //Asigna el encabezado predeterminado de los datos a exportar

@@ -43,7 +43,7 @@ class TransactionsReportAll implements WithHeadings, ShouldAutoSize, FromArray, 
             'Fuente de Ingreso',
             'Edad',
             'Identidad',
-            'No. de Apartamentos Acumulados',
+            'Cantidad de Apartamentos Acumulados',
             'Riesgo'],
         ]; //Asigna el encabezado predeterminado de los datos a exportar
     }//Fin de la funcion
