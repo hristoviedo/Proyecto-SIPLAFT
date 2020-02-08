@@ -2,24 +2,12 @@
 
 namespace App\Exports;
 
-use App\Client;
-use App\Company;
-use App\Funding;
-use App\Activity;
-use App\Transaction;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Events\AfterSheet;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
-use Maatwebsite\Excel\Concerns\FromArray;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\WithTitle;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\WithEvents;
-use PhpOffice\PhpSpreadsheet\Style\Border;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
-use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+
+use PhpOffice\PhpSpreadsheet\Style\{NumberFormat, Border, Fill};
+
+use Maatwebsite\Excel\Concerns\{FromArray, FromQuery, WithTitle, Exportable, WithEvents, WithHeadings, ShouldAutoSize, WithColumnFormatting};
 
 class TransactionsReportMonth implements WithHeadings, ShouldAutoSize, FromArray, WithTitle, WithColumnFormatting, WithEvents
 {
