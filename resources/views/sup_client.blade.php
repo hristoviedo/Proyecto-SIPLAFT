@@ -110,7 +110,7 @@
             <hr>
             <p class="text-center"><strong>Inmoviliarias</strong></p>
             <ul v-for="(clientxcompany, index) in clientXCompanies">
-              <li v-show='clientxcompany.client_id == client.client_id'>@{{ clientxcompany.company_name }}</li>
+              <li v-if='clientxcompany.client_id == client.client_id'>@{{ clientxcompany.company_name }}</li>
             </ul>
           </div>
           <div class="column2">
