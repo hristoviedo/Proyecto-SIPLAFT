@@ -2,14 +2,12 @@
 
 namespace App\Imports;
 
-use App\ClientsUpload;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithBatchInserts;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\{Importable, WithChunkReading, WithBatchInserts, ToModel, WithValidation};
 
 //Inicio de la clase
-class ClientImport implements ToModel, WithBatchInserts, WithChunkReading
+class ClientImport implements ToModel, WithBatchInserts, WithChunkReading, WithValidation
 {
+    use Importable;
     /**
     * @param array $row
     *
@@ -76,5 +74,15 @@ class ClientImport implements ToModel, WithBatchInserts, WithChunkReading
         {
             return 50;
         }//Fin de la función
+
+        // public function rules()
+        // {
+        //     return [
+        //         'registration_number' => 'regex:/[A-Z]{3}-[0-9]{3}/',
+        //         'doors' => 'in:2,4,6',
+        //         'years' => 'between:1998,2017'
+        //     ];
+        // }
+
 
 } //Fin de la clase
