@@ -21,7 +21,6 @@ BEGIN
 	ac.name AS FUENTE_DE_INGRESO,
 	cl.age AS EDAD,
 	cl.identity AS IDENTIDAD,
-	tr.transaction_quantity AS No_DE_APARTAMENTOS,
 	cl.households AS No_DE_APARTAMENTOS_ACUMULADOS,
     ri.name AS RIESGO_CALCULADO,
     co.name AS NOMBRE_EMPRESA

@@ -21,7 +21,6 @@ BEGIN
 	ac.name AS FUENTE_DE_INGRESO,
 	cl.age AS EDAD,
 	cl.identity AS IDENTIDAD,
-	tr.transaction_quantity AS No_DE_APARTAMENTOS,
 	cl.households AS No_DE_APARTAMENTOS_ACUMULADOS,
     ri.name AS RIESGO_CALCULADO
 	FROM clients cl, transactions tr,fundings fu,activities ac, risks ri
@@ -30,4 +29,4 @@ BEGIN
 END$$
 DELIMITER ;
 
-CALL reportTransactionsAll(04);
+CALL reportTransactionsAll(02);
