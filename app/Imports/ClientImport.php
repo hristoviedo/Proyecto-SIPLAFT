@@ -22,44 +22,24 @@ class ClientImport implements ToModel, WithBatchInserts, WithChunkReading, WithV
             return null; //No guarda el registro y salta el siguiente
         }//Fin de la condición
 
-        //Se asigna el valor de cada campo en su respectiva variable
-        $identity = $row[0];
-        $name = $row[1];
-        $age = $row[2];
-        $email = $row[3];
-        $workplace = $row[4];
-        $workstation = $row[5];
-        $salary = $row[6];
-        $phone1 = $row[7];
-        $phone2 = $row[8];
-        $nationality = $row[9];
-        $households = $row[10];
-        $total_amount = $row[11];
-        $activity = $row[12];
-        $funding = $row[13];
+        //Realiza la inserción del registro con datos en mayúsculas y sin espacios al principio o final y con algunos elementos formateados.
 
-        //Cambia el tipo de variable para que coincida con los predefinidos en la base de datos
-        $age            = (int)$age;
-        $salary         = (float)$salary;
-        $households     = (int)$households;
-        $total_amount   = (float)$total_amount;
 
-        //Realiza la inserción del registro con datos en mayúsculas y sin espacios al principio o final
         return new ClientsUpload([
-            'identity'      => trim($identity),
-            'name'          => trim(mb_strtoupper($name,'UTF-8')),
-            'age'           => $age,
-            'email'         => trim($email),
-            'workplace'     => trim(mb_strtoupper($workplace,'UTF-8')),
-            'workstation'   => trim(mb_strtoupper($workstation,'UTF-8')),
-            'salary'        => $salary,
-            'phone1'        => trim(strtoupper($phone1)),
-            'phone2'        => trim(strtoupper($phone2)),
-            'nationality'   => trim(mb_strtoupper($nationality,'UTF-8')),
-            'households'    => $households,
-            'total_amount'  => $total_amount,
-            'activity'      => trim(mb_strtoupper($activity,'UTF-8')),
-            'funding'       => trim(mb_strtoupper($funding,'UTF-8')),
+            'identity'      => trim($row[0]),
+            'name'          => trim(mb_strtoupper($row[1],'UTF-8')),
+            'age'           => (int)$row[2],
+            'email'         => trim($row[3]),
+            'workplace'     => trim(mb_strtoupper($row[4],'UTF-8')),
+            'workstation'   => trim(mb_strtoupper($row[5],'UTF-8')),
+            'salary'        => (float)$row[6],
+            'phone1'        => trim(strtoupper($row[7])),
+            'phone2'        => trim(strtoupper($row[8])),
+            'nationality'   => trim(mb_strtoupper($row[9],'UTF-8')),
+            'households'    => (int)$row[10],
+            'total_amount'  => (float)$row[11],
+            'activity'      => trim(mb_strtoupper($row[12],'UTF-8')),
+            'funding'       => trim(mb_strtoupper($row[13],'UTF-8')),
             ]);
         }//Fin de la función
 
