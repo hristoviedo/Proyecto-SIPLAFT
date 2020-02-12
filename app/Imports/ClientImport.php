@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+ini_set('max_execution_time', 180);
 use App\Client;
 use App\Funding;
 use App\Activity;
