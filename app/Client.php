@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 //Inicio de la clase
 class Client extends Model
 {
+    protected $fillable = ['activity_id','funding_id','identity','name','age','email','workplace', 'workstation', 'salary','phone1','phone2','nationality','households','total_amount'];
 
     /*
     Funciones que definen la relación de la tabla clients con el resto
