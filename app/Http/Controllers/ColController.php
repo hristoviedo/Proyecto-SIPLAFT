@@ -149,8 +149,6 @@ class ColController extends Controller
 
     //Inicio de la función transactionImportExcel
     public function TransactionImportExcel(Request $request){ //Recibe como parámetro el archivo de excel
-        $company_id = auth()->user()->company_id;
-        $user_id =  auth()->user()->id;
         $this->validate($request, [
             'file' => 'required|mimes:xls,xlsx'
         ]);
