@@ -8,7 +8,7 @@ use App\Transaction;
 use Maatwebsite\Excel\Concerns\{WithBatchInserts,WithValidation,WithChunkReading,ToModel};
 
 //Inicio de la clase
-class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading
+class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading, WithValidation
 {
     /**
     * @param array $row
@@ -46,4 +46,20 @@ class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading
     {
         return 50;
     }//Fin de la función
+
+    public function rules(): array
+    {
+        return [
+            // Siempre valida por lotes
+            // Fila.columna
+            '0.0' => 'in:identity',
+            '0.1' => 'in:transaction_number',
+            '0.2' => 'in:transaction_intermediary_bank',
+            '0.3' => 'in:transaction_operation_date',
+            '0.4' => 'in:transaction_transfer_date',
+            '0.5' => 'in:transaction_cash',
+            '0.6' => 'in:transaction_currency',
+            '0.7' => 'in:transaction_amount',
+        ];
+    }
 } //Fin de la clase
