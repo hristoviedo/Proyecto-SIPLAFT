@@ -5405,7 +5405,7 @@
 
   .alert-success {
     color: #155724;
-    background-color: rgba(102, 102, 102, 0.2);
+    background-color: rgb(212, 237, 218);
   }
 
   .alert-success hr {
