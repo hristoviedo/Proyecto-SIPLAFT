@@ -7,10 +7,10 @@ use App\Client;
 use App\Funding;
 use App\Activity;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Concerns\{WithChunkReading, WithBatchInserts, ToModel, WithValidation};
+use Maatwebsite\Excel\Concerns\{WithChunkReading, ToModel, WithValidation};
 
 //Inicio de la clase
-class ClientImport implements ToModel, WithBatchInserts, WithChunkReading, WithValidation
+class ClientImport implements ToModel, WithChunkReading, WithValidation
 {
     /**
     * @param array $row
@@ -70,12 +70,6 @@ class ClientImport implements ToModel, WithBatchInserts, WithChunkReading, WithV
         }
     }//Fin de la función
 
-        // Inicio de la función
-    public function batchSize(): int
-    {
-        return 100;
-    }//Fin de la función
-
     // Inicio de la función
     public function chunkSize(): int
     {
@@ -86,21 +80,12 @@ class ClientImport implements ToModel, WithBatchInserts, WithChunkReading, WithV
     {
         return [
             // Siempre valida por lotes
-            // Fila.columna
-            '0.0' => 'in:identity',
-            '0.1' => 'in:name',
-            '0.2' => 'in:age',
-            '0.3' => 'in:email',
-            '0.4' => 'in:workplace',
-            '0.5' => 'in:workstation',
-            '0.6' => 'in:salary',
-            '0.7' => 'in:phone1',
-            '0.8' => 'in:phone2',
-            '0.9' => 'in:nationality',
-            '0.10' => 'in:households',
-            '0.11' => 'in:total_amount',
-            '0.12' => 'in:activity',
-            '0.13' => 'in:funding',
+            '0'     => 'required|max:16',
+            '1'     => 'required|max:45',
+            '2'     => 'required|max:3',
+            '3'     => 'email:rfc,dns',
+            '11'    => 'required|max:50',
+            '12'    => 'required|max:50',
         ];
     }
 } //Fin de la clase
