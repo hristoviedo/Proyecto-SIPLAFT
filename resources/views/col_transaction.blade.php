@@ -6,10 +6,22 @@
         <h1 class="h2">Enviar lista de transacciones</h1>
     </div>
     <div class="mostrar_ocultar">
+        @if (count($errors) > 0) {{-- ¿Existe un mensaje que mostrar? --}}
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <p class="lead">Error al enviar lista de transacciones</p> {{-- Muestra el mensaje --}}
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+              </ul>
+            </div>
+        @endif {{-- Fin de la condición --}}
         {{-- Inicio de la condición --}}
         @if (Session::has('message')) {{-- ¿Existe un mensaje que mostrar? --}}
             <div class="alert alert-success" role="alert">
-              <p class="lead importacion__message">{{ Session::get('message') }}</p> {{-- Muestra el mensaje --}}
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <p class="lead">{{ Session::get('message') }}</p> {{-- Muestra el mensaje --}}
             </div>
         @endif {{-- Fin de la condición --}}
     </div>
