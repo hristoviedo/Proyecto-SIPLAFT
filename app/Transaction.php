@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 //Inicio de la clase Transaction
 class Transaction extends Model
 {
+    protected $fillable = ['client_id', 'user_id', 'company_id', 'activity_id', 'funding_id','transaction_apartment_number', 'transaction_intermediary_bank', 'transaction_operation_date',
+                            'transaction_transfer_date', 'transaction_cash','transaction_currency','transaction_amount', 'workplace', 'workstation', 'salary'];
     /*
     Funciones que definen la relación de la tabla transactions con el resto
     */
