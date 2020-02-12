@@ -2,12 +2,15 @@
 
 namespace App\Imports;
 
-use Maatwebsite\Excel\Concerns\{Importable, WithChunkReading, WithBatchInserts, ToModel, WithValidation};
+use App\Client;
+use App\Funding;
+use App\Activity;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Concerns\{WithChunkReading, WithBatchInserts, ToModel, WithValidation};
 
 //Inicio de la clase
 class ClientImport implements ToModel, WithBatchInserts, WithChunkReading, WithValidation
 {
-    use Importable;
     /**
     * @param array $row
     *
