@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use App\Funding;
 
 use App\Activity;
@@ -40,6 +41,7 @@ class ColController extends Controller
 
     //Inicio de la función col_client
     public function col_client(){
+        // $clients = Client::where('''''')->orderBy('created_at','DESC')->get();
         return view('col_client'); //Muestra la vista de 'col_client.blade.php'
     }//Fin de la función
 
