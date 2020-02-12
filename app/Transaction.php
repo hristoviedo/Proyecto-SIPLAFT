@@ -10,7 +10,7 @@ class Transaction extends Model
     /*
     Funciones que definen la relación de la tabla transactions con el resto
     */
-
+    public $timestamps = false;
     //Inicio de la función users
     public function users()
     {
