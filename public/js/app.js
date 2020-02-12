@@ -67097,17 +67097,6 @@ var vm = new Vue({
         console.log(err);
       });
     },
-    // Llama a la ruta /list-users/indexCompany para cargar los registros de todos las compañias en MySQL
-    getCompanies: function getCompanies() {
-      var _this5 = this;
-
-      var urlCompanies = 'list-users/indexCompany';
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlCompanies).then(function (response) {
-        _this5.companies = response.data;
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
     // Asigna color según el riesgo del cliente en la paginación
     riskColor: function riskColor(index) {
       if (this.clients[index].client_risk == 'CRITICO') {
@@ -67242,10 +67231,10 @@ var vm = new Vue({
   computed: {
     // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
     searchTransactionsAll: function searchTransactionsAll() {
-      var _this6 = this;
+      var _this5 = this;
 
       return this.transactionsAll.filter(function (index) {
-        return moment__WEBPACK_IMPORTED_MODULE_1___default()(index.transaction_operation_date).format("MMMM-YYYY").toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.client_identity.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.company_name.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_apartment_number.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_currency.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.transaction_amount.toUpperCase().includes(_this6.property.toUpperCase().trim()) || index.user_name.toUpperCase().includes(_this6.property.toUpperCase().trim());
+        return moment__WEBPACK_IMPORTED_MODULE_1___default()(index.transaction_operation_date).format("MMMM-YYYY").toUpperCase().includes(_this5.property.toUpperCase().trim()) || index.client_name.toUpperCase().includes(_this5.property.toUpperCase().trim()) || index.client_identity.toUpperCase().includes(_this5.property.toUpperCase().trim()) || index.company_name.toUpperCase().includes(_this5.property.toUpperCase().trim()) || index.transaction_apartment_number.toUpperCase().includes(_this5.property.toUpperCase().trim()) || index.transaction_currency.toUpperCase().includes(_this5.property.toUpperCase().trim()) || index.transaction_amount.toUpperCase().includes(_this5.property.toUpperCase().trim()) || index.user_name.toUpperCase().includes(_this5.property.toUpperCase().trim());
       });
     },
     // Retorna la página que está activa
@@ -67295,11 +67284,11 @@ var vm = new Vue({
     },
     // Llama a la ruta list-trans y usa [page] como variable opcional para cargar los registros de las transacciones en MySQL
     getTransactions: function getTransactions(page) {
-      var _this7 = this;
+      var _this6 = this;
 
       var urlTransactions = 'list-trans?page=' + page;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlTransactions).then(function (response) {
-        _this7.transactions = response.data.transactions.data, _this7.pagination = response.data.pagination;
+        _this6.transactions = response.data.transactions.data, _this6.pagination = response.data.pagination;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -67307,11 +67296,11 @@ var vm = new Vue({
     },
     // Llama a la ruta list-trans/indexAll para cargar los registros de todas las transacciones en MySQL
     getTransactionsAll: function getTransactionsAll() {
-      var _this8 = this;
+      var _this7 = this;
 
       var urlTransactionsAll = 'list-trans/indexAll';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlTransactionsAll).then(function (response) {
-        _this8.transactionsAll = response.data;
+        _this7.transactionsAll = response.data;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -67514,7 +67503,7 @@ var vm = new Vue({
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
     createUser: function createUser(index) {
-      var _this9 = this;
+      var _this8 = this;
 
       var url = 'users/' + id;
       axios.post(url, {
@@ -67524,18 +67513,18 @@ var vm = new Vue({
         role: this.role,
         company: this.company
       }).then(function (response) {
-        _this9.getUsersAll();
+        _this8.getUsersAll();
 
-        _this9.clearProperty();
+        _this8.clearProperty();
 
         alert("Usuario modificado con éxito");
       })["catch"](function (error) {
-        _this9.errors = error.response.data;
+        _this8.errors = error.response.data;
       });
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
     deleteUser: function deleteUser(id) {
-      var _this10 = this;
+      var _this9 = this;
 
       if (!confirm("¿Está seguro de eliminar al usuario? No podrá revertir la acción")) {
         return false;
@@ -67543,7 +67532,7 @@ var vm = new Vue({
 
       var url = 'users/' + id;
       axios["delete"](url).then(function (response) {
-        _this10.getUsersAll();
+        _this9.getUsersAll();
 
         alert("Usuario eliminado con éxito");
       });
@@ -67555,33 +67544,33 @@ var vm = new Vue({
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
     getUsersAll: function getUsersAll() {
-      var _this11 = this;
+      var _this10 = this;
 
       var urlUsersAll = 'list-users/indexAll';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlUsersAll).then(function (response) {
-        _this11.usersAll = response.data;
+        _this10.usersAll = response.data;
       })["catch"](function (err) {
         console.log(err);
       });
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
     getCompanies: function getCompanies() {
-      var _this12 = this;
+      var _this11 = this;
 
       var urlCompanies = 'list-companies/indexAll';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlCompanies).then(function (response) {
-        _this12.companiesAll = response.data;
+        _this11.companiesAll = response.data;
       })["catch"](function (err) {
         console.log(err);
       });
     },
     // Llama a la ruta list/index2 para cargar los registros de todos los clientes en MySQL
     getRoles: function getRoles() {
-      var _this13 = this;
+      var _this12 = this;
 
       var urlRoles = 'list-roles/indexAll';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlRoles).then(function (response) {
-        _this13.rolesAll = response.data;
+        _this12.rolesAll = response.data;
       })["catch"](function (err) {
         console.log(err);
       });
