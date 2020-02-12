@@ -4,10 +4,8 @@ namespace App\Imports;
 ini_set('max_execution_time', 120);
 
 use DateTime;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithBatchInserts;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
 use App\Transaction;
+use Maatwebsite\Excel\Concerns\{WithBatchInserts,WithValidation,WithChunkReading,ToModel};
 
 //Inicio de la clase
 class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading
