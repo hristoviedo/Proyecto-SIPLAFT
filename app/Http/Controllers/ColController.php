@@ -151,6 +151,10 @@ class ColController extends Controller
     public function TransactionImportExcel(Request $request){ //Recibe como parámetro el archivo de excel
         $company_id = auth()->user()->company_id;
         $user_id =  auth()->user()->id;
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new TransactionImport, $file); //Llama a la clase TransactionImport para subir la lista de transacciones del excel.
         $matchTablesTransactions = DB::select('CALL matchTablesTransactions (?, ?)', array($user_id,$company_id)); // Procedimiento Almacenado para relacionar clientes con otras tablas
