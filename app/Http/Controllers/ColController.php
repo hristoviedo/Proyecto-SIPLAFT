@@ -129,7 +129,6 @@ class ColController extends Controller
 
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new ClientImport, $file); //Llama a la clase ClientImport para subir la lista de clientes del excel.
-        $matchTablesClients = DB::select('CALL matchTablesClients'); // Procedimiento Almacenado para relacionar clientes con otras tablas
         $calculateRisks = DB::select('CALL calculateRisks'); // Procedimiento Almacenado para calcular el riesgo
 
         $user_modifier_id = Auth::user()->id;
