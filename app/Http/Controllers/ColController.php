@@ -122,6 +122,11 @@ class ColController extends Controller
 
     //Inicio de la función clientImportExcel
     public function clientImportExcel(Request $request){ //Recibe como parámetro el archivo de excel
+
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new ClientImport, $file); //Llama a la clase ClientImport para subir la lista de clientes del excel.
         $matchTablesClients = DB::select('CALL matchTablesClients'); // Procedimiento Almacenado para relacionar clientes con otras tablas
