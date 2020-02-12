@@ -4,7 +4,7 @@
 
 <div id="sup_trans" class="col-md-9 ml-sm-auto col-lg-10 px-4">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-    <h1 class="h2">Tablero de Transacciones</h1>
+    <h1 class="h2">Transacciones</h1>
     <nav v-if = '!property' aria-label="Page navigation example">
       <ul class="pagination">
           <li class="page-item" v-if="pagination.current_page > 1">
