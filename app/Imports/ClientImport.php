@@ -82,4 +82,25 @@ class ClientImport implements ToModel, WithBatchInserts, WithChunkReading, WithV
         return 100;
     }//Fin de la función
 
+    public function rules(): array
+    {
+        return [
+            // Siempre valida por lotes
+            // Fila.columna
+            '0.0' => 'in:identity',
+            '0.1' => 'in:name',
+            '0.2' => 'in:age',
+            '0.3' => 'in:email',
+            '0.4' => 'in:workplace',
+            '0.5' => 'in:workstation',
+            '0.6' => 'in:salary',
+            '0.7' => 'in:phone1',
+            '0.8' => 'in:phone2',
+            '0.9' => 'in:nationality',
+            '0.10' => 'in:households',
+            '0.11' => 'in:total_amount',
+            '0.12' => 'in:activity',
+            '0.13' => 'in:funding',
+        ];
+    }
 } //Fin de la clase
