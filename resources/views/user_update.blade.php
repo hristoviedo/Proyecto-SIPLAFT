@@ -9,7 +9,8 @@
                 {{-- Inicio de la condición --}}
                 @if (Session::has('message')) {{-- ¿Existe un mensaje que mostrar? --}}
                     <div class="alert alert-success" role="alert">
-                      <p class="lead importacion__message">{{ Session::get('message') }}</p> {{-- Muestra el mensaje --}}
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <p class="lead">{{ Session::get('message') }}</p> {{-- Muestra el mensaje --}}
                     </div>
                 @endif {{-- Fin de la condición --}}
             </div>
