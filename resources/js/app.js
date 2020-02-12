@@ -157,18 +157,6 @@ var vm = new Vue({
                 console.log(err);
             });
         },
-        // Llama a la ruta /list-users/indexCompany para cargar los registros de todos las compañias en MySQL
-        getCompanies: function(){
-            var urlCompanies = 'list-users/indexCompany';
-            Axios
-            .get(urlCompanies)
-            .then(response => {
-                this.companies = response.data
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        },
 
         // Asigna color según el riesgo del cliente en la paginación
         riskColor: function(index){
