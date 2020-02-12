@@ -157,7 +157,6 @@ class ColController extends Controller
 
         $file = $request->file('file'); //Guarda en la variable $file el archivo excel
         Excel::import(new TransactionImport, $file); //Llama a la clase TransactionImport para subir la lista de transacciones del excel.
-        $matchTablesTransactions = DB::select('CALL matchTablesTransactions (?, ?)', array($user_id,$company_id)); // Procedimiento Almacenado para relacionar clientes con otras tablas
 
         $user_modifier_id = Auth::user()->id;
         $record_date = Carbon::now()->toDateTimeString();
