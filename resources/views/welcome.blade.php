@@ -32,7 +32,7 @@
                 <br>
                 <br>
                 <div class="links">
-                    <a href="#" target="_blank">Documentación</a>
+                    {{-- <a href="#" target="_blank">Documentación</a> --}}
                     <a href="http://pplaft.cnbs.gob.hn/wp-content/uploads/2015/05/LEY-PARA-LA-REGULACION-DE-ACTIVIDADES-Y-PROFESIONES-NO-FINANCIERAS-DESIGNADAS-APNFD-Decreto-No.-131-2014.pdf" target="_blank">Ley de Regulación de APNFD</a>
                     <a href="https://www.cnbs.gob.hn" target="_blank">CNBS</a>
                     <a href="http://urmoprelaft.cnbs.gob.hn" target="_blank">URMOPRELAFT</a>
