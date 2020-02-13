@@ -53,6 +53,12 @@ Route::post('/transactions.carga', 'ColController@transactionImportExcel')->name
 
 Route::get('/clients.descarga', 'ColController@clientExportExcel')->name('client.export.excel'); // /clients.descarga llama a la función 'clientExportExcel' de ColController
 
+Route::get('/col.manual', 'ColController@userManual')->name('col.manual'); // /clients.descarga llama a la función 'clientExportExcel' de ColController
+
+Route::get('/sup.manual', 'SupController@userManual')->name('sup.manual'); // /clients.descarga llama a la función 'clientExportExcel' de ColController
+
+Route::get('/adm.manual', 'AdminController@userManual')->name('adm.manual'); // /clients.descarga llama a la función 'clientExportExcel' de ColController
+
 Route::post('/transactions.report', 'ColController@transactionExportExcel')->name('transactions.export.excel'); // /transactions.descarga llama a la función 'transactionExportExcel' de ColController
 
 Route::post('/transactions.report.sup', 'SupController@transactionExportExcel')->name('transactions.report.excel.sup'); // /transactions.descarga llama a la función 'transactionExportExcel' de ColController
