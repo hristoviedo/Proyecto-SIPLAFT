@@ -40,16 +40,16 @@
                   Reporte Completo
                 </a>
             </li>
-            <li class="nav-item"> {{-- Item #2 perfil del colaborador --}}
+            {{-- <li class="nav-item"> {{-- Item #2 perfil del colaborador
                 <a class="nav-link link__color" href="#">
                     <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
                 Perfil
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item"> {{-- Item #3 página de ayuda del colaborador (pendiente) --}}
               <a class="nav-link link__color" href="#">
                   <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle></svg>
-              Ayuda
+              Manual de Usuario
               </a>
           </li>
           </ul>{{-- Fin de la lista de elementos en la barra de navegación --}}
