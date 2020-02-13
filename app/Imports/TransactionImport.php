@@ -6,10 +6,10 @@ ini_set('max_execution_time', 120);
 use DateTime;
 use App\Transaction;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Concerns\{WithBatchInserts,WithValidation,WithChunkReading,ToModel};
+use Maatwebsite\Excel\Concerns\{WithValidation,WithChunkReading,ToModel};
 
 //Inicio de la clase
-class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading, WithValidation
+class TransactionImport implements ToModel, WithChunkReading, WithValidation
 {
     /**
     * @param array $row
@@ -57,12 +57,6 @@ class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading, 
     }//Fin de la función
 
     // Inicio de la función
-    public function batchSize(): int
-    {
-        return 100;
-    }//Fin de la función
-
-    // Inicio de la función
     public function chunkSize(): int
     {
         return 100;
@@ -72,15 +66,10 @@ class TransactionImport implements ToModel, WithBatchInserts, WithChunkReading, 
     {
         return [
             // Siempre valida por lotes
-            // Fila.columna
-            '0.0' => 'in:identity',
-            '0.1' => 'in:transaction_number',
-            '0.2' => 'in:transaction_intermediary_bank',
-            '0.3' => 'in:transaction_operation_date',
-            '0.4' => 'in:transaction_transfer_date',
-            '0.5' => 'in:transaction_cash',
-            '0.6' => 'in:transaction_currency',
-            '0.7' => 'in:transaction_amount',
+            '0'     => 'required|max:16',
+            '1'     => 'required',
+            '3'     => 'required',
+            '7'     => 'required',
         ];
     }
 } //Fin de la clase
