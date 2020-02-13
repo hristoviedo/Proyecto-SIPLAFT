@@ -173,4 +173,31 @@ class ColController extends Controller
 
         return back()->with('message', 'Lista de transacciones enviada'); //Retorna a la página anterior cuando termina de importar
     }//Fin de la función
+
+    public function downloadFile($src)
+    {
+        if(is_file($src)){
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $content_type = finfo_file($finfo, $src);
+            finfo_close($finfo);
+            $file_name = basename($src).PHP_EOL;
+            $size = filesize($src);
+            header("Content-Type: $content_type");
+            header("Content-Disposition: attachment; filename = $file_name");
+            header("Content-Transfer-Endcoding: binary");
+            header("Content-Length: $size");
+            readfile($src);
+            return true;
+        }else{
+            return false;
+        }
+    }//Fin de la función
+    public function userManual()
+    {
+        if(!$this->downloadFile(app_path()."/files/Manual_de_Usuario_Colaborador.pdf")){
+            return back();
+        }else{
+            return false;
+        }
+    }//Fin de la función
 }//Fin de la clase
