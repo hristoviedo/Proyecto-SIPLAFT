@@ -26,7 +26,7 @@ class HomeController extends Controller
     // Inicio del constructor
     public function __construct()
     {
-        $this->middleware('auth'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
+        // $this->middleware('auth'); // Verifica que la solicitud por enviar proviene de un usuario autenticado o no.
     }
     //Fin del constructor
 
@@ -38,7 +38,9 @@ class HomeController extends Controller
 
     //Inicio de la función welcome
     public function welcome(){
-        if( Auth::user() ) //se valida si esta logueado
+        if( !(Auth::user()) ) //se valida si esta logueado
+        return view('welcome'); //Muestra la vista de 'col_client.blade.php'
+        else
             if( Auth::user()->role_id =='1' )       //se valida el tipo de usuario colaborador
                 return redirect('col.client');
             elseif( Auth::user()->role_id =='2' )   //se valida el tipo de usuario supervisor
@@ -46,8 +48,6 @@ class HomeController extends Controller
             elseif( Auth::user()->role_id =='3' )   //se valida el tipo de usuario administrador
                 return redirect('adm.record');
             else
-            return redirect('/login');              //se retorna al inicio de sesion
-        else
             return redirect('/login');              //se retorna al inicio de sesion
     }//Fin de la función
 } //Fin del controlador
