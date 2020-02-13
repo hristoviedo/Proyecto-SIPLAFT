@@ -6,11 +6,12 @@
         <h1 class="h2">Enviar lista de transacciones</h1>
     </div>
     <div class="mostrar_ocultar">
-        @if (count($errors) > 0) {{-- ¿Existe un mensaje que mostrar? --}}
+        {{-- Inicio de la condición --}}
+        @if (count($errors) > 0) {{-- ¿Existe un algún error que mostrar? --}}
             <div class="alert alert-danger" role="alert">
                 <button type="button" class="close" data-dismiss="alert">x</button>
-                <p class="lead">Error al enviar lista de transacciones</p> {{-- Muestra el mensaje --}}
-                <ul>
+                <p class="lead">Error al enviar lista de clientes</p> {{-- Muestra los errores --}}
+                <ul> {{-- Muestra la lista de errores --}}
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach

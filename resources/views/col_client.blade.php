@@ -7,15 +7,15 @@
     </div>
     <div class="mostrar_ocultar">
         {{-- Inicio de la condición --}}
-        @if ($errors->any()) {{-- ¿Existe un algún error que mostrar? --}}
+        @if (count($errors) > 0) {{-- ¿Existe un mensaje que mostrar? --}}
             <div class="alert alert-danger" role="alert">
                 <button type="button" class="close" data-dismiss="alert">x</button>
-                <p class="lead">Error al enviar lista de clientes</p> {{-- Muestra los errores --}}
-                <ul> {{-- Muestra la lista de errores --}}
+                <p class="lead">Error al enviar lista de transacciones</p> {{-- Muestra el mensaje --}}
+                <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
-              </ul>
+            </ul>
             </div>
         @endif {{-- Fin de la condición --}}
         {{-- Inicio de la condición --}}
