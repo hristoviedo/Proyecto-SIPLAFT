@@ -421,7 +421,7 @@ var vm = new Vue({
 
             if(this.funding == 'EFECTIVO'){
                 this.scoreRisk = this.scoreRisk + 5*this.percFunding;
-            }else if(this.funding == 'DEPÓSITO EN EFECTIVO EN CTAS DE LA EMPRESA'){
+            }else if(this.funding == 'DEPOSITO EN EFECTIVO EN CTAS DE LA EMPRESA'){
                 this.scoreRisk = this.scoreRisk + 4*this.percFunding;
             }else if(this.funding == 'AUTOFINANCIADO TRANSF. DE TERCEROS'){
                 this.scoreRisk = this.scoreRisk + 3*this.percFunding;
