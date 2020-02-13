@@ -83,7 +83,6 @@ class ClientImport implements ToModel, WithChunkReading, WithValidation
             '0'     => 'required|max:16',
             '1'     => 'required|max:45',
             '2'     => 'required|max:3',
-            '3'     => 'email:rfc,dns',
             '11'    => 'required|max:50',
             '12'    => 'required|max:50',
         ];
