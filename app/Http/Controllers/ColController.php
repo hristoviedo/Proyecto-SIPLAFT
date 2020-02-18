@@ -141,10 +141,10 @@ class ColController extends Controller
         $record_modified_field = null;
         $record_new_data = null;
         $record_old_data = null;
-        $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
-        event( new EventsSiplaft( $data ));
-        $findLastRecord = DB::table('records')->latest('id')->first();
-        $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+        // $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+        // event( new EventsSiplaft( $data ));
+        // $findLastRecord = DB::table('records')->latest('id')->first();
+        // $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
 
         return back()->with('message', 'Lista de clientes enviada'); //Retorna a la página anterior cuando termina de importar
     }//Fin de la función
