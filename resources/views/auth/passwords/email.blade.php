@@ -4,15 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <p class="lead">{{ session('status') }}</p>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header bg-color"><b>{{ __('Reset Password') }}</b></div>
 
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        <p class="lead">{{ session('status') }}</p>
-                    </div>
-                @endif
                 <div class="card-body">
 
                     <form method="POST" action="{{ route('password.email') }}">
