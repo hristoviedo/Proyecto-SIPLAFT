@@ -44,7 +44,7 @@ Route::get('/user.update', 'AdminController@user_update')->name('user.update'); 
 
 // Auth::routes(['verify' => true]); // Todas las funciones de usuarios
 // Auth::routes(['register' => false]); // Todas las funciones de usuarios
-// Auth::routes();
+Auth::routes();
 
 Route::post('/clients.carga', 'ColController@clientImportExcel')->name('client.import.excel'); // /clients.carga llama a la función 'clientImportExcel' de ColController
 
