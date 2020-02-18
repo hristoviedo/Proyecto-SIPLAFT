@@ -39,7 +39,7 @@ class AdminController extends Controller
     public function adm_create_user(){
         $companies = Company::all();
         $roles = Role::all();
-        return view('Auth/register', compact('companies','roles')); //Muestra la vista de 'adm_record.blade.php'
+        return view('auth/register', compact('companies','roles')); //Muestra la vista de 'adm_record.blade.php'
     }//Fin de la función
 
     //Inicio de la función adm_user
