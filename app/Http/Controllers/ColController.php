@@ -194,7 +194,7 @@ class ColController extends Controller
     }//Fin de la función
     public function userManual()
     {
-        if(!$this->downloadFile(app_path()."/files/Manual_de_Usuario_Colaborador.pdf")){
+        if(!$this->downloadFile(app_path()."/Files/Manual_de_Usuario_Colaborador.pdf")){
             return back();
         }else{
             return false;
