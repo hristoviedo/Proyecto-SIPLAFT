@@ -7,6 +7,8 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class MyResetPassword extends ResetPassword
 {
+    use Queueable;
+
     /**
      * Create a new notification instance.
      *
