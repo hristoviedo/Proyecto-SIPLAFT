@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Auth\Notifications\MyResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -21,7 +20,7 @@ class User extends Authenticatable
      */
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new MyResetPassword($token));
+        $this->notify(new ResetPassword($token));
     }
 
     //Permite la subida masiva de información a la base de datos. Deben estar todos los campos de la tabla users
