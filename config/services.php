@@ -34,6 +34,10 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'sendgrid' => [
+        'api_key' => env('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'),
+    ],
+
     'stripe' => [
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
