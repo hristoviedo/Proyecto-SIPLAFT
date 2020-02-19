@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Notifications\MyResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Notifications\MyResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
