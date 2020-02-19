@@ -2,40 +2,26 @@
 
 namespace App\Notifications;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class MyResetPassword extends Notification
+class MyResetPassword extends ResetPassword
 {
-    use Queueable;
-
-    public $actionUrl;
-
-    public function __construct($token)
+    /**
+     * Create a new notification instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $this->actionUrl = action('Auth\ResetPasswordController@showResetForm',$token);
+        //
     }
-
-    public function via($notifiable)
-    {
-        return ['mail'];
-    }
-
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('You are receiving this email because we received a password reset request for your account.')
-            ->action('Reset Password', $this->actionUrl)
-            ->line('If you did not request a password reset, no further action is required.');
-    }
-
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
 }

@@ -10,19 +10,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-     // Función copiada del archivo:
-     // vendor\laravel\framework\src\Illuminate\Auth\Passwords\CanResetPassword.php
-     /**
-     * Send the password reset notification.
+    /**
+     * The attributes that are mass assignable.
      *
-     * @param  string  $token
-     * @return void
+     * @var array
      */
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new ResetPassword($token));
-    }
-
     //Permite la subida masiva de información a la base de datos. Deben estar todos los campos de la tabla users
     protected $fillable = [
         'role_id','company_id','name', 'email', 'password','active'
