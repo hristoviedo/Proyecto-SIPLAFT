@@ -46,7 +46,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'host' => $DATABASE_URL['host'],
-            'port' => $DATABASE_URL['port'],
+            // 'port' => $DATABASE_URL['port'],
             'database' => ltrim($DATABASE_URL['path'], "/"),
             'username' => $DATABASE_URL['user'],
             'password' => $DATABASE_URL['pass'],
