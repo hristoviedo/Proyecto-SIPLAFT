@@ -68,6 +68,7 @@ class TransactionImport implements ToModel, WithChunkReading, WithValidation
             // Siempre valida por lotes
             '0'     => 'required|max:16',
             '1'     => 'required',
+            '3'     => 'required|min:3',
             '3'     => 'required',
             '7'     => 'required',
         ];
