@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if (Session::has('message')) {{-- ¿Existe un mensaje que mostrar? --}}
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-danger" role="alert">
                 <button type="button" class="close" data-dismiss="alert">x</button>
                 <p class="lead">{{ Session::get('message') }}</p> {{-- Muestra el mensaje --}}
             </div>
