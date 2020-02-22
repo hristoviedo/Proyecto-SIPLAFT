@@ -15,7 +15,7 @@
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
-            </ul>
+                </ul>
             </div>
         @endif {{-- Fin de la condición --}}
         {{-- Inicio de la condición --}}

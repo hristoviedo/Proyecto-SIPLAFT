@@ -4,6 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if (Session::has('message')) {{-- ¿Existe un mensaje que mostrar? --}}
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <p class="lead">{{ Session::get('message') }}</p> {{-- Muestra el mensaje --}}
+            </div>
+            @endif {{-- Fin de la condición --}}
             <div class="card">
                 <div class="card-header bg-color"><b>{{ __('Login') }}</b></div>
 

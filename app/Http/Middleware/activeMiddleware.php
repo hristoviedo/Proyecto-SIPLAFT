@@ -21,7 +21,7 @@ class activeMiddleware
             return $next($request);                     //Deja pasar la petición
         }else{
             Auth::logout();
-            return redirect('/');                   //Redirecciona a la pagina de inicio
+            return redirect('/login')->with('message', 'Usuario inhabilitado'); //Retorna a la página anterior cuando termina de importar;                   //Redirecciona a la pagina de inicio
         }//Fin de la condicion
     }// Fin de la función
 }// Fin de la clase
