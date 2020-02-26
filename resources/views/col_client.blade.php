@@ -10,7 +10,7 @@
         @if (count($errors) > 0) {{-- ¿Existe un mensaje que mostrar? --}}
             <div class="alert alert-danger" role="alert">
                 <button type="button" class="close" data-dismiss="alert">x</button>
-                <p class="lead">Error al enviar lista de transacciones</p> {{-- Muestra el mensaje --}}
+                <p class="lead">Error al enviar lista de clientes</p> {{-- Muestra el mensaje --}}
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
