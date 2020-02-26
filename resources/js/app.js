@@ -415,7 +415,7 @@ var vm = new Vue({
                 this.scoreRisk = this.scoreRisk + 3*this.percHouseholds;
             }else if(this.households >= 2 && this.households <= 3){
                 this.scoreRisk = this.scoreRisk + 2*this.percHouseholds;
-            }else if(this.households >= 0){
+            }else if(this.households >= 1){
                 this.scoreRisk = this.scoreRisk + 1*this.percHouseholds;
             }
 
