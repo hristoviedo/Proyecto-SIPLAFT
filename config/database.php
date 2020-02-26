@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
-$DATABASE_URL = parse_url('mysql://b93b81d9d2ad43:dd7bbd9e@us-cdbr-iron-east-04.cleardb.net/heroku_0f0a142f592c41a?reconnect=true');
+// $DATABASE_URL = parse_url('mysql://b93b81d9d2ad43:dd7bbd9e@us-cdbr-iron-east-04.cleardb.net/heroku_0f0a142f592c41a?reconnect=true');
 return [
 
     /*
