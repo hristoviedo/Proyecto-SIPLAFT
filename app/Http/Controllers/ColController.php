@@ -36,7 +36,9 @@ class ColController extends Controller
     //Inicio de la función col_report
     public function col_client_form()
     {
-        return view('col_client_form'); //Muestra la vista de 'col_report.blade.php'
+        $fundings = Funding::all();
+        $activities = Activity::all();
+        return view('col_client_form', compact('fundings', 'activities')); //Muestra la vista de 'col_report.blade.php'
     }//Fin de la función
 
     //Inicio de la función col_report
