@@ -404,7 +404,7 @@ var vm = new Vue({
                 this.scoreRisk = this.scoreRisk + 3*this.percAge;
             }else if(this.age >= 36 && this.age <= 45){
                 this.scoreRisk = this.scoreRisk + 4*this.percAge;
-            }else if(this.age >= 18 && this.age <= 55){
+            }else if(this.age >= 18 && this.age <= 35){
                 this.scoreRisk = this.scoreRisk + 5*this.percAge;
             }
             if(this.households > 7){
