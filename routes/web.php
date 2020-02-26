@@ -7,6 +7,9 @@
 Route::get('/', 'HomeController@welcome')->name('welcome'); //La raiz (/) llama a la función 'welcome' de HomeController
 
 //-------------------------------------------------------------------------------------------------------------------------------------------
+Route::get('/col.client.form', 'ColController@col_client_form')->name('col.client.form'); // /col.simulation llama a la función 'col_simulation' de ColController
+
+Route::get('/col.transaction.form', 'ColController@col_transaction_form')->name('col.transaction.form'); // /col.simulation llama a la función 'col_simulation' de ColController
 
 Route::get('/col.simulation', 'ColController@col_simulation')->name('col.simulation'); // /col.simulation llama a la función 'col_simulation' de ColController
 
@@ -79,7 +82,7 @@ Route::get('/list-companies/indexAll', 'UserController@indexCompaniesAll'); // /
 
 Route::get('/list-roles/indexAll', 'UserController@indexRolesAll'); // /list-roles/indexAll llama a la función 'indexRolesAll' de UserController
 
-Route::delete('/users/{id}', 'UserController@destroy'); // //users/{id} llama a la función 'destroy' de UserController
+// Route::delete('/users/{id}', 'UserController@destroy'); // //users/{id} llama a la función 'destroy' de UserController
 
 Route::put('/users/{id}', 'UserController@update'); // //users/{id} llama a la función 'update' de UserController
 

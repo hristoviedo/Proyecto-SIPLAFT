@@ -34,6 +34,18 @@ class ColController extends Controller
     //---------------------------------------------------------- Vistas ----------------------------------------------------------
 
     //Inicio de la función col_report
+    public function col_client_form()
+    {
+        return view('col_client_form'); //Muestra la vista de 'col_report.blade.php'
+    }//Fin de la función
+
+    //Inicio de la función col_report
+    public function col_transaction_form()
+    {
+        return view('col_transaction_form'); //Muestra la vista de 'col_report.blade.php'
+    }//Fin de la función
+
+    //Inicio de la función col_report
     public function col_report()
     {
         return view('col_report'); //Muestra la vista de 'col_report.blade.php'
