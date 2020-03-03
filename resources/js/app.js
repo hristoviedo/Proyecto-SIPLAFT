@@ -118,6 +118,16 @@ var vm = new Vue({
             });
         },
 
+        showClient: function(id){
+            var url = 'col.show.client/'+id;
+            window.location.href = url;
+        },
+        
+        newTransaction: function(id){
+            var url = 'col.transaction.form/'+id;
+            window.location.href = url;
+        },
+
         // Agrega un objeto cliente de [clients] para ser visto en la card
         addClient: function(index){
            this.chosenClient = {client:this.clients[index]};
@@ -219,6 +229,8 @@ var vm = new Vue({
                 return "img/moderado.png";
             } else if(this.chosenClient[index].client_risk == 'BAJO') {
                 return "img/bajo.png";
+            }else{
+                return "img/desconocido.png";
             }
         }
     },
@@ -252,13 +264,13 @@ var vm = new Vue({
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
         searchTransactionsAll: function(){
             return this.transactionsAll.filter((index) => {
-                return moment(index.transaction_operation_date).format("MMMM-YYYY").toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                return moment(index.operation_date).format("MMMM-YYYY").toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_identity.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.company_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.transaction_apartment_number.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.transaction_currency.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.transaction_amount.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.apartment_number.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.currency.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                index.amount.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.user_name.toUpperCase().includes(this.property.toUpperCase().trim())
             });
         },
@@ -295,6 +307,12 @@ var vm = new Vue({
         },
     },
     methods:{
+        
+        showTransaction: function(id){
+            var url = 'col.show.transaction/'+id;
+            window.location.href = url;
+        },
+        
         // Asigna un valor a [property] para mostrar todos los registros.
         showEverything: function(){
             this.property = ' ';
@@ -375,16 +393,43 @@ var vm = new Vue({
 });
 
 //********************************************************** Elemento raíz para colaborador *********************************************************
+import VueMask from 'v-mask'
+Vue.use(VueMask);
+import money from 'v-money'
+
+// register directive v-money and component <money>
+Vue.use(money, {precision: 2})
 
 var vm = new Vue({
-    el: '#col',
+    el: '#col_client',
     data:{
+        money: {
+            decimal: '.',
+            thousands: '',
+            precision: 2,
+            masked: false /* doesn't work with directive */
+        },
+        identity: '',
         name:'',
-        households: '',
         age: '',
+        email: '',
+        phone1: '',
+        phone2: '',
+        nationality:'',
+        workplace: '',
+        workstation: '',
+        salary: '',
         activity: '',
         funding: '',
+        households: '',
         risk: '',
+        amount: '',
+        apartment_number: '',
+        intermediary_bank: '',
+        operation_date: new Date().toISOString().slice(0,10),
+        transfer_date: new Date().toISOString().slice(0,10),
+        cash: '',
+        currency: '',
         scoreRisk: 0,
         percActivity:  0.25,
         percFunding:  0.3,
@@ -478,13 +523,29 @@ var vm = new Vue({
             return val;
         },
         clearProperty: function() {
-            this.name = '',
-            this.households = '',
+            this.identity = '',
+            this.name ='',
             this.age = '',
+            this.email = '',
+            this.phone1 = '',
+            this.phone2 = '',
+            this.nationality = '',
+            this.workplace = '',
+            this.workstation = '',
+            this.salary = '',
             this.activity = '',
             this.funding = '',
             this.risk = '',
-            this.scoreRisk = ''
+            this.name = '',
+            this.households = '',
+            this.scoreRisk = '',
+            this.amount = '',
+            this.apartment_number = '',
+            this.intermediary_bank = '',
+            this.operation_date = '',
+            this.transfer_date = '',
+            this.cash = '',
+            this.currency = ''
         },
     },
 });
