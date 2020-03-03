@@ -89,7 +89,10 @@ class UserController extends Controller
         if ($validator->fails()) {
             $record_action = 'FALLÓ REGISTRO DE USUARIO';
             $record_modified_table = null;
-            $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+            $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 
+            'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 
+            'record_modified_register' => $record_modified_register, 'record_new_data' => $record_new_data, 
+            'record_old_data' => $record_old_data );
             event( new EventsSiplaft( $data ));
             $findLastRecord = DB::table('records')->latest('id')->first();
             $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
@@ -106,7 +109,10 @@ class UserController extends Controller
                 ]);
                 $record_modified_table = 'USERS';
                 $record_action = 'REGISTRÓ NUEVO USUARIO';
-                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 
+                'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 
+                'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
                 event( new EventsSiplaft( $data ));
                 $findLastRecord = DB::table('records')->latest('id')->first();
                 $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
