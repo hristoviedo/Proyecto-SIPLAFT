@@ -186,7 +186,7 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idClient)
     {
         $user_modifier_id = Auth::user()->id;
         $record_date = Carbon::now()->toDateTimeString();
@@ -196,7 +196,7 @@ class ClientController extends Controller
         $record_old_data = null;
 
         $validator = Validator::make($request->all(), [
-            'identity'      => 'required|string|max:16|min:15|unique:clients,identity,'.$id,
+            'identity'      => 'required|string|max:16|min:15|unique:clients,identity,'.$idClient,
             'name'          => 'required|string|max:40',
             'email'         => 'required|email|max:40',
             'age'           => 'required|integer|max:100|min:15',
@@ -221,8 +221,8 @@ class ClientController extends Controller
             $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
             return back()->withInput()->withErrors($validator);
         }else{
-            $clientUpdate = Client::find($id);
-            $record_action = 'ACTUALIZÓ USUARIO';
+            $clientUpdate = Client::find($idClient);
+            $record_action = 'ACTUALIZÓ CLIENTE';
             $record_modified_register = request()->email;
             if (request()->identity != $clientUpdate->identity){
                 $record_modified_field = 'identity';

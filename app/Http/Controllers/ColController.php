@@ -80,20 +80,25 @@ class ColController extends Controller
                 ->get();
         $fundings = Funding::all();
         $activities = Activity::all();
-        // dd($client);
         return view('client_update', compact('client','activities','fundings')); //Muestra la vista de 'user_update.blade.php'
     }
     //Fin de la función
 
     //Inicio de la función col_show_transaction
-    public function col_show_transaction($id){
-        $client = DB::table('transactions')
-                ->where('id', $id)
+    public function col_show_transaction($idTransaction){
+        $transaction = DB::table('transactions')
+                ->select('transactions.*', 'clients.identity','clients.name')
+                ->where('transactions.id', $idTransaction)
+                ->join('clients','transactions.client_id','=','clients.id')
                 ->get();
-        $fundings = Funding::all();
-        $activities = Activity::all();
-        // dd($client);
-        return view('client_update', compact('client','activities','fundings')); //Muestra la vista de 'user_update.blade.php'
+        // dd($transaction);
+        return view('transaction_update', compact('transaction')); //Muestra la vista de 'user_update.blade.php'
+        // $companyName = DB::table('users')
+        //     ->join('companies','users.company_id','=','companies.id')
+        //     ->select('companies.name')
+        //     ->where('users.id','=',auth()->user()->id)
+        //     ->value('name');
+
     }
     //Fin de la función
 

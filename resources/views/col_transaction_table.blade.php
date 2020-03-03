@@ -1,6 +1,6 @@
-@extends('layouts.sup') {{-- Extiende de app.blade.php --}}
+@extends('layouts.col') {{-- Extiende de app.blade.php --}}
 
-@section('content.sup') {{-- Contenido agregada --}}
+@section('content.col') {{-- Contenido agregada --}}
 
 <div id="sup_trans" class="col-md-9 ml-sm-auto col-lg-10 px-4">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="table-responsive">
-    <table class="table table-striped table-hover table-sm text-center">
+    <table class="table table-hover table-sm text-center">
       <thead class="thead-dark">
         <tr>
           <th>ID del Cliente</th>
@@ -47,13 +47,11 @@
           <th>¿En Efectivo?</th>
           <th>Monto</th>
           <th>Moneda</th>
-          <th>Empresa</th>
-		  <th>Subido Por</th>
-		  <th>Actualizar</th>
+		      <th>Actualizar</th>
         </tr>
       </thead>
       <tbody v-if = "property">
-        <tr v-for="(transaction, index) in searchTransactionsAll" :key="index">
+        <tr v-show = "transaction.company_id == '<?php echo Auth::user()->company_id; ?>'" v-for="(transaction, index) in searchTransactionsAll" :key="index">
           <td>@{{ transaction.client_identity }}</td>
           <td>@{{ transaction.client_name }}</td>
           <td>@{{ formatDate(transaction.operation_date) }}</td>
@@ -61,13 +59,11 @@
           <td>@{{ formatBool(transaction.cash) }}</td>
           <td>@{{ formatPrice(transaction.amount) }}</td>
           <td>@{{ transaction.currency }}</td>
-          <td>@{{ transaction.company_name }}</td>
-		  <td>@{{ transaction.user_name }}</td>
-		  <td><a type="button" class="btn btn-primary text-white" v-on:click='showTransaction(transaction.id)'><i class="material-icons">update</i></a></td>
+		      <td><a type="button" class="btn btn-primary text-white" v-on:click='showTransaction(transaction.id)'><i class="material-icons">update</i></a></td>
         </tr>
     </tbody>
     <tbody v-else>
-        <tr v-for="(transaction, index) in transactions" :key="index">
+        <tr v-show = "transaction.company_id == '<?php echo Auth::user()->company_id; ?>'" v-for="(transaction, index) in transactions" :key="index">
             <td>@{{ transaction.client_identity }}</td>
             <td>@{{ transaction.client_name }}</td>
             <td>@{{ formatDate(transaction.operation_date) }}</td>
@@ -75,14 +71,12 @@
             <td>@{{ formatBool(transaction.cash) }}</td>
             <td>@{{ formatPrice(transaction.amount) }}</td>
             <td>@{{ transaction.currency }}</td>
-          <td>@{{ transaction.company_name }}</td>
-		  <td>@{{ transaction.user_name }}</td>
-		  <td><a type="button" class="btn btn-primary text-white" v-on:click='showTransaction(transaction.id)'><i class="material-icons">update</i></a></td>
+		        <td><a type="button" class="btn btn-primary text-white" v-on:click='showTransaction(transaction.id)'><i class="material-icons">update</i></a></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="card-deck flex-center" v-for="(client, index) in chosenTransactions" :key="index" >
+  {{-- <div class="card-deck flex-center" v-for="(client, index) in chosenTransactions" :key="index" >
     <div class="card card-w">
       <div class="card-header" :style="riskColorCard(index)">
         <img :src="riskImageCard(index)" class="card-img-top" alt="...">
@@ -121,6 +115,6 @@
       </div>
       <div class="card-footer bg-transparent border-warning flex-center"><button type="button" class="btn btn-block btn-color">Reportar</button></div>
     </div>
-  </div>
+  </div> --}}
 </div>
 @endsection

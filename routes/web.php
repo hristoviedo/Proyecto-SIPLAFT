@@ -27,6 +27,8 @@ Route::get('/col.show.transaction/{id}', 'ColController@col_show_transaction')->
 
 Route::put('/clients/{id}', 'ClientController@update'); // //users/{id} llama a la función 'update' de UserController
 
+Route::put('/transactions/{id}', 'TransactionController@update'); // //users/{id} llama a la función 'update' de UserController
+
 //-------------------------------------------------------------------------------------------------------------------------------------------
 
 Route::get('/sup.client', 'SupController@sup_client')->name('sup.client'); // /sup.client llama a la función 'sup_client' de SupController
