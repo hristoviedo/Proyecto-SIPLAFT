@@ -55,11 +55,11 @@
         <tr v-for="(transaction, index) in searchTransactionsAll" :key="index">
           <td>@{{ transaction.client_identity }}</td>
           <td>@{{ transaction.client_name }}</td>
-          <td>@{{ formatDate(transaction.transaction_operation_date) }}</td>
-          <td>@{{ transaction.transaction_apartment_number }}</td>
-          <td>@{{ formatBool(transaction.transaction_cash) }}</td>
-          <td>@{{ formatPrice(transaction.transaction_amount) }}</td>
-          <td>@{{ transaction.transaction_currency }}</td>
+          <td>@{{ formatDate(transaction.operation_date) }}</td>
+          <td>@{{ transaction.apartment_number }}</td>
+          <td>@{{ formatBool(transaction.cash) }}</td>
+          <td>@{{ formatPrice(transaction.amount) }}</td>
+          <td>@{{ transaction.currency }}</td>
           <td>@{{ transaction.company_name }}</td>
           <td>@{{ transaction.user_name }}</td>
         </tr>
@@ -68,11 +68,11 @@
         <tr v-for="(transaction, index) in transactions" :key="index">
             <td>@{{ transaction.client_identity }}</td>
             <td>@{{ transaction.client_name }}</td>
-            <td>@{{ formatDate(transaction.transaction_operation_date) }}</td>
-            <td>@{{ transaction.transaction_apartment_number }}</td>
-            <td>@{{ formatBool(transaction.transaction_cash) }}</td>
-            <td>@{{ formatPrice(transaction.transaction_amount) }}</td>
-            <td>@{{ transaction.transaction_currency }}</td>
+            <td>@{{ formatDate(transaction.operation_date) }}</td>
+            <td>@{{ transaction.apartment_number }}</td>
+            <td>@{{ formatBool(transaction.cash) }}</td>
+            <td>@{{ formatPrice(transaction.amount) }}</td>
+            <td>@{{ transaction.currency }}</td>
           <td>@{{ transaction.company_name }}</td>
           <td>@{{ transaction.user_name }}</td>
         </tr>
