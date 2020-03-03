@@ -42,9 +42,14 @@ class ColController extends Controller
     }//Fin de la función
 
     //Inicio de la función col_report
-    public function col_transaction_form()
+    public function col_transaction_form($id)
     {
-        return view('col_transaction_form'); //Muestra la vista de 'col_report.blade.php'
+        $client = DB::table('clients')
+                ->where('id', $id)
+                ->get();
+        $fundings = Funding::all();
+        $activities = Activity::all();
+        return view('col_transaction_form', compact('fundings', 'activities', 'client')); //Muestra la vista de 'col_report.blade.php'
     }//Fin de la función
 
     //Inicio de la función col_report
@@ -66,7 +71,7 @@ class ColController extends Controller
 
     //Inicio de la función col_simulation
     public function col_simulation(){
-        $fundings = Funding::all();
+        $fundings   = Funding::all();
         $activities = Activity::all();
         return view('col_simulation', compact('fundings', 'activities')); //Muestra la vista de 'col_simulation.blade.php'
     }//Fin de la función
