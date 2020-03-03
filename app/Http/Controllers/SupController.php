@@ -91,8 +91,7 @@ class SupController extends Controller
         return (new TransactionsReportAllSup)->download('REPORTE-COMPLETO.xlsx'); //Llama a la clase TransactionExport para crear y descargar la lista de transacciones en un excel.
     }//Fin de la función
 
-    public function downloadFile($src)
-    {
+    public function downloadFile($src){
         if(is_file($src)){
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $content_type = finfo_file($finfo, $src);
@@ -109,8 +108,7 @@ class SupController extends Controller
             return false;
         }
     }//Fin de la función
-    public function userManual()
-    {
+    public function userManual(){
         if(!$this->downloadFile(app_path()."/Files/Manual_de_Usuario_Supervisor.pdf")){
             return back();
         }else{
