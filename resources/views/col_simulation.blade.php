@@ -2,7 +2,7 @@
 
 @section('content.col') {{-- Inicio de la seccion --}}
 
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"> {{-- Inicio del main --}}
+<div id="col_client" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"> {{-- Inicio del main --}}
     <div class="py-5 text-center">
       {{-- <img :src="imageForm"> --}}
       <h2>Evaluación Preliminar de Riesgo</h2>
@@ -118,5 +118,5 @@
         </form>
       </div>
     </div>
-  </main> {{-- Fin del main --}}
+  </div> {{-- Fin del main --}}
 @endsection {{-- Fin de la seccion --}}
