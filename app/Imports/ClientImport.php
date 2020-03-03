@@ -22,7 +22,7 @@ class ClientImport implements ToModel, WithChunkReading, WithValidation
     public function model(array $row)
     {
         //Inicio de la condición
-        if (((!isset($row[0]))) or $row[0] == 0 or ((!isset($row[13]))) or (((!isset($row[2]))) or ((!isset($row[10]))))) { //Verifica si el registro tiene vacío el campo identity o si los campos de tipo enteros son 0
+        if (((!isset($row[0]))) or $row[0] == 0 or ((!isset($row[13]))) or (((!isset($row[12]))))) { //Verifica si el registro tiene vacío el campo identity o si los campos de tipo enteros son 0
             return null; //No guarda el registro y salta el siguiente
         }//Fin de la condición
         else{
@@ -46,8 +46,6 @@ class ClientImport implements ToModel, WithChunkReading, WithValidation
                 'phone1'            => trim(strtoupper($row[7])),
                 'phone2'            => trim(strtoupper($row[8])),
                 'nationality'       => trim(mb_strtoupper($row[9],'UTF-8')),
-                'households'        => (int)$row[10],
-                'total_amount'      => (float)$row[11],
                 ]);
             }else{
             $previousHouseholds             = $client->households;
@@ -64,7 +62,6 @@ class ClientImport implements ToModel, WithChunkReading, WithValidation
             $client->phone1         = trim(strtoupper($row[7]));
             $client->phone2         = trim(strtoupper($row[8]));
             $client->nationality    = trim(mb_strtoupper($row[9],'UTF-8'));
-            $client->households     = $previousHouseholds + (int)$row[10];
             $client->total_amount   = $previousTotalAamount + (float)$row[11];
             $client->save();
         }
