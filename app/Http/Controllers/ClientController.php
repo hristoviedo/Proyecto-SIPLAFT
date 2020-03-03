@@ -3,7 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
+use Carbon\Carbon;
+use App\Events\EventsSiplaft;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\User; // Accede al modelo User
+use App\Role; // Accede al modelo Company
+use Illuminate\Support\Facades\Validator;
+use App\Company; // Accede al modelo Company
+use App\Client; // Accede al modelo Client
+use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 
 class ClientController extends Controller
 {
@@ -79,9 +88,62 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(Request $request){
+        $user_modifier_id = Auth::user()->id;
+        $record_date = Carbon::now()->toDateTimeString();
+        $record_modified_register = null;
+        $record_new_data = null;
+        $record_old_data = null;
+
+        $validator = Validator::make($request->all(), [
+            'identity'      => 'required|string|max:16|min:15|unique:clients',
+            'name'          => 'required|string|max:40',
+            'email'         => 'required|email|max:40',
+            'age'           => 'required|integer|max:100|min:15',
+            'phone1'        => 'string|max:15',
+            'phone2'        => 'max:15',
+            'nationality'   => 'max:20',
+            'workplace'     => 'max:30',
+            'workstation'   => 'max:45',
+            'activity'      => 'required|integer',
+            'funding'       => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            $record_action = 'FALLÓ REGISTRO DE CLIENTE';
+            $record_modified_table = null;
+            $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action,
+            'record_date' => $record_date , 'record_modified_table' => $record_modified_table,
+            'record_modified_register' => $record_modified_register, 'record_new_data' => $record_new_data,
+            'record_old_data' => $record_old_data );
+            event( new EventsSiplaft( $data ));
+            $findLastRecord = DB::table('records')->latest('id')->first();
+            $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            return redirect('col.client.form')->withInput()->withErrors($validator);
+        }else{
+            Client::create([
+                'identity'      => trim(mb_strtoupper($request['identity'])),
+                'name'          => trim(mb_strtoupper($request['name'])),
+                'email'         => trim(mb_strtolower($request['email'])),
+                'age'           => $request['age'],
+                'phone1'        => $request['phone1'],
+                'phone2'        => $request['phone2'],
+                'nationality'   => trim(mb_strtoupper($request['nationality'])),
+                'workplace'     => trim(mb_strtoupper($request['workplace'])),
+                'workstation'   => trim(mb_strtoupper($request['workstation'])),
+                'salary'        => (float)$request['salary'],
+                'activity_id'   => $request['activity'],
+                'funding_id'    => $request['funding'],
+                ]);
+                $record_modified_table = 'CLIENTS';
+                $record_action = 'REGISTRÓ NUEVO CLIENTE';
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+                $calculateRisksAll = DB::select('CALL calculateRisksAll');
+                return back()->with('message', 'Cliente registrado'); //Retorna a la página anterior cuando registra al usuario
+        };
     }
 
     /**
@@ -126,7 +188,156 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user_modifier_id = Auth::user()->id;
+        $record_date = Carbon::now()->toDateTimeString();
+        $record_modified_table = 'CLIENTS';
+        $record_modified_register = null;
+        $record_new_data = null;
+        $record_old_data = null;
+
+        $validator = Validator::make($request->all(), [
+            'identity'      => 'required|string|max:16|min:15|unique:clients,identity,'.$id,
+            'name'          => 'required|string|max:40',
+            'email'         => 'required|email|max:40',
+            'age'           => 'required|integer|max:100|min:15',
+            'phone1'        => 'string|max:15',
+            'phone2'        => 'max:15',
+            'nationality'   => 'max:20',
+            'workplace'     => 'max:30',
+            'workstation'   => 'max:45',
+            'activity_id'   => 'required|integer',
+            'funding_id'    => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            $record_action = 'FALLÓ ACTUALIZACIÓN DE CLIENTE';
+            $record_modified_table = null;
+            $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action,
+            'record_date' => $record_date , 'record_modified_table' => $record_modified_table,
+            'record_modified_register' => $record_modified_register, 'record_new_data' => $record_new_data,
+            'record_old_data' => $record_old_data );
+            event( new EventsSiplaft( $data ));
+            $findLastRecord = DB::table('records')->latest('id')->first();
+            $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            return back()->withInput()->withErrors($validator);
+        }else{
+            $clientUpdate = Client::find($id);
+            $record_action = 'ACTUALIZÓ USUARIO';
+            $record_modified_register = request()->email;
+            if (request()->identity != $clientUpdate->identity){
+                $record_modified_field = 'identity';
+                $record_new_data = request()->identity;
+                $record_old_data = $clientUpdate->identity;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->name != $clientUpdate->name ){
+                $record_modified_field = 'name';
+                $record_new_data = request()->name;
+                $record_old_data = $clientUpdate->name;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->email != $clientUpdate->email ){
+                $record_modified_field = 'email';
+                $record_new_data = request()->email;
+                $record_old_data = $clientUpdate->email;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->age != $clientUpdate->age ){
+                $record_modified_field = 'age';
+                $record_new_data = request()->age;
+                $record_old_data = $clientUpdate->age;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->phone1 != $clientUpdate->phone1 ){
+                $record_modified_field = 'phone1';
+                $record_new_data = request()->phone1;
+                $record_old_data = $clientUpdate->phone1;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->phone2 != $clientUpdate->phone2 ){
+                $record_modified_field = 'phone2';
+                $record_new_data = request()->phone2;
+                $record_old_data = $clientUpdate->phone2;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->nationality != $clientUpdate->nationality ){
+                $record_modified_field = 'nationality';
+                $record_new_data = request()->nationality;
+                $record_old_data = $clientUpdate->nationality;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->workplace != $clientUpdate->workplace ){
+                $record_modified_field = 'workplace';
+                $record_new_data = request()->workplace;
+                $record_old_data = $clientUpdate->workplace;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->workstation != $clientUpdate->workstation ){
+                $record_modified_field = 'workstation';
+                $record_new_data = request()->workstation;
+                $record_old_data = $clientUpdate->workstation;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->salary != $clientUpdate->salary ){
+                $record_modified_field = 'salary';
+                $record_new_data = request()->salary;
+                $record_old_data = $clientUpdate->salary;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->activity_id != $clientUpdate->activity_id ){
+                $record_modified_field = 'activity_id';
+                $record_new_data = request()->activity_id;
+                $record_old_data = $clientUpdate->activity_id;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            if (request()->funding_id != $clientUpdate->funding_id ){
+                $record_modified_field = 'funding_id';
+                $record_new_data = request()->funding_id;
+                $record_old_data = $clientUpdate->funding_id;
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                $data = array( 'user_modifier_id' => $user_modifier_id, 'record_action' => $record_action, 'record_date' => $record_date , 'record_modified_table' => $record_modified_table, 'record_modified_register' => $record_modified_register, 'record_modified_field'=> $record_modified_field, 'record_new_data' => $record_new_data, 'record_old_data' => $record_old_data );
+                event( new EventsSiplaft( $data ));
+                $findLastRecord = DB::table('records')->latest('id')->first();
+                $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
+            };
+            $clientUpdate->fill(request()->all());
+            $clientUpdate->save();
+            $calculateRisksAll = DB::select('CALL calculateRisksAll');
+            return back()->with('message', 'Cliente Actualizado'); //Retorna a la página anterior cuando registra al usuario
+        };
     }
 
     /**
