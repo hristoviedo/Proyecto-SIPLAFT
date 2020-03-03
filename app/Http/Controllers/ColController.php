@@ -58,6 +58,44 @@ class ColController extends Controller
         return view('col_report'); //Muestra la vista de 'col_report.blade.php'
     }//Fin de la función
 
+    //Inicio de la función col_report
+    public function transaction_table()
+    {
+        $transactions = Transaction::all();
+        return view('col_transaction_table',compact('transactions')); //Muestra la vista de 'col_report.blade.php'
+    }//Fin de la función
+
+    //Inicio de la función col_report
+    public function client_table()
+    {
+        $clients = Client::all();
+        return view('col_client_table',compact('clients')); //Muestra la vista de 'col_report.blade.php'
+    }//Fin de la función
+
+    //Inicio de la función col_show_client
+    public function col_show_client($id){
+        $client = DB::table('clients')
+                ->where('id', $id)
+                ->get();
+        $fundings = Funding::all();
+        $activities = Activity::all();
+        // dd($client);
+        return view('client_update', compact('client','activities','fundings')); //Muestra la vista de 'user_update.blade.php'
+    }
+    //Fin de la función
+
+    //Inicio de la función col_show_transaction
+    public function col_show_transaction($id){
+        $client = DB::table('transactions')
+                ->where('id', $id)
+                ->get();
+        $fundings = Funding::all();
+        $activities = Activity::all();
+        // dd($client);
+        return view('client_update', compact('client','activities','fundings')); //Muestra la vista de 'user_update.blade.php'
+    }
+    //Fin de la función
+
     //Inicio de la función col_client
     public function col_client(){
         // $clients = Client::where('''''')->orderBy('created_at','DESC')->get();
