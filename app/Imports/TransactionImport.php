@@ -35,7 +35,6 @@ class TransactionImport implements ToModel, WithChunkReading, WithValidation
             }else{
                 $boolValue = FALSE;
             }
-            // dd($activityID);
             return new Transaction([
                 'client_id'                     => $client->id,
                 'user_id'                       => auth()->user()->id,
