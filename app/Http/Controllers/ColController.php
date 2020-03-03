@@ -7,13 +7,14 @@ use App\Funding;
 
 use App\Activity;
 use Carbon\Carbon;
+use App\Transaction;
 use Illuminate\Http\Request;
 use App\Events\EventsSiplaft;
 use App\Exports\TransactionExport;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Exports\TransactionsReportAll;
 use App\Exports\TransactionsReportMonth;
-use DB; // Permite ejecutar consultas o llamar a procedimientos muy fácil
 use Maatwebsite\Excel\Facades\Excel; // Permite trabajar con archivos de Excel
 use App\Exports\ClientExport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
 use App\Imports\ClientImport; // Permite realizar exportaciones según los datos seleccionados del cliente (No implementados)
@@ -98,7 +99,6 @@ class ColController extends Controller
 
     //Inicio de la función col_client
     public function col_client(){
-        // $clients = Client::where('''''')->orderBy('created_at','DESC')->get();
         return view('col_client'); //Muestra la vista de 'col_client.blade.php'
     }//Fin de la función
 
