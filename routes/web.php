@@ -9,7 +9,7 @@ Route::get('/', 'HomeController@welcome')->name('welcome'); //La raiz (/) llama 
 //-------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('/col.client.form', 'ColController@col_client_form')->name('col.client.form'); // /col.simulation llama a la función 'col_simulation' de ColController
 
-Route::get('/col.transaction.form', 'ColController@col_transaction_form')->name('col.transaction.form'); // /col.simulation llama a la función 'col_simulation' de ColController
+Route::get('/col.transaction.form/{id}', 'ColController@col_transaction_form')->name('col.transaction.form'); // /col.simulation llama a la función 'col_simulation' de ColController
 
 Route::get('/col.simulation', 'ColController@col_simulation')->name('col.simulation'); // /col.simulation llama a la función 'col_simulation' de ColController
 
@@ -20,6 +20,12 @@ Route::get('/col.transaction', 'ColController@col_transaction')->name('col.trans
 Route::get('/col.report', 'ColController@col_report')->name('col.report'); // /col.report llama a la función 'col_report' de ColController
 
 Route::get('/col.report.all', 'ColController@col_report_all')->name('col.report.all'); // /col.report llama a la función 'col_report' de ColController
+
+Route::get('/col.show.client/{id}', 'ColController@col_show_client')->name('col.show.client'); // /client.update llama a la función 'client_update' de AdminController
+
+Route::get('/col.show.transaction/{id}', 'ColController@col_show_transaction')->name('col.show.transaction'); // /client.update llama a la función 'client_update' de AdminController
+
+Route::put('/clients/{id}', 'ClientController@update'); // //users/{id} llama a la función 'update' de UserController
 
 //-------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -48,11 +54,19 @@ Route::get('/user.update', 'AdminController@user_update')->name('user.update'); 
 Auth::routes(['verify' => true]); // Todas las funciones de usuarios
 // Auth::routes(['register' => false]); // Todas las funciones de usuarios
 
-Route::post('/clients.carga', 'ColController@clientImportExcel')->name('client.import.excel'); // /clients.carga llama a la función 'clientImportExcel' de ColController
+Route::post('/col.client.create', 'ClientController@create')->name('col.client.create'); // /col.client.create llama a la función 'create' de ClientController
+
+Route::post('/transaction.create/{id}', 'TransactionController@create')->name('col.transaction.create'); // /col.client.create llama a la función 'create' de ClientController
+
+// Route::post('/clients.carga', 'ColController@clientImportExcel')->name('client.import.excel'); // /clients.carga llama a la función 'clientImportExcel' de ColController
 
 Route::post('/register', 'UserController@register')->name('register'); // /clients.carga llama a la función 'clientImportExcel' de ColController
 
-Route::post('/transactions.carga', 'ColController@transactionImportExcel')->name('transaction.import.excel'); // /descarga llama a la función 'transactionImportExcel' de ColController
+// Route::post('/transactions.carga', 'ColController@transactionImportExcel')->name('transaction.import.excel'); // /descarga llama a la función 'transactionImportExcel' de ColController
+
+Route::get('/col.client.table', 'ColController@client_table')->name('col.client.table'); // /clients.descarga llama a la función 'clientExportExcel' de ColController
+
+Route::get('/col.transaction.table', 'ColController@transaction_table')->name('col.transaction.table'); // /clients.descarga llama a la función 'clientExportExcel' de ColController
 
 Route::get('/clients.descarga', 'ColController@clientExportExcel')->name('client.export.excel'); // /clients.descarga llama a la función 'clientExportExcel' de ColController
 
