@@ -42,7 +42,7 @@ class HomeController extends Controller
         return view('welcome'); //Muestra la vista de 'col_client.blade.php'
         else
             if( Auth::user()->role_id =='1' )       //se valida el tipo de usuario colaborador
-                return redirect('col.client');
+                return redirect('col.client.table');
             elseif( Auth::user()->role_id =='2' )   //se valida el tipo de usuario supervisor
                 return redirect('sup.client');
             elseif( Auth::user()->role_id =='3' )   //se valida el tipo de usuario administrador
