@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <h1 class="h2">Tabla de Usuarios</h1>
         <div class="btn-group mr-2">
-            <a class="btn btn-success btn-action" role="button" href="{{ route('adm.create.user') }}">
+            <a class="btn btn-success" role="button" href="{{ route('adm.create.user') }}">
                 <i class="material-icons">person_add</i>
             </a>
         </div>
@@ -31,7 +31,7 @@
             <td>@{{ user.user_company }}</td>
             <td>@{{ formatBool(user.user_active) }}</td>
             <td>
-                <button type="button" class="btn btn-primary btn-action" v-on:click='showUser(user.user_id)'><i class="material-icons">update</i></button>
+                <button type="button" class="btn btn-primary" v-on:click='showUser(user.user_id)'><i class="material-icons">update</i></button>
             </td>
             </tr>
         </tbody>
