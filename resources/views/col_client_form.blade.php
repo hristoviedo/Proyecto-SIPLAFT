@@ -110,7 +110,7 @@
                     <button type="button" class="btn btn-sm btn-primary" @click.prevent='clearProperty'>Limpiar</button>
                     </div>
                     <a class="btn btn-sm btn-danger" role="button" href="{{ route('col.client.table') }}">
-                        <p class="">Cancelar</p>
+                        <p class="">Salir</p>
                     </a>
                 </div>
             </form>

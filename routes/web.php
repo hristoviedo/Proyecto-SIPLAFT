@@ -100,7 +100,7 @@ Route::get('/list-roles/indexAll', 'UserController@indexRolesAll'); // /list-rol
 
 // Route::delete('/users/{id}', 'UserController@destroy'); // //users/{id} llama a la función 'destroy' de UserController
 
-Route::put('/users/{id}', 'UserController@update'); // //users/{id} llama a la función 'update' de UserController
+Route::put('users/{id}', 'UserController@update'); // //users/{id} llama a la función 'update' de UserController
 
 Route::get('/list-clientxcompany/indexAll', 'ClientController@indexClientXCompany'); // /list-clientxcompany/indexAll llama a la función 'indexClientXCompany' de ClientController
 

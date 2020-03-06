@@ -112,7 +112,7 @@ class TransactionController extends Controller
             event( new EventsSiplaft( $data ));
             $findLastRecord = DB::table('records')->latest('id')->first();
             $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
-            return redirect('col.transaction.form')->withInput()->withErrors($validator);
+            return back()->withInput()->withErrors($validator);
         }else{
             Transaction::create([
                 'client_id'             => $idClient,
@@ -279,8 +279,8 @@ class TransactionController extends Controller
             $deleteLastRecord = DB::table('records')->delete($findLastRecord->id);
         };
         $transactionUpdate->fill(request()->all());
-        
         $transactionUpdate->save();
+        $calculateData = DB::select('CALL calculateData (?)',array($idClient));
         return back()->with('message', 'Transacción Actualizada'); //Retorna a la página anterior cuando registra al usuario
     };
 }

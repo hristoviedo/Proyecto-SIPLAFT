@@ -20,7 +20,7 @@ class CreateClientsTable extends Migration
             $table->unsignedBigInteger('funding_id')->default(null)->nullable(); //Id de la fuente de financiamiento (valor por defecto = null, sin signo y nullable)
             $table->unsignedBigInteger('risk_id')->default(0)->nullable(); //Id del nivel de riesgo (valor por defecto = null, sin signo y nullable)
             $table->string('identity', 16); //Número de identidad del cliente (not null)
-            $table->string('name', 45)->nullable(); //Nombre completo del cliente (not null)
+            $table->string('name', 70)->nullable(); //Nombre completo del cliente (not null)
             $table->unsignedInteger('age')->nullable(); //Edad en años (nullable)
             $table->string('email', 40)->nullable(); //Correo electrónico (nullable)
             $table->string('workplace', 30)->nullable(); //Lugar de trabajo (nullable)

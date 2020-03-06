@@ -39,7 +39,7 @@
                     <div class="form-group row">
                         <div class="col-md-3 mb-3">
                             <label for="identity">Identidad</label>
-                            <input name="identity" id="identity" class="form-control text-uppercase" type="text" v-mask="'####-####-######'" value="{{ $clientUpdate->identity }}" placeholder="9999-9999-99999" autofocus required/>
+                            <input name="identity" id="identity" class="form-control text-uppercase" type="text" value="{{ $clientUpdate->identity }}" placeholder="9999-9999-99999" autofocus required/>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="name">Nombre completo</label>
@@ -118,7 +118,7 @@
                         </div>
                         <div class="col">
                             <a class="btn btn-sm btn-danger" role="button" href="{{ route('col.client.table') }}">
-                                <p class="">Cancelar</p>
+                                <p class="">Salir</p>
                             </a>
                         </div>
                     </div>

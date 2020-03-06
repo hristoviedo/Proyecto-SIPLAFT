@@ -19,7 +19,7 @@
 
                 <div class="card-body" id="adm_users">
                     @foreach($user as $userUpdate)
-                    <form method="POST" action="/users/{{ $userUpdate->id }}">
+                    <form method="POST" action="{{ url('users',$userUpdate->id) }}">
                         @csrf
                         @method('PUT')
                         <div class="form-group row">
@@ -114,7 +114,7 @@
                                     {{ __('Editar') }}
                                 </button>
                                 <a class="btn btn-danger" role="button" href="{{ route('adm.user') }}">
-                                    <p class="">Cancelar</p>
+                                    <p class="">Salir</p>
                                 </a>
                             </div>
                         </div>

@@ -39,15 +39,11 @@ var vm = new Vue({
         // Realiza la búsqueda, en el arreglo [clientsAll] según la propiedad que el usuario indique [property]
         searchClientAll: function(){
             return this.clientsAll.filter((index) => {
-                return index.client_identity.toUpperCase().includes(this.property.toUpperCase().trim()) ||
+                return index.client_identity.includes(this.property.trim()) ||
                 index.client_name.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_email.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.client_workplace.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.client_workstation.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.client_salary.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_funding.toUpperCase().includes(this.property.toUpperCase().trim()) ||
                 index.client_risk.toUpperCase().includes(this.property.toUpperCase().trim()) ||
-                index.client_nationality.toUpperCase().includes(this.property.toUpperCase().trim())||
                 index.client_activity.toUpperCase().includes(this.property.toUpperCase())
             });
         },
@@ -122,7 +118,7 @@ var vm = new Vue({
             var url = 'col.show.client/'+id;
             window.location.href = url;
         },
-        
+
         newTransaction: function(id){
             var url = 'col.transaction.form/'+id;
             window.location.href = url;
@@ -307,12 +303,12 @@ var vm = new Vue({
         },
     },
     methods:{
-        
+
         showTransaction: function(id){
             var url = 'col.show.transaction/'+id;
             window.location.href = url;
         },
-        
+
         // Asigna un valor a [property] para mostrar todos los registros.
         showEverything: function(){
             this.property = ' ';

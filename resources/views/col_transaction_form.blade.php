@@ -16,7 +16,7 @@
             @if (count($errors) > 0) {{-- ¿Existe un algún error que mostrar? --}}
                 <div class="alert alert-danger" role="alert">
                     <button type="button" class="close" data-dismiss="alert">x</button>
-                    <p class="lead">Error al enviar lista de transacciones</p> {{-- Muestra los errores --}}
+                    <p class="lead">Error al registrar transacción</p> {{-- Muestra los errores --}}
                     <ul> {{-- Muestra la lista de errores --}}
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-auto">
                     <a class="btn btn-danger" role="button" href="{{ route('col.client.table') }}">
-                        <p class="">Cancelar</p>
+                        <p class="">Salir</p>
                     </a>
                 </div>
             </div>

@@ -36,21 +36,21 @@ class TransactionImport implements ToModel, WithChunkReading, WithValidation
                 $boolValue = FALSE;
             }
             return new Transaction([
-                'client_id'                     => $client->id,
-                'user_id'                       => auth()->user()->id,
-                'company_id'                    => auth()->user()->company_id,
-                'activity_id'                   => $client->activity_id,
-                'funding_id'                    => $client->funding_id,
-                'transaction_apartment_number'  => trim(mb_strtoupper($row[1])),
-                'transaction_intermediary_bank' => trim(mb_strtoupper($row[2])),
-                'transaction_operation_date'    => trim($row[3]),
-                'transaction_transfer_date'     => trim($row[4]),
-                'transaction_cash'              => $boolValue,
-                'transaction_currency'          => trim(mb_strtoupper($row[6])),
-                'transaction_amount'            => (float)$row[7],
-                'workplace'                     => $client->workplace,
-                'workstation'                   => $client->workstation,
-                'salary'                        => $client->salary,
+                'client_id'         => $client->id,
+                'user_id'           => auth()->user()->id,
+                'company_id'        => auth()->user()->company_id,
+                'activity_id'       => $client->activity_id,
+                'funding_id'        => $client->funding_id,
+                'apartment_number'  => trim(mb_strtoupper($row[1])),
+                'intermediary_bank' => trim(mb_strtoupper($row[2])),
+                'operation_date'    => trim($row[3]),
+                'transfer_date'     => trim($row[4]),
+                'cash'              => $boolValue,
+                'currency'          => trim(mb_strtoupper($row[6])),
+                'amount'            => (float)$row[7],
+                'workplace'         => $client->workplace,
+                'workstation'       => $client->workstation,
+                'salary'            => $client->salary,
             ]);
         }
     }//Fin de la función
